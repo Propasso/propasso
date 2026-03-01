@@ -1,13 +1,46 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import ProblemSection from "@/components/ProblemSection";
+import SaleReadySection from "@/components/SaleReadySection";
+import PhasesSection from "@/components/PhasesSection";
+import ClientLogos from "@/components/ClientLogos";
+import WhyPropasso from "@/components/WhyPropasso";
+import TargetAudience from "@/components/TargetAudience";
+import CTASection from "@/components/CTASection";
+import TestimonialsSection from "@/components/TestimonialsSection";
+import BlogSection from "@/components/BlogSection";
+import Footer from "@/components/Footer";
+import { useEffect } from "react";
 
 const Index = () => {
+  useEffect(() => {
+    document.title = "Propasso | Exit Planning & Bedrijfsoverdracht voor MKB";
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) {
+      meta.setAttribute(
+        "content",
+        "Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid."
+      );
+    }
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      <Header />
+      <main>
+        <HeroSection />
+        <ProblemSection />
+        <SaleReadySection />
+        <PhasesSection />
+        <ClientLogos />
+        <WhyPropasso />
+        <TargetAudience />
+        <CTASection />
+        <TestimonialsSection />
+        <BlogSection />
+      </main>
+      <Footer />
+    </>
   );
 };
 
