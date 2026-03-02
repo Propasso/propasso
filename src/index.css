@@ -42,6 +42,20 @@
     --teal-deep: 195 55% 15%;
     --teal-medium: 195 45% 25%;
 
+    /* Mandatory background tints — #2C786F38, #FFFFFF38 */
+    --tint-teal: 170 46% 32%;       /* #2C786F base */
+    --tint-teal-alpha: 0.22;
+    --tint-white: 0 0% 100%;        /* #FFFFFF base */
+    --tint-white-alpha: 0.22;
+
+    /* Supporting tones for hierarchy & accessibility */
+    --surface-raised: 195 20% 98%;
+    --text-subtle: 200 12% 55%;
+    --success: 160 60% 40%;
+    --success-foreground: 0 0% 100%;
+    --warning: 40 90% 50%;
+    --warning-foreground: 40 90% 15%;
+
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
     --sidebar-primary: 240 5.9% 10%;
@@ -85,6 +99,14 @@
 
   .section-alt-bg {
     background-color: hsl(var(--section-alt));
+  }
+
+  .tint-teal-bg {
+    background-color: hsl(var(--tint-teal) / var(--tint-teal-alpha));
+  }
+
+  .tint-white-bg {
+    background-color: hsl(var(--tint-white) / var(--tint-white-alpha));
   }
 }
 
