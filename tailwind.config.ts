@@ -50,6 +50,16 @@ export default {
         "section-alt": "hsl(var(--section-alt))",
         "teal-deep": "hsl(var(--teal-deep))",
         "teal-medium": "hsl(var(--teal-medium))",
+        "surface-raised": "hsl(var(--surface-raised))",
+        "text-subtle": "hsl(var(--text-subtle))",
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
