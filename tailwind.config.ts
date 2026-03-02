@@ -73,6 +73,7 @@ export default {
   		},
   		fontFamily: {
   			sans: [
+  				'DM Sans',
   				'ui-sans-serif',
   				'system-ui',
   				'sans-serif',
