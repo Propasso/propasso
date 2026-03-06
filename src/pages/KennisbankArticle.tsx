@@ -86,9 +86,9 @@ const KennisbankArticle = () => {
                   className="group flex gap-5 items-start"
                 >
                   <div className="shrink-0 w-24 h-24 rounded-xl overflow-hidden bg-secondary">
-                    <img
-                      src={related.image}
-                      alt={related.title}
+                      <img
+                        src={related.image}
+                        alt={related.imageAlt}
                       className="h-full w-full object-cover group-hover:scale-105 transition-transform"
                     />
                   </div>
