@@ -138,7 +138,7 @@ const Contact = () => {
                 <img
                   src={karelImg}
                   alt="Karel Cremers in gesprek met ondernemers over exit planning"
-                  className="relative rounded-2xl w-full object-cover aspect-[4/3]"
+                  className="relative rounded-2xl w-full object-cover aspect-[3/4]"
                   loading="eager"
                 />
               </div>
