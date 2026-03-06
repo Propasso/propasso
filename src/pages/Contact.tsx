@@ -159,7 +159,7 @@ const Contact = () => {
             className="mb-12">
             
             <p className="eyebrow">Direct contact</p>
-            <h2 className="mt-4 text-2xl md:text-3xl font-bold text-center">
+            <h2 className="mt-4 text-2xl md:text-3xl font-bold text-left">
               Neem direct contact op
             </h2>
             <p className="mt-3 text-muted-foreground max-w-lg">
