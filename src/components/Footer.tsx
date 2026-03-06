@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "@/assets/propasso-logo.png";
+import logo from "@/assets/logos/propasso-logo.png";
 
 const footerNav = [
 { label: "Home", href: "/" },

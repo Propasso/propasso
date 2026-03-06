@@ -1,21 +1,21 @@
-import reed from "@/assets/clients/reed.png";
+import reedElsevier from "@/assets/clients/reed-elsevier.png";
 import bodi from "@/assets/clients/bodi.png";
-import widemax from "@/assets/clients/widemax.svg";
-import beJames from "@/assets/clients/be-james.png";
-import fiber from "@/assets/clients/fiber.png";
+import widemex from "@/assets/clients/widemex.svg";
+import beJames from "@/assets/clients/bejames.png";
+import fiberDowels from "@/assets/clients/fiber-dowels.png";
 import crh from "@/assets/clients/crh.png";
 import worxx from "@/assets/clients/worxx.png";
-import rail from "@/assets/clients/rail.png";
+import railcolor from "@/assets/clients/railcolor.png";
 
 const logos = [
-  { src: reed, alt: "Reed Business - klant van Propasso exit planning" },
+  { src: reedElsevier, alt: "Reed Elsevier - klant van Propasso exit planning" },
   { src: bodi, alt: "Bodi - klant van Propasso bedrijfsoverdracht" },
-  { src: widemax, alt: "Widemex - klant van Propasso waardecreatie" },
-  { src: beJames, alt: "Be James - klant van Propasso bedrijfsoptimalisatie" },
-  { src: fiber, alt: "Fiber Dowels - klant van Propasso exit readiness" },
+  { src: widemex, alt: "Widemex - klant van Propasso waardecreatie" },
+  { src: beJames, alt: "BeJames - klant van Propasso bedrijfsoptimalisatie" },
+  { src: fiberDowels, alt: "Fiber Dowels - klant van Propasso exit readiness" },
   { src: crh, alt: "CRH - klant van Propasso bedrijfsoverdracht" },
   { src: worxx, alt: "Worxx - klant van Propasso exit planning" },
-  { src: rail, alt: "Railcolor - klant van Propasso bedrijfsoverdracht" },
+  { src: railcolor, alt: "RailColor Design - klant van Propasso bedrijfsoverdracht" },
 ];
 
 const ClientLogos = () => {

@@ -1,6 +1,6 @@
-import climbingImg from "@/assets/propasso-climbing.png";
-import teamImg from "@/assets/propasso-team.png";
-import moneyImg from "@/assets/propasso-money.png";
+import climbingImg from "@/assets/illustrations/propasso-climbing.png";
+import teamImg from "@/assets/illustrations/propasso-team.png";
+import moneyImg from "@/assets/illustrations/propasso-money.png";
 
 export interface Article {
   slug: string;

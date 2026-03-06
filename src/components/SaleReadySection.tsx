@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import optimizeImg from "@/assets/propasso-optimize.svg";
-import rocketImg from "@/assets/propasso-rocket.png";
-import boardImg from "@/assets/propasso-board.png";
-import teamImg from "@/assets/propasso-team.png";
-import visionImg from "@/assets/propasso-vision.png";
+import optimizeImg from "@/assets/illustrations/propasso-optimize.svg";
+import rocketImg from "@/assets/illustrations/propasso-rocket.png";
+import boardImg from "@/assets/illustrations/propasso-board.png";
+import teamImg from "@/assets/illustrations/propasso-team.png";
+import visionImg from "@/assets/illustrations/propasso-vision.png";
 
 const pillars = [
   {
