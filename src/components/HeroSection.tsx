@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ChevronRight, ArrowDown } from "lucide-react";
 
 const heroSubtitles = [
@@ -53,20 +54,20 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.6 }}
             className="mt-10 flex flex-col sm:flex-row gap-4"
           >
-            <a
-              href="#quickscan"
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-teal-medium transition-colors"
             >
               Krijg inzicht in je verkoopklaarheid
               <ChevronRight size={18} />
-            </a>
-            <a
-              href="#contact"
+            </Link>
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary px-7 py-4 text-base font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
             >
               Plan een kennismaking
               <ChevronRight size={18} />
-            </a>
+            </Link>
           </motion.div>
         </div>
       </div>

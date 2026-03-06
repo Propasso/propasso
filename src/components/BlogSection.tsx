@@ -1,26 +1,7 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import climbingImg from "@/assets/propasso-climbing.png";
-import teamImg from "@/assets/propasso-team.png";
-import moneyImg from "@/assets/propasso-money.png";
-
-const posts = [
-  {
-    image: climbingImg,
-    title: "Successieplanning uitgelegd: hoe je een exitstrategie voor het familiebedrijf ontwikkelt",
-    href: "#",
-  },
-  {
-    image: teamImg,
-    title: "Waarom je team je bedrijfswaarde bepaalt (niet jij)",
-    href: "#",
-  },
-  {
-    image: moneyImg,
-    title: "Van cijfers naar inzicht: hoe bepaal je de waarde van je MKB-bedrijf",
-    href: "#",
-  },
-];
+import { articles } from "@/data/articles";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -54,31 +35,40 @@ const BlogSection = () => {
         </motion.p>
 
         <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {posts.map((post, i) => (
+          {articles.map((article, i) => (
             <motion.article
-              key={post.title}
+              key={article.slug}
               {...fadeInUp}
               transition={{ duration: 0.5, delay: 0.15 * i }}
               className="group"
             >
-              <a href={post.href} className="block">
+              <Link to={`/kennisbank/${article.slug}`} className="block">
                 <div className="aspect-[3/2] rounded-2xl overflow-hidden bg-secondary mb-5">
                   <img
-                    src={post.image}
-                    alt={post.title}
+                    src={article.image}
+                    alt={article.title}
                     className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                 </div>
                 <h3 className="text-lg font-bold leading-snug group-hover:text-primary transition-colors">
-                  {post.title}
+                  {article.title}
                 </h3>
                 <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
                   Verder lezen <ArrowRight size={14} />
                 </span>
-              </a>
+              </Link>
             </motion.article>
           ))}
+        </div>
+
+        <div className="mt-10 text-center">
+          <Link
+            to="/kennisbank"
+            className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
+          >
+            Bekijk alle artikelen <ArrowRight size={16} />
+          </Link>
         </div>
       </div>
     </section>

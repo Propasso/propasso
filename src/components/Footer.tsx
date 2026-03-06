@@ -1,16 +1,28 @@
+import { Link } from "react-router-dom";
 import logo from "@/assets/propasso-logo.png";
+
+const footerNav = [
+  { label: "Home", href: "/" },
+  { label: "Werkwijze", href: "/werkwijze" },
+  { label: "Over Propasso", href: "/over-propasso" },
+  { label: "Kennisbank", href: "/kennisbank" },
+  { label: "Veelgestelde vragen", href: "/veelgestelde-vragen" },
+  { label: "Contact", href: "/contact" },
+];
 
 const Footer = () => {
   return (
-    <footer id="contact" className="bg-foreground py-16">
+    <footer className="bg-foreground py-16">
       <div className="section-container">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
-            <img
-              src={logo}
-              alt="Propasso"
-              className="h-8 brightness-0 invert mb-6"
-            />
+            <Link to="/">
+              <img
+                src={logo}
+                alt="Propasso"
+                className="h-8 brightness-0 invert mb-6"
+              />
+            </Link>
             <p className="text-sm text-background/60 leading-relaxed max-w-xs">
               Wij begeleiden MKB-ondernemers naar maximale waarde en
               verkoopbaarheid in de jaren vóór de bedrijfsoverdracht.
@@ -22,20 +34,14 @@ const Footer = () => {
               Navigatie
             </h3>
             <ul className="space-y-2.5">
-              {[
-                { label: "Aanpak", href: "#aanpak" },
-                { label: "Waarom Propasso", href: "#waarom" },
-                { label: "Voor wie", href: "#voor-wie" },
-                { label: "Referenties", href: "#referenties" },
-                { label: "Inzichten", href: "#inzichten" },
-              ].map((link) => (
+              {footerNav.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-background/50 hover:text-background transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
