@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Check, X } from "lucide-react";
-import exitSteps from "@/assets/propasso-exit-steps.png";
+import exitSteps from "@/assets/illustrations/propasso-exit-steps.png";
 
 const goodFit = [
   "Een winstgevend MKB-bedrijf met ambitie om binnen 3–5 jaar te verkopen",
