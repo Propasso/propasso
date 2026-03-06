@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import mountainBg from "@/assets/images/mountain-hike-top.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -11,10 +12,13 @@ const fadeInUp = {
 const CTASection = () => {
   return (
     <section id="quickscan" className="py-20 md:py-28 relative overflow-hidden">
-      {/* Accent bg decoration */}
-      <div className="absolute inset-0 bg-primary opacity-85" />
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/15 translate-x-1/3 -translate-y-1/3" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-accent/10 -translate-x-1/3 translate-y-1/3" />
+      {/* Fixed background image */}
+      <div
+        className="absolute inset-0 bg-fixed bg-cover bg-center"
+        style={{ backgroundImage: `url(${mountainBg})` }}
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-primary/85" />
 
       <div className="section-container relative z-10 text-center">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
