@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import mountainBg from "@/assets/images/mountain-hike-top.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
