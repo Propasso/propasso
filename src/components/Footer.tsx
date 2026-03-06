@@ -1,27 +1,27 @@
 import { Link } from "react-router-dom";
-import footerLogo from "@/assets/logos/propasso-logo-grey-yellow.png";
+import logo from "@/assets/propasso-logo.png";
 
 const footerNav = [
-  { label: "Home", href: "/" },
-  { label: "Werkwijze", href: "/werkwijze" },
-  { label: "Over Propasso", href: "/over-propasso" },
-  { label: "Kennisbank", href: "/kennisbank" },
-  { label: "Veelgestelde vragen", href: "/veelgestelde-vragen" },
-  { label: "Contact", href: "/contact" },
-];
+{ label: "Home", href: "/" },
+{ label: "Werkwijze", href: "/werkwijze" },
+{ label: "Over Propasso", href: "/over-propasso" },
+{ label: "Kennisbank", href: "/kennisbank" },
+{ label: "Veelgestelde vragen", href: "/veelgestelde-vragen" },
+{ label: "Contact", href: "/contact" }];
+
 
 const Footer = () => {
   return (
-    <footer className="bg-foreground py-16">
+    <footer className="bg-foreground py-16 opacity-85">
       <div className="section-container">
         <div className="grid gap-12 md:grid-cols-3">
           <div>
             <Link to="/">
               <img
-                src={footerLogo}
-                alt="Propasso - Exit Planning & Bedrijfsoverdracht begeleiding voor MKB-ondernemers"
-                className="h-8 mb-6"
-              />
+                src={logo}
+                alt="Propasso"
+                className="h-8 brightness-0 invert mb-6" />
+              
             </Link>
             <p className="text-sm text-background/60 leading-relaxed max-w-xs">
               Wij begeleiden MKB-ondernemers naar maximale waarde en
@@ -34,16 +34,16 @@ const Footer = () => {
               Navigatie
             </h3>
             <ul className="space-y-2.5">
-              {footerNav.map((link) => (
-                <li key={link.href}>
+              {footerNav.map((link) =>
+              <li key={link.href}>
                   <Link
-                    to={link.href}
-                    className="text-sm text-background/50 hover:text-background transition-colors"
-                  >
+                  to={link.href}
+                  className="text-sm text-background/50 hover:text-background transition-colors">
+                  
                     {link.label}
                   </Link>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -56,8 +56,8 @@ const Footer = () => {
             </p>
             <a
               href="mailto:info@propasso.nl"
-              className="mt-3 inline-block text-sm font-semibold text-accent hover:text-accent/80 transition-colors"
-            >
+              className="mt-3 inline-block text-sm font-semibold text-accent hover:text-accent/80 transition-colors">
+              
               info@propasso.nl
             </a>
           </div>
@@ -69,14 +69,14 @@ const Footer = () => {
           </p>
           <a
             href="#"
-            className="text-xs text-background/40 hover:text-background/60 transition-colors"
-          >
+            className="text-xs text-background/40 hover:text-background/60 transition-colors">
+            
             Privacyverklaring
           </a>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 };
 
 export default Footer;
