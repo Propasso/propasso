@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import mountainHikeTop from "@/assets/images/mountain-hike-top.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -11,13 +10,11 @@ const fadeInUp = {
 
 const CTASection = () => {
   return (
-    <section
-      id="quickscan"
-      className="py-20 md:py-28 relative overflow-hidden bg-fixed bg-cover bg-center"
-      style={{ backgroundImage: `url(${mountainHikeTop})` }}
-    >
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-primary/85" />
+    <section id="quickscan" className="py-20 md:py-28 relative overflow-hidden">
+      {/* Accent bg decoration */}
+      <div className="absolute inset-0 bg-primary" />
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/15 translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-accent/10 -translate-x-1/3 translate-y-1/3" />
 
       <div className="section-container relative z-10 text-center">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
@@ -39,9 +36,9 @@ const CTASection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg text-primary-foreground/70 max-w-2xl mx-auto leading-relaxed"
         >
-          Daarom starten we altijd met inzicht — in de verkoopklaarheid van de
-          onderneming, de afhankelijkheid van de ondernemer en de keuzes die de
-          komende jaren bepalend zijn.
+          Daarom starten we altijd met een scan die kijkt naar de gereedheidheid van zowel de ondernemer als het bedrijf
+          voor een bedrijfsoverdracht. Daarna doen we de aantrekkelijkheidsonderzoek; hoe aantrekkelijk is je bedrijf
+          vanuit het perspectief van de koper.
         </motion.p>
 
         <motion.div
