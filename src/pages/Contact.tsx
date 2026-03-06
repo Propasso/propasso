@@ -156,13 +156,13 @@ const Contact = () => {
             viewport={{ once: true, margin: "-50px" }}
             variants={fadeUp}
             custom={0}
-            className="text-center mb-12"
+            className="mb-12"
           >
-            <p className="eyebrow justify-center">Direct contact</p>
+            <p className="eyebrow">Direct contact</p>
             <h2 className="mt-4 text-2xl md:text-3xl font-bold">
               Neem direct contact op
             </h2>
-            <p className="mt-3 text-muted-foreground max-w-lg mx-auto">
+            <p className="mt-3 text-muted-foreground max-w-lg">
               Kies de manier die bij je past. Ik ben persoonlijk bereikbaar.
             </p>
           </motion.div>
