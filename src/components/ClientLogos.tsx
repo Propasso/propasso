@@ -1,6 +1,6 @@
 import reed from "@/assets/clients/reed.png";
 import bodi from "@/assets/clients/bodi.png";
-import widemax from "@/assets/clients/widemax.png";
+import widemax from "@/assets/clients/widemax.svg";
 import beJames from "@/assets/clients/be-james.png";
 import fiber from "@/assets/clients/fiber.png";
 import crh from "@/assets/clients/crh.png";
