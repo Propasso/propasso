@@ -62,7 +62,7 @@ const TestimonialsSection = () => {
               transition={{ duration: 0.5, delay: 0.15 * i }}
               className="relative bg-secondary rounded-2xl p-8 flex flex-col"
             >
-              <Quote size={28} className="text-accent mb-4 shrink-0" />
+              <Quote size={28} className="text-primary mb-4 shrink-0" />
               <p className="text-sm leading-relaxed text-foreground/80 italic flex-1">
                 "{t.quote}"
               </p>
