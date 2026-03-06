@@ -37,12 +37,12 @@ const Header = () => {
         <Link to="/" className="block">
           <img
             src={logo}
-            alt="Propasso - Exit Planning & Bedrijfsoverdracht"
+            alt="Propasso - Exit Planning & Bedrijfsoverdracht begeleiding voor MKB"
             className="h-10 hidden sm:block"
           />
           <img
             src={logoP}
-            alt="Propasso"
+            alt="Propasso - Exit Planning"
             className="h-10 sm:hidden"
           />
         </Link>

@@ -8,14 +8,14 @@ import worxx from "@/assets/clients/worxx.png";
 import rail from "@/assets/clients/rail.png";
 
 const logos = [
-  { src: reed, alt: "Reed" },
-  { src: bodi, alt: "Bodi" },
-  { src: widemax, alt: "Widemax" },
-  { src: beJames, alt: "Be James" },
-  { src: fiber, alt: "Fiber Dowels" },
-  { src: crh, alt: "CRH" },
-  { src: worxx, alt: "Worxx" },
-  { src: rail, alt: "Railcolor" },
+  { src: reed, alt: "Reed Business - klant van Propasso exit planning" },
+  { src: bodi, alt: "Bodi - klant van Propasso bedrijfsoverdracht" },
+  { src: widemax, alt: "Widemex - klant van Propasso waardecreatie" },
+  { src: beJames, alt: "Be James - klant van Propasso bedrijfsoptimalisatie" },
+  { src: fiber, alt: "Fiber Dowels - klant van Propasso exit readiness" },
+  { src: crh, alt: "CRH - klant van Propasso bedrijfsoverdracht" },
+  { src: worxx, alt: "Worxx - klant van Propasso exit planning" },
+  { src: rail, alt: "Railcolor - klant van Propasso bedrijfsoverdracht" },
 ];
 
 const ClientLogos = () => {

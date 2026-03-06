@@ -83,7 +83,8 @@ const TargetAudience = () => {
           >
             <img
               src={exitSteps}
-              alt="Propasso Exit Planning - 5 stappen naar verkoopklaarheid"
+              alt="Propasso Exit Planning - 5 stappen naar verkoopklaarheid en succesvolle bedrijfsoverdracht"
+              loading="lazy"
               className="max-w-sm w-full rounded-2xl shadow-lg"
             />
           </motion.div>
