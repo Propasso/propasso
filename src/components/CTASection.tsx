@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 
 const fadeInUp = {
@@ -45,20 +46,20 @@ const CTASection = () => {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="mt-10 flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <a
-            href="#"
+          <Link
+            to="/contact"
             className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition"
           >
             Krijg inzicht in je verkoopklaarheid
             <ChevronRight size={18} />
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            to="/contact"
             className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-foreground/30 px-7 py-4 text-base font-semibold text-primary-foreground hover:border-primary-foreground/60 transition-colors"
           >
             Plan een kennismaking
             <ChevronRight size={18} />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>

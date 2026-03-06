@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Shield, Briefcase, Users, Eye, ChevronRight } from "lucide-react";
 
 const values = [
@@ -82,13 +83,13 @@ const WhyPropasso = () => {
         </div>
 
         <motion.div {...fadeInUp} transition={{ duration: 0.5, delay: 0.5 }} className="mt-10">
-          <a
-            href="#contact"
+          <Link
+            to="/over-propasso"
             className="inline-flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all"
           >
             Meer weten?
             <ChevronRight size={18} />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
