@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import mountainBg from "@/assets/images/mountain-hike-top.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -12,17 +11,15 @@ const fadeInUp = {
 const CTASection = () => {
   return (
     <section id="quickscan" className="py-20 md:py-28 relative overflow-hidden">
-      {/* Fixed background image with dark overlay */}
-      <div
-        className="absolute inset-0 bg-fixed bg-cover bg-center"
-        style={{ backgroundImage: `url(${mountainBg})` }}
-      />
-      <div className="absolute inset-0 bg-primary/85" />
+      {/* Accent bg decoration */}
+      <div className="absolute inset-0 bg-primary" />
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/15 translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-accent/10 -translate-x-1/3 translate-y-1/3" />
 
       <div className="section-container relative z-10 text-center">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="text-xs font-semibold uppercase tracking-[0.15em] text-primary-foreground/60">
-            Jouw volgende stap begint met inzicht
+            Jouw volgende stap begint met Persoonlijk, Financieel en Bedrijfskundig inzicht
           </p>
         </motion.div>
 
@@ -31,7 +28,7 @@ const CTASection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl mx-auto leading-tight text-primary-foreground text-balance"
         >
-          Een succesvolle bedrijfsoverdracht begint met weten waar je staat.
+          Een succesvolle bedrijfsoverdracht begint met weten waar jij én je bedrijf staan.
         </motion.h2>
 
         <motion.p
