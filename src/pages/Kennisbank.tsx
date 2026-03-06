@@ -26,9 +26,9 @@ const Kennisbank = () => {
               <article key={article.slug} className="group">
                 <Link to={`/kennisbank/${article.slug}`} className="block">
                   <div className="aspect-[3/2] rounded-2xl overflow-hidden bg-secondary mb-5">
-                    <img
-                      src={article.image}
-                      alt={article.title}
+                      <img
+                        src={article.image}
+                        alt={article.imageAlt}
                       className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />

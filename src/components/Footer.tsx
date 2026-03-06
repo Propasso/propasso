@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "@/assets/propasso-logo.png";
+import footerLogo from "@/assets/logos/propasso-logo-grey-yellow.png";
 
 const footerNav = [
   { label: "Home", href: "/" },
@@ -18,9 +18,9 @@ const Footer = () => {
           <div>
             <Link to="/">
               <img
-                src={logo}
-                alt="Propasso"
-                className="h-8 brightness-0 invert mb-6"
+                src={footerLogo}
+                alt="Propasso - Exit Planning & Bedrijfsoverdracht begeleiding voor MKB-ondernemers"
+                className="h-8 mb-6"
               />
             </Link>
             <p className="text-sm text-background/60 leading-relaxed max-w-xs">

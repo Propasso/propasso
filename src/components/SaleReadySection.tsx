@@ -80,7 +80,8 @@ const SaleReadySection = () => {
               <div className="relative mb-4 h-32 w-full max-w-[180px] rounded-2xl bg-secondary overflow-hidden flex items-center justify-center p-4">
                 <img
                   src={pillar.image}
-                  alt={pillar.title}
+                  alt={`${pillar.title} - Propasso verkoopklaarheid en bedrijfsoverdracht`}
+                  loading="lazy"
                   className={`object-contain ${pillar.isSvg ? "h-20" : "h-full w-full object-cover rounded-xl"}`}
                 />
               </div>

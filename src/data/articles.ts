@@ -8,6 +8,7 @@ export interface Article {
   summary: string;
   content: string;
   image: string;
+  imageAlt: string;
   entity: string;
 }
 
@@ -18,6 +19,7 @@ export const articles: Article[] = [
     summary: "Een succesvolle bedrijfsopvolging binnen het familiebedrijf vraagt om meer dan een juridisch plan. Dit artikel beschrijft de stappen naar een exitstrategie die werkt voor familie én onderneming.",
     content: "Placeholder — de volledige artikelinhoud volgt binnenkort. Dit artikel behandelt de kernprincipes van successieplanning en hoe je als ondernemer een exitstrategie ontwikkelt die recht doet aan zowel de familie als de continuïteit van het bedrijf.",
     image: climbingImg,
+    imageAlt: "Ondernemer beklimt berg als metafoor voor exit planning en bedrijfsopvolging",
     entity: "Exit Planning",
   },
   {
@@ -26,6 +28,7 @@ export const articles: Article[] = [
     summary: "De waarde van je bedrijf hangt niet alleen af van de cijfers. Hoe overdraagbaar je team functioneert, bepaalt in grote mate of een koper vertrouwen heeft in de continuïteit.",
     content: "Placeholder — de volledige artikelinhoud volgt binnenkort. Dit artikel laat zien waarom een sterk en zelfstandig team de belangrijkste waardecreator is bij een bedrijfsoverdracht.",
     image: teamImg,
+    imageAlt: "Team samenwerking als basis voor overdraagbare bedrijfswaarde",
     entity: "Bedrijf overdraagbaar maken",
   },
   {
@@ -34,6 +37,7 @@ export const articles: Article[] = [
     summary: "Bedrijfswaardering gaat verder dan een multiple op EBITDA. Dit artikel helpt je begrijpen welke factoren de waarde van je bedrijf écht bepalen.",
     content: "Placeholder — de volledige artikelinhoud volgt binnenkort. Dit artikel geeft inzicht in de factoren die de waarde van een MKB-bedrijf bepalen en hoe je deze kunt optimaliseren.",
     image: moneyImg,
+    imageAlt: "Bedrijfswaardering en waardebepaling voor MKB-ondernemers",
     entity: "Bedrijf verkoopklaar maken",
   },
 ];
