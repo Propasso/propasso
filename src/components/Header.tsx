@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logos/propasso-logo.png";
-import logoP from "@/assets/logos/propasso-logo-p.png";
+import logoP from "@/assets/logos/favicon.png";
 
 const navItems = [
   { label: "Werkwijze", href: "/werkwijze" },
