@@ -8,15 +8,15 @@ import worxx from "@/assets/clients/worxx.png";
 import railcolor from "@/assets/clients/railcolor.png";
 
 const logos = [
-  { src: reedElsevier, alt: "Reed Elsevier - klant van Propasso exit planning" },
-  { src: bodi, alt: "Bodi - klant van Propasso bedrijfsoverdracht" },
-  { src: widemex, alt: "Widemex - klant van Propasso waardecreatie" },
-  { src: beJames, alt: "BeJames - klant van Propasso bedrijfsoptimalisatie" },
-  { src: fiberDowels, alt: "Fiber Dowels - klant van Propasso exit readiness" },
-  { src: crh, alt: "CRH - klant van Propasso bedrijfsoverdracht" },
-  { src: worxx, alt: "Worxx - klant van Propasso exit planning" },
-  { src: railcolor, alt: "RailColor Design - klant van Propasso bedrijfsoverdracht" },
-];
+{ src: reedElsevier, alt: "Reed Elsevier - klant van Propasso exit planning" },
+{ src: bodi, alt: "Bodi - klant van Propasso bedrijfsoverdracht" },
+{ src: widemex, alt: "Widemex - klant van Propasso waardecreatie" },
+{ src: beJames, alt: "BeJames - klant van Propasso bedrijfsoptimalisatie" },
+{ src: fiberDowels, alt: "Fiber Dowels - klant van Propasso exit readiness" },
+{ src: crh, alt: "CRH - klant van Propasso bedrijfsoverdracht" },
+{ src: worxx, alt: "Worxx - klant van Propasso exit planning" },
+{ src: railcolor, alt: "RailColor Design - klant van Propasso bedrijfsoverdracht" }];
+
 
 const ClientLogos = () => {
   const doubledLogos = [...logos, ...logos];
@@ -30,18 +30,18 @@ const ClientLogos = () => {
       </div>
       <div className="relative">
         <div className="flex animate-marquee items-center gap-16 w-max">
-          {doubledLogos.map((logo, i) => (
-            <img
-              key={`${logo.alt}-${i}`}
-              src={logo.src}
-              alt={logo.alt}
-              className="h-8 md:h-10 object-contain opacity-50 grayscale"
-            />
-          ))}
+          {doubledLogos.map((logo, i) =>
+          <img
+            key={`${logo.alt}-${i}`}
+            src={logo.src}
+            alt={logo.alt}
+            className="h-8 md:h-10 object-contain grayscale opacity-100" />
+
+          )}
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default ClientLogos;
