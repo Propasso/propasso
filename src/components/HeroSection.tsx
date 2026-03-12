@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight, ArrowDown } from "lucide-react";
+import mountainClimber from "@/assets/images/mountain-climber-line-drawing.svg";
 
 const heroSubtitles = [
   "Met onafhankelijkheid.",
