@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import mountainImg from "@/assets/images/mountain-hike-top.png";
 
 interface PageCTAProps {
   title?: string;
