@@ -35,7 +35,7 @@ const ClientLogos = () => {
             key={`${logo.alt}-${i}`}
             src={logo.src}
             alt={logo.alt}
-            className="h-8 md:h-10 object-contain grayscale opacity-100" />
+            className="h-8 md:h-10 object-contain grayscale brightness-0" />
 
           )}
         </div>
