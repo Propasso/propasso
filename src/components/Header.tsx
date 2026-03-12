@@ -15,6 +15,7 @@ const navItems = [
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [compactLogo, setCompactLogo] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -22,7 +23,13 @@ const Header = () => {
   }, [location]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 20);
+      setCompactLogo(y > window.innerHeight * 0.5);
+    };
+
+    onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -35,11 +42,16 @@ const Header = () => {
     >
       <div className="section-container flex items-center justify-between h-20">
         <Link to="/" className="block">
-          <img
-            src={logo}
+          <motion.img
+            key={compactLogo ? "compact" : "full"}
+            src={compactLogo ? logoP : logo}
             alt="Propasso - Exit Planning & Bedrijfsoverdracht begeleiding voor MKB"
-            className="h-10 hidden sm:block"
+            className={`hidden sm:block ${compactLogo ? "h-8" : "h-10"}`}
+            initial={{ opacity: 0.85, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.25 }}
           />
+
           <img src="/favicon.png" alt="Propasso - Exit Planning" className="h-10 sm:hidden" />
         </Link>
 
