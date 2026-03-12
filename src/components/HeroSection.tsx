@@ -1,37 +1,29 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight, ArrowDown } from "lucide-react";
-import mountainClimber from "@/assets/images/mountain-climber-line-drawing.svg";
 
 const heroSubtitles = [
-  "Met onafhankelijkheid.",
-  "Met optimaliseren van resultaten.",
-  "Met een overdraagbare structuur.",
-  "Met verkoopklaarheid.",
-  "Met regie en helderheid.",
-];
+"Met onafhankelijkheid.",
+"Met optimaliseren van resultaten.",
+"Met een overdraagbare structuur.",
+"Met verkoopklaarheid.",
+"Met regie en helderheid."];
+
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Yellow accent circle */}
-      <div className="absolute top-20 right-0 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 translate-x-1/4 md:translate-x-1/6 overflow-hidden flex items-end justify-center">
-        <img
-          src={mountainClimber}
-          alt="Mountain climber illustration"
-          className="w-[75%] h-auto opacity-20"
-          style={{ transform: "scaleX(-1)" }}
-        />
-      </div>
+      <div className="absolute top-20 right-0 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 translate-x-1/4 md:translate-x-1/6" />
 
-      <div className="section-container relative z-10 py-16 md:py-24">
+      <div className="section-container relative z-10 py-16 md:py-24 opacity-65">
         <div className="max-w-3xl">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground text-balance"
-          >
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground text-balance">
+            
             Een succesvolle verkoop begint jaren vóór de deal.
           </motion.h1>
 
@@ -40,8 +32,8 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="mt-6 text-2xl md:text-3xl font-semibold text-accent-foreground"
-            style={{ color: "hsl(var(--teal-medium))" }}
-          >
+            style={{ color: "hsl(var(--teal-medium))" }}>
+            
             {heroSubtitles[0]}
           </motion.p>
 
@@ -49,8 +41,8 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-8 text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl"
-          >
+            className="mt-8 text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl">
+            
             Wij begeleiden MKB-ondernemers in de 3-5 jaar vóór de
             bedrijfsoverdracht naar maximale waarde en verkoopbaarheid, met een
             helder plan en regie voor de ondernemer.
@@ -60,19 +52,19 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
-          >
+            className="mt-10 flex flex-col sm:flex-row gap-4">
+            
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-teal-medium transition-colors"
-            >
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-teal-medium transition-colors">
+              
               Krijg inzicht in je verkoopklaarheid
               <ChevronRight size={18} />
             </Link>
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary px-7 py-4 text-base font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
-            >
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary px-7 py-4 text-base font-semibold text-primary hover:bg-primary hover:text-primary-foreground transition-colors">
+              
               Plan een kennismaking
               <ChevronRight size={18} />
             </Link>
@@ -85,13 +77,13 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        
         <div className="w-px h-12 bg-border" />
         <ArrowDown size={20} className="text-muted-foreground animate-scroll-bounce" />
       </motion.div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default HeroSection;
