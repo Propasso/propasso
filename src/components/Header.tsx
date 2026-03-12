@@ -40,11 +40,7 @@ const Header = () => {
             alt="Propasso - Exit Planning & Bedrijfsoverdracht begeleiding voor MKB"
             className="h-10 hidden sm:block"
           />
-          <img
-            src={logoP}
-            alt="Propasso - Exit Planning"
-            className="h-10 sm:hidden"
-          />
+          <img src={favicon} alt="Propasso - Exit Planning" className="h-10 sm:hidden" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
@@ -83,10 +79,7 @@ const Header = () => {
             className="lg:hidden bg-background border-t border-border overflow-hidden"
           >
             <nav className="section-container py-6 flex flex-col gap-4">
-              <Link
-                to="/"
-                className="text-base font-medium text-foreground/70 hover:text-foreground py-2"
-              >
+              <Link to="/" className="text-base font-medium text-foreground/70 hover:text-foreground py-2">
                 Home
               </Link>
               {navItems.map((item) => (
