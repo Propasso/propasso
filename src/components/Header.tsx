@@ -46,7 +46,7 @@ const Header = () => {
             key={compactLogo ? "compact" : "full"}
             src={compactLogo ? logoP : logo}
             alt="Propasso - Exit Planning & Bedrijfsoverdracht begeleiding voor MKB"
-            className={`hidden sm:block ${compactLogo ? "h-9" : "h-10"}`}
+            className={`hidden sm:block ${compactLogo ? "h-10" : "h-10"}`}
             initial={{ opacity: 0.85, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.25 }}
