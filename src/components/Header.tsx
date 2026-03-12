@@ -40,7 +40,7 @@ const Header = () => {
             alt="Propasso - Exit Planning & Bedrijfsoverdracht begeleiding voor MKB"
             className="h-10 hidden sm:block"
           />
-          <img src={/favicon.png} alt="Propasso - Exit Planning" className="h-10 sm:hidden" />
+          <img src="/favicon.png" alt="Propasso - Exit Planning" className="h-10 sm:hidden" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
