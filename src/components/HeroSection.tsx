@@ -15,7 +15,14 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Yellow accent circle */}
-      <div className="absolute top-20 right-0 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 translate-x-1/4 md:translate-x-1/6" />
+      <div className="absolute top-20 right-0 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 translate-x-1/4 md:translate-x-1/6 overflow-hidden flex items-end justify-center">
+        <img
+          src={mountainClimber}
+          alt="Mountain climber illustration"
+          className="w-[75%] h-auto opacity-20"
+          style={{ transform: "scaleX(-1)" }}
+        />
+      </div>
 
       <div className="section-container relative z-10 py-16 md:py-24">
         <div className="max-w-3xl">
