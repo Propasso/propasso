@@ -4,9 +4,9 @@ import exitSteps from "@/assets/illustrations/propasso-exit-steps.png";
 
 const goodFit = [
   "Een winstgevend MKB-bedrijf met ambitie om binnen 3–5 jaar te verkopen",
-  "Voelt dat het bedrijf te afhankelijk is van jou als ondernemer",
-  "Ziet dat waarde en overdraagbaarheid beter kunnen",
-  "Bereid bent keuzes te maken die verder gaan dan alleen cijfers",
+  "Ziet dat het bedrijf minder afhankelijk moet zijn van jou als ondernemer",
+  "Voelt dat waarde en overdraagbaarheid beter kunnen",
+  "Bereid bent keuzes te maken die verder gaan dan alleen de cijfers",
   "Regie wilt over timing, voorwaarden en je rol na de overdracht",
 ];
 
@@ -76,11 +76,7 @@ const TargetAudience = () => {
             </motion.div>
           </div>
 
-          <motion.div
-            {...fadeInUp}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex justify-center"
-          >
+          <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center">
             <img
               src={exitSteps}
               alt="Propasso Exit Planning - 5 stappen naar verkoopklaarheid en succesvolle bedrijfsoverdracht"
