@@ -5,7 +5,7 @@ const phases = [
   number: "01",
   title: "Inzicht & positionering",
   description:
-  "We starten met inzicht in de onderneming, de rol van de ondernemer en de ambities richting overdracht. Waar staat het bedrijf nu? Wat maakt het aantrekkelijk en waar zit risico of afhankelijkheid?"
+  "We starten met  inzicht in de onderneming, de rol van de ondernemer en de ambities richting overdracht. Waar staat het bedrijf nu? Wat maakt het aantrekkelijk en waar zit risico of afhankelijkheid?"
 },
 {
   number: "02",
