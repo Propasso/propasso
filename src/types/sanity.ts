@@ -11,7 +11,8 @@ export interface SanityArticle {
   slug: { current: string };
   publishDate: string;
   summary: string;
-  body: unknown[]; // Portable Text blocks
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body: any[]; // Portable Text blocks
   featuredImage?: {
     asset: { _ref: string };
   };
