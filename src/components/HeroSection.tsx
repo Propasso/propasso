@@ -24,7 +24,8 @@ const HeroSection = () => {
             transition={{ duration: 0.7 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground text-balance"
           >
-            Een succesvolle verkoop begint jaren vóór de deal.
+            Een succesvolle verkoop{" "}
+            <span className="text-muted-foreground">begint jaren vóór de deal.</span>
           </motion.h1>
 
           <motion.p
