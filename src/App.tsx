@@ -11,6 +11,7 @@ import Werkwijze from "./pages/Werkwijze";
 import OverPropasso from "./pages/OverPropasso";
 import VeelgesteldeVragen from "./pages/VeelgesteldeVragen";
 import Kennisbank from "./pages/Kennisbank";
+import KennisbankPillar from "./pages/KennisbankPillar";
 import KennisbankArticle from "./pages/KennisbankArticle";
 import Disclaimer from "./pages/Disclaimer";
 import Privacyverklaring from "./pages/Privacyverklaring";
@@ -34,6 +35,7 @@ const AppRoutes = () => (
     <Route path="/contact" element={<Contact />} />
     <Route path="/veelgestelde-vragen" element={<VeelgesteldeVragen />} />
     <Route path="/kennisbank" element={<Kennisbank />} />
+    <Route path="/kennisbank/thema/:categorySlug" element={<KennisbankPillar />} />
     <Route path="/kennisbank/:slug" element={<KennisbankArticle />} />
     <Route path="/disclaimer" element={<Disclaimer />} />
     <Route path="/privacyverklaring" element={<Privacyverklaring />} />
