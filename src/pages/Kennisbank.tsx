@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import { articles as staticArticles } from "@/data/articles";
-import { fetchAllArticles, fetchAllPillars } from "@/lib/sanityQueries";
+import { fetchAllArticles } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import type { SanityArticle } from "@/types/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -20,13 +20,19 @@ const Kennisbank = () => {
     staleTime: 1000 * 60 * 5,
   });
 
-  const { data: pillars } = useQuery({
-    queryKey: ["sanity-pillars"],
-    queryFn: fetchAllPillars,
-    staleTime: 1000 * 60 * 10,
-  });
-
   const hasSanityContent = !isError && sanityArticles && sanityArticles.length > 0;
+
+  // Extract unique pillars from articles
+  const pillars = useMemo(() => {
+    if (!sanityArticles) return [];
+    const pillarMap = new Map<string, { _id: string; title: string }>();
+    for (const article of sanityArticles) {
+      if (article.pillar) {
+        pillarMap.set(article.pillar._id, { _id: article.pillar._id, title: article.pillar.title });
+      }
+    }
+    return Array.from(pillarMap.values()).sort((a, b) => a.title.localeCompare(b.title));
+  }, [sanityArticles]);
 
   const filteredArticles = useMemo(() => {
     if (!sanityArticles) return [];
