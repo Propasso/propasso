@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
@@ -53,8 +54,27 @@ const KennisbankPillar = () => {
     );
   }
 
+  const pillarCanonical = category
+    ? `https://propasso.nl/kennisbank/thema/${category.slug.current}`
+    : undefined;
+
   return (
     <PageLayout>
+      {category && (
+        <Helmet>
+          <title>{category.title} | Kennisbank | Propasso</title>
+          {category.description && (
+            <meta name="description" content={category.description} />
+          )}
+          {pillarCanonical && <link rel="canonical" href={pillarCanonical} />}
+          <meta property="og:title" content={`${category.title} | Propasso`} />
+          {category.description && (
+            <meta property="og:description" content={category.description} />
+          )}
+          {pillarCanonical && <meta property="og:url" content={pillarCanonical} />}
+          <meta property="og:type" content="website" />
+        </Helmet>
+      )}
       {/* JSON-LD CollectionPage */}
       {category && (
         <script

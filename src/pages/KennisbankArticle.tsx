@@ -2,6 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { PortableText } from "@portabletext/react";
+import { Helmet } from "react-helmet-async";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
@@ -65,8 +66,30 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
     { label: post.title },
   ];
 
+  const title = post.seoTitle || post.title;
+  const description = post.seoDescription || post.summary;
+  const ogTitle = post.openGraphTitle || title;
+  const ogDescription = post.openGraphDescription || description;
+  const canonicalUrl = post.canonicalUrl || `https://propasso.nl/kennisbank/${post.slug.current}`;
+  const ogImageUrl = post.openGraphImage
+    ? urlFor(post.openGraphImage).width(1200).height(630).url()
+    : post.mainImage
+      ? urlFor(post.mainImage).width(1200).height(630).url()
+      : undefined;
+
   return (
     <PageLayout>
+      <Helmet>
+        <title>{title} | Propasso</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonicalUrl} />
+        <meta property="og:title" content={ogTitle} />
+        <meta property="og:description" content={ogDescription} />
+        <meta property="og:url" content={canonicalUrl} />
+        <meta property="og:type" content="article" />
+        {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+        {post.noindex && <meta name="robots" content="noindex, nofollow" />}
+      </Helmet>
       {/* Article JSON-LD */}
       {post.body && (
         <script
