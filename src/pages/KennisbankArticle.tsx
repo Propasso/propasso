@@ -60,7 +60,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
   const breadcrumbItems = [
     { label: "Kennisbank", href: "/kennisbank" },
     ...(parentCategory?.slug
-      ? [{ label: parentCategory.title, href: `/kennisbank/${parentCategory.slug.current}` }]
+      ? [{ label: parentCategory.title, href: `/kennisbank/thema/${parentCategory.slug.current}` }]
       : []),
     { label: post.title },
   ];
