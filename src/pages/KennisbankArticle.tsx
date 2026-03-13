@@ -86,7 +86,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
         {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-        {post.noindex && <meta name="robots" content="noindex, nofollow" />}
+        {post.noIndex && <meta name="robots" content="noindex, nofollow" />}
       </Helmet>
       {/* Article JSON-LD */}
       {post.body && (

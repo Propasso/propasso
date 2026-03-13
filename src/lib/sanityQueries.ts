@@ -12,11 +12,10 @@ const postFields = `
   "categories": categories[]->{ _id, title, slug },
   seoTitle,
   seoDescription,
-  openGraphTitle,
-  openGraphDescription,
-  openGraphImage,
+  ogTitle,
+  ogDescription,
   canonicalUrl,
-  noindex
+  noIndex
 `;
 
 export async function fetchAllPosts(): Promise<SanityPost[]> {
