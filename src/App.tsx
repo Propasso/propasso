@@ -35,6 +35,9 @@ const AppRoutes = () => (
     <Route path="/veelgestelde-vragen" element={<VeelgesteldeVragen />} />
     <Route path="/kennisbank" element={<Kennisbank />} />
     <Route path="/kennisbank/:slug" element={<KennisbankArticle />} />
+    <Route path="/disclaimer" element={<Disclaimer />} />
+    <Route path="/privacyverklaring" element={<Privacyverklaring />} />
+    <Route path="/algemene-voorwaarden" element={<AlgemeneVoorwaarden />} />
     <Route path="/styleguide" element={<Styleguide />} />
     <Route path="*" element={<NotFound />} />
   </Routes>

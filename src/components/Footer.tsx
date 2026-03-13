@@ -67,12 +67,23 @@ const Footer = () => {
           <p className="text-xs text-background/40">
             © {new Date().getFullYear()} Propasso. Alle rechten voorbehouden.
           </p>
-          <a
-            href="#"
-            className="text-xs text-background/40 hover:text-background/60 transition-colors">
-            
-            Privacyverklaring
-          </a>
+          <div className="flex items-center gap-4">
+            <Link
+              to="/disclaimer"
+              className="text-xs text-background/40 hover:text-background/60 transition-colors">
+              Disclaimer
+            </Link>
+            <Link
+              to="/privacyverklaring"
+              className="text-xs text-background/40 hover:text-background/60 transition-colors">
+              Privacyverklaring
+            </Link>
+            <Link
+              to="/algemene-voorwaarden"
+              className="text-xs text-background/40 hover:text-background/60 transition-colors">
+              Algemene Voorwaarden
+            </Link>
+          </div>
         </div>
       </div>
     </footer>);
