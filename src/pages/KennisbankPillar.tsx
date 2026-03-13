@@ -35,7 +35,7 @@ const KennisbankPillar = () => {
     staleTime: 1000 * 60 * 10,
   });
 
-  const relatedPillars = allCategories?.filter((c) => c._id !== category?._id);
+  const relatedPillars = allCategories?.filter((c) => c._id !== category?._id && c.slug?.current);
   const isLoading = catLoading || postsLoading;
 
   if (!catLoading && !category) {
