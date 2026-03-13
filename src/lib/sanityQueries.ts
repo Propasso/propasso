@@ -21,7 +21,7 @@ const postFields = `
 
 export async function fetchAllPosts(): Promise<SanityPost[]> {
   return sanityClient.fetch(
-    `*[_type == "post"] | order(publishedAt desc) { ${postFields} }`
+    `*[_type == "post" && publishedAt <= now()] | order(publishedAt desc) { ${postFields} }`
   );
 }
 
