@@ -8,7 +8,7 @@ const postFields = `
   publishedAt,
   samenvatting,
   mainImage,
-  altText,
+  "altText": coalesce(altText, mainImage.alt),
   "categories": categories[]->{ _id, title, slug },
   seoTitle,
   seoDescription,
