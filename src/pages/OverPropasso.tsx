@@ -15,6 +15,7 @@ import {
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 
+import karelKantoor from "@/assets/images/karel-kantoor.jpeg";
 import karelMetOndernemers from "@/assets/images/karel-met-ondernemers.png";
 import kantoor from "@/assets/images/kantoor.jpeg";
 import viaFerrata from "@/assets/images/via-ferrata.png";
