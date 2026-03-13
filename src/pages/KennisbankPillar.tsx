@@ -65,7 +65,7 @@ const KennisbankPillar = () => {
               "@type": "CollectionPage",
               name: category.title,
               description: category.description || `Artikelen over ${category.title}`,
-              url: `https://propasso.nl/kennisbank/${category.slug.current}`,
+              url: `https://propasso.nl/kennisbank/thema/${category.slug.current}`,
               isPartOf: {
                 "@type": "WebPage",
                 name: "Kennisbank",
