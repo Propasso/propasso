@@ -105,7 +105,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                     "@type": "ListItem",
                     position: 3,
                     name: parentCategory.title,
-                    item: `https://propasso.nl/kennisbank/${parentCategory.slug.current}`,
+                    item: `https://propasso.nl/kennisbank/thema/${parentCategory.slug.current}`,
                   }]
                 : []),
               {
