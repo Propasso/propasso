@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowRight, BookOpen, TrendingUp, RefreshCw, Users, Target, ShieldCheck, BarChart3 } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
@@ -246,80 +246,23 @@ const KennisbankPillar = () => {
         </div>
       </section>
 
-      {/* ═══════════ EXTENDED INTRO (SEO) — structured ═══════════ */}
-      {content && (content.whyItMatters || content.valueDrivers || content.whatYouLearn) && (
+      {/* ═══════════ EXTENDED INTRO (SEO) ═══════════ */}
+      {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
         <section className="py-16 md:py-20 section-alt-bg">
-          <div className="section-container space-y-16">
-
-            {/* --- Waarom dit belangrijk is --- */}
-            {content.whyItMatters && content.whyItMatters.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="max-w-3xl"
-              >
-                <p className="eyebrow mb-3">Verdieping</p>
-                <h2 className="text-2xl md:text-3xl font-bold mb-6">Waarom dit belangrijk is</h2>
-                <div className="space-y-4">
-                  {content.whyItMatters.map((p, i) => (
-                    <p key={i} className="text-muted-foreground leading-relaxed text-base">{p}</p>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-
-            {/* --- Wat bepaalt bedrijfswaarde — icon cards --- */}
-            {content.valueDrivers && content.valueDrivers.length > 0 && (
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold mb-8">
-                  Wat bepaalt de waarde van een bedrijf?
-                </h3>
-                <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                  {content.valueDrivers.map((driver, index) => {
-                    const IconMap: Record<string, React.ElementType> = {
-                      TrendingUp, RefreshCw, Users, Target, ShieldCheck, BarChart3,
-                    };
-                    const Icon = IconMap[driver.icon] || BookOpen;
-                    return (
-                      <motion.div
-                        key={driver.label}
-                        custom={index}
-                        initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-40px" }}
-                        variants={cardVariants}
-                        className="rounded-2xl border border-border/40 bg-card p-6 flex gap-4"
-                      >
-                        <div className="shrink-0 mt-0.5 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                          <Icon size={20} />
-                        </div>
-                        <div>
-                          <h4 className="font-bold text-sm">{driver.label}</h4>
-                          <p className="mt-1 text-sm text-muted-foreground leading-relaxed">{driver.description}</p>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </div>
+          <div className="section-container">
+            <div className="max-w-3xl">
+              <p className="eyebrow mb-4">Verdieping</p>
+              <h2 className="text-2xl md:text-3xl font-bold mb-8">
+                Meer over {category?.title?.toLowerCase()}
+              </h2>
+              <div className="space-y-6">
+                {content.bodyParagraphs.map((paragraph, index) => (
+                  <p key={index} className="text-muted-foreground leading-relaxed text-base">
+                    {paragraph}
+                  </p>
+                ))}
               </div>
-            )}
-
-            {/* --- Wat je in deze artikelen leert --- */}
-            {content.whatYouLearn && (
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="max-w-3xl rounded-2xl tint-teal-bg border border-border/20 p-8 md:p-10"
-              >
-                <h3 className="text-xl md:text-2xl font-bold mb-4">Wat je in deze artikelen leert</h3>
-                <p className="text-muted-foreground leading-relaxed text-base">{content.whatYouLearn}</p>
-              </motion.div>
-            )}
-
+            </div>
           </div>
         </section>
       )}
