@@ -12,6 +12,9 @@ import OverPropasso from "./pages/OverPropasso";
 import VeelgesteldeVragen from "./pages/VeelgesteldeVragen";
 import Kennisbank from "./pages/Kennisbank";
 import KennisbankArticle from "./pages/KennisbankArticle";
+import Disclaimer from "./pages/Disclaimer";
+import Privacyverklaring from "./pages/Privacyverklaring";
+import AlgemeneVoorwaarden from "./pages/AlgemeneVoorwaarden";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +35,9 @@ const AppRoutes = () => (
     <Route path="/veelgestelde-vragen" element={<VeelgesteldeVragen />} />
     <Route path="/kennisbank" element={<Kennisbank />} />
     <Route path="/kennisbank/:slug" element={<KennisbankArticle />} />
+    <Route path="/disclaimer" element={<Disclaimer />} />
+    <Route path="/privacyverklaring" element={<Privacyverklaring />} />
+    <Route path="/algemene-voorwaarden" element={<AlgemeneVoorwaarden />} />
     <Route path="/styleguide" element={<Styleguide />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
