@@ -68,14 +68,12 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
 
   const title = post.seoTitle || post.title;
   const description = post.seoDescription || post.summary;
-  const ogTitle = post.openGraphTitle || title;
-  const ogDescription = post.openGraphDescription || description;
+  const ogTitle = post.ogTitle || title;
+  const ogDescription = post.ogDescription || description;
   const canonicalUrl = post.canonicalUrl || `https://propasso.nl/kennisbank/${post.slug.current}`;
-  const ogImageUrl = post.openGraphImage
-    ? urlFor(post.openGraphImage).width(1200).height(630).url()
-    : post.mainImage
-      ? urlFor(post.mainImage).width(1200).height(630).url()
-      : undefined;
+  const ogImageUrl = post.mainImage
+    ? urlFor(post.mainImage).width(1200).height(630).url()
+    : undefined;
 
   return (
     <PageLayout>
@@ -88,7 +86,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
         {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-        {post.noindex && <meta name="robots" content="noindex, nofollow" />}
+        {post.noIndex && <meta name="robots" content="noindex, nofollow" />}
       </Helmet>
       {/* Article JSON-LD */}
       {post.body && (

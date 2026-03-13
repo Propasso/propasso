@@ -24,13 +24,10 @@ export interface SanityPost {
   };
   seoTitle?: string;
   seoDescription?: string;
-  openGraphTitle?: string;
-  openGraphDescription?: string;
-  openGraphImage?: {
-    asset: { _ref: string };
-  };
+  ogTitle?: string;
+  ogDescription?: string;
   canonicalUrl?: string;
-  noindex?: boolean;
+  noIndex?: boolean;
   relatedPosts?: SanityPost[];
   ctaType?: "contact" | "quickscan";
 }
