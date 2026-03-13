@@ -154,20 +154,6 @@ const KennisbankPillar = () => {
         </div>
       </section>
 
-      {/* Extended introduction */}
-      {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
-        <section className="pb-16">
-          <div className="section-container">
-            <div className="max-w-3xl space-y-6">
-              {content.bodyParagraphs.map((paragraph, index) => (
-                <p key={index} className="text-muted-foreground leading-relaxed">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Articles */}
       <section className="py-16">
