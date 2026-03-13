@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { PortableText } from "@portabletext/react";
-import { Helmet } from "react-helmet-async";
+
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
