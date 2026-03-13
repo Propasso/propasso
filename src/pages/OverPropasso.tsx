@@ -147,9 +147,10 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  In 2013 verruilde ik het corporate bedrijfsleven — strategie,
-                  M&A, business development — voor ondernemerschap. Niet in
-                  een opwaartse markt, maar midden in de recessie.
+                  In 2013 verruilde ik een mooie loopbaan in het bedrijfsleven bij
+                  CRH Plc., waar ik actief was in Strategy & Development (Fusies en
+                  Overnames), voor ondernemerschap. Niet in een opwaartse markt,
+                  maar midden in de recessie.
                 </p>
                 <p>
                   Ik begeleidde het familiebedrijf door een faillissement en
