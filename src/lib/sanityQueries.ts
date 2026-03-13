@@ -21,7 +21,7 @@ const postFields = `
 
 export async function fetchAllPosts(): Promise<SanityPost[]> {
   return sanityClient.fetch(
-    `*[_type == "post"] | order(publishedAt desc) { ${postFields} }`
+    `*[_type == "post" && publishedAt <= now()] | order(publishedAt desc) { ${postFields} }`
   );
 }
 
@@ -47,7 +47,7 @@ export async function fetchCategoryBySlug(slug: string): Promise<SanityCategoryS
 
 export async function fetchPostsByCategory(categoryId: string): Promise<SanityPost[]> {
   return sanityClient.fetch(
-    `*[_type == "post" && $categoryId in categories[]._ref] | order(publishedAt desc) { ${postFields} }`,
+    `*[_type == "post" && $categoryId in categories[]._ref && publishedAt <= now()] | order(publishedAt desc) { ${postFields} }`,
     { categoryId }
   );
 }
