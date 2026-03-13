@@ -78,10 +78,10 @@ const Kennisbank = () => {
               transition={{ duration: 0.3 }}
               className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
             >
-              {categories.map((cat, index) => (
+              {categories.filter((cat) => cat.slug?.current).map((cat, index) => (
                 <Link
                   key={cat._id}
-                  to={`/kennisbank/thema/${cat.slug.current}`}
+                  to={`/kennisbank/thema/${cat.slug!.current}`}
                   className="group relative rounded-2xl border border-border/40 bg-card p-7 hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <span className="absolute top-5 right-5 text-xs font-semibold text-muted-foreground bg-secondary rounded-full px-2.5 py-1">
