@@ -93,17 +93,12 @@ const OverPropasso = () => {
         />
 
         <div className="section-container relative z-10 py-16 md:py-24">
-          <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-            <p className="eyebrow">Over Propasso</p>
-          </motion.div>
-
           <motion.h1
             {...fadeInUp}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] max-w-4xl text-balance"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground max-w-4xl text-balance"
           >
-            Je bedrijf is je <span className="text-primary">levenswerk</span>.{" "}
-            <span className="text-muted-foreground">De juiste begeleiding maakt het verschil.</span>
+            Je bedrijf is je levenswerk. De juiste begeleiding maakt het verschil.
           </motion.h1>
 
           <motion.p
