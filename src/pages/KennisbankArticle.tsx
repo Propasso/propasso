@@ -128,7 +128,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
               {post.categories.map((c) => (
                 <Link
                   key={c._id}
-                  to={c.slug ? `/kennisbank/${c.slug.current}` : "/kennisbank"}
+                  to={c.slug ? `/kennisbank/thema/${c.slug.current}` : "/kennisbank"}
                   className="text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
                 >
                   {c.title}
