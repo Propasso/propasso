@@ -11,6 +11,7 @@ import { fetchCategoryBySlug, fetchPostsByCategory, fetchAllCategories } from "@
 import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { SanityPost } from "@/types/sanity";
+import { pillarContent } from "@/data/pillarContent";
 
 const KennisbankPillar = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
