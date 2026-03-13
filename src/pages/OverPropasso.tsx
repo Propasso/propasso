@@ -353,8 +353,8 @@ const OverPropasso = () => {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src={karelMetOndernemers}
-                  alt="Karel Cremers in gesprek met ondernemers"
+                  src={mountainPassRoute}
+                  alt="Illustratie van een bergpas met route naar de top — metafoor voor de volgende stap"
                   className="w-full h-auto object-cover aspect-[4/3]"
                 />
               </div>
