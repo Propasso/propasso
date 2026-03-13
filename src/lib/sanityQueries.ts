@@ -22,6 +22,18 @@ export async function fetchAllArticles(): Promise<SanityArticle[]> {
   );
 }
 
+export interface SanityPillarSummary {
+  _id: string;
+  title: string;
+  slug: { current: string };
+}
+
+export async function fetchAllPillars(): Promise<SanityPillarSummary[]> {
+  return sanityClient.fetch(
+    `*[_type == "pillar"] | order(title asc) { _id, title, slug }`
+  );
+}
+
 export async function fetchArticleBySlug(slug: string): Promise<SanityArticle | null> {
   return sanityClient.fetch(
     `*[_type == "article" && slug.current == $slug][0] {
