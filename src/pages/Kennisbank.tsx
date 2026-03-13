@@ -32,6 +32,15 @@ const Kennisbank = () => {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>Kennisbank — Exit Planning voor MKB-ondernemers | Propasso</title>
+        <meta name="description" content="Praktische artikelen over exit planning en bedrijfsoverdracht voor MKB-ondernemers. Ontdek de zes pijlers van waardecreatie en verkoopklaarheid." />
+        <link rel="canonical" href="https://propasso.nl/kennisbank" />
+        <meta property="og:title" content="Kennisbank — Propasso" />
+        <meta property="og:description" content="Praktische artikelen over exit planning en bedrijfsoverdracht voor MKB-ondernemers." />
+        <meta property="og:url" content="https://propasso.nl/kennisbank" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       {/* JSON-LD */}
       <script
         type="application/ld+json"
