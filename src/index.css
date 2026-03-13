@@ -103,7 +103,7 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground border border-border/30 rounded-full px-2 py-1;
+    @apply inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground border border-border/30 rounded-full px-1 py-1;
   }
 
   .eyebrow::before {
