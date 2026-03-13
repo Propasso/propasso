@@ -20,6 +20,7 @@ import karelMetOndernemers from "@/assets/images/karel-met-ondernemers.png";
 import kantoor from "@/assets/images/kantoor.jpeg";
 import viaFerrata from "@/assets/images/via-ferrata.png";
 import mountainClimberSvg from "@/assets/images/mountain-climber-line-drawing.svg";
+import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -176,7 +177,7 @@ const OverPropasso = () => {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src={karelKantoor}
+                  src={karelMetOndernemers}
                   alt="Karel Cremers — oprichter van Propasso"
                   className="w-full h-auto object-cover aspect-[4/5]"
                 />
@@ -353,8 +354,8 @@ const OverPropasso = () => {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src={karelMetOndernemers}
-                  alt="Karel Cremers in gesprek met ondernemers"
+                  src={mountainPassRoute}
+                  alt="Illustratie van een bergpas met route naar de top — metafoor voor de volgende stap"
                   className="w-full h-auto object-cover aspect-[4/3]"
                 />
               </div>
