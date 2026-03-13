@@ -1,17 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import {
-  ChevronRight,
-  Shield,
-  Briefcase,
-  Users,
-  Eye,
-  Mountain,
-  Target,
-  TrendingUp,
-  Compass,
-} from "lucide-react";
+import { ChevronRight, Shield, Briefcase, Users, Eye, Mountain, Target, TrendingUp, Compass } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 
@@ -59,8 +49,7 @@ const values = [
   {
     icon: Shield,
     title: "Onafhankelijk",
-    description:
-      "Altijd náást de ondernemer. Transparant, met jouw doel en belang centraal — niet de deal.",
+    description: "Altijd náást de ondernemer. Transparant, met jouw doel en belang centraal — niet de deal.",
   },
   {
     icon: Briefcase,
@@ -113,8 +102,7 @@ const OverPropasso = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] max-w-4xl text-balance"
           >
-            Ondernemer voor{" "}
-            <span className="text-primary">ondernemers</span>
+            Ondernemer voor <span className="text-primary">ondernemers</span>
           </motion.h1>
 
           <motion.p
@@ -131,8 +119,7 @@ const OverPropasso = () => {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Benoemt wat schuurt, hakt knopen en pakt door. Want echte groei
-            begint waar comfort ophoudt.
+            Benoemt wat schuurt, hakt knopen en pakt door. Want echte groei begint waar comfort ophoudt.
           </motion.p>
         </div>
       </section>
@@ -148,33 +135,27 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  In 2013 verruilde ik een mooie loopbaan in het bedrijfsleven bij
-                  CRH Plc., waar ik actief was in Strategy & Development (Fusies en
-                  Overnames), voor ondernemerschap. Niet in een opwaartse markt,
-                  maar midden in de recessie.
+                  In 2013 verruilde ik een mooie loopbaan in het bedrijfsleven bij CRH Plc., waar ik actief was in
+                  Strategy & Development (Fusies en Overnames), voor ondernemerschap. Niet in een opwaartse markt, maar
+                  midden in de recessie.
                 </p>
                 <p>
-                  Ik begeleidde het familiebedrijf door een faillissement en
-                  doorstart, en bouwde het stap voor stap uit tot een
-                  winstgevende en professionele organisatie. Niet vanuit een
-                  handboek, maar door te doen — met vallen, opstaan en af en
-                  toe een stevig woord aan mezelf.
+                  Ik begeleidde het <b>familiebedrijf</b> door een <b>faillissement en doorstart</b>, en bouwde het uit
+                  tot een winstgevende en professionele organisatie. Altijd met veel energie, en het gewoon te doen —
+                  met veel vallen en opstaan. Aan de buitenkant was het de groei een succcesverhaal maar dat ging ook
+                  gepaard met de nodige stress en af en toe ook onzekerheid.
                 </p>
                 <p>
-                  In 2023 droeg ik de dagelijkse leiding over en startte
-                  Propasso. Om mijn passie voor groei, ontwikkeling en
-                  verandering verder vorm te geven. Sindsdien help ik
-                  MKB-ondernemers met het verkoopklaar maken van hun bedrijf
-                  én zichzelf.
+                  In 2023 besloot ik een nieuw pad in te slaan, ik stelde een directie aan, droeg ik de dagelijkse
+                  leiding en eind 2024 verkocht ik een groot deel van het bedrijf. Dit brengt mij tot Propasso. Achteraf
+                  gezien ben ik mijn eigen Exit Planning adviseur geweest. Die passie voor groei, ontwikkeling en
+                  verandering verder vorm te geven. Sindsdien help ik MKB-ondernemers met het verkoopklaar maken van hun
+                  bedrijf én zichzelf.
                 </p>
               </div>
             </motion.div>
 
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
+            <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.2 }} className="relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src={karelMetOndernemers}
@@ -185,8 +166,7 @@ const OverPropasso = () => {
               {/* Floating accent card */}
               <div className="absolute -bottom-6 -left-6 md:-left-10 bg-accent rounded-xl px-6 py-4 shadow-lg max-w-[220px]">
                 <p className="text-sm font-bold text-accent-foreground leading-snug">
-                  "Mijn kracht zit in het combineren van ondernemerschap,
-                  strategie en cijfers."
+                  "Mijn kracht zit in het combineren van ondernemerschap, strategie en cijfers."
                 </p>
               </div>
             </motion.div>
@@ -197,11 +177,7 @@ const OverPropasso = () => {
       {/* ─── QUOTE BREAK ─── */}
       <section className="py-16 md:py-20 tint-teal-bg">
         <div className="section-container">
-          <motion.blockquote
-            {...fadeInUp}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto"
-          >
+          <motion.blockquote {...fadeInUp} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
             <p className="text-2xl md:text-3xl lg:text-4xl font-bold leading-snug text-foreground text-balance">
               "Buiten je comfortzone — daar zit de echte winst."
             </p>
@@ -216,11 +192,7 @@ const OverPropasso = () => {
       <section className="py-20 md:py-28">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.6 }}
-              className="order-2 lg:order-1 relative"
-            >
+            <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="order-2 lg:order-1 relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src={viaFerrata}
@@ -230,36 +202,24 @@ const OverPropasso = () => {
               </div>
             </motion.div>
 
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="order-1 lg:order-2"
-            >
+            <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.15 }} className="order-1 lg:order-2">
               <p className="eyebrow">Persoonlijk</p>
-              <h2 className="mt-5 text-3xl md:text-4xl font-bold leading-tight">
-                Bergbeklimmer met hoogtevrees
-              </h2>
+              <h2 className="mt-5 text-3xl md:text-4xl font-bold leading-tight">Bergbeklimmer met hoogtevrees</h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Bergbeklimmer met hoogtevrees? Ja, echt. Ik geloof dat échte
-                  groei en de mooiste ervaringen buiten je comfortzone zitten —
-                  zakelijk én privé.
+                  Bergbeklimmer met hoogtevrees? Ja, echt. Ik geloof dat échte groei en de mooiste ervaringen buiten je
+                  comfortzone zitten — zakelijk én privé.
                 </p>
                 <p>
-                  Het hooggebergte is daar het beste voorbeeld van. Ondanks
-                  lichte hoogtevrees trek ik er elk jaar met vrienden naartoe.
-                  Van Zuid-Limburg tot de Alpen en Tirol. Trailrunning, fietsen,
-                  crossfit en bergwandelen — sport speelt een grote rol in mijn
-                  leven.
+                  Het hooggebergte is daar het beste voorbeeld van. Ondanks lichte hoogtevrees trek ik er elk jaar met
+                  vrienden naartoe. Van Zuid-Limburg tot de Alpen en Tirol. Trailrunning, fietsen, crossfit en
+                  bergwandelen — sport speelt een grote rol in mijn leven.
                 </p>
                 <p>
-                  En als we in de berghut arriveren, speel ik graag Risk. Waar
-                  alle bondjes uiteindelijk ondergeschikt zijn aan de vraag: wie
-                  durft op het juiste moment de rode dobbelstenen op te pakken?
+                  En als we in de berghut arriveren, speel ik graag Risk. Waar alle bondjes uiteindelijk ondergeschikt
+                  zijn aan de vraag: wie durft op het juiste moment de rode dobbelstenen op te pakken?
                 </p>
-                <p className="text-xs italic text-muted-foreground/60">
-                  * Ja, het Risk-bord gaat mee de rugzak in.
-                </p>
+                <p className="text-xs italic text-muted-foreground/60">* Ja, het Risk-bord gaat mee de rugzak in.</p>
               </div>
             </motion.div>
           </div>
@@ -271,9 +231,7 @@ const OverPropasso = () => {
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="text-center mb-16">
             <p className="eyebrow justify-center">Mijn route</p>
-            <h2 className="mt-5 text-3xl md:text-4xl font-bold">
-              Van strategie naar ondernemerschap
-            </h2>
+            <h2 className="mt-5 text-3xl md:text-4xl font-bold">Van strategie naar ondernemerschap</h2>
           </motion.div>
 
           <div className="relative max-w-3xl mx-auto">
@@ -286,17 +244,13 @@ const OverPropasso = () => {
                 {...fadeInUp}
                 transition={{ duration: 0.5, delay: i * 0.12 }}
                 className={`relative flex items-start gap-6 mb-12 last:mb-0 md:w-1/2 ${
-                  i % 2 === 0
-                    ? "md:ml-auto md:pl-10"
-                    : "md:mr-auto md:pr-10 md:text-right"
+                  i % 2 === 0 ? "md:ml-auto md:pl-10" : "md:mr-auto md:pr-10 md:text-right"
                 }`}
               >
                 {/* Dot */}
                 <div
                   className={`absolute top-1.5 w-3 h-3 rounded-full bg-accent border-2 border-background z-10 ${
-                    i % 2 === 0
-                      ? "left-[18px] md:-left-[7px]"
-                      : "left-[18px] md:-right-[7px] md:left-auto"
+                    i % 2 === 0 ? "left-[18px] md:-left-[7px]" : "left-[18px] md:-right-[7px] md:left-auto"
                   }`}
                 />
 
@@ -305,9 +259,7 @@ const OverPropasso = () => {
                     {item.year}
                   </span>
                   <h3 className="text-lg font-bold">{item.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {item.description}
-                  </p>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -326,32 +278,23 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  De naam Propasso is een verbastering van het Italiaanse{" "}
-                  <em>Prossimi Passi</em> — "de volgende stap". Het staat
-                  voor groei en vooruitgang. Mijn kracht zit in het begeleiden
-                  bij en succesvol maken van die volgende stap.
+                  De naam Propasso is een verbastering van het Italiaanse <em>Prossimi Passi</em> — "de volgende stap".
+                  Het staat voor groei en vooruitgang. Mijn kracht zit in het begeleiden bij en succesvol maken van die
+                  volgende stap.
                 </p>
                 <p>
-                  <strong>Mijn overtuiging:</strong> verandering brengt
-                  onzekerheid, maar juist daar — buiten de comfortzone — liggen
-                  vernieuwing, groei en versterking van zowel de onderneming als
-                  de ondernemer.
+                  <strong>Mijn overtuiging:</strong> verandering brengt onzekerheid, maar juist daar — buiten de
+                  comfortzone — liggen vernieuwing, groei en versterking van zowel de onderneming als de ondernemer.
                 </p>
                 <p>
-                  Bij Propasso begeleid ik ondernemers bij het doorbreken van
-                  groeiplafonds, herstructurering en het verkoopklaar maken van
-                  bedrijven. Ik help hen om die stap te zetten, hoe uitdagend
-                  of confronterend het proces ook is. Want na het dal ligt de
-                  verrijking, groei en vooruitgang.
+                  Bij Propasso begeleid ik ondernemers bij het doorbreken van groeiplafonds, herstructurering en het
+                  verkoopklaar maken van bedrijven. Ik help hen om die stap te zetten, hoe uitdagend of confronterend
+                  het proces ook is. Want na het dal ligt de verrijking, groei en vooruitgang.
                 </p>
               </div>
             </motion.div>
 
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
+            <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.2 }} className="relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src={mountainPassRoute}
@@ -373,11 +316,9 @@ const OverPropasso = () => {
               Een partner die verder kijkt
             </h2>
             <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Als fanatiek fietser, trailrunner, crossfitter en bergwandelaar
-              weet ik dat elke stap richting de top moed en doorzettingsvermogen
-              vraagt. Diezelfde mentaliteit breng ik mee in mijn werk: ik sta
-              naast de ondernemer en samen zetten we stappen die richting geven
-              en echte impact maken.
+              Als fanatiek fietser, trailrunner, crossfitter en bergwandelaar weet ik dat elke stap richting de top moed
+              en doorzettingsvermogen vraagt. Diezelfde mentaliteit breng ik mee in mijn werk: ik sta naast de
+              ondernemer en samen zetten we stappen die richting geven en echte impact maken.
             </p>
           </motion.div>
         </div>
@@ -388,9 +329,7 @@ const OverPropasso = () => {
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="text-center mb-14">
             <p className="eyebrow justify-center">Waarom Propasso</p>
-            <h2 className="mt-5 text-3xl md:text-4xl font-bold">
-              Waar ik voor sta
-            </h2>
+            <h2 className="mt-5 text-3xl md:text-4xl font-bold">Waar ik voor sta</h2>
           </motion.div>
 
           <div className="grid gap-8 sm:grid-cols-2">
@@ -406,9 +345,7 @@ const OverPropasso = () => {
                 </div>
                 <div>
                   <h3 className="text-lg font-bold">{value.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {value.description}
-                  </p>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{value.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -425,11 +362,7 @@ const OverPropasso = () => {
               transition={{ duration: 0.5 }}
               className="rounded-2xl overflow-hidden shadow-lg md:col-span-2"
             >
-              <img
-                src={kantoor}
-                alt="Propasso kantoor"
-                className="w-full h-full object-cover aspect-[16/9]"
-              />
+              <img src={kantoor} alt="Propasso kantoor" className="w-full h-full object-cover aspect-[16/9]" />
             </motion.div>
             <motion.div
               {...fadeInUp}
