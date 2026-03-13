@@ -6,7 +6,7 @@ const postFields = `
   title,
   slug,
   publishedAt,
-  samenvatting,
+  summary,
   mainImage,
   "altText": coalesce(altText, mainImage.alt),
   "categories": categories[]->{ _id, title, slug },
