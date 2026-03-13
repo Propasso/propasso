@@ -176,7 +176,7 @@ const OverPropasso = () => {
             >
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src={karelKantoor}
+                  src={karelMetOndernemers}
                   alt="Karel Cremers — oprichter van Propasso"
                   className="w-full h-auto object-cover aspect-[4/5]"
                 />
