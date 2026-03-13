@@ -94,7 +94,7 @@ const OverPropasso = () => {
 
         <div className="section-container relative z-10 py-16 md:py-24">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-            <p className="eyebrow">Over Propasso</p>
+            # <p className="eyebrow">Over Propasso</p>
           </motion.div>
 
           <motion.h1
