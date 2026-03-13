@@ -15,6 +15,7 @@ import { pillarContent } from "@/data/pillarContent";
 
 const KennisbankPillar = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
+  const content = categorySlug ? pillarContent[categorySlug] : undefined;
 
   const { data: category, isLoading: catLoading } = useQuery({
     queryKey: ["sanity-category", categorySlug],
