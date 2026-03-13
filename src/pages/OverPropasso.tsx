@@ -85,8 +85,7 @@ const OverPropasso = () => {
 
       {/* ─── 1. HERO — Bezoeker-gericht ─── */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
-        {/* Yellow accent circle — consistent with homepage */}
-        <div className="absolute top-20 right-0 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 translate-x-1/4 md:translate-x-1/6" />
+        <div className="absolute top-10 right-0 w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full bg-accent/30 translate-x-1/3 blur-3xl" />
         <img
           src={mountainClimberSvg}
           alt=""
@@ -94,10 +93,14 @@ const OverPropasso = () => {
         />
 
         <div className="section-container relative z-10 py-16 md:py-24">
+          <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
+            <p className="eyebrow">Over Propasso</p>
+          </motion.div>
+
           <motion.h1
             {...fadeInUp}
-            transition={{ duration: 0.7 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] max-w-4xl text-balance"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] max-w-4xl text-balance"
           >
             Je bedrijf is je <span className="text-primary">levenswerk</span>.{" "}
             <span className="text-muted-foreground">De juiste begeleiding maakt het verschil.</span>
