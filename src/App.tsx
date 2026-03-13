@@ -12,6 +12,9 @@ import OverPropasso from "./pages/OverPropasso";
 import VeelgesteldeVragen from "./pages/VeelgesteldeVragen";
 import Kennisbank from "./pages/Kennisbank";
 import KennisbankArticle from "./pages/KennisbankArticle";
+import Disclaimer from "./pages/Disclaimer";
+import Privacyverklaring from "./pages/Privacyverklaring";
+import AlgemeneVoorwaarden from "./pages/AlgemeneVoorwaarden";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
