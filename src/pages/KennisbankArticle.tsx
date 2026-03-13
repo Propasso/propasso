@@ -65,7 +65,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
               "@context": "https://schema.org",
               "@type": "Article",
               headline: post.seoTitle || post.title,
-              description: post.seoDescription || post.samenvatting,
+              description: post.seoDescription || post.summary,
               datePublished: post.publishedAt,
               publisher: {
                 "@type": "Organization",
