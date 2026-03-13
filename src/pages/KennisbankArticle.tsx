@@ -116,7 +116,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-2">
               Samenvatting
             </h2>
-            <p className="text-foreground leading-relaxed">{post.samenvatting}</p>
+            <p className="text-foreground leading-relaxed">{post.summary}</p>
           </div>
 
           {post.body && (
