@@ -1,32 +1,36 @@
-export interface SanityPillar {
+export interface SanityCategory {
   _id: string;
   title: string;
-  slug: { current: string };
-  description: string;
+  slug?: { current: string };
+  description?: string;
 }
 
-export interface SanityArticle {
+export interface SanityPost {
   _id: string;
   title: string;
   slug: { current: string };
-  publishDate: string;
-  summary: string;
+  publishedAt: string;
+  samenvatting: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  body: any[]; // Portable Text blocks
-  featuredImage?: {
+  body?: any[]; // Portable Text blocks
+  mainImage?: {
     asset: { _ref: string };
   };
-  featuredImageAlt?: string;
-  pillar?: {
-    _id: string;
-    title: string;
-    slug: { current: string };
+  altText?: string;
+  categories?: SanityCategory[];
+  author?: {
+    name: string;
+    image?: { asset: { _ref: string } };
   };
   seoTitle?: string;
   seoDescription?: string;
-  ogImage?: {
+  openGraphTitle?: string;
+  openGraphDescription?: string;
+  openGraphImage?: {
     asset: { _ref: string };
   };
-  relatedArticles?: SanityArticle[];
+  canonicalUrl?: string;
+  noindex?: boolean;
+  relatedPosts?: SanityPost[];
   ctaType?: "contact" | "quickscan";
 }

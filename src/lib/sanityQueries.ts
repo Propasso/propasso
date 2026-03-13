@@ -1,45 +1,51 @@
 import { sanityClient } from "./sanity";
-import type { SanityArticle } from "@/types/sanity";
+import type { SanityPost } from "@/types/sanity";
 
-const articleFields = `
+const postFields = `
   _id,
   title,
   slug,
-  publishDate,
-  summary,
-  featuredImage,
-  featuredImageAlt,
-  "pillar": pillar->{ _id, title, slug },
+  publishedAt,
+  samenvatting,
+  mainImage,
+  altText,
+  "categories": categories[]->{ _id, title, slug },
   seoTitle,
   seoDescription,
-  ogImage,
-  ctaType
+  openGraphTitle,
+  openGraphDescription,
+  openGraphImage,
+  canonicalUrl,
+  noindex
 `;
 
-export async function fetchAllArticles(): Promise<SanityArticle[]> {
+export async function fetchAllPosts(): Promise<SanityPost[]> {
   return sanityClient.fetch(
-    `*[_type == "article"] | order(publishDate desc) { ${articleFields} }`
+    `*[_type == "post"] | order(publishedAt desc) { ${postFields} }`
   );
 }
 
-export interface SanityPillarSummary {
+export interface SanityCategorySummary {
   _id: string;
   title: string;
   slug: { current: string };
 }
 
-export async function fetchAllPillars(): Promise<SanityPillarSummary[]> {
+export async function fetchAllCategories(): Promise<SanityCategorySummary[]> {
   return sanityClient.fetch(
-    `*[_type == "pillar"] | order(title asc) { _id, title, slug }`
+    `*[_type == "category"] | order(title asc) { _id, title, slug }`
   );
 }
 
-export async function fetchArticleBySlug(slug: string): Promise<SanityArticle | null> {
+export async function fetchPostBySlug(slug: string): Promise<SanityPost | null> {
   return sanityClient.fetch(
-    `*[_type == "article" && slug.current == $slug][0] {
-      ${articleFields},
+    `*[_type == "post" && slug.current == $slug][0] {
+      ${postFields},
       body,
-      "relatedArticles": relatedArticles[]->{ ${articleFields} }
+      "author": author->{ name, image },
+      "relatedPosts": *[_type == "post" && slug.current != $slug && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc) [0..2] {
+        ${postFields}
+      }
     }`,
     { slug }
   );

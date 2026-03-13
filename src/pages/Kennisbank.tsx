@@ -5,40 +5,39 @@ import { useQuery } from "@tanstack/react-query";
 import { motion, AnimatePresence } from "framer-motion";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import { articles as staticArticles } from "@/data/articles";
-import { fetchAllArticles } from "@/lib/sanityQueries";
+import { fetchAllPosts } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
-import type { SanityArticle } from "@/types/sanity";
+import type { SanityPost } from "@/types/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const Kennisbank = () => {
-  const [activePillar, setActivePillar] = useState<string | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  const { data: sanityArticles, isLoading, isError } = useQuery({
-    queryKey: ["sanity-articles"],
-    queryFn: fetchAllArticles,
+  const { data: posts, isLoading } = useQuery({
+    queryKey: ["sanity-posts"],
+    queryFn: fetchAllPosts,
     staleTime: 1000 * 60 * 5,
   });
 
-  const hasSanityContent = !isError && sanityArticles && sanityArticles.length > 0;
-
-  // Extract unique pillars from articles
-  const pillars = useMemo(() => {
-    if (!sanityArticles) return [];
-    const pillarMap = new Map<string, { _id: string; title: string }>();
-    for (const article of sanityArticles) {
-      if (article.pillar) {
-        pillarMap.set(article.pillar._id, { _id: article.pillar._id, title: article.pillar.title });
+  // Extract unique categories from posts
+  const categories = useMemo(() => {
+    if (!posts) return [];
+    const catMap = new Map<string, { _id: string; title: string }>();
+    for (const post of posts) {
+      if (post.categories) {
+        for (const cat of post.categories) {
+          catMap.set(cat._id, { _id: cat._id, title: cat.title });
+        }
       }
     }
-    return Array.from(pillarMap.values()).sort((a, b) => a.title.localeCompare(b.title));
-  }, [sanityArticles]);
+    return Array.from(catMap.values()).sort((a, b) => a.title.localeCompare(b.title));
+  }, [posts]);
 
-  const filteredArticles = useMemo(() => {
-    if (!sanityArticles) return [];
-    if (!activePillar) return sanityArticles;
-    return sanityArticles.filter((a) => a.pillar?._id === activePillar);
-  }, [sanityArticles, activePillar]);
+  const filteredPosts = useMemo(() => {
+    if (!posts) return [];
+    if (!activeCategory) return posts;
+    return posts.filter((p) => p.categories?.some((c) => c._id === activeCategory));
+  }, [posts, activeCategory]);
 
   return (
     <PageLayout>
@@ -56,32 +55,32 @@ const Kennisbank = () => {
 
       <section className="pb-20">
         <div className="section-container">
-          {/* Pillar filter buttons */}
-          {hasSanityContent && pillars && pillars.length > 0 && (
+          {/* Category filter buttons */}
+          {categories.length > 0 && (
             <div className="mb-10 flex flex-wrap gap-2">
               <button
-                onClick={() => setActivePillar(null)}
+                onClick={() => setActiveCategory(null)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                  activePillar === null
+                  activeCategory === null
                     ? "bg-primary text-primary-foreground"
                     : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
                 }`}
               >
                 Alle artikelen
               </button>
-              {pillars.map((pillar) => (
+              {categories.map((cat) => (
                 <button
-                  key={pillar._id}
+                  key={cat._id}
                   onClick={() =>
-                    setActivePillar(activePillar === pillar._id ? null : pillar._id)
+                    setActiveCategory(activeCategory === cat._id ? null : cat._id)
                   }
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    activePillar === pillar._id
+                    activeCategory === cat._id
                       ? "bg-primary text-primary-foreground"
                       : "bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80"
                   }`}
                 >
-                  {pillar.title}
+                  {cat.title}
                 </button>
               ))}
             </div>
@@ -98,25 +97,25 @@ const Kennisbank = () => {
                 </div>
               ))}
             </div>
-          ) : hasSanityContent ? (
+          ) : posts && posts.length > 0 ? (
             <AnimatePresence mode="wait">
               <motion.div
-                key={activePillar || "all"}
+                key={activeCategory || "all"}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.25 }}
                 className="grid gap-8 md:grid-cols-3"
               >
-                {filteredArticles.length > 0 ? (
-                  filteredArticles.map((article: SanityArticle) => (
-                    <article key={article._id} className="group">
-                      <Link to={`/kennisbank/${article.slug.current}`} className="block">
+                {filteredPosts.length > 0 ? (
+                  filteredPosts.map((post: SanityPost) => (
+                    <article key={post._id} className="group">
+                      <Link to={`/kennisbank/${post.slug.current}`} className="block">
                         <div className="aspect-[3/2] rounded-2xl overflow-hidden bg-secondary mb-5">
-                          {article.featuredImage ? (
+                          {post.mainImage ? (
                             <img
-                              src={urlFor(article.featuredImage).width(600).height(400).url()}
-                              alt={article.featuredImageAlt || article.title}
+                              src={urlFor(post.mainImage).width(600).height(400).url()}
+                              alt={post.altText || post.title}
                               className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
                               loading="lazy"
                             />
@@ -126,16 +125,16 @@ const Kennisbank = () => {
                             </div>
                           )}
                         </div>
-                        {article.pillar && (
+                        {post.categories && post.categories.length > 0 && (
                           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                            {article.pillar.title}
+                            {post.categories[0].title}
                           </p>
                         )}
                         <h2 className="text-lg font-bold leading-snug group-hover:text-primary transition-colors">
-                          {article.title}
+                          {post.title}
                         </h2>
                         <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-                          {article.summary}
+                          {post.samenvatting}
                         </p>
                         <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
                           Verder lezen <ArrowRight size={14} />
@@ -153,34 +152,10 @@ const Kennisbank = () => {
               </motion.div>
             </AnimatePresence>
           ) : (
-            /* Fallback to static articles */
-            <div className="grid gap-8 md:grid-cols-3">
-              {staticArticles.map((article) => (
-                <article key={article.slug} className="group">
-                  <Link to={`/kennisbank/${article.slug}`} className="block">
-                    <div className="aspect-[3/2] rounded-2xl overflow-hidden bg-secondary mb-5">
-                      <img
-                        src={article.image}
-                        alt={article.imageAlt}
-                        className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        loading="lazy"
-                      />
-                    </div>
-                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                      {article.entity}
-                    </p>
-                    <h2 className="text-lg font-bold leading-snug group-hover:text-primary transition-colors">
-                      {article.title}
-                    </h2>
-                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-                      {article.summary}
-                    </p>
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
-                      Verder lezen <ArrowRight size={14} />
-                    </span>
-                  </Link>
-                </article>
-              ))}
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground">
+                Nog geen artikelen beschikbaar.
+              </p>
             </div>
           )}
         </div>
