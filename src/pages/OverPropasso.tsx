@@ -92,6 +92,11 @@ const OverPropasso = () => {
           className="absolute bottom-0 right-8 h-48 md:h-72 opacity-[0.06] pointer-events-none select-none"
         />
 
+        <div className="section-container relative z-10 py-16 md:py-24">
+          <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
+            <p className="eyebrow">Over Propasso</p>
+          </motion.div>
+
           <motion.h1
             {...fadeInUp}
             transition={{ duration: 0.7, delay: 0.1 }}
