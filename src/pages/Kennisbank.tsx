@@ -134,7 +134,7 @@ const Kennisbank = () => {
                           {post.title}
                         </h2>
                         <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-                          {post.samenvatting}
+                          {post.summary}
                         </p>
                         <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
                           Verder lezen <ArrowRight size={14} />

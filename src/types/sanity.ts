@@ -10,7 +10,7 @@ export interface SanityPost {
   title: string;
   slug: { current: string };
   publishedAt: string;
-  samenvatting: string;
+  summary: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   body?: any[]; // Portable Text blocks
   mainImage?: {

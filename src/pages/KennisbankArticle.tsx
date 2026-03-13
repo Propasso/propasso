@@ -65,7 +65,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
               "@context": "https://schema.org",
               "@type": "Article",
               headline: post.seoTitle || post.title,
-              description: post.seoDescription || post.samenvatting,
+              description: post.seoDescription || post.summary,
               datePublished: post.publishedAt,
               publisher: {
                 "@type": "Organization",
@@ -116,7 +116,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-2">
               Samenvatting
             </h2>
-            <p className="text-foreground leading-relaxed">{post.samenvatting}</p>
+            <p className="text-foreground leading-relaxed">{post.summary}</p>
           </div>
 
           {post.body && (
