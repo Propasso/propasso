@@ -1,16 +1,27 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight, ArrowDown } from "lucide-react";
 
 const heroSubtitles = [
+  "Met betere resultaten.",
+  "Met een overdraagbaar bedrijf.",
   "Met onafhankelijkheid.",
-  "Met optimaliseren van resultaten.",
-  "Met een overdraagbare structuur.",
+  "Met inzicht in je bedrijfswaarde.",
   "Met verkoopklaarheid.",
-  "Met regie en helderheid.",
+  "Met een helder plan voor daarna.",
 ];
 
 const HeroSection = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroSubtitles.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Yellow accent circle */}
@@ -28,15 +39,26 @@ const HeroSection = () => {
             <span className="text-muted-foreground">begint jaren vóór de deal.</span>
           </motion.h1>
 
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-6 text-2xl md:text-3xl font-semibold text-accent-foreground"
-            style={{ color: "hsl(var(--teal-medium))" }}
+            className="mt-6 h-10 md:h-12 overflow-hidden"
           >
-            {heroSubtitles[0]}
-          </motion.p>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={activeIndex}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="text-2xl md:text-3xl font-semibold"
+                style={{ color: "hsl(var(--teal-medium))" }}
+              >
+                {heroSubtitles[activeIndex]}
+              </motion.p>
+            </AnimatePresence>
+          </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
