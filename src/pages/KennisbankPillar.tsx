@@ -117,7 +117,7 @@ const KennisbankPillar = () => {
       )}
 
       {/* Hero */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 pb-10 md:pb-14">
         <div className="section-container">
           {category && (
             <KennisbankBreadcrumb
@@ -136,12 +136,13 @@ const KennisbankPillar = () => {
             </div>
           ) : (
             <>
-              <p className="eyebrow mt-8">Exit Planning Pillar</p>
+              <p className="eyebrow mt-8">Exit Planning Thema</p>
               <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-tight max-w-3xl text-balance">
                 {category?.title}
               </h1>
               <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                {category?.description ||
+                {content?.heroIntro ||
+                  category?.description ||
                   "Ontdek de belangrijkste inzichten en strategieën rondom dit thema. Elk artikel helpt je stap voor stap bij de voorbereiding op een succesvolle bedrijfsoverdracht."}
               </p>
             </>
@@ -149,18 +150,20 @@ const KennisbankPillar = () => {
         </div>
       </section>
 
-      {/* Pillar introduction */}
-      <section className="pb-8">
-        <div className="section-container">
-          <div className="max-w-3xl rounded-2xl tint-teal-bg p-8 md:p-10">
-            <h2 className="text-xl font-bold mb-3">Over dit thema</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              {category?.description ||
-                "Dit is een van de zes strategische pijlers van Exit Planning. Hieronder vind je alle artikelen die je helpen dit onderwerp te doorgronden en toe te passen in jouw situatie."}
-            </p>
+      {/* Extended introduction */}
+      {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
+        <section className="pb-16">
+          <div className="section-container">
+            <div className="max-w-3xl space-y-6">
+              {content.bodyParagraphs.map((paragraph, index) => (
+                <p key={index} className="text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Articles */}
       <section className="py-16">
