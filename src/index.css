@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
 
 @tailwind base;
@@ -44,9 +44,9 @@
     --teal-medium: 195 45% 25%;
 
     /* Mandatory background tints — #2C786F38, #FFFFFF38 */
-    --tint-teal: 170 46% 32%;       /* #2C786F base */
+    --tint-teal: 170 46% 32%; /* #2C786F base */
     --tint-teal-alpha: 0.22;
-    --tint-white: 0 0% 100%;        /* #FFFFFF base */
+    --tint-white: 0 0% 100%; /* #FFFFFF base */
     --tint-white-alpha: 0.22;
 
     /* Supporting tones for hierarchy & accessibility */
@@ -65,10 +65,14 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-    --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    --font-sans:
+      "DM Sans", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+      Noto Color Emoji;
   }
   .dark {
-    --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+    --font-sans:
+      "DM Sans", ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+      Noto Color Emoji;
   }
 }
 
@@ -79,11 +83,16 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'DM Sans', sans-serif;
+    font-family: "DM Sans", sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'DM Sans', sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "DM Sans", sans-serif;
     @apply font-bold tracking-tight text-foreground;
   }
 }
@@ -94,13 +103,12 @@
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground
-           border border-border/60 rounded-full px-4 py-1.5;
+    @apply inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground;
   }
 
   .eyebrow::before {
-    content: '';
-    @apply block h-2 w-2 rounded-full bg-accent shrink-0;
+    content: "";
+    @apply block h-2 w-2 rounded-full bg-accent/60;
   }
 
   .section-alt-bg {
@@ -124,8 +132,12 @@
 
 /* Client logo marquee animation */
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 .animate-marquee {
@@ -134,8 +146,13 @@
 
 /* Scroll down bounce animation */
 @keyframes scroll-bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
 }
 
 .animate-scroll-bounce {
