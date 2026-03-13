@@ -140,11 +140,15 @@ const KennisbankPillar = () => {
               <h1 className="mt-5 text-4xl md:text-5xl font-bold leading-tight max-w-3xl text-balance">
                 {category?.title}
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-                {content?.heroIntro ||
-                  category?.description ||
-                  "Ontdek de belangrijkste inzichten en strategieën rondom dit thema. Elk artikel helpt je stap voor stap bij de voorbereiding op een succesvolle bedrijfsoverdracht."}
-              </p>
+
+              {/* Short intro box */}
+              <div className="mt-8 max-w-3xl rounded-2xl tint-teal-bg p-8 md:p-10">
+                <p className="text-muted-foreground leading-relaxed">
+                  {content?.heroIntro ||
+                    category?.description ||
+                    "Ontdek de belangrijkste inzichten en strategieën rondom dit thema. Elk artikel helpt je stap voor stap bij de voorbereiding op een succesvolle bedrijfsoverdracht."}
+                </p>
+              </div>
             </>
           )}
         </div>
