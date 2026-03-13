@@ -11,6 +11,7 @@ import Werkwijze from "./pages/Werkwijze";
 import OverPropasso from "./pages/OverPropasso";
 import VeelgesteldeVragen from "./pages/VeelgesteldeVragen";
 import Kennisbank from "./pages/Kennisbank";
+import KennisbankPillar from "./pages/KennisbankPillar";
 import KennisbankArticle from "./pages/KennisbankArticle";
 import Disclaimer from "./pages/Disclaimer";
 import Privacyverklaring from "./pages/Privacyverklaring";

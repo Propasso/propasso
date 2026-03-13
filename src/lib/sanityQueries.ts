@@ -29,11 +29,26 @@ export interface SanityCategorySummary {
   _id: string;
   title: string;
   slug: { current: string };
+  description?: string;
 }
 
 export async function fetchAllCategories(): Promise<SanityCategorySummary[]> {
   return sanityClient.fetch(
-    `*[_type == "category"] | order(title asc) { _id, title, slug }`
+    `*[_type == "category"] | order(title asc) { _id, title, slug, description }`
+  );
+}
+
+export async function fetchCategoryBySlug(slug: string): Promise<SanityCategorySummary | null> {
+  return sanityClient.fetch(
+    `*[_type == "category" && slug.current == $slug][0] { _id, title, slug, description }`,
+    { slug }
+  );
+}
+
+export async function fetchPostsByCategory(categoryId: string): Promise<SanityPost[]> {
+  return sanityClient.fetch(
+    `*[_type == "post" && $categoryId in categories[]._ref] | order(publishedAt desc) { ${postFields} }`,
+    { categoryId }
   );
 }
 

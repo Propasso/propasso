@@ -5,6 +5,7 @@ import { PortableText } from "@portabletext/react";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
+import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -54,9 +55,19 @@ const portableTextComponents = {
 
 const SanityArticlePage = ({ post }: { post: SanityPost }) => {
   const ctaLabel = post.ctaType === "quickscan" ? "Start de quickscan" : "Neem contact op";
+  const parentCategory = post.categories?.[0];
+
+  const breadcrumbItems = [
+    { label: "Kennisbank", href: "/kennisbank" },
+    ...(parentCategory?.slug
+      ? [{ label: parentCategory.title, href: `/kennisbank/${parentCategory.slug.current}` }]
+      : []),
+    { label: post.title },
+  ];
 
   return (
     <PageLayout>
+      {/* Article JSON-LD */}
       {post.body && (
         <script
           type="application/ld+json"
@@ -71,24 +82,62 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                 "@type": "Organization",
                 name: "Propasso",
               },
+              ...(post.mainImage && {
+                image: urlFor(post.mainImage).width(1200).height(630).url(),
+              }),
             }),
           }}
         />
       )}
 
+      {/* BreadcrumbList JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
+              { "@type": "ListItem", position: 2, name: "Kennisbank", item: "https://propasso.nl/kennisbank" },
+              ...(parentCategory?.slug
+                ? [{
+                    "@type": "ListItem",
+                    position: 3,
+                    name: parentCategory.title,
+                    item: `https://propasso.nl/kennisbank/${parentCategory.slug.current}`,
+                  }]
+                : []),
+              {
+                "@type": "ListItem",
+                position: parentCategory?.slug ? 4 : 3,
+                name: post.title,
+                item: `https://propasso.nl/kennisbank/${post.slug.current}`,
+              },
+            ],
+          }),
+        }}
+      />
+
       <article className="py-16 md:py-24">
         <div className="section-container max-w-3xl">
-          <Link to="/kennisbank" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8">
-            <ArrowLeft size={14} /> Terug naar kennisbank
-          </Link>
+          <KennisbankBreadcrumb items={breadcrumbItems} />
 
           {post.categories && post.categories.length > 0 && (
-            <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-              {post.categories.map((c) => c.title).join(" · ")}
-            </p>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {post.categories.map((c) => (
+                <Link
+                  key={c._id}
+                  to={c.slug ? `/kennisbank/${c.slug.current}` : "/kennisbank"}
+                  className="text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {c.title}
+                </Link>
+              ))}
+            </div>
           )}
 
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight text-balance">
+          <h1 className="mt-4 text-4xl md:text-5xl font-bold leading-tight text-balance">
             {post.title}
           </h1>
 
@@ -127,40 +176,60 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         </div>
       </article>
 
-      {/* Related posts */}
-      {post.relatedPosts && post.relatedPosts.length > 0 && (
+      {/* Verder lezen: related posts + parent pillar */}
+      {((post.relatedPosts && post.relatedPosts.length > 0) || parentCategory?.slug) && (
         <section className="py-16 section-alt-bg">
           <div className="section-container">
-            <h2 className="text-2xl font-bold mb-8">Gerelateerde artikelen</h2>
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {post.relatedPosts.map((related) => (
-                <Link
-                  key={related._id}
-                  to={`/kennisbank/${related.slug.current}`}
-                  className="group flex gap-5 items-start"
-                >
-                  <div className="shrink-0 w-24 h-24 rounded-xl overflow-hidden bg-secondary">
-                    {related.mainImage ? (
-                      <img
-                        src={urlFor(related.mainImage).width(96).height(96).url()}
-                        alt={related.altText || related.title}
-                        className="h-full w-full object-cover group-hover:scale-105 transition-transform"
-                      />
-                    ) : (
-                      <div className="h-full w-full bg-muted" />
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="font-bold group-hover:text-primary transition-colors">
-                      {related.title}
-                    </h3>
-                    <span className="mt-2 inline-flex items-center gap-1 text-sm text-primary font-semibold">
-                      Lees meer <ArrowRight size={14} />
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <h2 className="text-2xl font-bold mb-8">Verder lezen</h2>
+
+            {/* Parent pillar link */}
+            {parentCategory?.slug && (
+              <Link
+                to={`/kennisbank/${parentCategory.slug.current}`}
+                className="group mb-8 block rounded-2xl border border-border/40 bg-card p-6 hover:border-primary/30 hover:shadow-md transition-all max-w-xl"
+              >
+                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Thema</p>
+                <h3 className="font-bold group-hover:text-primary transition-colors">
+                  {parentCategory.title}
+                </h3>
+                <span className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all">
+                  Alle artikelen in dit thema <ArrowRight size={14} />
+                </span>
+              </Link>
+            )}
+
+            {/* Related posts */}
+            {post.relatedPosts && post.relatedPosts.length > 0 && (
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {post.relatedPosts.map((related) => (
+                  <Link
+                    key={related._id}
+                    to={`/kennisbank/${related.slug.current}`}
+                    className="group flex gap-5 items-start"
+                  >
+                    <div className="shrink-0 w-24 h-24 rounded-xl overflow-hidden bg-secondary">
+                      {related.mainImage ? (
+                        <img
+                          src={urlFor(related.mainImage).width(96).height(96).url()}
+                          alt={related.altText || related.title}
+                          className="h-full w-full object-cover group-hover:scale-105 transition-transform"
+                        />
+                      ) : (
+                        <div className="h-full w-full bg-muted" />
+                      )}
+                    </div>
+                    <div>
+                      <h3 className="font-bold group-hover:text-primary transition-colors">
+                        {related.title}
+                      </h3>
+                      <span className="mt-2 inline-flex items-center gap-1 text-sm text-primary font-semibold">
+                        Lees meer <ArrowRight size={14} />
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            )}
           </div>
         </section>
       )}
