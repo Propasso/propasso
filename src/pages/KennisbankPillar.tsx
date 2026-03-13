@@ -247,6 +247,24 @@ const KennisbankPillar = () => {
         </section>
       )}
 
+      {/* SEO content block — below the fold, valuable for crawlers */}
+      {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
+        <section className="py-16 border-t border-border/40">
+          <div className="section-container">
+            <div className="max-w-3xl space-y-6">
+              <h2 className="text-xl font-bold">
+                Meer over {category?.title?.toLowerCase()}
+              </h2>
+              {content.bodyParagraphs.map((paragraph, index) => (
+                <p key={index} className="text-muted-foreground leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"
         primaryLabel="Neem contact op"
