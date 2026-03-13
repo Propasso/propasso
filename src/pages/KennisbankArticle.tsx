@@ -185,7 +185,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             {/* Parent pillar link */}
             {parentCategory?.slug && (
               <Link
-                to={`/kennisbank/${parentCategory.slug.current}`}
+                to={`/kennisbank/thema/${parentCategory.slug.current}`}
                 className="group mb-8 block rounded-2xl border border-border/40 bg-card p-6 hover:border-primary/30 hover:shadow-md transition-all max-w-xl"
               >
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">Thema</p>

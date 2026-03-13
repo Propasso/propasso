@@ -81,7 +81,7 @@ const Kennisbank = () => {
               {categories.map((cat, index) => (
                 <Link
                   key={cat._id}
-                  to={`/kennisbank/${cat.slug.current}`}
+                  to={`/kennisbank/thema/${cat.slug.current}`}
                   className="group relative rounded-2xl border border-border/40 bg-card p-7 hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <span className="absolute top-5 right-5 text-xs font-semibold text-muted-foreground bg-secondary rounded-full px-2.5 py-1">

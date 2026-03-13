@@ -211,7 +211,7 @@ const KennisbankPillar = () => {
               {relatedPillars.map((pillar) => (
                 <Link
                   key={pillar._id}
-                  to={`/kennisbank/${pillar.slug.current}`}
+                  to={`/kennisbank/thema/${pillar.slug.current}`}
                   className="group rounded-2xl border border-border/40 bg-card p-6 hover:border-primary/30 hover:shadow-md transition-all"
                 >
                   <h3 className="font-bold group-hover:text-primary transition-colors">
