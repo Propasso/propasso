@@ -87,7 +87,7 @@ const KennisbankPillar = () => {
               itemListElement: [
                 { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
                 { "@type": "ListItem", position: 2, name: "Kennisbank", item: "https://propasso.nl/kennisbank" },
-                { "@type": "ListItem", position: 3, name: category.title, item: `https://propasso.nl/kennisbank/${category.slug.current}` },
+                { "@type": "ListItem", position: 3, name: category.title, item: `https://propasso.nl/kennisbank/thema/${category.slug.current}` },
               ],
             }),
           }}
