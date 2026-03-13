@@ -111,8 +111,8 @@ const OverPropasso = () => {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Propasso staat naast ondernemers die hun bedrijf willen laten groeien, herstructureren of
-            verkoopklaar maken. Met ervaring uit het bedrijfsleven én het ondernemerschap.
+            Propasso staat naast ondernemers die hun bedrijf willen laten groeien, herstructureren of verkoopklaar
+            maken. Met ervaring uit het bedrijfsleven én het ondernemerschap.
           </motion.p>
         </div>
       </section>
@@ -124,7 +124,8 @@ const OverPropasso = () => {
             <p className="eyebrow justify-center">Hoe wij werken</p>
             <h2 className="mt-5 text-3xl md:text-4xl font-bold">Waar Propasso voor staat</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Geen verkooppraatje, geen theoretische modellen. Dit is hoe wij werken — en waarom ondernemers ons vertrouwen.
+              Geen verkooppraatje, geen theoretische modellen. Dit is hoe wij werken — en waarom ondernemers ons
+              vertrouwen.
             </p>
           </motion.div>
 
@@ -160,19 +161,17 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Na een loopbaan in Strategy & Development bij CRH Plc. — fusies, overnames, business
-                  development — koos ik in 2013 voor ondernemerschap. Niet in een opwaartse markt, maar
-                  midden in de recessie.
+                  Na een loopbaan in Strategy & Development bij CRH Plc. — fusies, overnames, business development —
+                  koos ik in 2013 voor ondernemerschap. Niet in een opwaartse markt, maar midden in de recessie.
                 </p>
                 <p>
-                  Ik begeleidde het familiebedrijf door een faillissement en doorstart, en bouwde het uit
-                  tot een winstgevende organisatie. In 2023 stelde ik een directie aan, droeg de leiding over
-                  en verkocht eind 2024 een groot deel van het bedrijf. Achteraf gezien was ik mijn eigen
-                  Exit Planning adviseur.
+                  Ik begeleidde het familiebedrijf door een faillissement en doorstart, en bouwde het uit tot een
+                  winstgevende organisatie. In 2023 stelde ik een directie aan, droeg de leiding over en verkocht eind
+                  2024 een groot deel van het bedrijf. Achteraf gezien was ik mijn eigen Exit Planning adviseur.
                 </p>
                 <p>
-                  Die ervaring — de groei, de dalen, de overdracht — is precies wat ik nu inzet voor
-                  MKB-ondernemers via Propasso.
+                  Die ervaring — de groei, de (noodzakelijke) resultaatverbeteringen, de uitdagingen, de overdracht — is
+                  precies wat ik nu inzet voor MKB-ondernemers via Propasso.
                 </p>
               </div>
             </motion.div>
@@ -222,17 +221,16 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  De naam Propasso is een verbastering van het Italiaanse <em>Prossimi Passi</em> — "de
-                  volgende stap". Het staat voor groei en vooruitgang.
+                  De naam Propasso is een verbastering van het Italiaanse <em>Prossimi Passi</em> — "de volgende stap".
+                  Het staat voor groei en vooruitgang.
                 </p>
                 <p>
-                  <strong>Mijn overtuiging:</strong> verandering brengt onzekerheid, maar juist daar — buiten
-                  de comfortzone — liggen vernieuwing, groei en versterking van zowel de onderneming als de
-                  ondernemer.
+                  <strong>Mijn overtuiging:</strong> verandering brengt onzekerheid, maar juist daar — buiten de
+                  comfortzone — liggen vernieuwing, groei en versterking van zowel de onderneming als de ondernemer.
                 </p>
                 <p>
-                  Bij Propasso begeleid ik ondernemers bij het doorbreken van groeiplafonds, herstructurering
-                  en het verkoopklaar maken van bedrijven. Want na het dal ligt de verrijking.
+                  Bij Propasso begeleid ik ondernemers bij het doorbreken van groeiplafonds, herstructurering en het
+                  verkoopklaar maken van bedrijven. Want na het dal ligt de verrijking.
                 </p>
               </div>
             </motion.div>
@@ -269,13 +267,13 @@ const OverPropasso = () => {
               <h2 className="mt-5 text-3xl md:text-4xl font-bold leading-tight">Bergbeklimmer met hoogtevrees</h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Bergbeklimmer met hoogtevrees? Ja, echt. Ik geloof dat échte groei buiten je comfortzone
-                  zit — zakelijk én privé. Ondanks lichte hoogtevrees trek ik elk jaar met vrienden de bergen
-                  in: trailrunning, fietsen en bergwandelen.
+                  Bergbeklimmer met hoogtevrees? Ja, echt. Ik geloof dat échte groei buiten je comfortzone zit —
+                  zakelijk én privé. Ondanks lichte hoogtevrees trek ik elk jaar met vrienden de bergen in:
+                  trailrunning, fietsen en bergwandelen.
                 </p>
                 <p>
-                  Diezelfde mentaliteit breng ik mee in mijn werk: de moed om stappen te zetten die richting
-                  geven en echte impact maken.
+                  Diezelfde mentaliteit breng ik mee in mijn werk: de moed om stappen te zetten die richting geven en
+                  echte impact maken.
                 </p>
               </div>
             </motion.div>
@@ -287,9 +285,7 @@ const OverPropasso = () => {
       <section className="py-16 md:py-20 tint-teal-bg">
         <div className="section-container text-center">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-            <h2 className="text-2xl md:text-3xl font-bold text-balance">
-              Herken je dit? Laten we kennismaken.
-            </h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-balance">Herken je dit? Laten we kennismaken.</h2>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
               Geen verkooppraatje — gewoon een goed gesprek over jouw situatie en ambities.
             </p>
