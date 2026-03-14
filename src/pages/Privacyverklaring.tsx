@@ -188,7 +188,7 @@ const Privacyverklaring = () => {
                 <li><strong>Google Maps</strong> — voor de interactieve kaart op de contactpagina</li>
                 <li><strong>YouTube en Instagram embeds</strong> — voor het tonen van ingesloten video's en social media content</li>
                 <li><strong>Calendly of vergelijkbare tools</strong> — voor het inplannen van afspraken</li>
-                <li><strong>Cloudflare of vergelijkbare diensten</strong> — voor beveiliging, prestaties en bescherming tegen misbruik</li>
+                
               </ul>
 
               <p className="mt-4">
