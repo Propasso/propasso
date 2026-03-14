@@ -427,34 +427,14 @@ const Contact = () => {
                         )}
                       />
 
-                      {/* Privacy checkbox */}
-                      <FormField
-                        control={form.control}
-                        name="privacy"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel className="text-sm font-normal text-muted-foreground cursor-pointer">
-                                Ik ga akkoord met de{" "}
-                                <Link
-                                  to="/privacyverklaring"
-                                  target="_blank"
-                                  className="text-primary hover:underline font-medium"
-                                >
-                                  privacyverklaring
-                                </Link>{" "}
-                                *
-                              </FormLabel>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
+                      {/* Consent checkboxes */}
+                      <ConsentCheckboxes
+                        privacyChecked={form.watch("privacy") === true}
+                        onPrivacyChange={(checked) => form.setValue("privacy", checked as true, { shouldValidate: true })}
+                        newsletterChecked={form.watch("newsletter") ?? false}
+                        onNewsletterChange={(checked) => form.setValue("newsletter", checked)}
+                        showNewsletter={true}
+                        privacyError={form.formState.errors.privacy?.message}
                       />
 
                       <Button
