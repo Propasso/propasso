@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useCookieConsent } from "@/hooks/use-cookie-consent";
 import logo from "@/assets/logos/propasso-logo.png";
 
 const footerNav = [
