@@ -12,6 +12,8 @@ const footerNav = [
 
 
 const Footer = () => {
+  const { reopenBanner } = useCookieConsent();
+
   return (
     <footer className="bg-foreground py-16 opacity-85">
       <div className="section-container">
