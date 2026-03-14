@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SERVICE_CATEGORIES, CATEGORY_LABELS } from "@/hooks/use-cookie-consent";
 import { AlertTriangle, CheckCircle2, Shield, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,13 +9,6 @@ interface ComplianceAlert {
   message: string;
 }
 
-/**
- * Dev-only tool: scans privacy policy text against cookie consent categories.
- * Warns if services or categories mentioned in the consent system are missing
- * from the privacy policy text.
- *
- * Only renders in development mode.
- */
 const PrivacyComplianceScanner = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [privacyText, setPrivacyText] = useState("");
@@ -23,10 +16,12 @@ const PrivacyComplianceScanner = () => {
   const [scanned, setScanned] = useState(false);
   const [autoFetched, setAutoFetched] = useState(false);
 
-  // Only render in development
   if (import.meta.env.PROD) return null;
+
+  const fetchPrivacyPage = async () => {
+    try {
+      const res = await fetch("/privacyverklaring");
       const html = await res.text();
-      // Extract text content from HTML
       const parser = new DOMParser();
       const doc = parser.parseFromString(html, "text/html");
       const text = doc.body?.textContent || "";
@@ -41,10 +36,8 @@ const PrivacyComplianceScanner = () => {
     const text = privacyText.toLowerCase();
     const results: ComplianceAlert[] = [];
 
-    // Check each service
     for (const [service, category] of Object.entries(SERVICE_CATEGORIES)) {
       const searchTerms = [service.toLowerCase()];
-      // Add common alternative names
       if (service === "Facebook Pixel") searchTerms.push("meta pixel", "facebook");
       if (service === "LinkedIn Insight Tag") searchTerms.push("linkedin");
       if (service === "Google Tag Manager") searchTerms.push("tag manager", "gtm");
@@ -60,7 +53,6 @@ const PrivacyComplianceScanner = () => {
       }
     }
 
-    // Check category keywords
     const categoryKeywords: Record<string, string[]> = {
       functional: ["functioneel", "functionele cookies", "noodzakelijk"],
       statistics: ["statistiek", "statistieken", "analytisch", "analytische"],
@@ -103,12 +95,7 @@ const PrivacyComplianceScanner = () => {
             <Button size="sm" variant="outline" className="text-xs rounded-full" onClick={fetchPrivacyPage}>
               {autoFetched ? "Opnieuw ophalen" : "Pagina ophalen"}
             </Button>
-            <Button
-              size="sm"
-              className="text-xs rounded-full"
-              onClick={scan}
-              disabled={!privacyText.trim()}
-            >
+            <Button size="sm" className="text-xs rounded-full" onClick={scan} disabled={!privacyText.trim()}>
               Scan uitvoeren
             </Button>
           </div>
@@ -126,9 +113,9 @@ const PrivacyComplianceScanner = () => {
           {scanned && (
             <div className="space-y-2">
               {alerts.length === 0 ? (
-                <div className="flex items-center gap-2 text-xs text-green-700 bg-green-50 p-3 rounded-lg">
-                  <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                  <span className="font-medium">Alles in orde! Alle diensten en categorieën zijn gedekt.</span>
+                <div className="flex items-center gap-2 text-xs p-3 rounded-lg bg-muted border border-border/30">
+                  <CheckCircle2 className="w-4 h-4 flex-shrink-0 text-primary" />
+                  <span className="font-medium text-foreground">Alles in orde! Alle diensten en categorieën zijn gedekt.</span>
                 </div>
               ) : (
                 <>
