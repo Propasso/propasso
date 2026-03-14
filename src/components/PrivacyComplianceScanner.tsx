@@ -25,10 +25,6 @@ const PrivacyComplianceScanner = () => {
 
   // Only render in development
   if (import.meta.env.PROD) return null;
-
-  const fetchPrivacyPage = async () => {
-    try {
-      const res = await fetch("/privacyverklaring");
       const html = await res.text();
       // Extract text content from HTML
       const parser = new DOMParser();
