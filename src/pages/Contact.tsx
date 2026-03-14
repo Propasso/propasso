@@ -33,6 +33,7 @@ const contactSchema = z.object({
   privacy: z.literal(true, {
     errorMap: () => ({ message: "Je dient akkoord te gaan met de privacyverklaring" }),
   }),
+  newsletter: z.boolean().optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
