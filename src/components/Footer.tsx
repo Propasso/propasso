@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { useCookieConsent } from "@/hooks/use-cookie-consent";
 import logo from "@/assets/logos/propasso-logo.png";
 
 const footerNav = [
@@ -12,7 +11,6 @@ const footerNav = [
 
 
 const Footer = () => {
-  const { reopenBanner } = useCookieConsent();
 
   return (
     <footer className="bg-foreground py-16 opacity-85">
@@ -86,17 +84,6 @@ const Footer = () => {
               className="text-xs text-background/40 hover:text-background/60 transition-colors">
               Algemene Voorwaarden
             </Link>
-            <Link
-              to="/cookieverklaring"
-              className="text-xs text-background/40 hover:text-background/60 transition-colors">
-              Cookieverklaring
-            </Link>
-            <button
-              onClick={reopenBanner}
-              className="text-xs text-background/40 hover:text-background/60 transition-colors"
-            >
-              Cookievoorkeuren
-            </button>
           </div>
         </div>
       </div>
