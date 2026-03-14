@@ -9,9 +9,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { useCookieConsent } from "@/hooks/use-cookie-consent";
+import ConsentCheckboxes from "@/components/ConsentCheckboxes";
 import {
   ChevronRight,
   Phone,
@@ -33,6 +33,7 @@ const contactSchema = z.object({
   privacy: z.literal(true, {
     errorMap: () => ({ message: "Je dient akkoord te gaan met de privacyverklaring" }),
   }),
+  newsletter: z.boolean().optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -80,9 +81,9 @@ const fadeUp = {
 };
 
 const GoogleMapsEmbed = () => {
-  const { hasConsented } = useCookieConsent();
+  const { hasConsent } = useCookieConsent();
 
-  if (!hasConsented) {
+  if (!hasConsent("marketing")) {
     return (
       <div className="w-full h-[300px] bg-muted rounded-t-2xl flex flex-col items-center justify-center gap-3 text-center p-6">
         <MapPinned className="w-10 h-10 text-muted-foreground/40" />
@@ -124,7 +125,7 @@ const Contact = () => {
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", phone: "", message: "", privacy: undefined as unknown as true },
+    defaultValues: { name: "", email: "", phone: "", message: "", privacy: undefined as unknown as true, newsletter: false },
   });
 
   const onSubmit = async (data: ContactFormValues) => {
@@ -426,34 +427,14 @@ const Contact = () => {
                         )}
                       />
 
-                      {/* Privacy checkbox */}
-                      <FormField
-                        control={form.control}
-                        name="privacy"
-                        render={({ field }) => (
-                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                            <FormControl>
-                              <Checkbox
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                              />
-                            </FormControl>
-                            <div className="space-y-1 leading-none">
-                              <FormLabel className="text-sm font-normal text-muted-foreground cursor-pointer">
-                                Ik ga akkoord met de{" "}
-                                <Link
-                                  to="/privacyverklaring"
-                                  target="_blank"
-                                  className="text-primary hover:underline font-medium"
-                                >
-                                  privacyverklaring
-                                </Link>{" "}
-                                *
-                              </FormLabel>
-                              <FormMessage />
-                            </div>
-                          </FormItem>
-                        )}
+                      {/* Consent checkboxes */}
+                      <ConsentCheckboxes
+                        privacyChecked={form.watch("privacy") === true}
+                        onPrivacyChange={(checked) => form.setValue("privacy", checked as true, { shouldValidate: true })}
+                        newsletterChecked={form.watch("newsletter") ?? false}
+                        onNewsletterChange={(checked) => form.setValue("newsletter", checked)}
+                        showNewsletter={true}
+                        privacyError={form.formState.errors.privacy?.message}
                       />
 
                       <Button
