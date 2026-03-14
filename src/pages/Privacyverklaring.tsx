@@ -113,9 +113,19 @@ const Privacyverklaring = () => {
                       <td className="p-3">Relevantie voor toekomstige samenwerking</td>
                     </tr>
                     <tr className="border-t border-border">
-                      <td className="p-3">Websitegebruik (analytics)</td>
+              <td className="p-3">Websitegebruik (analytics)</td>
                       <td className="p-3">Max. 14 maanden</td>
                       <td className="p-3">Analyse en optimalisatie website</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">Cookievoorkeuren</td>
+                      <td className="p-3">12 maanden</td>
+                      <td className="p-3">Onthouden van cookiekeuze</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">Marketing cookies</td>
+                      <td className="p-3">Max. 12 maanden</td>
+                      <td className="p-3">Afhankelijk van dienst (zie cookieverklaring)</td>
                     </tr>
                   </tbody>
                 </table>
