@@ -114,7 +114,7 @@ const HeroSection = () => {
             <circle cx="20" cy="20" r="18.5" fill="none" stroke="hsl(var(--foreground))" strokeWidth="1.5" strokeDasharray="3.5 3.5" />
           </svg>
           {/* Yellow dot on hover */}
-          <div className="absolute inset-[3px] rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute w-5 h-5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           {/* Chevron */}
           <ChevronRight size={16} className="text-foreground relative z-10 rotate-90" />
         </div>
