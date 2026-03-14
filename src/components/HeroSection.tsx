@@ -101,11 +101,19 @@ const HeroSection = () => {
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
       >
         <div
-          className="group relative w-12 h-12 rounded-full border-2 border-muted-foreground/40 flex items-center justify-center cursor-pointer transition-all duration-300 hover:border-dashed hover:border-muted-foreground/70 animate-scroll-bounce"
+          className="group relative w-14 h-14 flex items-center justify-center cursor-pointer animate-scroll-bounce"
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
+          {/* Solid circle border — hidden on hover */}
+          <svg className="absolute inset-0 w-full h-full transition-opacity duration-300 group-hover:opacity-0" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="26" fill="none" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.35" strokeWidth="2" />
+          </svg>
+          {/* Dashed/striped circle border — visible on hover */}
+          <svg className="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" viewBox="0 0 56 56">
+            <circle cx="28" cy="28" r="26" fill="none" stroke="hsl(var(--muted-foreground))" strokeOpacity="0.6" strokeWidth="2" strokeDasharray="4 4" />
+          </svg>
           {/* Yellow dot on hover */}
-          <div className="absolute w-2.5 h-2.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1" />
+          <div className="absolute w-3 h-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1.5" style={{ backgroundColor: 'hsl(var(--accent))' }} />
           <ArrowDown size={18} className="text-muted-foreground relative z-10 translate-y-0.5" />
         </div>
       </motion.div>
