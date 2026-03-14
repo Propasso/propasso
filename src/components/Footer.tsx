@@ -91,6 +91,12 @@ const Footer = () => {
               className="text-xs text-background/40 hover:text-background/60 transition-colors">
               Cookieverklaring
             </Link>
+            <button
+              onClick={reopenBanner}
+              className="text-xs text-background/40 hover:text-background/60 transition-colors"
+            >
+              Cookievoorkeuren
+            </button>
           </div>
         </div>
       </div>
