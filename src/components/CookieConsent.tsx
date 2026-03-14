@@ -35,7 +35,7 @@ const CookieConsent = () => {
           <div className="max-w-3xl mx-auto text-background rounded-2xl shadow-2xl p-5 md:p-6 border-0 border-primary border-none bg-inherit opacity-10">
             <div className="flex items-start gap-3 mb-4">
               <Cookie className="w-5 h-5 text-accent flex-shrink-0 mt-0.5" />
-              <p className="text-xs text-background/80 leading-relaxed">
+              <p className="text-xs text-background/0 leading-relaxed">
                 Wij gebruiken cookies om de website goed te laten functioneren, je ervaring te verbeteren en het bereik
                 van onze content te meten. Lees meer in onze{" "}
                 <Link to="/cookieverklaring" className="text-accent hover:underline font-medium">
