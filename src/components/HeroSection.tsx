@@ -14,6 +14,7 @@ const heroSubtitles = [
 
 const HeroSection = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isScrollHovered, setIsScrollHovered] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
