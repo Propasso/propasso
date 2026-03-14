@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ChevronRight, ArrowDown } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 
 const heroSubtitles = [
   "Met betere resultaten.",
