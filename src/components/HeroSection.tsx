@@ -98,10 +98,16 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center"
       >
-        <div className="w-px h-12 bg-border" />
-        <ArrowDown size={20} className="text-muted-foreground animate-scroll-bounce" />
+        <div
+          className="group relative w-12 h-12 rounded-full border-2 border-muted-foreground/40 flex items-center justify-center cursor-pointer transition-all duration-300 hover:border-dashed hover:border-muted-foreground/70 animate-scroll-bounce"
+          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
+        >
+          {/* Yellow dot on hover */}
+          <div className="absolute w-2.5 h-2.5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300 -translate-y-1" />
+          <ArrowDown size={18} className="text-muted-foreground relative z-10 translate-y-0.5" />
+        </div>
       </motion.div>
     </section>
   );
