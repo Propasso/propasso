@@ -10,7 +10,7 @@ const Privacyverklaring = () => {
 
           <div className="prose prose-lg text-muted-foreground space-y-8">
             <div>
-              <p className="text-sm text-muted-foreground/70">Versie: 26 februari 2026</p>
+              <p className="text-sm text-muted-foreground/70">Versie: 14 maart 2026</p>
               <p className="text-sm text-muted-foreground/70">Van toepassing op: www.propasso.nl en de diensten van Propasso</p>
             </div>
 
