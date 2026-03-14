@@ -63,7 +63,7 @@ const App = () => (
             <AppRoutes />
             <CookieConsent />
             <CookieConsentTrigger />
-            <PrivacyComplianceScanner />
+            
           </BrowserRouter>
         </CookieConsentProvider>
       </TooltipProvider>
