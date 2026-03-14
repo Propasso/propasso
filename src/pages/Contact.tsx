@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
 import PageLayout from "@/components/PageLayout";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -131,12 +132,24 @@ const Contact = () => {
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const mailtoLink = `mailto:hallo@propasso.nl?subject=Contactformulier: ${encodeURIComponent(data.name)}&body=${encodeURIComponent(
-        `Naam: ${data.name}\nE-mail: ${data.email}${data.phone ? `\nTelefoon: ${data.phone}` : ""}\n\nBericht:\n${data.message}`
-      )}`;
-      window.location.href = mailtoLink;
+      const { data: result, error } = await supabase.functions.invoke('send-contact-email', {
+        body: {
+          name: data.name,
+          email: data.email,
+          phone: data.phone || undefined,
+          message: data.message,
+          newsletter: data.newsletter,
+        },
+      });
+
+      if (error) throw error;
+
       setIsSubmitted(true);
       form.reset();
+      toast({
+        title: "Bericht verzonden",
+        description: "Bedankt! Ik neem zo snel mogelijk contact met je op.",
+      });
     } catch {
       toast({
         title: "Er ging iets mis",
