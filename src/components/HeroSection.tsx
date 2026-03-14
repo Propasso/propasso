@@ -99,25 +99,40 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center group cursor-pointer"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center cursor-pointer"
         onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
       >
         {/* Vertical line */}
         <div className="w-[1.5px] h-16 bg-foreground" />
+
         {/* Circle with arrow */}
-        <div className="relative w-10 h-10 -mt-[1px] flex items-center justify-center">
-          {/* Solid circle — default */}
-          <svg className="absolute inset-0 w-full h-full transition-opacity duration-300 group-hover:opacity-0" viewBox="0 0 40 40">
+        <div
+          className="relative w-10 h-10 -mt-[1px] flex items-center justify-center"
+          onMouseEnter={() => setIsScrollHovered(true)}
+          onMouseLeave={() => setIsScrollHovered(false)}
+        >
+          <svg
+            className={`absolute inset-0 w-full h-full transition-opacity duration-200 ${isScrollHovered ? "opacity-0" : "opacity-100"}`}
+            viewBox="0 0 40 40"
+            aria-hidden="true"
+          >
             <circle cx="20" cy="20" r="18.5" fill="none" stroke="hsl(var(--foreground))" strokeWidth="1.5" />
           </svg>
-          {/* Dashed circle — hover */}
-          <svg className="absolute inset-0 w-full h-full opacity-0 transition-opacity duration-300 group-hover:opacity-100" viewBox="0 0 40 40">
-            <circle cx="20" cy="20" r="18.5" fill="none" stroke="hsl(var(--foreground))" strokeWidth="1.5" strokeDasharray="3.5 3.5" />
+
+          <svg
+            className={`absolute inset-0 w-full h-full transition-opacity duration-200 ${isScrollHovered ? "opacity-100" : "opacity-0"}`}
+            viewBox="0 0 40 40"
+            aria-hidden="true"
+          >
+            <circle cx="20" cy="20" r="18.5" fill="none" stroke="hsl(var(--foreground))" strokeWidth="1.5" strokeDasharray="3 3" />
           </svg>
-          {/* Yellow dot on hover */}
-          <div className="absolute w-5 h-5 rounded-full bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          {/* Chevron */}
-          <ChevronRight size={16} className="text-foreground relative z-10 rotate-90" />
+
+          <div
+            className={`absolute w-2.5 h-2.5 rounded-full bg-accent transition-opacity duration-200 ${isScrollHovered ? "opacity-100" : "opacity-0"}`}
+            aria-hidden="true"
+          />
+
+          <ChevronRight size={14} className="text-foreground relative z-10 rotate-90" />
         </div>
       </motion.div>
     </section>
