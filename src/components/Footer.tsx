@@ -86,16 +86,13 @@ const Footer = () => {
               className="text-xs text-background/40 hover:text-background/60 transition-colors">
               Algemene Voorwaarden
             </Link>
-            <Link
-              to="/cookieverklaring"
-              className="text-xs text-background/40 hover:text-background/60 transition-colors">
-              Cookieverklaring
-            </Link>
             <button
               onClick={reopenBanner}
-              className="text-xs text-background/40 hover:text-background/60 transition-colors"
+              aria-label="Cookievoorkeuren wijzigen"
+              title="Cookievoorkeuren wijzigen"
+              className="text-background/40 hover:text-background/60 transition-colors"
             >
-              Cookievoorkeuren
+              <Cookie className="w-4 h-4" />
             </button>
           </div>
         </div>
