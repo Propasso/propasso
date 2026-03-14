@@ -7,6 +7,8 @@ import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
 import { CookieConsentProvider } from "@/hooks/use-cookie-consent";
 import CookieConsent from "@/components/CookieConsent";
+import CookieConsentTrigger from "@/components/CookieConsentTrigger";
+import PrivacyComplianceScanner from "@/components/PrivacyComplianceScanner";
 import Index from "./pages/Index";
 import Styleguide from "./pages/Styleguide";
 import Contact from "./pages/Contact";
