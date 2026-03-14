@@ -113,9 +113,19 @@ const Privacyverklaring = () => {
                       <td className="p-3">Relevantie voor toekomstige samenwerking</td>
                     </tr>
                     <tr className="border-t border-border">
-                      <td className="p-3">Websitegebruik (analytics)</td>
+              <td className="p-3">Websitegebruik (analytics)</td>
                       <td className="p-3">Max. 14 maanden</td>
                       <td className="p-3">Analyse en optimalisatie website</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">Cookievoorkeuren</td>
+                      <td className="p-3">12 maanden</td>
+                      <td className="p-3">Onthouden van cookiekeuze</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">Marketing cookies</td>
+                      <td className="p-3">Max. 12 maanden</td>
+                      <td className="p-3">Afhankelijk van dienst (zie cookieverklaring)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -178,10 +188,14 @@ const Privacyverklaring = () => {
                 <li><strong>Google Maps</strong> — voor de interactieve kaart op de contactpagina</li>
                 <li><strong>YouTube en Instagram embeds</strong> — voor het tonen van ingesloten video's en social media content</li>
                 <li><strong>Calendly of vergelijkbare tools</strong> — voor het inplannen van afspraken</li>
+                
               </ul>
 
               <p className="mt-4">
-                De bovengenoemde diensten kunnen eigen cookies plaatsen en gegevens verwerken buiten de EER. Wij verwijzen hiervoor naar het privacybeleid van de betreffende partijen. Door toestemming te geven via de cookiebanner, stem je in met de verwerking door deze partijen.
+                De bovengenoemde diensten kunnen eigen cookies plaatsen en gegevens verwerken buiten de EER.
+                De bewaartermijnen per dienst staan vermeld in onze{" "}
+                <a href="/cookieverklaring" className="text-primary hover:underline font-medium">cookieverklaring</a>.
+                Door toestemming te geven via de cookiebanner, stem je in met de verwerking door deze partijen.
               </p>
               <p className="mt-2">
                 Wij kunnen in de toekomst vergelijkbare diensten inzetten voor dezelfde doeleinden. Bij wezenlijke wijzigingen passen wij deze privacyverklaring en de cookieverklaring aan.
