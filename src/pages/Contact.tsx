@@ -125,7 +125,7 @@ const Contact = () => {
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", phone: "", message: "", privacy: undefined as unknown as true },
+    defaultValues: { name: "", email: "", phone: "", message: "", privacy: undefined as unknown as true, newsletter: false },
   });
 
   const onSubmit = async (data: ContactFormValues) => {
