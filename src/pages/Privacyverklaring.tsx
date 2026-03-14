@@ -10,7 +10,7 @@ const Privacyverklaring = () => {
 
           <div className="prose prose-lg text-muted-foreground space-y-8">
             <div>
-              <p className="text-sm text-muted-foreground/70">Versie: 26 februari 2026</p>
+              <p className="text-sm text-muted-foreground/70">Versie: 14 maart 2026</p>
               <p className="text-sm text-muted-foreground/70">Van toepassing op: www.propasso.nl en de diensten van Propasso</p>
             </div>
 
@@ -142,15 +142,53 @@ const Privacyverklaring = () => {
             </div>
 
             <div>
-              <h2 className="text-xl font-semibold text-foreground mb-3">7. Cookies en websitegebruik</h2>
+              <h2 className="text-xl font-semibold text-foreground mb-3">7. Cookies, tracking en externe diensten</h2>
               <p>
-                Wij gebruiken cookies en vergelijkbare technieken om de website goed te laten werken en om inzicht te krijgen in het gebruik van de website.
+                Wij gebruiken cookies en vergelijkbare technieken om de website goed te laten werken, het gebruik te analyseren en onze communicatie te verbeteren. Bij je eerste bezoek vragen wij toestemming per categorie via een cookiebanner.
+              </p>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Functionele cookies en diensten</h3>
+              <p>
+                Deze zijn noodzakelijk voor de werking van de website en worden altijd geplaatst. Het gaat om:
+              </p>
+              <ul className="list-disc pl-6 mt-2 space-y-1">
+                <li><strong>Google Tag Manager</strong> — voor het beheer van scripts en tags op de website</li>
+                <li><strong>Cloudflare</strong> — voor beveiliging, prestaties en bescherming tegen misbruik</li>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Statistieken</h3>
+              <p>
+                Met jouw toestemming gebruiken wij de volgende diensten om het gebruik van onze website te analyseren en te verbeteren:
+              </p>
+              <ul className="list-disc pl-6 mt-2 space-y-1">
+                <li><strong>Google Analytics</strong> — voor websitestatistieken en bezoekersgedrag</li>
+                <li><strong>Google Search Console</strong> — voor inzicht in zoekprestaties en indexering</li>
+                <li><strong>HubSpot</strong> — voor bezoekersanalyse, formulieropvolging en klantrelatiebeheer</li>
+              </ul>
+
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Marketing en social media</h3>
+              <p>
+                Met jouw toestemming gebruiken wij de volgende diensten voor gerichte communicatie, advertenties en het integreren van externe content:
+              </p>
+              <ul className="list-disc pl-6 mt-2 space-y-1">
+                <li><strong>Google Ads</strong> — voor advertentiecampagnes en conversietracking</li>
+                <li><strong>Facebook Pixel (Meta)</strong> — voor advertentie-tracking en remarketing</li>
+                <li><strong>LinkedIn Insight Tag</strong> — voor advertentie-tracking en doelgroepanalyse</li>
+                <li><strong>Hotjar of vergelijkbare tools</strong> — voor heatmaps en gebruikerservaring-analyse</li>
+                <li><strong>Google Maps</strong> — voor de interactieve kaart op de contactpagina</li>
+                <li><strong>YouTube en Instagram embeds</strong> — voor het tonen van ingesloten video's en social media content</li>
+                <li><strong>Calendly of vergelijkbare tools</strong> — voor het inplannen van afspraken</li>
+              </ul>
+
+              <p className="mt-4">
+                De bovengenoemde diensten kunnen eigen cookies plaatsen en gegevens verwerken buiten de EER. Wij verwijzen hiervoor naar het privacybeleid van de betreffende partijen. Door toestemming te geven via de cookiebanner, stem je in met de verwerking door deze partijen.
               </p>
               <p className="mt-2">
-                Voor het gebruik van niet-functionele cookies vragen wij voorafgaand toestemming, voor zover wettelijk vereist. Nadere informatie hierover is opgenomen in onze cookieverklaring op de website.
+                Wij kunnen in de toekomst vergelijkbare diensten inzetten voor dezelfde doeleinden. Bij wezenlijke wijzigingen passen wij deze privacyverklaring en de cookieverklaring aan.
               </p>
               <p className="mt-2">
-                Je kunt cookies verwijderen via je browserinstellingen. Meer informatie vind je in onze cookieverklaring.
+                Je kunt je cookievoorkeuren op elk moment wijzigen via de knop linksonder op de website. Meer informatie vind je in onze{" "}
+                <a href="/cookieverklaring" className="text-primary hover:underline font-medium">cookieverklaring</a>.
               </p>
             </div>
 
