@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { useEffect } from "react";
+import { CookieConsentProvider } from "@/hooks/use-cookie-consent";
+import CookieConsent from "@/components/CookieConsent";
 import Index from "./pages/Index";
 import Styleguide from "./pages/Styleguide";
 import Contact from "./pages/Contact";
@@ -17,6 +19,7 @@ import KennisbankArticle from "./pages/KennisbankArticle";
 import Disclaimer from "./pages/Disclaimer";
 import Privacyverklaring from "./pages/Privacyverklaring";
 import AlgemeneVoorwaarden from "./pages/AlgemeneVoorwaarden";
+import Cookieverklaring from "./pages/Cookieverklaring";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,6 +44,7 @@ const AppRoutes = () => (
     <Route path="/disclaimer" element={<Disclaimer />} />
     <Route path="/privacyverklaring" element={<Privacyverklaring />} />
     <Route path="/algemene-voorwaarden" element={<AlgemeneVoorwaarden />} />
+    <Route path="/cookieverklaring" element={<Cookieverklaring />} />
     <Route path="/styleguide" element={<Styleguide />} />
     <Route path="*" element={<NotFound />} />
   </Routes>
@@ -50,11 +54,14 @@ const App = () => (
   <HelmetProvider>
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
+        <CookieConsentProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <AppRoutes />
+            <CookieConsent />
+          </BrowserRouter>
+        </CookieConsentProvider>
       </TooltipProvider>
     </QueryClientProvider>
   </HelmetProvider>
