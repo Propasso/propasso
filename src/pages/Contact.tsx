@@ -81,9 +81,9 @@ const fadeUp = {
 };
 
 const GoogleMapsEmbed = () => {
-  const { hasConsented } = useCookieConsent();
+  const { hasConsent } = useCookieConsent();
 
-  if (!hasConsented) {
+  if (!hasConsent("marketing")) {
     return (
       <div className="w-full h-[300px] bg-muted rounded-t-2xl flex flex-col items-center justify-center gap-3 text-center p-6">
         <MapPinned className="w-10 h-10 text-muted-foreground/40" />
