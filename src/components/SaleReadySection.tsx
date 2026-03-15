@@ -189,29 +189,23 @@ const SaleReadySection = () => {
               viewBox="0 0 760 680"
             >
               <defs>
-                <linearGradient
+                <radialGradient
                   id="line-grad"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
+                  cx="50%"
+                  cy="50%"
+                  r="50%"
                 >
                   <stop
                     offset="0%"
                     stopColor="hsl(var(--primary))"
-                    stopOpacity="0.15"
-                  />
-                  <stop
-                    offset="50%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.08"
+                    stopOpacity="0.06"
                   />
                   <stop
                     offset="100%"
                     stopColor="hsl(var(--primary))"
-                    stopOpacity="0.15"
+                    stopOpacity="0.18"
                   />
-                </linearGradient>
+                </radialGradient>
               </defs>
               {pillars.map((_, i) => {
                 const pos = pillarPositions[positionMap[i]];
