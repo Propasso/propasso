@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import mountainClimberSvg from "@/assets/images/mountain-climber-line-drawing.svg";
+import faqClimbersRopes from "@/assets/illustrations/faq-climbers-ropes.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -363,7 +363,7 @@ const VeelgesteldeVragen = () => {
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
           <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
           <img
-            src={mountainClimberSvg}
+            src={faqClimbersRopes}
             alt=""
             className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.06] pointer-events-none select-none"
           />
