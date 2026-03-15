@@ -25,7 +25,18 @@ const cardVariants = {
 
 const KennisbankPillar = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
-  const content = categorySlug ? pillarContent[categorySlug] : undefined;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!categorySlug) return;
+
+    const canonicalSlug = canonicalizeCategorySlug(categorySlug);
+    if (canonicalSlug !== categorySlug) {
+      navigate(`/kennisbank/thema/${canonicalSlug}`, { replace: true });
+    }
+  }, [categorySlug, navigate]);
+
+  const content = categorySlug ? pillarContent[canonicalizeCategorySlug(categorySlug)] : undefined;
 
   const { data: category, isLoading: catLoading } = useQuery({
     queryKey: ["sanity-category", categorySlug],
