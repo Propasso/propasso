@@ -60,7 +60,7 @@ serve(async (req) => {
     }
 
     // Submit to HubSpot Forms API v3
-    const hubspotUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
+    const hubspotUrl = `https://api-eu1.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
 
     const res = await fetch(hubspotUrl, {
       method: 'POST',
