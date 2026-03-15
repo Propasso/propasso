@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
+import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
+import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
 import MethodologyFramework from "@/components/MethodologyFramework";
+import OutcomesSection from "@/components/werkwijze/OutcomesSection";
 import { motion } from "framer-motion";
 
 const fadeInUp = {
@@ -25,7 +28,7 @@ const Werkwijze = () => {
 
   return (
     <PageLayout>
-      {/* Hero */}
+      {/* 1. Hero */}
       <section className="py-16 md:py-24">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
@@ -36,25 +39,39 @@ const Werkwijze = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-5 text-4xl md:text-5xl font-bold leading-tight max-w-3xl text-balance"
           >
-            Een gestructureerd traject naar verkoopklaarheid
+            Verkoopklaarheid bouw je op — in de jaren vóór de overdracht
           </motion.h1>
           <motion.p
             {...fadeInUp}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Propasso werkt met een methodiek die de ondernemer, de onderneming
-            en de financiële realiteit samenbrengt. Van analyse tot uitvoering
-            — in vier strategische fases.
+            Propasso begeleidt ondernemers met een gestructureerde aanpak die
+            de ondernemer, de onderneming en de financiële realiteit
+            samenbrengt. Van analyse tot uitvoering — zodat het bedrijf
+            sterker, onafhankelijker en overdraagbaar wordt.
           </motion.p>
         </div>
       </section>
 
-      {/* Methodology Framework */}
+      {/* 2. De realiteit van het MKB */}
+      <MKBRealitySection />
+
+      {/* 3. Kernprincipe: drie verhalen */}
+      <ThreeStoriesSection />
+
+      {/* 4. Methodology Framework (centerpiece) */}
       <MethodologyFramework />
 
-      {/* CTA */}
+      {/* 6. Wat dit oplevert */}
+      <OutcomesSection />
+
+      {/* 7. Strategisch gesprek CTA */}
       <PageCTA
+        title="Klaar voor een strategisch gesprek?"
+        description="Neem vrijblijvend contact op voor een kennismaking en ontdek hoe Propasso uw bedrijf kan versterken."
+        primaryLabel="Plan een gesprek"
+        primaryHref="/contact"
         secondaryLabel="Bekijk de kennisbank"
         secondaryHref="/kennisbank"
       />
