@@ -96,8 +96,18 @@ const MethodologyFramework = () => {
   const [activePhase, setActivePhase] = useState<number | null>(null);
 
   return (
-    <section className="py-20 md:py-32">
-      <div className="section-container">
+    <section className="py-28 md:py-40 relative">
+      {/* Subtle centerpiece background treatment */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] rounded-full opacity-[0.025]"
+          style={{
+            background: "radial-gradient(ellipse, hsl(var(--primary)) 0%, transparent 70%)",
+          }}
+        />
+      </div>
+
+      <div className="section-container relative z-10">
         {/* Section header */}
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Onze methodiek</p>
@@ -108,7 +118,7 @@ const MethodologyFramework = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance"
         >
-          Van analyse naar uitvoering — in vier strategische fases
+          Van analyse naar uitvoering, in vier strategische fases
         </motion.h2>
 
         <motion.p

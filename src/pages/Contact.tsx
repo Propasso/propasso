@@ -318,7 +318,7 @@ const Contact = () => {
               <h2 className="mt-4 text-2xl md:text-3xl font-bold">Liever een bericht sturen?</h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 Vul het formulier in en ik neem persoonlijk contact met je op.
-                Geen verplichtingen, geen verkooppraatje — gewoon een eerlijk gesprek
+                Geen verplichtingen, geen verkooppraatje. Gewoon een eerlijk gesprek
                 over jouw situatie.
               </p>
 

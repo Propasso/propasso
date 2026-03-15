@@ -17,7 +17,7 @@ const outcomes = [
     icon: ShieldCheck,
     title: "Verbeterde winstgevendheid",
     description:
-      "Inzicht in margekwaliteit, kostenstructuur en terugkerende omzet — de waardedrijvers die kopers waarderen.",
+      "Inzicht in margekwaliteit, kostenstructuur en terugkerende omzet; de waardedrijvers die kopers waarderen.",
   },
   {
     icon: Users,
@@ -29,7 +29,7 @@ const outcomes = [
     icon: ArrowRightLeft,
     title: "Verhoogde overdraagbaarheid",
     description:
-      "Een bedrijf dat aantoonbaar klaar is voor overdracht — met heldere documentatie, structuur en voorspelbaarheid.",
+      "Een bedrijf dat aantoonbaar klaar is voor overdracht, met heldere documentatie, structuur en voorspelbaarheid.",
   },
 ];
 
@@ -41,7 +41,7 @@ const fadeInUp = {
 
 const OutcomesSection = () => {
   return (
-    <section className="py-20 md:py-28 section-alt-bg">
+    <section className="py-24 md:py-36 section-alt-bg">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Resultaat</p>

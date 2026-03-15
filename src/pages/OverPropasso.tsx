@@ -23,7 +23,7 @@ const values = [
   {
     icon: Shield,
     title: "Onafhankelijk",
-    description: "Altijd náást de ondernemer. Transparant, met jouw doel en belang centraal — niet de deal.",
+    description: "Altijd náást de ondernemer. Transparant, met jouw doel en belang centraal; niet de deal.",
   },
   {
     icon: Briefcase,
@@ -35,7 +35,7 @@ const values = [
     icon: Users,
     title: "Ervaringsdeskundige",
     description:
-      "Geen theoretische modellen, maar begeleiding door iemand die zelf het ondernemerspad heeft bewandeld — inclusief de dalen.",
+      "Geen theoretische modellen, maar begeleiding door iemand die zelf het ondernemerspad heeft bewandeld. Inclusief de dalen.",
   },
   {
     icon: Eye,
@@ -56,7 +56,7 @@ const timeline = [
     year: "2013",
     title: "Van corporate naar ondernemerschap",
     description:
-      "Midden in de recessie het familiebedrijf begeleid door een faillissement en doorstart — en uitgebouwd tot een winstgevende, professionele organisatie.",
+      "Midden in de recessie het familiebedrijf begeleid door een faillissement en doorstart, en uitgebouwd tot een winstgevende, professionele organisatie.",
   },
   {
     year: "2023",
@@ -83,7 +83,7 @@ const OverPropasso = () => {
         />
       </Helmet>
 
-      {/* ─── 1. HERO — Bezoeker-gericht ─── */}
+      {/* ─── 1. HERO ─── */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute top-10 right-0 w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full bg-accent/30 translate-x-1/3 blur-3xl" />
         <img
@@ -113,14 +113,14 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      {/* ─── 2. WAARDEN — Belofte: zo werken wij ─── */}
+      {/* ─── 2. WAARDEN ─── */}
       <section className="py-20 md:py-28 section-alt-bg">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="text-center mb-14">
             <p className="eyebrow justify-center">Hoe wij werken</p>
             <h2 className="mt-5 text-3xl md:text-4xl font-bold">Waar Propasso voor staat</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Geen verkooppraatje, geen theoretische modellen. Dit is hoe wij werken — en waarom ondernemers ons
+              Geen verkooppraatje, geen theoretische modellen. Dit is hoe wij werken en waarom ondernemers ons
               vertrouwen.
             </p>
           </motion.div>
@@ -157,7 +157,7 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Na een loopbaan in Strategy & Development bij CRH Plc. — fusies, overnames, business development —
+                  Na een loopbaan in Strategy & Development bij CRH Plc., met focus op fusies, overnames en business development,
                   koos ik in 2013 voor ondernemerschap. Niet in een opwaartse markt, maar midden in de recessie.
                 </p>
                 <p>
@@ -166,7 +166,7 @@ const OverPropasso = () => {
                   2024 een groot deel van het bedrijf. Achteraf gezien was ik mijn eigen Exit Planning adviseur.
                 </p>
                 <p>
-                  Die ervaring — de groei, de (noodzakelijke) resultaatverbeteringen, de uitdagingen, de overdracht — is
+                  Die ervaring, de groei, de resultaatverbeteringen, de uitdagingen en de overdracht, is
                   precies wat ik nu inzet voor MKB-ondernemers via Propasso.
                 </p>
               </div>
@@ -176,7 +176,7 @@ const OverPropasso = () => {
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src={karelMetOndernemers}
-                  alt="Karel Cremers — oprichter van Propasso"
+                  alt="Karel Cremers, oprichter van Propasso"
                   className="w-full h-auto object-cover aspect-[4/5]"
                 />
               </div>
@@ -195,10 +195,10 @@ const OverPropasso = () => {
         <div className="section-container">
           <motion.blockquote {...fadeInUp} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
             <p className="text-2xl md:text-3xl lg:text-4xl font-bold leading-snug text-foreground text-balance">
-              "Buiten je comfortzone — daar zit de echte winst."
+              "Buiten je comfortzone; daar zit de echte winst."
             </p>
             <footer className="mt-6 text-muted-foreground text-base">
-              — Karel Cremers, bergbeklimmer met hoogtevrees
+              Karel Cremers, bergbeklimmer met hoogtevrees
             </footer>
           </motion.blockquote>
         </div>
@@ -213,16 +213,16 @@ const OverPropasso = () => {
             <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
               <p className="eyebrow">De naam</p>
               <h2 className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-                Propasso — De Volgende Stap
+                Propasso: De Volgende Stap
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  De naam Propasso is een verbastering van het Italiaanse <em>Prossimi Passi</em> — "de volgende stap".
+                  De naam Propasso is een verbastering van het Italiaanse <em>Prossimi Passi</em>, wat "de volgende stap" betekent.
                   Het staat voor groei en vooruitgang.
                 </p>
                 <p>
-                  <strong>Mijn overtuiging:</strong> verandering brengt onzekerheid, maar juist daar — buiten de
-                  comfortzone — liggen vernieuwing, groei en versterking van zowel de onderneming als de ondernemer.
+                  <strong>Mijn overtuiging:</strong> verandering brengt onzekerheid, maar juist daar, buiten de
+                  comfortzone, liggen vernieuwing, groei en versterking van zowel de onderneming als de ondernemer.
                 </p>
                 <p>
                   Bij Propasso begeleid ik ondernemers bij het doorbreken van groeiplafonds, herstructurering en het
@@ -235,7 +235,7 @@ const OverPropasso = () => {
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src={mountainPassRoute}
-                  alt="Illustratie van een bergpas met route — metafoor voor de volgende stap"
+                  alt="Illustratie van een bergpas met route, metafoor voor de volgende stap"
                   className="w-full h-auto object-cover aspect-[4/3]"
                 />
               </div>
@@ -252,7 +252,7 @@ const OverPropasso = () => {
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src={viaFerrata}
-                  alt="Karel Cremers in de bergen — via ferrata"
+                  alt="Karel Cremers in de bergen via een via ferrata"
                   className="w-full h-auto object-cover aspect-[4/3]"
                 />
               </div>
@@ -263,7 +263,7 @@ const OverPropasso = () => {
               <h2 className="mt-5 text-3xl md:text-4xl font-bold leading-tight">Bergbeklimmer met hoogtevrees</h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Bergbeklimmer met hoogtevrees? Ja, echt. Ik geloof dat échte groei buiten je comfortzone zit —
+                  Bergbeklimmer met hoogtevrees? Ja, echt. Ik geloof dat échte groei buiten je comfortzone zit,
                   zakelijk én privé. Ondanks lichte hoogtevrees trek ik elk jaar met vrienden de bergen in:
                   trailrunning, fietsen en bergwandelen.
                 </p>
@@ -283,7 +283,7 @@ const OverPropasso = () => {
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
             <h2 className="text-2xl md:text-3xl font-bold text-balance">Herken je dit? Laten we kennismaken.</h2>
             <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Geen verkooppraatje — gewoon een goed gesprek over jouw situatie en ambities.
+              Geen verkooppraatje, gewoon een goed gesprek over jouw situatie en ambities.
             </p>
             <div className="mt-8">
               <Link
@@ -365,7 +365,7 @@ const OverPropasso = () => {
 
       <PageCTA
         title="Benieuwd wat Propasso voor jou kan betekenen?"
-        description="Neem vrijblijvend contact op voor een kennismaking. Geen verkooppraatje — gewoon een goed gesprek."
+        description="Neem vrijblijvend contact op voor een kennismaking. Geen verkooppraatje, gewoon een goed gesprek."
         primaryLabel="Neem contact op"
         secondaryLabel="Bekijk de werkwijze"
       />

@@ -30,7 +30,7 @@ const fadeInUp = {
 
 const ThreeStoriesSection = () => {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-24 md:py-36">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Kernprincipe</p>
@@ -41,7 +41,7 @@ const ThreeStoriesSection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance"
         >
-          Drie verhalen moeten kloppen — en op elkaar aansluiten
+          Drie verhalen moeten kloppen, en op elkaar aansluiten
         </motion.h2>
 
         <motion.p
@@ -51,7 +51,7 @@ const ThreeStoriesSection = () => {
         >
           De kern van onze aanpak: een succesvolle overdracht ontstaat alleen
           wanneer het verhaal van de ondernemer, de onderneming en de cijfers
-          op één lijn liggen. Waar dat niet zo is, ontstaat frictie — en dat
+          op één lijn liggen. Waar dat niet zo is, ontstaat frictie. En dat
           is precies waar ons traject begint.
         </motion.p>
 
@@ -93,7 +93,7 @@ const ThreeStoriesSection = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="mt-14 text-base text-muted-foreground max-w-2xl leading-relaxed border-l-2 border-accent pl-6"
         >
-          Dit principe vormt de basis van onze methodiek — geïnspireerd op de{" "}
+          Dit principe vormt de basis van onze methodiek, geïnspireerd op de{" "}
           <a
             href="https://exit-planning-institute.org/value-acceleration-methodology"
             target="_blank"

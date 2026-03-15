@@ -29,7 +29,7 @@ const Werkwijze = () => {
   return (
     <PageLayout>
       {/* 1. Hero */}
-      <section className="py-16 md:py-24">
+      <section className="py-20 md:py-28">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
             <p className="eyebrow">Werkwijze</p>
@@ -39,7 +39,7 @@ const Werkwijze = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mt-5 text-4xl md:text-5xl font-bold leading-tight max-w-3xl text-balance"
           >
-            Verkoopklaarheid bouw je op — in de jaren vóór de overdracht
+            Verkoopklaarheid bouw je op, in de jaren vóór de overdracht
           </motion.h1>
           <motion.p
             {...fadeInUp}
@@ -48,7 +48,7 @@ const Werkwijze = () => {
           >
             Propasso begeleidt ondernemers met een gestructureerde aanpak die
             de ondernemer, de onderneming en de financiële realiteit
-            samenbrengt. Van analyse tot uitvoering — zodat het bedrijf
+            samenbrengt. Van analyse tot uitvoering, zodat het bedrijf
             sterker, onafhankelijker en overdraagbaar wordt.
           </motion.p>
         </div>
