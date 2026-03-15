@@ -70,7 +70,8 @@ const pillarPositions = [
   { x: 0, y: 260 },     // bottom center (06)
 ];
 
-const positionMap = [1, 0, 2, 3, 4, 5];
+// Map pillars clockwise: 01=top, 02=top-right, 03=bottom-right, 04=bottom, 05=bottom-left, 06=top-left
+const positionMap = [0, 2, 4, 5, 3, 1];
 
 const PillarNode = ({
   pillar,
@@ -187,31 +188,6 @@ const SaleReadySection = () => {
               className="absolute inset-0 w-full h-full pointer-events-none"
               viewBox="0 0 760 680"
             >
-              <defs>
-                <linearGradient
-                  id="line-grad"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.15"
-                  />
-                  <stop
-                    offset="50%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.08"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.15"
-                  />
-                </linearGradient>
-              </defs>
               {pillars.map((_, i) => {
                 const pos = pillarPositions[positionMap[i]];
                 const cx = 380;
@@ -223,7 +199,8 @@ const SaleReadySection = () => {
                     y1={cy}
                     x2={cx + pos.x}
                     y2={cy + pos.y}
-                    stroke="url(#line-grad)"
+                    stroke="hsl(var(--primary))"
+                    strokeOpacity="0.12"
                     strokeWidth="1.5"
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
@@ -309,26 +286,6 @@ const SaleReadySection = () => {
               className="absolute inset-0 w-full h-full pointer-events-none"
               viewBox="0 0 600 580"
             >
-              <defs>
-                <linearGradient
-                  id="line-grad-md"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.12"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.12"
-                  />
-                </linearGradient>
-              </defs>
               {pillars.map((_, i) => {
                 const positions = [
                   { x: -200, y: -110 },
@@ -346,7 +303,8 @@ const SaleReadySection = () => {
                     y1={290}
                     x2={300 + pos.x}
                     y2={290 + pos.y}
-                    stroke="url(#line-grad-md)"
+                    stroke="hsl(var(--primary))"
+                    strokeOpacity="0.12"
                     strokeWidth="1.5"
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
