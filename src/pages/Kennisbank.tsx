@@ -10,7 +10,7 @@ import { fetchAllPosts, fetchAllCategories } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import type { SanityPost } from "@/types/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
-import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
+import kennisbankBasecamp from "@/assets/illustrations/kennisbank-basecamp.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
