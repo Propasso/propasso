@@ -70,7 +70,8 @@ const pillarPositions = [
   { x: 0, y: 260 },     // bottom center (06)
 ];
 
-const positionMap = [1, 0, 2, 3, 4, 5];
+// Map pillars clockwise: 01=top, 02=top-right, 03=bottom-right, 04=bottom, 05=bottom-left, 06=top-left
+const positionMap = [0, 2, 4, 5, 3, 1];
 
 const PillarNode = ({
   pillar,
