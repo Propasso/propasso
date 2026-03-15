@@ -39,7 +39,7 @@ const getCategorySlugAliases = (slug: string) => {
 const normalizeCategorySlug = <T extends { slug?: { current: string } }>(category: T): T => {
   if (!category.slug?.current) return category;
 
-  const canonicalSlug = getCanonicalCategorySlug(category.slug.current);
+  const canonicalSlug = canonicalizeCategorySlug(category.slug.current);
   if (canonicalSlug === category.slug.current) return category;
 
   return {
