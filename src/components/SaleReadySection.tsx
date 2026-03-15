@@ -50,7 +50,7 @@ const pillars = [
     image: teamImg,
     title: "Persoonlijke & financiële planning",
     description: "Jouw toekomst na de overdracht",
-    slug: "persoonlijk-en-financieel-plan",
+    slug: "het-persoonlijke-en-financiele-plan-na-overdracht",
   },
 ];
 
