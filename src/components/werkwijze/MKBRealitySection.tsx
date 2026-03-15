@@ -60,35 +60,55 @@ const MKBRealitySection = () => {
               transition={{ duration: 0.5, delay: 0.12 * i + 0.3 }}
               className="group"
             >
-              <div className="grid grid-cols-[1fr,auto,1fr] items-center gap-6 md:gap-10 py-7 border-b border-border/15 last:border-b-0">
-                {/* Founder perspective */}
+              {/* Desktop: side-by-side */}
+              <div className="hidden md:grid grid-cols-[1fr,auto,1fr] items-center gap-10 py-7 border-b border-border/15 last:border-b-0">
                 <div className="text-right">
                   {i === 0 && (
                     <span className="block text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/50 mb-3">
                       De ondernemer
                     </span>
                   )}
-                  <p className="text-sm md:text-base font-medium text-foreground leading-relaxed">
+                  <p className="text-base font-medium text-foreground leading-relaxed">
                     {gap.founder}
                   </p>
                 </div>
-
-                {/* Center divider */}
                 <div className="flex flex-col items-center">
                   <div className="h-2 w-2 rounded-full bg-accent" />
                 </div>
-
-                {/* Buyer perspective */}
                 <div>
                   {i === 0 && (
                     <span className="block text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/50 mb-3">
                       De koper
                     </span>
                   )}
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                  <p className="text-base text-muted-foreground leading-relaxed">
                     {gap.buyer}
                   </p>
                 </div>
+              </div>
+
+              {/* Mobile: stacked */}
+              <div className="md:hidden py-6 border-b border-border/15 last:border-b-0 space-y-3">
+                {i === 0 && (
+                  <span className="block text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/50">
+                    De ondernemer
+                  </span>
+                )}
+                <p className="text-sm font-medium text-foreground leading-relaxed">
+                  {gap.founder}
+                </p>
+                <div className="flex items-center gap-3">
+                  <div className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                  <div className="h-px flex-1 bg-border/20" />
+                </div>
+                {i === 0 && (
+                  <span className="block text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/50">
+                    De koper
+                  </span>
+                )}
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {gap.buyer}
+                </p>
               </div>
             </motion.div>
           ))}
