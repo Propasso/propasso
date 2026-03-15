@@ -100,7 +100,6 @@ const HeroSection = () => {
         transition={{ delay: 1.2 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <div className="w-px h-12 bg-border" />
         <ArrowDown size={20} className="text-muted-foreground animate-scroll-bounce" />
       </motion.div>
     </section>
