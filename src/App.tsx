@@ -23,6 +23,7 @@ import Privacyverklaring from "./pages/Privacyverklaring";
 import AlgemeneVoorwaarden from "./pages/AlgemeneVoorwaarden";
 import Cookieverklaring from "./pages/Cookieverklaring";
 import NotFound from "./pages/NotFound";
+import Diagnose from "./pages/Diagnose";
 
 const queryClient = new QueryClient();
 
