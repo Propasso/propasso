@@ -357,7 +357,7 @@ export const tipsByDimension: Record<
     good: [
       'Test uw bedrijfscontinuïteit door periodiek afwezig te zijn en de resultaten te monitoren.',
       'Optimaliseer uw klantcontracten met langere looptijden en automatische verlengingen.',
-      'Formaliseer uw managementteam met duidelijke verantwoordelijkheden en KPI's.',
+      "Formaliseer uw managementteam met duidelijke verantwoordelijkheden en KPI's.",
     ],
     ready: [
       'Laat een externe partij uw bedrijfscontinuïteit valideren om dit richting kopers te onderbouwen.',
