@@ -231,7 +231,7 @@ Een verkooptraject is de commerciële en juridische uitvoering: waardering, info
 Exit Planning leidt dus tot Exit Readiness en is het fundament; het verkooptraject is het proces dat leidt tot de daadwerkelijke deal.`,
       },
       {
-        question: "Wat betekent "bedrijf verkoopklaar maken" concreet, en wat ziet een koper als 'must have'?",
+        question: 'Wat betekent "bedrijf verkoopklaar maken" concreet, en wat ziet een koper als \'must have\'?',
         answer: `Bedrijf verkoopklaar maken betekent je bedrijf voorbereiden op een verkoop, met als doel dat een koper het bedrijf kan overnemen zonder dat de resultaten onder de overgang van eigenaar leiden.
 
 Stabiliteit, voorspelbaarheid en beheersbaarheid zijn samen met een duidelijk en overtuigend strategisch plan essentieel.`,
