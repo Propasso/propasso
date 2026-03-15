@@ -188,25 +188,6 @@ const SaleReadySection = () => {
               className="absolute inset-0 w-full h-full pointer-events-none"
               viewBox="0 0 760 680"
             >
-              <defs>
-                <radialGradient
-                  id="line-grad"
-                  cx="50%"
-                  cy="50%"
-                  r="50%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.06"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.18"
-                  />
-                </radialGradient>
-              </defs>
               {pillars.map((_, i) => {
                 const pos = pillarPositions[positionMap[i]];
                 const cx = 380;
