@@ -94,32 +94,15 @@ const HeroSection = () => {
       </div>
 
       {/* Scroll indicator */}
-      <motion.button
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        onClick={() => {
-          const section = document.getElementById("aanpak");
-          section?.scrollIntoView({ behavior: "smooth" });
-        }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 group cursor-pointer flex flex-col items-center focus:outline-none"
-        aria-label="Scroll naar beneden"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        {/* Container for line + sliding arrow */}
-        <div className="relative h-16 w-8 flex items-center justify-center">
-          {/* Static vertical line */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-px h-full bg-border/40 group-hover:border-dashed" />
-          {/* Arrow that bounces along the line */}
-          <div className="absolute left-1/2 -translate-x-1/2 animate-scroll-bounce">
-            <div className="w-8 h-8 rounded-full border border-border/40 bg-background flex items-center justify-center group-hover:border-dashed group-hover:border-border/60 transition-all duration-300">
-              <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-accent" />
-              </div>
-              <ArrowDown size={14} className="text-muted-foreground relative z-10" />
-            </div>
-          </div>
-        </div>
-      </motion.button>
+        <div className="w-px h-12 bg-border" />
+        <ArrowDown size={20} className="text-muted-foreground animate-scroll-bounce" />
+      </motion.div>
     </section>
   );
 };
