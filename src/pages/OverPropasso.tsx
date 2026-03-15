@@ -85,12 +85,15 @@ const OverPropasso = () => {
 
       {/* ─── 1. HERO ─── */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
-        <div className="absolute top-10 right-0 w-[300px] h-[300px] md:w-[450px] md:h-[450px] rounded-full bg-accent/30 translate-x-1/3 blur-3xl" />
-        <img
-          src={mountainClimberSvg}
-          alt=""
-          className="absolute bottom-0 right-8 h-48 md:h-72 opacity-[0.06] pointer-events-none select-none"
-        />
+        {/* Yellow accent circle with centered illustration */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
+          <div className="absolute inset-0 rounded-full bg-accent opacity-90" />
+          <img
+            src={mountainClimberSvg}
+            alt=""
+            className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.08] pointer-events-none select-none"
+          />
+        </div>
 
         <div className="section-container relative z-10 py-16 md:py-24">
           <motion.h1

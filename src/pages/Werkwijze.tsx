@@ -6,6 +6,7 @@ import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
 import MethodologyFramework from "@/components/MethodologyFramework";
 import OutcomesSection from "@/components/werkwijze/OutcomesSection";
 import { motion } from "framer-motion";
+import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -29,22 +30,30 @@ const Werkwijze = () => {
   return (
     <PageLayout>
       {/* 1. Hero */}
-      <section className="py-20 md:py-28">
-        <div className="section-container">
-          <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-            <p className="eyebrow">Werkwijze</p>
-          </motion.div>
+      <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
+        {/* Yellow accent circle with centered illustration */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
+          <div className="absolute inset-0 rounded-full bg-accent opacity-90" />
+          <img
+            src={mountainPassRoute}
+            alt=""
+            className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.08] pointer-events-none select-none"
+          />
+        </div>
+
+        <div className="section-container relative z-10 py-16 md:py-24">
           <motion.h1
             {...fadeInUp}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="mt-5 text-4xl md:text-5xl font-bold leading-tight max-w-3xl text-balance"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground max-w-3xl text-balance"
           >
-            Verkoopklaarheid bouw je op, in de jaren vóór de overdracht
+            Verkoopklaarheid bouw je op,{" "}
+            <span className="text-muted-foreground">in de jaren vóór de overdracht.</span>
           </motion.h1>
           <motion.p
             {...fadeInUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
             Propasso begeleidt ondernemers met een gestructureerde aanpak die
             de ondernemer, de onderneming en de financiële realiteit
