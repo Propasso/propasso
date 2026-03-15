@@ -175,7 +175,7 @@ const Contact = () => {
               </h1>
               <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-xl">
                 Neem vrijblijvend contact op voor een persoonlijke kennismaking.
-                Ik denk graag mee over jouw situatie — zonder verplichtingen.
+                Ik denk graag mee over jouw situatie, zonder verplichtingen.
               </p>
             </motion.div>
 
@@ -318,7 +318,7 @@ const Contact = () => {
               <h2 className="mt-4 text-2xl md:text-3xl font-bold">Liever een bericht sturen?</h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 Vul het formulier in en ik neem persoonlijk contact met je op.
-                Geen verplichtingen, geen verkooppraatje — gewoon een eerlijk gesprek
+                Geen verplichtingen, geen verkooppraatje. Gewoon een eerlijk gesprek
                 over jouw situatie.
               </p>
 

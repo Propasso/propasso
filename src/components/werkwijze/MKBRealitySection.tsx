@@ -27,7 +27,7 @@ const fadeInUp = {
 
 const MKBRealitySection = () => {
   return (
-    <section className="py-20 md:py-28 section-alt-bg">
+    <section className="py-24 md:py-36 section-alt-bg">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">De realiteit</p>
@@ -51,40 +51,47 @@ const MKBRealitySection = () => {
           en overdraagbaarheid.
         </motion.p>
 
-        {/* Gap comparison */}
-        <div className="mt-14 max-w-4xl">
-          {/* Column headers */}
-          <motion.div
-            {...fadeInUp}
-            transition={{ duration: 0.5, delay: 0.25 }}
-            className="grid grid-cols-2 gap-8 md:gap-12 mb-6"
-          >
-            <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
-              Hoe de ondernemer kijkt
-            </span>
-            <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
-              Hoe de koper kijkt
-            </span>
-          </motion.div>
+        {/* Elegant gap comparison */}
+        <div className="mt-16 max-w-4xl">
+          {gaps.map((gap, i) => (
+            <motion.div
+              key={i}
+              {...fadeInUp}
+              transition={{ duration: 0.5, delay: 0.12 * i + 0.3 }}
+              className="group"
+            >
+              <div className="grid grid-cols-[1fr,auto,1fr] items-center gap-6 md:gap-10 py-7 border-b border-border/15 last:border-b-0">
+                {/* Founder perspective */}
+                <div className="text-right">
+                  {i === 0 && (
+                    <span className="block text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/50 mb-3">
+                      De ondernemer
+                    </span>
+                  )}
+                  <p className="text-sm md:text-base font-medium text-foreground leading-relaxed">
+                    {gap.founder}
+                  </p>
+                </div>
 
-          {/* Gap rows */}
-          <div className="space-y-0">
-            {gaps.map((gap, i) => (
-              <motion.div
-                key={i}
-                {...fadeInUp}
-                transition={{ duration: 0.5, delay: 0.15 * i + 0.3 }}
-                className="grid grid-cols-2 gap-8 md:gap-12 py-5 border-t border-border/20"
-              >
-                <p className="text-sm md:text-base text-foreground leading-relaxed">
-                  {gap.founder}
-                </p>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                  {gap.buyer}
-                </p>
-              </motion.div>
-            ))}
-          </div>
+                {/* Center divider */}
+                <div className="flex flex-col items-center">
+                  <div className="h-2 w-2 rounded-full bg-accent" />
+                </div>
+
+                {/* Buyer perspective */}
+                <div>
+                  {i === 0 && (
+                    <span className="block text-[10px] font-semibold tracking-[0.2em] uppercase text-muted-foreground/50 mb-3">
+                      De koper
+                    </span>
+                  )}
+                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                    {gap.buyer}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
