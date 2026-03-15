@@ -218,7 +218,8 @@ const SaleReadySection = () => {
                     y1={cy}
                     x2={cx + pos.x}
                     y2={cy + pos.y}
-                    stroke="url(#line-grad)"
+                    stroke="hsl(var(--primary))"
+                    strokeOpacity="0.12"
                     strokeWidth="1.5"
                     initial={{ pathLength: 0, opacity: 0 }}
                     whileInView={{ pathLength: 1, opacity: 1 }}
