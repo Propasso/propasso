@@ -1,10 +1,10 @@
 import { TOTAL_QUESTIONS } from "@/data/diagnoseData";
 
-interface DiagnoseProgressProps {
-  currentQuestion: number; // 0-indexed
+interface QuickscanProgressProps {
+  currentQuestion: number;
 }
 
-const DiagnoseProgress = ({ currentQuestion }: DiagnoseProgressProps) => {
+const QuickscanProgress = ({ currentQuestion }: QuickscanProgressProps) => {
   const progress = ((currentQuestion + 1) / TOTAL_QUESTIONS) * 100;
 
   return (
@@ -27,4 +27,4 @@ const DiagnoseProgress = ({ currentQuestion }: DiagnoseProgressProps) => {
   );
 };
 
-export default DiagnoseProgress;
+export default QuickscanProgress;

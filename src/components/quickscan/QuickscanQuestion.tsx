@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface DiagnoseQuestionProps {
+interface QuickscanQuestionProps {
   question: QuestionType;
   currentIndex: number;
   selectedValue: string | undefined;
@@ -14,7 +14,7 @@ interface DiagnoseQuestionProps {
   isLast: boolean;
 }
 
-const DiagnoseQuestionComponent = ({
+const QuickscanQuestionComponent = ({
   question,
   currentIndex,
   selectedValue,
@@ -23,7 +23,7 @@ const DiagnoseQuestionComponent = ({
   onPrev,
   canGoBack,
   isLast,
-}: DiagnoseQuestionProps) => {
+}: QuickscanQuestionProps) => {
   const isSnapshot = question.category === 'snapshot';
   const sectionLabel = isSnapshot
     ? 'Uw bedrijf'
@@ -89,4 +89,4 @@ const DiagnoseQuestionComponent = ({
   );
 };
 
-export default DiagnoseQuestionComponent;
+export default QuickscanQuestionComponent;

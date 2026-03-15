@@ -23,7 +23,7 @@ import Privacyverklaring from "./pages/Privacyverklaring";
 import AlgemeneVoorwaarden from "./pages/AlgemeneVoorwaarden";
 import Cookieverklaring from "./pages/Cookieverklaring";
 import NotFound from "./pages/NotFound";
-import Diagnose from "./pages/Diagnose";
+import Quickscan from "./pages/Quickscan";
 
 const queryClient = new QueryClient();
 
@@ -49,7 +49,7 @@ const AppRoutes = () => (
     <Route path="/privacyverklaring" element={<Privacyverklaring />} />
     <Route path="/algemene-voorwaarden" element={<AlgemeneVoorwaarden />} />
     <Route path="/cookieverklaring" element={<Cookieverklaring />} />
-    <Route path="/diagnose" element={<Diagnose />} />
+    <Route path="/quickscan" element={<Quickscan />} />
     <Route path="/styleguide" element={<Styleguide />} />
     <Route path="*" element={<NotFound />} />
   </Routes>

@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
-import DiagnoseIntro from "@/components/diagnose/DiagnoseIntro";
-import DiagnoseQuestionComponent from "@/components/diagnose/DiagnoseQuestion";
-import DiagnoseProgress from "@/components/diagnose/DiagnoseProgress";
-import DiagnoseResults from "@/components/diagnose/DiagnoseResults";
+import QuickscanIntro from "@/components/quickscan/QuickscanIntro";
+import QuickscanQuestionComponent from "@/components/quickscan/QuickscanQuestion";
+import QuickscanProgress from "@/components/quickscan/QuickscanProgress";
+import QuickscanResults from "@/components/quickscan/QuickscanResults";
 import {
   allQuestions,
   TOTAL_QUESTIONS,
@@ -14,7 +14,7 @@ import {
 
 type Phase = "intro" | "questions" | "results";
 
-const Diagnose = () => {
+const Quickscan = () => {
   const [phase, setPhase] = useState<Phase>("intro");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, string>>({});
@@ -51,20 +51,20 @@ const Diagnose = () => {
   return (
     <PageLayout>
       <Helmet>
-        <title>Exit Readiness Diagnose | Propasso</title>
+        <title>Exit Readiness Quickscan | Propasso</title>
         <meta
           name="description"
-          content="Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een toekomstige overdracht. Gratis diagnose met directe resultaten."
+          content="Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een toekomstige overdracht. Gratis quickscan met directe resultaten."
         />
       </Helmet>
 
-      {phase === "intro" && <DiagnoseIntro onStart={handleStart} />}
+      {phase === "intro" && <QuickscanIntro onStart={handleStart} />}
 
       {phase === "questions" && (
         <section className="py-12 md:py-20 min-h-[60vh] flex flex-col items-center justify-center">
           <div className="container px-4">
-            <DiagnoseProgress currentQuestion={currentIndex} />
-            <DiagnoseQuestionComponent
+            <QuickscanProgress currentQuestion={currentIndex} />
+            <QuickscanQuestionComponent
               question={currentQuestion}
               currentIndex={currentIndex}
               selectedValue={selectedValue}
@@ -79,10 +79,10 @@ const Diagnose = () => {
       )}
 
       {phase === "results" && scores && snapshot && (
-        <DiagnoseResults scores={scores} snapshot={snapshot} answers={answers} />
+        <QuickscanResults scores={scores} snapshot={snapshot} answers={answers} />
       )}
     </PageLayout>
   );
 };
 
-export default Diagnose;
+export default Quickscan;

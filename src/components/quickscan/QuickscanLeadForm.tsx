@@ -20,14 +20,14 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-interface DiagnoseLeadFormProps {
+interface QuickscanLeadFormProps {
   scores: DiagnoseScores;
   snapshot: SnapshotData;
   answers: Record<number, string>;
   onSuccess: () => void;
 }
 
-const DiagnoseLeadForm = ({ scores, snapshot, answers, onSuccess }: DiagnoseLeadFormProps) => {
+const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLeadFormProps) => {
   const [privacyChecked, setPrivacyChecked] = useState(false);
   const [newsletterChecked, setNewsletterChecked] = useState(false);
   const [privacyError, setPrivacyError] = useState("");
@@ -187,4 +187,4 @@ const DiagnoseLeadForm = ({ scores, snapshot, answers, onSuccess }: DiagnoseLead
   );
 };
 
-export default DiagnoseLeadForm;
+export default QuickscanLeadForm;

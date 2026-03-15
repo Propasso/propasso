@@ -2,3 +2,6 @@ project_id = "qqxohovmhrvshpoxkpdd"
 
 [functions.send-contact-email]
 verify_jwt = false
+
+[functions.send-diagnose-results]
+verify_jwt = false

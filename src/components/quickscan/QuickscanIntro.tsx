@@ -1,16 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { ClipboardCheck, Clock, BarChart3 } from "lucide-react";
 
-interface DiagnoseIntroProps {
+interface QuickscanIntroProps {
   onStart: () => void;
 }
 
-const DiagnoseIntro = ({ onStart }: DiagnoseIntroProps) => {
+const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
   return (
     <section className="py-16 md:py-24">
       <div className="container max-w-3xl mx-auto px-4 text-center">
         <h1 className="font-serif text-4xl md:text-5xl text-foreground mb-6">
-          Exit Readiness Diagnose
+          Exit Readiness Quickscan
         </h1>
         <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
           Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een
@@ -28,7 +28,7 @@ const DiagnoseIntro = ({ onStart }: DiagnoseIntroProps) => {
             {
               icon: Clock,
               title: "5 minuten",
-              desc: "Korte, krachtige diagnose zonder omwegen",
+              desc: "Korte, krachtige quickscan zonder omwegen",
             },
             {
               icon: BarChart3,
@@ -48,7 +48,7 @@ const DiagnoseIntro = ({ onStart }: DiagnoseIntroProps) => {
         </div>
 
         <Button size="lg" onClick={onStart} className="text-base px-10 py-6">
-          Start de diagnose
+          Start de quickscan
         </Button>
 
         <p className="text-xs text-muted-foreground mt-4">
@@ -59,4 +59,4 @@ const DiagnoseIntro = ({ onStart }: DiagnoseIntroProps) => {
   );
 };
 
-export default DiagnoseIntro;
+export default QuickscanIntro;
