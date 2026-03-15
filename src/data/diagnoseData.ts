@@ -372,7 +372,7 @@ export const tipsByDimension: Record<
       'Begin met het vastleggen van uw belangrijkste bedrijfsprocessen in een operations manual.',
     ],
     foundation: [
-      'Implementeer maandelijkse managementrapportages met de belangrijkste financiële en operationele KPI's.',
+      "Implementeer maandelijkse managementrapportages met de belangrijkste financiële en operationele KPI's.",
       'Zorg dat alle contracten op naam van de BV staan, niet op uw persoonlijke naam.',
       'Stel een strategisch 3-jarenplan op dat u aan een potentiële koper kunt presenteren.',
     ],
