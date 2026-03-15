@@ -50,7 +50,7 @@ const pillars = [
     image: teamImg,
     title: "Persoonlijke & financiële planning",
     description: "Jouw toekomst na de overdracht",
-    slug: "het-persoonlijke-en-financiele-plan-na-overdracht",
+    slug: "het-persoonlijke-en-persoonlijke-financiele-plan-na-overdracht",
   },
 ];
 
@@ -62,12 +62,12 @@ const fadeInUp = {
 
 // Desktop positions — more spacious
 const pillarPositions = [
-  { x: 0, y: -260 },    // top center (02)
+  { x: 0, y: -260 }, // top center (02)
   { x: -280, y: -130 }, // top-left (01)
-  { x: 280, y: -130 },  // top-right (03)
-  { x: -280, y: 130 },  // bottom-left (04)
-  { x: 280, y: 130 },   // bottom-right (05)
-  { x: 0, y: 260 },     // bottom center (06)
+  { x: 280, y: -130 }, // top-right (03)
+  { x: -280, y: 130 }, // bottom-left (04)
+  { x: 280, y: 130 }, // bottom-right (05)
+  { x: 0, y: 260 }, // bottom center (06)
 ];
 
 // Map pillars clockwise: 01=top, 02=top-right, 03=bottom-right, 04=bottom, 05=bottom-left, 06=top-left
@@ -115,14 +115,10 @@ const PillarNode = ({
       </div>
 
       {/* Title */}
-      <h3 className="text-sm font-bold leading-snug text-foreground tracking-tight">
-        {pillar.title}
-      </h3>
+      <h3 className="text-sm font-bold leading-snug text-foreground tracking-tight">{pillar.title}</h3>
 
       {/* Description */}
-      <p className="text-[11px] text-muted-foreground/70 leading-relaxed mt-1.5 max-w-[150px]">
-        {pillar.description}
-      </p>
+      <p className="text-[11px] text-muted-foreground/70 leading-relaxed mt-1.5 max-w-[150px]">{pillar.description}</p>
 
       {/* Arrow */}
       <ArrowRight className="w-3.5 h-3.5 text-primary mt-2 opacity-0 translate-x-[-4px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-400 ease-out" />
@@ -140,8 +136,7 @@ const SaleReadySection = () => {
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full opacity-[0.03]"
           style={{
-            background:
-              "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)",
+            background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)",
           }}
         />
       </div>
@@ -164,9 +159,8 @@ const SaleReadySection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
         >
-          Een koper kijkt fundamenteel anders naar jouw onderneming dan jij als
-          ondernemer. Waar jij potentie en historie ziet, zoekt een koper
-          schaalbaarheid, overdraagbaarheid en voorspelbaarheid.
+          Een koper kijkt fundamenteel anders naar jouw onderneming dan jij als ondernemer. Waar jij potentie en
+          historie ziet, zoekt een koper schaalbaarheid, overdraagbaarheid en voorspelbaarheid.
         </motion.p>
 
         <motion.p
@@ -179,15 +173,9 @@ const SaleReadySection = () => {
 
         {/* ── Desktop radial layout ── */}
         <div className="hidden lg:block mt-16">
-          <div
-            className="relative mx-auto"
-            style={{ width: 760, height: 680 }}
-          >
+          <div className="relative mx-auto" style={{ width: 760, height: 680 }}>
             {/* SVG lines */}
-            <svg
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              viewBox="0 0 760 680"
-            >
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 760 680">
               {pillars.map((_, i) => {
                 const pos = pillarPositions[positionMap[i]];
                 const cx = 380;
@@ -237,8 +225,7 @@ const SaleReadySection = () => {
               <div
                 className="absolute inset-[-20px] rounded-full opacity-20"
                 style={{
-                  background:
-                    "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)",
+                  background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)",
                 }}
               />
               <div className="relative w-full h-full rounded-full bg-gradient-to-br from-primary to-[hsl(var(--teal-deep))] flex flex-col items-center justify-center shadow-[0_8px_40px_-8px_hsl(var(--primary)/0.35)]">
@@ -261,9 +248,7 @@ const SaleReadySection = () => {
                   pillar={pillar}
                   index={i}
                   delay={0.5 + i * 0.08}
-                  onNav={() =>
-                    navigate(`/kennisbank/thema/${pillar.slug}`)
-                  }
+                  onNav={() => navigate(`/kennisbank/thema/${pillar.slug}`)}
                   style={{
                     left: 380 + pos.x - nodeW / 2,
                     top: 340 + pos.y - nodeH / 2,
@@ -278,14 +263,8 @@ const SaleReadySection = () => {
 
         {/* ── Tablet layout (md) ── */}
         <div className="hidden md:block lg:hidden mt-16">
-          <div
-            className="relative mx-auto"
-            style={{ width: 600, height: 580 }}
-          >
-            <svg
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              viewBox="0 0 600 580"
-            >
+          <div className="relative mx-auto" style={{ width: 600, height: 580 }}>
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 600 580">
               {pillars.map((_, i) => {
                 const positions = [
                   { x: -200, y: -110 },
@@ -332,8 +311,7 @@ const SaleReadySection = () => {
               <div
                 className="absolute inset-[-14px] rounded-full opacity-15"
                 style={{
-                  background:
-                    "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)",
+                  background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)",
                 }}
               />
               <div className="relative w-full h-full rounded-full bg-gradient-to-br from-primary to-[hsl(var(--teal-deep))] flex flex-col items-center justify-center shadow-[0_6px_30px_-6px_hsl(var(--primary)/0.3)]">
@@ -364,9 +342,7 @@ const SaleReadySection = () => {
                     pillar={pillar}
                     index={i}
                     delay={0.4 + i * 0.08}
-                    onNav={() =>
-                      navigate(`/kennisbank/thema/${pillar.slug}`)
-                    }
+                    onNav={() => navigate(`/kennisbank/thema/${pillar.slug}`)}
                     style={{
                       left: 300 + pos.x - nW / 2,
                       top: 290 + pos.y - nH / 2,
@@ -393,8 +369,7 @@ const SaleReadySection = () => {
               <div
                 className="absolute inset-[-12px] rounded-full opacity-15"
                 style={{
-                  background:
-                    "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)",
+                  background: "radial-gradient(circle, hsl(var(--primary)) 0%, transparent 70%)",
                 }}
               />
               <div className="relative w-20 h-20 rounded-full bg-gradient-to-br from-primary to-[hsl(var(--teal-deep))] flex flex-col items-center justify-center shadow-[0_6px_24px_-6px_hsl(var(--primary)/0.3)]">
@@ -414,9 +389,7 @@ const SaleReadySection = () => {
               {pillars.map((pillar, i) => (
                 <motion.button
                   key={pillar.number}
-                  onClick={() =>
-                    navigate(`/kennisbank/thema/${pillar.slug}`)
-                  }
+                  onClick={() => navigate(`/kennisbank/thema/${pillar.slug}`)}
                   {...fadeInUp}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                   className="group relative flex items-center gap-4 w-full text-left pl-3 pr-4 py-3.5 rounded-xl hover:bg-muted/30 transition-all duration-400 focus:outline-none"
@@ -433,20 +406,14 @@ const SaleReadySection = () => {
                       alt={pillar.title}
                       loading="lazy"
                       className={`object-contain transition-transform duration-400 group-hover:scale-110 ${
-                        pillar.isSvg
-                          ? "h-6 w-6"
-                          : "h-8 w-8 rounded-full object-cover"
+                        pillar.isSvg ? "h-6 w-6" : "h-8 w-8 rounded-full object-cover"
                       }`}
                     />
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-sm font-bold text-foreground leading-snug tracking-tight">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-xs text-muted-foreground/60 leading-tight mt-0.5">
-                      {pillar.description}
-                    </p>
+                    <h3 className="text-sm font-bold text-foreground leading-snug tracking-tight">{pillar.title}</h3>
+                    <p className="text-xs text-muted-foreground/60 leading-tight mt-0.5">{pillar.description}</p>
                   </div>
 
                   <ArrowRight className="w-4 h-4 text-primary opacity-0 translate-x-[-4px] group-hover:opacity-60 group-hover:translate-x-0 transition-all duration-400 flex-shrink-0" />
