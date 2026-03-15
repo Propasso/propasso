@@ -33,7 +33,7 @@ const Werkwijze = () => {
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         {/* Yellow accent circle with centered illustration */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
-          <div className="absolute inset-0 rounded-full bg-accent opacity-90" />
+          <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
           <img
             src={mountainPassRoute}
             alt=""
