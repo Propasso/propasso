@@ -39,7 +39,7 @@ const ProblemSection = () => {
     <section id="probleem" className="py-20 md:py-28 section-alt-bg">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-          <p className="eyebrow">Het probleem dat ondernemers onderschatten</p>
+          <p className="eyebrow">Wat ondernemers onderschatten</p>
         </motion.div>
 
         <motion.h2
@@ -47,8 +47,7 @@ const ProblemSection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance"
         >
-          De meeste bedrijven zijn niet te laat om te verkopen, maar te laat om
-          zich goed voor te bereiden.
+          De meeste bedrijven zijn niet te laat om te verkopen, maar te laat om zich goed voor te bereiden.
         </motion.h2>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -63,9 +62,7 @@ const ProblemSection = () => {
                 <problem.icon size={24} className="text-primary" />
               </div>
               <h3 className="text-xl font-bold mb-3">{problem.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">
-                {problem.description}
-              </p>
+              <p className="text-muted-foreground leading-relaxed text-sm">{problem.description}</p>
             </motion.div>
           ))}
         </div>
