@@ -305,26 +305,6 @@ const SaleReadySection = () => {
               className="absolute inset-0 w-full h-full pointer-events-none"
               viewBox="0 0 600 580"
             >
-              <defs>
-                <linearGradient
-                  id="line-grad-md"
-                  x1="0%"
-                  y1="0%"
-                  x2="100%"
-                  y2="0%"
-                >
-                  <stop
-                    offset="0%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.12"
-                  />
-                  <stop
-                    offset="100%"
-                    stopColor="hsl(var(--primary))"
-                    stopOpacity="0.12"
-                  />
-                </linearGradient>
-              </defs>
               {pillars.map((_, i) => {
                 const positions = [
                   { x: -200, y: -110 },
