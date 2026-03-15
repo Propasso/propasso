@@ -66,7 +66,7 @@ const Kennisbank = () => {
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
           <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
           <img
-            src={mountainPassRoute}
+            src={kennisbankBasecamp}
             alt=""
             className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.06] pointer-events-none select-none"
           />

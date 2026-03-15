@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import mountainClimberSvg from "@/assets/images/mountain-climber-line-drawing.svg";
+import faqClimbersRopes from "@/assets/illustrations/faq-climbers-ropes.png";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
