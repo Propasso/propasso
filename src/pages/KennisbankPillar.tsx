@@ -1,4 +1,5 @@
-import { useParams, Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
@@ -7,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
-import { fetchCategoryBySlug, fetchPostsByCategory, fetchAllCategories } from "@/lib/sanityQueries";
+import { canonicalizeCategorySlug, fetchCategoryBySlug, fetchPostsByCategory, fetchAllCategories } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { SanityPost } from "@/types/sanity";
@@ -24,7 +25,18 @@ const cardVariants = {
 
 const KennisbankPillar = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
-  const content = categorySlug ? pillarContent[categorySlug] : undefined;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!categorySlug) return;
+
+    const canonicalSlug = canonicalizeCategorySlug(categorySlug);
+    if (canonicalSlug !== categorySlug) {
+      navigate(`/kennisbank/thema/${canonicalSlug}`, { replace: true });
+    }
+  }, [categorySlug, navigate]);
+
+  const content = categorySlug ? pillarContent[canonicalizeCategorySlug(categorySlug)] : undefined;
 
   const { data: category, isLoading: catLoading } = useQuery({
     queryKey: ["sanity-category", categorySlug],
