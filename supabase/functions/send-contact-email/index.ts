@@ -5,6 +5,10 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
+const HUBSPOT_PORTAL_ID = "147744482";
+const HUBSPOT_FORM_GUID = "d5ed24d9-8667-4f3a-ac38-3efe6e17d03e";
+const HUBSPOT_REGION = "eu1";
+
 interface ContactPayload {
   name: string;
   email: string;
@@ -38,54 +42,66 @@ serve(async (req) => {
       );
     }
 
-    const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
-    if (!RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured');
-      return new Response(
-        JSON.stringify({ error: 'E-mailservice is niet geconfigureerd.' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+    // Split name into first and last
+    const nameParts = name.trim().split(/\s+/);
+    const firstName = nameParts[0];
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
+    // Build HubSpot form fields
+    const fields: Array<{ objectTypeId: string; name: string; value: string }> = [
+      { objectTypeId: "0-1", name: "firstname", value: firstName },
+      { objectTypeId: "0-1", name: "lastname", value: lastName },
+      { objectTypeId: "0-1", name: "email", value: email },
+      { objectTypeId: "0-1", name: "message", value: message },
+    ];
+
+    if (phone) {
+      fields.push({ objectTypeId: "0-1", name: "phone", value: phone });
     }
 
-    const htmlBody = `
-      <h2>Nieuw contactformulier bericht</h2>
-      <table style="border-collapse:collapse;width:100%;max-width:600px;">
-        <tr><td style="padding:8px 12px;font-weight:bold;border-bottom:1px solid #eee;">Naam</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${escapeHtml(name)}</td></tr>
-        <tr><td style="padding:8px 12px;font-weight:bold;border-bottom:1px solid #eee;">E-mail</td><td style="padding:8px 12px;border-bottom:1px solid #eee;"><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
-        ${phone ? `<tr><td style="padding:8px 12px;font-weight:bold;border-bottom:1px solid #eee;">Telefoon</td><td style="padding:8px 12px;border-bottom:1px solid #eee;"><a href="tel:${escapeHtml(phone)}">${escapeHtml(phone)}</a></td></tr>` : ''}
-        <tr><td style="padding:8px 12px;font-weight:bold;border-bottom:1px solid #eee;">Nieuwsbrief</td><td style="padding:8px 12px;border-bottom:1px solid #eee;">${newsletter ? 'Ja' : 'Nee'}</td></tr>
-      </table>
-      <h3 style="margin-top:24px;">Bericht</h3>
-      <p style="white-space:pre-wrap;background:#f9f9f9;padding:16px;border-radius:8px;">${escapeHtml(message)}</p>
-    `;
+    // Submit to HubSpot Forms API v3
+    const hubspotUrl = `https://api.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
 
-    const res = await fetch('https://api.resend.com/emails', {
+    const res = await fetch(hubspotUrl, {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${RESEND_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'Propasso Website <noreply@propasso.nl>',
-        to: ['hallo@propasso.nl'],
-        reply_to: email,
-        subject: `Contactformulier: ${name}`,
-        html: htmlBody,
+        fields,
+        context: {
+          hutk: null,
+          pageUri: "https://propasso.nl/contact",
+          pageName: "Contact - Propasso",
+        },
+        legalConsentOptions: {
+          consent: {
+            consentToProcess: true,
+            text: "Ik ga akkoord met de privacyverklaring",
+            communications: newsletter
+              ? [
+                  {
+                    value: true,
+                    subscriptionTypeId: 999,
+                    text: "Ik wil graag relevante rapporten en de nieuwsbrief ontvangen.",
+                  },
+                ]
+              : [],
+          },
+        },
       }),
     });
 
-    const result = await res.json();
+    const resultText = await res.text();
 
     if (!res.ok) {
-      console.error('Resend API error:', JSON.stringify(result));
+      console.error('HubSpot Forms API error:', res.status, resultText);
       return new Response(
-        JSON.stringify({ error: 'E-mail kon niet worden verzonden.' }),
+        JSON.stringify({ error: 'Formulier kon niet worden verzonden.' }),
         { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
 
     return new Response(
-      JSON.stringify({ success: true, id: result.id }),
+      JSON.stringify({ success: true }),
       { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     );
   } catch (error) {
@@ -96,12 +112,3 @@ serve(async (req) => {
     );
   }
 });
-
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
-}
