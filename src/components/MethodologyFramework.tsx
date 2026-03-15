@@ -98,9 +98,9 @@ const MethodologyFramework = () => {
   return (
     <section className="py-28 md:py-40 relative">
       {/* Subtle centerpiece background treatment */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] rounded-full opacity-[0.025]"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(1200px,200vw)] h-[800px] rounded-full opacity-[0.025]"
           style={{
             background: "radial-gradient(ellipse, hsl(var(--primary)) 0%, transparent 70%)",
           }}
