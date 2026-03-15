@@ -49,7 +49,7 @@ const AppRoutes = () => (
     <Route path="/privacyverklaring" element={<Privacyverklaring />} />
     <Route path="/algemene-voorwaarden" element={<AlgemeneVoorwaarden />} />
     <Route path="/cookieverklaring" element={<Cookieverklaring />} />
-    <Route path="/diagnose" element={<Diagnose />} />
+    <Route path="/quickscan" element={<Quickscan />} />
     <Route path="/styleguide" element={<Styleguide />} />
     <Route path="*" element={<NotFound />} />
   </Routes>

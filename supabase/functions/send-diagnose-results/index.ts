@@ -98,8 +98,8 @@ serve(async (req) => {
         fields,
         context: {
           hutk: null,
-          pageUri: "https://propasso.nl/diagnose",
-          pageName: "Exit Readiness Diagnose - Propasso",
+          pageUri: "https://propasso.nl/quickscan",
+          pageName: "Exit Readiness Quickscan - Propasso",
         },
         legalConsentOptions: {
           consent: {
