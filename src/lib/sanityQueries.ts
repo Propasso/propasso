@@ -24,7 +24,7 @@ const CATEGORY_SLUG_CANONICAL_MAP: Record<string, string> = {
   "persoonlijk-en-financieel-plan": "het-persoonlijke-en-financiele-plan-na-overdracht",
 };
 
-const getCanonicalCategorySlug = (slug: string) => CATEGORY_SLUG_CANONICAL_MAP[slug] ?? slug;
+export const canonicalizeCategorySlug = (slug: string) => CATEGORY_SLUG_CANONICAL_MAP[slug] ?? slug;
 
 const getCategorySlugAliases = (slug: string) => {
   const aliases = new Set([slug]);
