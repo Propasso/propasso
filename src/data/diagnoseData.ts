@@ -103,31 +103,31 @@ const attractivenessQuestions: DiagnoseQuestion[] = [
   {
     id: 6,
     category: 'attractiveness',
-    question: 'In hoeverre is de omzet gespreid over meerdere klanten, zonder dat één klant dominant is?',
+    question: 'Hoe voorspelbaar en stabiel zijn omzet en winst van uw bedrijf?',
     options: likertOptions,
   },
   {
     id: 7,
     category: 'attractiveness',
-    question: 'In hoeverre heeft uw bedrijf terugkerende of contractueel vastgelegde inkomsten?',
+    question: 'Hoe goed is uw klantenbestand gespreid (zonder afhankelijkheid van enkele klanten)?',
     options: likertOptions,
   },
   {
     id: 8,
     category: 'attractiveness',
-    question: 'In hoeverre kan het bedrijf zonder u als eigenaar normaal doordraaien?',
+    question: 'In welke mate wordt uw jaaromzet gerealiseerd uit terugkerende omzet?',
     options: likertOptions,
   },
   {
     id: 9,
     category: 'attractiveness',
-    question: 'In hoeverre beschikt uw bedrijf over een managementteam dat zelfstandig kan opereren?',
+    question: 'Hoe zelfstandig kan het bedrijf opereren zonder uw dagelijkse betrokkenheid?',
     options: likertOptions,
   },
   {
     id: 10,
     category: 'attractiveness',
-    question: 'In hoeverre heeft uw bedrijf een duidelijk concurrentievoordeel of sterke marktpositie?',
+    question: 'Hoe sterk en zelfstandig is het managementteam naast u als eigenaar?',
     options: likertOptions,
   },
 ];
