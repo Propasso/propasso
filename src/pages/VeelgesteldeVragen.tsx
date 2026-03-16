@@ -432,6 +432,7 @@ const VeelgesteldeVragen = () => {
         </div>
       </section>
 
+      <QuickscanCallout />
       <PageCTA />
     </PageLayout>
   );
