@@ -54,10 +54,8 @@ function ScoreGauge({ score }: { score: number }) {
   const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (animatedScore / 100) * circumference;
 
-  const levelIcon = level === 'ready' ? CheckCircle2
-    : level === 'good' ? TrendingUp
-    : level === 'foundation' ? Target
-    : AlertTriangle;
+  const levelIcon =
+    level === "ready" ? CheckCircle2 : level === "good" ? TrendingUp : level === "foundation" ? Target : AlertTriangle;
   const LevelIcon = levelIcon;
 
   return (
@@ -66,9 +64,15 @@ function ScoreGauge({ score }: { score: number }) {
         <svg className="w-full h-full -rotate-90" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r={radius} fill="none" stroke="hsl(var(--muted))" strokeWidth="10" />
           <circle
-            cx="100" cy="100" r={radius} fill="none"
-            stroke={config.color} strokeWidth="10" strokeLinecap="round"
-            strokeDasharray={circumference} strokeDashoffset={strokeDashoffset}
+            cx="100"
+            cy="100"
+            r={radius}
+            fill="none"
+            stroke={config.color}
+            strokeWidth="10"
+            strokeLinecap="round"
+            strokeDasharray={circumference}
+            strokeDashoffset={strokeDashoffset}
             className="transition-all duration-1000 ease-out"
           />
         </svg>
@@ -78,7 +82,10 @@ function ScoreGauge({ score }: { score: number }) {
         </div>
       </div>
       <div className="mt-6 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold" style={{ backgroundColor: config.color + '18', color: config.color }}>
+        <div
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold"
+          style={{ backgroundColor: config.color + "18", color: config.color }}
+        >
           <LevelIcon className="w-4 h-4" />
           {config.label}
         </div>
@@ -110,7 +117,7 @@ function SubScoreBar({ label, score, delay = 0 }: { label: string; score: number
           <span className="text-sm font-bold text-foreground tabular-nums">{score}%</span>
           <span
             className="text-[11px] px-2 py-0.5 rounded-full font-semibold"
-            style={{ backgroundColor: config.color + '18', color: config.color }}
+            style={{ backgroundColor: config.color + "18", color: config.color }}
           >
             {config.label}
           </span>
@@ -131,13 +138,15 @@ function SubScoreBar({ label, score, delay = 0 }: { label: string; score: number
 // ---------------------------------------------------------------------------
 
 function TipsSection({ scores }: { scores: DiagnoseScores }) {
-  const dimensions: Exclude<QuestionCategory, 'snapshot'>[] = ['attractiveness', 'readiness', 'owner'];
+  const dimensions: Exclude<QuestionCategory, "snapshot">[] = ["attractiveness", "readiness", "owner"];
 
   return (
     <div className="mt-16 space-y-8">
       <div className="text-center mb-10">
         <h3 className="text-2xl font-bold text-foreground tracking-tight">Uw persoonlijke verbeterpunten</h3>
-        <p className="text-sm text-muted-foreground mt-2">Concrete aanbevelingen per dimensie op basis van uw scores.</p>
+        <p className="text-sm text-muted-foreground mt-2">
+          Concrete aanbevelingen per dimensie op basis van uw scores.
+        </p>
       </div>
       {dimensions.map((dim) => {
         const score = scores[dim];
@@ -188,9 +197,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
               Uw resultaat
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3">
-            Exit Readiness Score
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3">Exit Readiness Score</h2>
           <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
             Op basis van uw antwoorden hebben wij de volgende score berekend.
           </p>
@@ -215,13 +222,21 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
             <div>
               <h3 className="font-bold text-foreground mb-1.5 tracking-tight">Belangrijkste aandachtspunt</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{insight}</p>
+              <h3 className="font-bold text-foreground mb-1.5 tracking-tight">
+                Laat uw gegevens achter voor een uitgebreide analyse
+              </h3>
             </div>
           </div>
         </div>
 
         {/* Lead gate or tips */}
         {!showTips ? (
-          <QuickscanLeadForm scores={scores} snapshot={snapshot} answers={answers} onSuccess={() => setShowTips(true)} />
+          <QuickscanLeadForm
+            scores={scores}
+            snapshot={snapshot}
+            answers={answers}
+            onSuccess={() => setShowTips(true)}
+          />
         ) : (
           <TipsSection scores={scores} />
         )}
@@ -236,7 +251,9 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
         <div className="mt-16 pt-14 border-t border-border/15">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-foreground tracking-tight">
-              {showTips ? "Wilt u deze inzichten omzetten in actie?" : "Benieuwd wat deze score betekent voor uw situatie?"}
+              {showTips
+                ? "Wilt u deze inzichten omzetten in actie?"
+                : "Benieuwd wat deze score betekent voor uw situatie?"}
             </h3>
             <p className="text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
               {showTips
