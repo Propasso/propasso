@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { ClipboardCheck, Clock, BarChart3 } from "lucide-react";
+import { ClipboardCheck, Clock, BarChart3, ArrowRight } from "lucide-react";
+import hikerFlag from "@/assets/illustrations/hiker-at-top-with-flag.png";
 
 interface QuickscanIntroProps {
   onStart: () => void;
@@ -7,18 +8,33 @@ interface QuickscanIntroProps {
 
 const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
   return (
-    <section className="py-16 md:py-24">
-      <div className="container max-w-3xl mx-auto px-4 text-center">
-        <h1 className="font-serif text-4xl md:text-5xl text-foreground mb-6">
-          Exit Readiness Quickscan
+    <section className="py-16 md:py-24 relative overflow-hidden">
+      {/* Decorative background circle + illustration */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/30 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] pointer-events-none opacity-[0.07]">
+        <img src={hikerFlag} alt="" className="w-[400px] h-auto" aria-hidden="true" />
+      </div>
+
+      <div className="container max-w-3xl mx-auto px-4 text-center relative">
+        {/* Eyebrow */}
+        <div className="flex items-center justify-center gap-2 mb-5">
+          <span className="inline-block w-2 h-2 rounded-full bg-accent" />
+          <span className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground">
+            Gratis diagnostisch instrument
+          </span>
+        </div>
+
+        <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-3">
+          Exit Readiness
+          <span className="block text-muted-foreground">Quickscan</span>
         </h1>
-        <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
           Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een
           toekomstige overdracht. U ontvangt direct een score op drie dimensies, plus
           concrete verbeterpunten.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
           {[
             {
               icon: ClipboardCheck,
@@ -38,20 +54,21 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
           ].map(({ icon: Icon, title, desc }) => (
             <div
               key={title}
-              className="bg-card rounded-xl p-6 border border-border/20"
+              className="bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/15"
             >
-              <Icon className="w-8 h-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-foreground mb-1">{title}</h3>
-              <p className="text-sm text-muted-foreground">{desc}</p>
+              <Icon className="w-7 h-7 text-primary mx-auto mb-3" strokeWidth={1.5} />
+              <h3 className="font-bold text-foreground text-sm mb-1 tracking-tight">{title}</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
             </div>
           ))}
         </div>
 
-        <Button size="lg" onClick={onStart} className="text-base px-10 py-6">
+        <Button size="lg" onClick={onStart} className="text-base px-10 py-6 group">
           Start de quickscan
+          <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" />
         </Button>
 
-        <p className="text-xs text-muted-foreground mt-4">
+        <p className="text-xs text-muted-foreground mt-5">
           Geen registratie vereist · Uw antwoorden blijven vertrouwelijk
         </p>
       </div>
