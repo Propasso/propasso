@@ -97,11 +97,10 @@ const QuickscanQuestionComponent = ({
           {question.question}
         </h2>
 
-        {/* Likert scale — segmented horizontal control */}
+        {/* Likert scale — individual labeled steps */}
         {!isSnapshot && (
           <div className="mb-10">
-            {/* Segmented bar */}
-            <div className="flex rounded-xl overflow-hidden border border-border/30 bg-card">
+            <div className="grid grid-cols-6 gap-2">
               {question.options.map((option, idx) => {
                 const val = option.score?.toString() || option.value;
                 const isSelected = selectedValue === val;
@@ -110,28 +109,29 @@ const QuickscanQuestionComponent = ({
                     key={idx}
                     onClick={() => handleSelect(val)}
                     className={cn(
-                      "flex-1 relative py-4 md:py-5 transition-all duration-200 text-center min-h-[56px] touch-manipulation",
-                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
-                      idx > 0 && "border-l border-border/20",
+                      "flex flex-col items-center gap-1.5 rounded-lg py-4 px-1 transition-all duration-200 touch-manipulation",
+                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      "border-2",
                       isSelected
-                        ? "bg-primary text-primary-foreground shadow-inner"
-                        : "hover:bg-muted/60 text-muted-foreground"
+                        ? "border-primary bg-primary text-primary-foreground shadow-md scale-[1.04]"
+                        : "border-border/20 bg-card hover:border-primary/30 hover:bg-muted/40 text-muted-foreground"
                     )}
                   >
                     <span className={cn(
-                      "block text-lg md:text-xl font-bold transition-transform duration-200",
-                      isSelected && "scale-110"
+                      "text-lg md:text-xl font-bold",
+                      isSelected ? "text-primary-foreground" : "text-foreground"
                     )}>
                       {idx + 1}
+                    </span>
+                    <span className={cn(
+                      "text-[10px] md:text-xs leading-tight text-center font-medium",
+                      isSelected ? "text-primary-foreground/90" : "text-muted-foreground"
+                    )}>
+                      {likertLabels[idx]}
                     </span>
                   </button>
                 );
               })}
-            </div>
-            {/* Labels below */}
-            <div className="flex justify-between mt-2.5 px-1">
-              <span className="text-xs text-muted-foreground">{likertLabels[0]}</span>
-              <span className="text-xs text-muted-foreground">{likertLabels[5]}</span>
             </div>
           </div>
         )}
