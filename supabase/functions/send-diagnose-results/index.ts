@@ -478,6 +478,7 @@ Deno.serve(async (req) => {
     };
 
     const messageId = `quickscan-rapport-${crypto.randomUUID()}`;
+    const unsubscribeToken = crypto.randomUUID();
     const html = buildEmailHtml(firstName, numericScores, snapshot);
 
     const emailPayload = {
@@ -491,16 +492,21 @@ Deno.serve(async (req) => {
       label: "quickscan-rapport",
       message_id: messageId,
       idempotency_key: messageId,
+      unsubscribe_token: unsubscribeToken,
       queued_at: new Date().toISOString(),
     };
 
-    // Log pending + enqueue in parallel
-    const [logResult, enqueueResult] = await Promise.all([
+    // Log pending + persist unsubscribe token + enqueue in parallel
+    const [logResult, unsubscribeTokenResult, enqueueResult] = await Promise.all([
       supabase.from("email_send_log").insert({
         message_id: messageId,
         template_name: "quickscan-rapport",
         recipient_email: email,
         status: "pending",
+      }),
+      supabase.from("email_unsubscribe_tokens").insert({
+        email,
+        token: unsubscribeToken,
       }),
       supabase.rpc("enqueue_email", {
         queue_name: "transactional_emails",
