@@ -1,20 +1,67 @@
-import { createClient } from "npm:@supabase/supabase-js@2";
+import {
+  escHtml,
+  isValidEmail,
+  validateString,
+  validateEnum,
+  pickAllowedKeys,
+  checkRateLimit,
+  recordRateLimitHit,
+  logAudit,
+  corsHeaders,
+  jsonResponse,
+  createServiceClient,
+} from "../_shared/security-utils.ts";
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
-};
+// ---------------------------------------------------------------------------
+// Constants
+// ---------------------------------------------------------------------------
 
+const FUNCTION_NAME = "send-diagnose-results";
 const HUBSPOT_PORTAL_ID = "147744482";
 const HUBSPOT_FORM_GUID = "bcfa7a30-7cbb-4658-9dac-4b2f76b38c96";
 
-interface DiagnosePayload {
+// Rate limits: 3 per email per hour, 10 per IP per hour
+const RATE_LIMIT_CONFIG_EMAIL = {
+  functionName: FUNCTION_NAME,
+  limits: [
+    { windowMinutes: 60, maxRequests: 3 },
+    { windowMinutes: 1, maxRequests: 1 }, // burst: max 1 per minute per email
+  ],
+};
+
+const RATE_LIMIT_CONFIG_IP = {
+  functionName: `${FUNCTION_NAME}:ip`,
+  limits: [
+    { windowMinutes: 60, maxRequests: 10 },
+    { windowMinutes: 5, maxRequests: 3 },
+  ],
+};
+
+// ---------------------------------------------------------------------------
+// Allowed enum values (must match client-side diagnoseData.ts)
+// ---------------------------------------------------------------------------
+
+const ALLOWED_REVENUE = ["< €1 mln", "€1–3 mln", "€3–10 mln", "€10–25 mln", "€25–50 mln", "> €50 mln"] as const;
+const ALLOWED_EMPLOYEES = ["1–10", "10–25", "25–50", "50–100", "100+"] as const;
+const ALLOWED_ROLES = ["Eigenaar-ondernemer", "Aandeelhouder", "Directie/management", "Non-executive/adviseur"] as const;
+const ALLOWED_PROFITABILITY = ["Verlieslatend", "Break-even", "Lage winst", "Gezonde winst", "Zeer winstgevend"] as const;
+const ALLOWED_HORIZON = ["0–2 jaar", "3–5 jaar", "5–10 jaar", "Nog niet concreet"] as const;
+const ALLOWED_SCORES = ["1", "2", "3", "4", "5", "6"] as const; // Likert 1-6 as strings representing percentages
+
+const ALLOWED_PAYLOAD_KEYS = ["name", "email", "company", "phone", "newsletter", "scores", "snapshot"] as const;
+
+// ---------------------------------------------------------------------------
+// Payload interface & validation
+// ---------------------------------------------------------------------------
+
+interface ValidatedPayload {
   name: string;
+  firstName: string;
+  lastName: string;
   email: string;
-  company?: string;
-  phone?: string;
-  newsletter?: boolean;
+  company: string;
+  phone: string;
+  newsletter: boolean;
   scores: {
     business_attractiveness_score: string;
     business_readiness_score: string;
@@ -26,6 +73,90 @@ interface DiagnosePayload {
     role_type: string;
     profitability: string;
     exit_horizon: string;
+  };
+}
+
+function validatePayload(raw: unknown): { valid: true; data: ValidatedPayload } | { valid: false; error: string } {
+  if (typeof raw !== "object" || raw === null || Array.isArray(raw)) {
+    return { valid: false, error: "Ongeldige payload." };
+  }
+
+  const obj = pickAllowedKeys(raw as Record<string, unknown>, ALLOWED_PAYLOAD_KEYS);
+
+  const name = validateString(obj.name, 200);
+  if (!name) return { valid: false, error: "Naam is verplicht (max 200 tekens)." };
+
+  const email = typeof obj.email === "string" ? obj.email.trim() : "";
+  if (!isValidEmail(email)) return { valid: false, error: "Ongeldig e-mailadres." };
+
+  const company = validateString(obj.company, 200) ?? "";
+  const phone = validateString(obj.phone, 30) ?? "";
+  const newsletter = obj.newsletter === true;
+
+  // Validate scores
+  const scores = obj.scores as Record<string, unknown> | undefined;
+  if (!scores || typeof scores !== "object") return { valid: false, error: "Scores ontbreken." };
+
+  const attractScore = validateEnum(scores.business_attractiveness_score, ALLOWED_SCORES);
+  const readyScore = validateEnum(scores.business_readiness_score, ALLOWED_SCORES);
+  const ownerScore = validateEnum(scores.owner_readiness_score, ALLOWED_SCORES);
+
+  if (!attractScore || !readyScore || !ownerScore) {
+    return { valid: false, error: "Ongeldige score waarden. Verwacht 1–6 (als percentages, bijv. '67')." };
+  }
+
+  // Actually scores are percentages like "67", not Likert values. Let me re-validate as numeric percentage strings.
+  // Re-check: the client sends percentage strings. Validate as 0-100 integers.
+  const validatePercentage = (val: unknown): string | null => {
+    if (typeof val !== "string") return null;
+    const num = parseInt(val, 10);
+    if (isNaN(num) || num < 0 || num > 100 || String(num) !== val) return null;
+    return val;
+  };
+
+  const attractPct = validatePercentage(scores.business_attractiveness_score);
+  const readyPct = validatePercentage(scores.business_readiness_score);
+  const ownerPct = validatePercentage(scores.owner_readiness_score);
+
+  if (!attractPct || !readyPct || !ownerPct) {
+    return { valid: false, error: "Ongeldige score waarden (verwacht 0–100)." };
+  }
+
+  // Validate snapshot
+  const snap = obj.snapshot as Record<string, unknown> | undefined;
+  if (!snap || typeof snap !== "object") return { valid: false, error: "Snapshot ontbreekt." };
+
+  const revenue_band = validateEnum(snap.revenue_band, ALLOWED_REVENUE);
+  const employee_band = validateEnum(snap.employee_band, ALLOWED_EMPLOYEES);
+  const role_type = validateEnum(snap.role_type, ALLOWED_ROLES);
+  const profitability = validateEnum(snap.profitability, ALLOWED_PROFITABILITY);
+  const exit_horizon = validateEnum(snap.exit_horizon, ALLOWED_HORIZON);
+
+  if (!revenue_band || !employee_band || !role_type || !profitability || !exit_horizon) {
+    return { valid: false, error: "Ongeldige snapshot waarden." };
+  }
+
+  const nameParts = name.split(/\s+/);
+  const firstName = nameParts[0];
+  const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+
+  return {
+    valid: true,
+    data: {
+      name,
+      firstName,
+      lastName,
+      email,
+      company,
+      phone,
+      newsletter,
+      scores: {
+        business_attractiveness_score: attractPct,
+        business_readiness_score: readyPct,
+        owner_readiness_score: ownerPct,
+      },
+      snapshot: { revenue_band, employee_band, role_type, profitability, exit_horizon },
+    },
   };
 }
 
@@ -118,7 +249,7 @@ const tipsByDimension: Record<string, Record<ScoreLevel, string[]>> = {
 };
 
 // ---------------------------------------------------------------------------
-// HTML email template
+// HTML email template (all user values escaped)
 // ---------------------------------------------------------------------------
 
 function buildScoreBar(label: string, pct: number): string {
@@ -131,16 +262,16 @@ function buildScoreBar(label: string, pct: number): string {
         <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
           <tr>
             <td style="font-size:14px;font-weight:600;color:#1a3a4a;padding-bottom:6px;">
-              ${label}
+              ${escHtml(label)}
               <span style="float:right;font-weight:400;font-size:13px;color:${color};">
-                ${pct}% — ${levelLabel}
+                ${pct}% — ${escHtml(levelLabel)}
               </span>
             </td>
           </tr>
           <tr>
             <td>
               <div style="background:#e8eeef;border-radius:6px;height:10px;overflow:hidden;">
-                <div style="background:${color};width:${pct}%;height:100%;border-radius:6px;"></div>
+                <div style="background:${color};width:${Math.min(pct, 100)}%;height:100%;border-radius:6px;"></div>
               </div>
             </td>
           </tr>
@@ -155,27 +286,36 @@ function buildTipsSection(dimension: string, label: string, pct: number): string
   if (tips.length === 0) return "";
 
   const tipsHtml = tips
-    .map((tip) => `<li style="padding:6px 0;font-size:14px;line-height:1.6;color:#3a5a6a;">${tip}</li>`)
+    .map((tip) => `<li style="padding:6px 0;font-size:14px;line-height:1.6;color:#3a5a6a;">${escHtml(tip)}</li>`)
     .join("");
 
   return `
     <tr>
       <td style="padding:16px 0 8px;">
-        <p style="margin:0 0 8px;font-size:15px;font-weight:600;color:#1a3a4a;">${label}</p>
+        <p style="margin:0 0 8px;font-size:15px;font-weight:600;color:#1a3a4a;">${escHtml(label)}</p>
         <ul style="margin:0;padding-left:20px;">${tipsHtml}</ul>
       </td>
     </tr>`;
 }
 
 function buildEmailHtml(
-  firstName: string,
-  scores: { attractiveness: number; readiness: number; owner: number },
-  snapshot: DiagnosePayload["snapshot"],
+  data: ValidatedPayload,
+  numericScores: { attractiveness: number; readiness: number; owner: number },
 ): string {
-  const overall = Math.round((scores.attractiveness + scores.readiness + scores.owner) / 3);
+  const firstName = escHtml(data.firstName);
+  const overall = Math.round((numericScores.attractiveness + numericScores.readiness + numericScores.owner) / 3);
   const overallLevel = getScoreLevel(overall);
   const overallColor = scoreLevelColors[overallLevel];
-  const overallLabel = scoreLevelLabels[overallLevel];
+  const overallLabel = escHtml(scoreLevelLabels[overallLevel]);
+
+  // Snapshot values are already enum-validated, but escape anyway for defense-in-depth
+  const snap = {
+    revenue_band: escHtml(data.snapshot.revenue_band),
+    employee_band: escHtml(data.snapshot.employee_band),
+    role_type: escHtml(data.snapshot.role_type),
+    profitability: escHtml(data.snapshot.profitability),
+    exit_horizon: escHtml(data.snapshot.exit_horizon),
+  };
 
   return `<!DOCTYPE html>
 <html lang="nl">
@@ -238,9 +378,9 @@ function buildEmailHtml(
 
         <!-- Dimension scores -->
         <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
-          ${buildScoreBar("Aantrekkelijkheid van het Bedrijf", scores.attractiveness)}
-          ${buildScoreBar("Verkoopklaarheid van het Bedrijf", scores.readiness)}
-          ${buildScoreBar("Verkoopklaarheid van de Ondernemer", scores.owner)}
+          ${buildScoreBar("Aantrekkelijkheid van het Bedrijf", numericScores.attractiveness)}
+          ${buildScoreBar("Verkoopklaarheid van het Bedrijf", numericScores.readiness)}
+          ${buildScoreBar("Verkoopklaarheid van de Ondernemer", numericScores.owner)}
         </table>
 
         <!-- Context -->
@@ -249,11 +389,11 @@ function buildEmailHtml(
           <tr><td style="padding:20px;">
             <p style="margin:0 0 10px;font-size:14px;font-weight:600;color:#1a3a4a;">Uw bedrijfsprofiel</p>
             <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:13px;color:#3a5a6a;">
-              <tr><td style="padding:3px 0;" width="45%">Omzet</td><td style="padding:3px 0;">${snapshot.revenue_band}</td></tr>
-              <tr><td style="padding:3px 0;">Medewerkers</td><td style="padding:3px 0;">${snapshot.employee_band}</td></tr>
-              <tr><td style="padding:3px 0;">Rol</td><td style="padding:3px 0;">${snapshot.role_type}</td></tr>
-              <tr><td style="padding:3px 0;">Winstgevendheid</td><td style="padding:3px 0;">${snapshot.profitability}</td></tr>
-              <tr><td style="padding:3px 0;">Overdrachtshorizon</td><td style="padding:3px 0;">${snapshot.exit_horizon}</td></tr>
+              <tr><td style="padding:3px 0;" width="45%">Omzet</td><td style="padding:3px 0;">${snap.revenue_band}</td></tr>
+              <tr><td style="padding:3px 0;">Medewerkers</td><td style="padding:3px 0;">${snap.employee_band}</td></tr>
+              <tr><td style="padding:3px 0;">Rol</td><td style="padding:3px 0;">${snap.role_type}</td></tr>
+              <tr><td style="padding:3px 0;">Winstgevendheid</td><td style="padding:3px 0;">${snap.profitability}</td></tr>
+              <tr><td style="padding:3px 0;">Overdrachtshorizon</td><td style="padding:3px 0;">${snap.exit_horizon}</td></tr>
             </table>
           </td></tr>
         </table>
@@ -265,9 +405,9 @@ function buildEmailHtml(
         </p>
 
         <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
-          ${buildTipsSection("attractiveness", "Aantrekkelijkheid van het Bedrijf", scores.attractiveness)}
-          ${buildTipsSection("readiness", "Verkoopklaarheid van het Bedrijf", scores.readiness)}
-          ${buildTipsSection("owner", "Verkoopklaarheid van de Ondernemer", scores.owner)}
+          ${buildTipsSection("attractiveness", "Aantrekkelijkheid van het Bedrijf", numericScores.attractiveness)}
+          ${buildTipsSection("readiness", "Verkoopklaarheid van het Bedrijf", numericScores.readiness)}
+          ${buildTipsSection("owner", "Verkoopklaarheid van de Ondernemer", numericScores.owner)}
         </table>
 
         <!-- Methodology note -->
@@ -292,7 +432,7 @@ function buildEmailHtml(
             <a href="https://propasso.nl/contact"
               style="display:inline-block;background:#0b3d5c;color:#ffffff;font-size:15px;font-weight:600;
               text-decoration:none;padding:14px 32px;border-radius:8px;">
-              Plan een vrijblijvend gesprek →
+              Plan een vrijblijvend gesprek &rarr;
             </a>
           </td></tr>
         </table>
@@ -307,7 +447,7 @@ function buildEmailHtml(
           <tr>
             <td>
               <p style="margin:0;font-size:12px;color:#8a9aaa;">
-                © ${new Date().getFullYear()} Propasso · Exit Planning voor het MKB
+                &copy; ${new Date().getFullYear()} Propasso &middot; Exit Planning voor het MKB
               </p>
               <p style="margin:4px 0 0;font-size:12px;color:#8a9aaa;">
                 <a href="https://propasso.nl/privacyverklaring" style="color:#6a8a9a;text-decoration:underline;">Privacyverklaring</a>
@@ -333,93 +473,83 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  if (req.method !== "POST") {
+    return jsonResponse({ error: "Method not allowed." }, 405);
+  }
+
+  const clientIp = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+
   try {
-    const payload = (await req.json()) as DiagnosePayload;
-    const { name, email, company, phone, newsletter, scores, snapshot } = payload;
-
-    // Validate required fields
-    if (!name || !email) {
-      return new Response(JSON.stringify({ error: "Naam en e-mail zijn verplicht." }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    // Parse body
+    let rawBody: unknown;
+    try {
+      rawBody = await req.json();
+    } catch {
+      logAudit({ function: FUNCTION_NAME, action: "parse", result: "rejected", reason: "invalid_json" });
+      return jsonResponse({ error: "Ongeldige request body." }, 400);
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return new Response(JSON.stringify({ error: "Ongeldig e-mailadres." }), {
-        status: 400,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
+    // Validate payload
+    const validation = validatePayload(rawBody);
+    if (!validation.valid) {
+      logAudit({ function: FUNCTION_NAME, action: "validate", result: "rejected", reason: validation.error });
+      return jsonResponse({ error: validation.error }, 400);
     }
 
-    const nameParts = name.trim().split(/\s+/);
-    const firstName = nameParts[0];
-    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+    const data = validation.data;
+    const supabase = createServiceClient();
+
+    // Rate limiting — check IP first (cheaper to reject bots), then email
+    const ipCheck = await checkRateLimit(supabase, RATE_LIMIT_CONFIG_IP, clientIp);
+    if (!ipCheck.allowed) {
+      logAudit({
+        function: FUNCTION_NAME,
+        action: "rate_limit",
+        result: "rejected",
+        reason: "ip_limit_exceeded",
+        metadata: { ip_prefix: clientIp.substring(0, 8) },
+      });
+      return jsonResponse({ error: "Te veel verzoeken. Probeer het later opnieuw." }, 429);
+    }
+
+    const emailCheck = await checkRateLimit(supabase, RATE_LIMIT_CONFIG_EMAIL, data.email);
+    if (!emailCheck.allowed) {
+      logAudit({
+        function: FUNCTION_NAME,
+        action: "rate_limit",
+        result: "rejected",
+        reason: "email_limit_exceeded",
+      });
+      return jsonResponse({ error: "Te veel verzoeken voor dit e-mailadres. Probeer het later opnieuw." }, 429);
+    }
+
+    // Record rate limit hits (both IP and email)
+    await Promise.all([
+      recordRateLimitHit(supabase, FUNCTION_NAME, data.email),
+      recordRateLimitHit(supabase, `${FUNCTION_NAME}:ip`, clientIp),
+    ]);
 
     // -----------------------------------------------------------------------
-    // 1. Submit to HubSpot (fire-and-forget — don't block on failure)
+    // 1. Submit to HubSpot (fire-and-forget)
     // -----------------------------------------------------------------------
-    const hubspotFields: Array<{
-      objectTypeId: string;
-      name: string;
-      value: string;
-    }> = [
-      { objectTypeId: "0-1", name: "firstname", value: firstName },
-      { objectTypeId: "0-1", name: "lastname", value: lastName },
-      { objectTypeId: "0-1", name: "email", value: email },
+    const hubspotFields: Array<{ objectTypeId: string; name: string; value: string }> = [
+      { objectTypeId: "0-1", name: "firstname", value: data.firstName },
+      { objectTypeId: "0-1", name: "lastname", value: data.lastName },
+      { objectTypeId: "0-1", name: "email", value: data.email },
     ];
 
-    if (company)
-      hubspotFields.push({
-        objectTypeId: "0-1",
-        name: "company",
-        value: company,
-      });
-    if (phone)
-      hubspotFields.push({
-        objectTypeId: "0-1",
-        name: "phone",
-        value: phone,
-      });
+    if (data.company) hubspotFields.push({ objectTypeId: "0-1", name: "company", value: data.company });
+    if (data.phone) hubspotFields.push({ objectTypeId: "0-1", name: "phone", value: data.phone });
 
     hubspotFields.push(
-      {
-        objectTypeId: "0-1",
-        name: "business_attractiveness_score",
-        value: scores.business_attractiveness_score,
-      },
-      {
-        objectTypeId: "0-1",
-        name: "business_readiness_score",
-        value: scores.business_readiness_score,
-      },
-      {
-        objectTypeId: "0-1",
-        name: "owner_readiness_score",
-        value: scores.owner_readiness_score,
-      },
-      {
-        objectTypeId: "0-1",
-        name: "revenue_band",
-        value: snapshot.revenue_band,
-      },
-      {
-        objectTypeId: "0-1",
-        name: "employee_band",
-        value: snapshot.employee_band,
-      },
-      { objectTypeId: "0-1", name: "role_type", value: snapshot.role_type },
-      {
-        objectTypeId: "0-1",
-        name: "profitability",
-        value: snapshot.profitability,
-      },
-      {
-        objectTypeId: "0-1",
-        name: "exit_horizon",
-        value: snapshot.exit_horizon,
-      },
+      { objectTypeId: "0-1", name: "business_attractiveness_score", value: data.scores.business_attractiveness_score },
+      { objectTypeId: "0-1", name: "business_readiness_score", value: data.scores.business_readiness_score },
+      { objectTypeId: "0-1", name: "owner_readiness_score", value: data.scores.owner_readiness_score },
+      { objectTypeId: "0-1", name: "revenue_band", value: data.snapshot.revenue_band },
+      { objectTypeId: "0-1", name: "employee_band", value: data.snapshot.employee_band },
+      { objectTypeId: "0-1", name: "role_type", value: data.snapshot.role_type },
+      { objectTypeId: "0-1", name: "profitability", value: data.snapshot.profitability },
+      { objectTypeId: "0-1", name: "exit_horizon", value: data.snapshot.exit_horizon },
     );
 
     const hubspotUrl = `https://api-eu1.hsforms.com/submissions/v3/integration/submit/${HUBSPOT_PORTAL_ID}/${HUBSPOT_FORM_GUID}`;
@@ -438,14 +568,8 @@ Deno.serve(async (req) => {
           consent: {
             consentToProcess: true,
             text: "Ik ga akkoord met de privacyverklaring",
-            communications: newsletter
-              ? [
-                  {
-                    value: true,
-                    subscriptionTypeId: 999,
-                    text: "Ik wil graag relevante rapporten en de nieuwsbrief ontvangen.",
-                  },
-                ]
+            communications: data.newsletter
+              ? [{ value: true, subscriptionTypeId: 999, text: "Ik wil graag relevante rapporten en de nieuwsbrief ontvangen." }]
               : [],
           },
         },
@@ -455,27 +579,24 @@ Deno.serve(async (req) => {
     // -----------------------------------------------------------------------
     // 2. Enqueue branded rapport email
     // -----------------------------------------------------------------------
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
     const numericScores = {
-      attractiveness: parseInt(scores.business_attractiveness_score, 10),
-      readiness: parseInt(scores.business_readiness_score, 10),
-      owner: parseInt(scores.owner_readiness_score, 10),
+      attractiveness: parseInt(data.scores.business_attractiveness_score, 10),
+      readiness: parseInt(data.scores.business_readiness_score, 10),
+      owner: parseInt(data.scores.owner_readiness_score, 10),
     };
 
     const messageId = `quickscan-rapport-${crypto.randomUUID()}`;
     const unsubscribeToken = crypto.randomUUID();
-    const html = buildEmailHtml(firstName, numericScores, snapshot);
+    const html = buildEmailHtml(data, numericScores);
+    const overall = Math.round((numericScores.attractiveness + numericScores.readiness + numericScores.owner) / 3);
 
     const emailPayload = {
-      to: email,
+      to: data.email,
       from: "Propasso <info@propasso.nl>",
       sender_domain: "notify.propasso.nl",
-      subject: `${firstName}, uw Exit Readiness Rapport staat klaar`,
+      subject: `${escHtml(data.firstName)}, uw Exit Readiness Rapport staat klaar`,
       html,
-      text: `Beste ${firstName}, bedankt voor het invullen van de Quickscan. Uw totaalscore is ${Math.round((numericScores.attractiveness + numericScores.readiness + numericScores.owner) / 3)}%. Bekijk uw volledige rapport door deze e-mail in HTML-weergave te openen.`,
+      text: `Beste ${data.firstName}, bedankt voor het invullen van de Quickscan. Uw totaalscore is ${overall}%. Bekijk uw volledige rapport door deze e-mail in HTML-weergave te openen.`,
       purpose: "transactional",
       label: "quickscan-rapport",
       message_id: messageId,
@@ -484,16 +605,15 @@ Deno.serve(async (req) => {
       queued_at: new Date().toISOString(),
     };
 
-    // Log pending + persist unsubscribe token + enqueue in parallel
     const [logResult, unsubscribeTokenResult, enqueueResult] = await Promise.all([
       supabase.from("email_send_log").insert({
         message_id: messageId,
         template_name: "quickscan-rapport",
-        recipient_email: email,
+        recipient_email: data.email,
         status: "pending",
       }),
       supabase.from("email_unsubscribe_tokens").insert({
-        email,
+        email: data.email,
         token: unsubscribeToken,
       }),
       supabase.rpc("enqueue_email", {
@@ -503,28 +623,22 @@ Deno.serve(async (req) => {
     ]);
 
     if (enqueueResult.error) {
-      console.error("Failed to enqueue email:", enqueueResult.error);
-      // Still return success — HubSpot submission may have succeeded
+      logAudit({ function: FUNCTION_NAME, action: "enqueue_email", result: "error", reason: enqueueResult.error.message });
     }
     if (logResult.error) {
-      console.error("Failed to log email:", logResult.error);
+      logAudit({ function: FUNCTION_NAME, action: "log_email", result: "error", reason: logResult.error.message });
     }
     if (unsubscribeTokenResult.error) {
-      console.error("Failed to store unsubscribe token:", unsubscribeTokenResult.error);
+      logAudit({ function: FUNCTION_NAME, action: "unsubscribe_token", result: "error", reason: unsubscribeTokenResult.error.message });
     }
 
-    // Wait for HubSpot (non-blocking — already started)
     await hubspotPromise;
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    logAudit({ function: FUNCTION_NAME, action: "submit", result: "ok" });
+
+    return jsonResponse({ success: true });
   } catch (error) {
-    console.error("Edge function error:", error);
-    return new Response(JSON.stringify({ error: "Er is een onverwachte fout opgetreden." }), {
-      status: 500,
-      headers: { ...corsHeaders, "Content-Type": "application/json" },
-    });
+    logAudit({ function: FUNCTION_NAME, action: "handler", result: "error", reason: String(error) });
+    return jsonResponse({ error: "Er is een onverwachte fout opgetreden." }, 500);
   }
 });
