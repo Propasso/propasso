@@ -9,6 +9,43 @@ const corsHeaders = {
 const HUBSPOT_PORTAL_ID = "147744482";
 const HUBSPOT_FORM_GUID = "bcfa7a30-7cbb-4658-9dac-4b2f76b38c96";
 
+// ---------------------------------------------------------------------------
+// Rate limiting
+// ---------------------------------------------------------------------------
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MINUTES = 60;
+
+// ---------------------------------------------------------------------------
+// Input validation allowlists
+// ---------------------------------------------------------------------------
+const VALID_REVENUE_BANDS = [
+  "< €1M", "€1M – €3M", "€3M – €5M", "€5M – €10M", "€10M – €25M", "> €25M",
+];
+const VALID_EMPLOYEE_BANDS = [
+  "1-5", "5-15", "15-30", "30-50", "50-100", "100+",
+];
+const VALID_ROLE_TYPES = [
+  "DGA / Eigenaar", "Mede-eigenaar", "Directeur (niet-eigenaar)", "CFO / Financieel directeur", "Anders",
+];
+const VALID_PROFITABILITY = [
+  "Verlieslatend", "Break-even", "Licht winstgevend (< 10%)", "Winstgevend (10-20%)", "Zeer winstgevend (> 20%)",
+];
+const VALID_EXIT_HORIZONS = [
+  "< 1 jaar", "1-2 jaar", "2-5 jaar", "5-10 jaar", "> 10 jaar", "Weet ik nog niet",
+];
+
+// ---------------------------------------------------------------------------
+// HTML escaping
+// ---------------------------------------------------------------------------
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 interface DiagnosePayload {
   name: string;
   email: string;
