@@ -61,7 +61,11 @@ const Header = () => {
             <Link
               key={item.href}
               to={item.href}
-              className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
+              className={`text-sm font-medium transition-colors ${
+                item.href === "/quickscan"
+                  ? "border border-primary/20 rounded-full px-3.5 py-1.5 text-foreground/80 hover:text-foreground hover:border-primary/40"
+                  : "text-foreground/70 hover:text-foreground"
+              }`}
             >
               {item.label}
             </Link>
