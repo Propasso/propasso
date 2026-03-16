@@ -225,9 +225,9 @@ export const SNAPSHOT_COUNT = snapshotQuestions.length;
 // ---------------------------------------------------------------------------
 
 export function getScoreLevel(percentage: number): ScoreLevel {
-  if (percentage <= 33) return 'orientation';
-  if (percentage <= 55) return 'foundation';
-  if (percentage <= 75) return 'good';
+  if (percentage <= 40) return 'orientation';
+  if (percentage <= 65) return 'foundation';
+  if (percentage <= 82) return 'good';
   return 'ready';
 }
 
@@ -235,22 +235,22 @@ export const scoreLevelConfig: Record<ScoreLevel, { label: string; color: string
   orientation: {
     label: 'Oriëntatiefase',
     color: 'hsl(0, 70%, 55%)',
-    description: 'U staat aan het begin; er is nog veel te doen op meerdere vlakken.',
+    description: 'De basis voor een overdraagbaar bedrijf is nog beperkt ontwikkeld. Een verkoopproces zou momenteel waarschijnlijk leiden tot een lage waardering of beperkte interesse van kopers.',
   },
   foundation: {
-    label: 'Fundamenten aanwezig',
+    label: 'Verbeterfase',
     color: 'hsl(35, 85%, 55%)',
-    description: 'Er is een basis, maar er zijn concrete verbeterpunten.',
+    description: 'Er zijn duidelijke fundamenten aanwezig, maar meerdere factoren beperken de aantrekkelijkheid of verkoopbaarheid van het bedrijf.',
   },
   good: {
-    label: 'Goed op weg',
+    label: 'Sterke basis',
     color: 'hsl(45, 90%, 50%)',
-    description: 'Uw bedrijf en u persoonlijk zijn al behoorlijk voorbereid.',
+    description: 'Het bedrijf heeft een solide fundament en meerdere kenmerken die aantrekkelijk zijn voor kopers of investeerders.',
   },
   ready: {
-    label: 'Transactiegereed',
+    label: 'Verkoopklaar',
     color: 'hsl(160, 60%, 40%)',
-    description: 'U bent goed gepositioneerd voor een succesvolle overdracht.',
+    description: 'Het bedrijf beschikt over veel kenmerken van een goed overdraagbare onderneming.',
   },
 };
 
