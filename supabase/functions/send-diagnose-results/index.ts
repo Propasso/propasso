@@ -9,6 +9,29 @@ const corsHeaders = {
 const HUBSPOT_PORTAL_ID = "147744482";
 const HUBSPOT_FORM_GUID = "bcfa7a30-7cbb-4658-9dac-4b2f76b38c96";
 
+// ---------------------------------------------------------------------------
+// Input validation allowlists
+// ---------------------------------------------------------------------------
+
+const VALID_REVENUE_BANDS = ["< €1 mln", "€1–3 mln", "€3–10 mln", "€10–25 mln", "€25–50 mln", "> €50 mln"];
+const VALID_EMPLOYEE_BANDS = ["1–10", "10–25", "25–50", "50–100", "100+"];
+const VALID_ROLE_TYPES = ["Eigenaar-ondernemer", "Aandeelhouder", "Directie/management", "Non-executive/adviseur"];
+const VALID_PROFITABILITY = ["Verlieslatend", "Break-even", "Lage winst", "Gezonde winst", "Zeer winstgevend"];
+const VALID_EXIT_HORIZONS = ["0–2 jaar", "3–5 jaar", "5–10 jaar", "Nog niet concreet"];
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Rate limiting: max requests per identifier per hour
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MINUTES = 60;
+
 interface DiagnosePayload {
   name: string;
   email: string;
@@ -353,6 +376,14 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Validate field lengths
+    if (name.length > 200 || email.length > 255 || (company && company.length > 200) || (phone && phone.length > 30)) {
+      return new Response(
+        JSON.stringify({ error: "Invoer te lang." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(
@@ -363,6 +394,56 @@ Deno.serve(async (req) => {
         }
       );
     }
+
+    // Validate snapshot fields against allowlists
+    if (!VALID_REVENUE_BANDS.includes(snapshot?.revenue_band) ||
+        !VALID_EMPLOYEE_BANDS.includes(snapshot?.employee_band) ||
+        !VALID_ROLE_TYPES.includes(snapshot?.role_type) ||
+        !VALID_PROFITABILITY.includes(snapshot?.profitability) ||
+        !VALID_EXIT_HORIZONS.includes(snapshot?.exit_horizon)) {
+      return new Response(
+        JSON.stringify({ error: "Ongeldige waarden in bedrijfsprofiel." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate score values as integers 0-100
+    const scoreValues = [scores?.business_attractiveness_score, scores?.business_readiness_score, scores?.owner_readiness_score];
+    for (const s of scoreValues) {
+      const n = parseInt(s, 10);
+      if (isNaN(n) || n < 0 || n > 100 || String(n) !== s) {
+        return new Response(
+          JSON.stringify({ error: "Ongeldige scorewaarden." }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
+
+    // Rate limiting
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    const cutoff = new Date(Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000).toISOString();
+    const { count } = await supabase
+      .from("rate_limit_log")
+      .select("*", { count: "exact", head: true })
+      .eq("function_name", "send-diagnose-results")
+      .eq("identifier", email)
+      .gte("created_at", cutoff);
+
+    if ((count ?? 0) >= RATE_LIMIT_MAX) {
+      return new Response(
+        JSON.stringify({ error: "Te veel verzoeken. Probeer het later opnieuw." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Log rate limit entry
+    await supabase.from("rate_limit_log").insert({
+      function_name: "send-diagnose-results",
+      identifier: email,
+    });
 
     const nameParts = name.trim().split(/\s+/);
     const firstName = nameParts[0];
@@ -467,27 +548,24 @@ Deno.serve(async (req) => {
     // -----------------------------------------------------------------------
     // 2. Enqueue branded rapport email
     // -----------------------------------------------------------------------
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
     const numericScores = {
-      attractiveness: parseInt(scores.business_attractiveness_score, 10),
-      readiness: parseInt(scores.business_readiness_score, 10),
-      owner: parseInt(scores.owner_readiness_score, 10),
+      attractiveness: Math.min(100, Math.max(0, parseInt(scores.business_attractiveness_score, 10))),
+      readiness: Math.min(100, Math.max(0, parseInt(scores.business_readiness_score, 10))),
+      owner: Math.min(100, Math.max(0, parseInt(scores.owner_readiness_score, 10))),
     };
 
+    const safeFirstName = escapeHtml(firstName);
     const messageId = `quickscan-rapport-${crypto.randomUUID()}`;
     const unsubscribeToken = crypto.randomUUID();
-    const html = buildEmailHtml(firstName, numericScores, snapshot);
+    const html = buildEmailHtml(safeFirstName, numericScores, snapshot);
 
     const emailPayload = {
       to: email,
       from: "Propasso <info@propasso.nl>",
       sender_domain: "notify.propasso.nl",
-      subject: `${firstName}, uw Exit Readiness Rapport staat klaar`,
+      subject: `${safeFirstName}, uw Exit Readiness Rapport staat klaar`,
       html,
-      text: `Beste ${firstName}, bedankt voor het invullen van de Quickscan. Uw totaalscore is ${Math.round((numericScores.attractiveness + numericScores.readiness + numericScores.owner) / 3)}%. Bekijk uw volledige rapport door deze e-mail in HTML-weergave te openen.`,
+      text: `Beste ${safeFirstName}, bedankt voor het invullen van de Quickscan. Uw totaalscore is ${Math.round((numericScores.attractiveness + numericScores.readiness + numericScores.owner) / 3)}%. Bekijk uw volledige rapport door deze e-mail in HTML-weergave te openen.`,
       purpose: "transactional",
       label: "quickscan-rapport",
       message_id: messageId,

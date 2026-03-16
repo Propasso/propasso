@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -8,6 +9,9 @@ const corsHeaders = {
 const HUBSPOT_PORTAL_ID = "147744482";
 const HUBSPOT_FORM_GUID = "d5ed24d9-8667-4f3a-ac38-3efe6e17d03e";
 const HUBSPOT_REGION = "eu1";
+
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MINUTES = 60;
 
 interface ContactPayload {
   name: string;
@@ -41,6 +45,40 @@ serve(async (req) => {
         { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       );
     }
+
+    // Validate field lengths
+    if (name.length > 200 || email.length > 255 || (phone && phone.length > 30) || message.length > 5000) {
+      return new Response(
+        JSON.stringify({ error: 'Invoer te lang.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Rate limiting
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
+    const cutoff = new Date(Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000).toISOString();
+    const { count } = await supabase
+      .from("rate_limit_log")
+      .select("*", { count: "exact", head: true })
+      .eq("function_name", "send-contact-email")
+      .eq("identifier", email)
+      .gte("created_at", cutoff);
+
+    if ((count ?? 0) >= RATE_LIMIT_MAX) {
+      return new Response(
+        JSON.stringify({ error: "Te veel verzoeken. Probeer het later opnieuw." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    await supabase.from("rate_limit_log").insert({
+      function_name: "send-contact-email",
+      identifier: email,
+    });
 
     // Split name into first and last
     const nameParts = name.trim().split(/\s+/);
