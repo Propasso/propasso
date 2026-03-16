@@ -13,6 +13,7 @@ import QuickscanLeadForm from "./QuickscanLeadForm";
 import { cn } from "@/lib/utils";
 import { TrendingUp, AlertTriangle, CheckCircle2, Target, ChevronRight, MessageSquare, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 interface QuickscanResultsProps {
   scores: DiagnoseScores;
