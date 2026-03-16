@@ -91,8 +91,8 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
   return (
     <div className="bg-accent/8 rounded-xl border-2 border-accent/30 p-6 md:p-10">
       <div className="text-center mb-6">
-        <span className="inline-flex items-center gap-2 text-accent font-semibold text-sm uppercase tracking-wider mb-3">
-          <FileText className="w-4 h-4" />
+        <span className="inline-flex items-center gap-2 text-muted-foreground font-medium text-sm uppercase tracking-wider mb-3">
+          <FileText className="w-4 h-4 text-primary" />
           Gratis persoonlijk rapport
         </span>
         <h3 className="text-2xl md:text-[1.65rem] font-bold text-foreground tracking-tight leading-snug">
