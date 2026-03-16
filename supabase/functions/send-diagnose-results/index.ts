@@ -46,7 +46,7 @@ const ALLOWED_EMPLOYEES = ["1–10", "10–25", "25–50", "50–100", "100+"] a
 const ALLOWED_ROLES = ["Eigenaar-ondernemer", "Aandeelhouder", "Directie/management", "Non-executive/adviseur"] as const;
 const ALLOWED_PROFITABILITY = ["Verlieslatend", "Break-even", "Lage winst", "Gezonde winst", "Zeer winstgevend"] as const;
 const ALLOWED_HORIZON = ["0–2 jaar", "3–5 jaar", "5–10 jaar", "Nog niet concreet"] as const;
-const ALLOWED_SCORES = ["1", "2", "3", "4", "5", "6"] as const; // Likert 1-6 as strings representing percentages
+
 
 const ALLOWED_PAYLOAD_KEYS = ["name", "email", "company", "phone", "newsletter", "scores", "snapshot"] as const;
 
