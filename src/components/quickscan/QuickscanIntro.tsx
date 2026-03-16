@@ -20,14 +20,9 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
         />
       </div>
 
-      <div className="container max-w-3xl mx-auto px-4 text-center relative">
+      <div className="container max-w-3xl mx-auto px-4 relative">
         {/* Eyebrow */}
-        <div className="flex items-center justify-center gap-2 mb-5">
-          <span className="inline-block w-2 h-2 rounded-full bg-accent" />
-          <span className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground">
-            Gratis diagnostisch instrument
-          </span>
-        </div>
+        <p className="eyebrow mb-5">Gratis diagnostisch instrument</p>
 
         <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-3">
           Exit Readiness
