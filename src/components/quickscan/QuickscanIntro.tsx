@@ -20,15 +20,15 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
         />
       </div>
 
-      <div className="container max-w-3xl mx-auto px-4 relative">
-        {/* Eyebrow */}
+      <div className="container max-w-3xl mx-auto px-4 text-center relative">
+        {/* Eyebrow — left-aligned */}
         <p className="eyebrow mb-5">Gratis diagnostisch instrument</p>
 
         <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-3">
           Exit Readiness
           <span className="block text-muted-foreground">Quickscan</span>
         </h1>
-        <p className="text-lg text-muted-foreground mb-12 max-w-xl leading-relaxed">
+        <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
           Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een toekomstige overdracht. U
           ontvangt direct een score op drie dimensies, plus concrete verbeterpunten.
         </p>
