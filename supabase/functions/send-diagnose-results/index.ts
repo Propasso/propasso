@@ -548,19 +548,16 @@ Deno.serve(async (req) => {
     // -----------------------------------------------------------------------
     // 2. Enqueue branded rapport email
     // -----------------------------------------------------------------------
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
     const numericScores = {
-      attractiveness: parseInt(scores.business_attractiveness_score, 10),
-      readiness: parseInt(scores.business_readiness_score, 10),
-      owner: parseInt(scores.owner_readiness_score, 10),
+      attractiveness: Math.min(100, Math.max(0, parseInt(scores.business_attractiveness_score, 10))),
+      readiness: Math.min(100, Math.max(0, parseInt(scores.business_readiness_score, 10))),
+      owner: Math.min(100, Math.max(0, parseInt(scores.owner_readiness_score, 10))),
     };
 
+    const safeFirstName = escapeHtml(firstName);
     const messageId = `quickscan-rapport-${crypto.randomUUID()}`;
     const unsubscribeToken = crypto.randomUUID();
-    const html = buildEmailHtml(firstName, numericScores, snapshot);
+    const html = buildEmailHtml(safeFirstName, numericScores, snapshot);
 
     const emailPayload = {
       to: email,
