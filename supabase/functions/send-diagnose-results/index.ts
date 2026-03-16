@@ -481,6 +481,7 @@ Deno.serve(async (req) => {
     const html = buildEmailHtml(firstName, numericScores, snapshot);
 
     const emailPayload = {
+      run_id: crypto.randomUUID(),
       to: email,
       from: "Propasso <info@propasso.nl>",
       sender_domain: "notify.propasso.nl",
