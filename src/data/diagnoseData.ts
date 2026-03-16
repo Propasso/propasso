@@ -87,12 +87,12 @@ const snapshotQuestions: DiagnoseQuestion[] = [
 // ---------------------------------------------------------------------------
 
 const likertOptions: DiagnoseOption[] = [
-  { label: 'Helemaal niet', value: '1', score: 1 },
-  { label: 'Nauwelijks', value: '2', score: 2 },
-  { label: 'Beperkt', value: '3', score: 3 },
-  { label: 'Redelijk', value: '4', score: 4 },
-  { label: 'Grotendeels', value: '5', score: 5 },
-  { label: 'Volledig', value: '6', score: 6 },
+  { label: 'Zeer zwak / niet aanwezig', value: '1', score: 1 },
+  { label: 'Onderontwikkeld', value: '2', score: 2 },
+  { label: 'Onder gemiddeld', value: '3', score: 3 },
+  { label: 'Redelijk ontwikkeld', value: '4', score: 4 },
+  { label: 'Goed ontwikkeld', value: '5', score: 5 },
+  { label: 'Best practice / zeer sterk', value: '6', score: 6 },
 ];
 
 // ---------------------------------------------------------------------------
