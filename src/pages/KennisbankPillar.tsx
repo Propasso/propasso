@@ -318,6 +318,8 @@ const KennisbankPillar = () => {
         </section>
       )}
 
+      <QuickscanCallout />
+
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"
         primaryLabel="Neem contact op"
