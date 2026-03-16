@@ -20,20 +20,15 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
         />
       </div>
 
-      <div className="container max-w-3xl mx-auto px-4 text-center relative">
+      <div className="container max-w-3xl mx-auto px-4 relative">
         {/* Eyebrow */}
-        <div className="flex items-center justify-center gap-2 mb-5">
-          <span className="inline-block w-2 h-2 rounded-full bg-accent" />
-          <span className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground">
-            Gratis diagnostisch instrument
-          </span>
-        </div>
+        <p className="eyebrow mb-5">Gratis diagnostisch instrument</p>
 
         <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-3">
           Exit Readiness
           <span className="block text-muted-foreground">Quickscan</span>
         </h1>
-        <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
+        <p className="text-lg text-muted-foreground mb-12 max-w-xl leading-relaxed">
           Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een toekomstige overdracht. U
           ontvangt direct een score op drie dimensies, plus concrete verbeterpunten.
         </p>
