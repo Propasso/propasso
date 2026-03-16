@@ -140,31 +140,31 @@ const readinessQuestions: DiagnoseQuestion[] = [
   {
     id: 11,
     category: 'readiness',
-    question: 'In hoeverre zijn uw financiële rapportages actueel, betrouwbaar en inzichtelijk voor een buitenstaander?',
+    question: 'Hoe professioneel en inzichtelijk zijn uw financiële rapportages voor een externe partij?',
     options: likertOptions,
   },
   {
     id: 12,
     category: 'readiness',
-    question: 'In hoeverre zijn alle belangrijke contracten, vergunningen en overeenkomsten goed gedocumenteerd en overdraagbaar?',
+    question: 'In hoeverre zijn contracten met klanten, leveranciers en personeel goed vastgelegd en overdraagbaar?',
     options: likertOptions,
   },
   {
     id: 13,
     category: 'readiness',
-    question: 'In hoeverre zijn uw bedrijfsprocessen vastgelegd en niet afhankelijk van individuele kennis?',
+    question: 'Hoe goed zijn processen, systemen en werkwijzen vastgelegd in uw organisatie?',
     options: likertOptions,
   },
   {
     id: 14,
     category: 'readiness',
-    question: 'In hoeverre beschikt uw bedrijf over een helder strategisch plan voor de komende jaren?',
+    question: 'Hoe snel kan een externe partij inzicht krijgen in de prestaties van uw bedrijf (rapportages, systemen, data)?',
     options: likertOptions,
   },
   {
     id: 15,
     category: 'readiness',
-    question: 'In hoeverre is de juridische en fiscale structuur van uw bedrijf geoptimaliseerd voor een mogelijke overdracht?',
+    question: 'Hoe duidelijk en uitgewerkt is de strategie en het groeiplan voor de komende 3–5 jaar?',
     options: likertOptions,
   },
 ];
