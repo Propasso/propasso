@@ -11,7 +11,8 @@ import {
 } from "@/data/diagnoseData";
 import QuickscanLeadForm from "./QuickscanLeadForm";
 import { cn } from "@/lib/utils";
-import { TrendingUp, AlertTriangle, CheckCircle2, Target } from "lucide-react";
+import { TrendingUp, AlertTriangle, CheckCircle2, Target, ChevronRight, MessageSquare, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface QuickscanResultsProps {
   scores: DiagnoseScores;
