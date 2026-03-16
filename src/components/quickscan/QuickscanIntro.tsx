@@ -29,9 +29,8 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
           <span className="block text-muted-foreground">Quickscan</span>
         </h1>
         <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
-          Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een
-          toekomstige overdracht. U ontvangt direct een score op drie dimensies, plus
-          concrete verbeterpunten.
+          Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een toekomstige overdracht. U
+          ontvangt direct een score op drie dimensies, plus concrete verbeterpunten.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14">
@@ -39,7 +38,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
             {
               icon: ClipboardCheck,
               title: "20 gerichte vragen",
-              desc: "Gebaseerd op de Value Acceleration Methodology",
+              desc: "Op verkoopklaarheid van ondernemer en bedrijf",
             },
             {
               icon: Clock,
@@ -49,13 +48,10 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
             {
               icon: BarChart3,
               title: "Direct resultaat",
-              desc: "Score en inzichten per dimensie",
+              desc: "Inzichten per dimensie en tips",
             },
           ].map(({ icon: Icon, title, desc }) => (
-            <div
-              key={title}
-              className="bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/15"
-            >
+            <div key={title} className="bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/15">
               <Icon className="w-7 h-7 text-primary mx-auto mb-3" strokeWidth={1.5} />
               <h3 className="font-bold text-foreground text-sm mb-1 tracking-tight">{title}</h3>
               <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
