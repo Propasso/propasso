@@ -9,6 +9,29 @@ const corsHeaders = {
 const HUBSPOT_PORTAL_ID = "147744482";
 const HUBSPOT_FORM_GUID = "bcfa7a30-7cbb-4658-9dac-4b2f76b38c96";
 
+// ---------------------------------------------------------------------------
+// Input validation allowlists
+// ---------------------------------------------------------------------------
+
+const VALID_REVENUE_BANDS = ["< €1 mln", "€1–3 mln", "€3–10 mln", "€10–25 mln", "€25–50 mln", "> €50 mln"];
+const VALID_EMPLOYEE_BANDS = ["1–10", "10–25", "25–50", "50–100", "100+"];
+const VALID_ROLE_TYPES = ["Eigenaar-ondernemer", "Aandeelhouder", "Directie/management", "Non-executive/adviseur"];
+const VALID_PROFITABILITY = ["Verlieslatend", "Break-even", "Lage winst", "Gezonde winst", "Zeer winstgevend"];
+const VALID_EXIT_HORIZONS = ["0–2 jaar", "3–5 jaar", "5–10 jaar", "Nog niet concreet"];
+
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Rate limiting: max requests per identifier per hour
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MINUTES = 60;
+
 interface DiagnosePayload {
   name: string;
   email: string;
