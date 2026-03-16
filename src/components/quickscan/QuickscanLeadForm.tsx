@@ -89,18 +89,19 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
   };
 
   return (
-    <div className="bg-card rounded-xl border border-border/20 p-6 md:p-8">
-      <div className="flex items-start gap-3 mb-4">
-        <FileText className="w-6 h-6 text-primary flex-shrink-0 mt-0.5" />
-        <div>
-          <h3 className="font-semibold text-foreground text-lg">
-            Wilt u concrete verbeterpunten per onderdeel ontvangen?
-          </h3>
-          <p className="text-sm text-muted-foreground mt-1">
-            Op basis van uw scores stellen wij een persoonlijk rapport samen met
-            praktische aanbevelingen per dimensie.
-          </p>
-        </div>
+    <div className="bg-accent/8 rounded-xl border-2 border-accent/30 p-6 md:p-10">
+      <div className="text-center mb-6">
+        <span className="inline-flex items-center gap-2 text-accent font-semibold text-sm uppercase tracking-wider mb-3">
+          <FileText className="w-4 h-4" />
+          Gratis persoonlijk rapport
+        </span>
+        <h3 className="text-2xl md:text-[1.65rem] font-bold text-foreground tracking-tight leading-snug">
+          Ontvang 2–3 concrete adviezen per onderdeel
+        </h3>
+        <p className="text-muted-foreground mt-2 max-w-md mx-auto leading-relaxed">
+          Op basis van uw scores stellen wij een persoonlijk rapport samen met
+          praktische verbeterpunten per dimensie — direct in uw inbox.
+        </p>
       </div>
 
       <Form {...form}>
