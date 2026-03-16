@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ClipboardCheck, Clock, BarChart3, ArrowRight } from "lucide-react";
-import hikerFlag from "@/assets/illustrations/hiker-at-top-with-flag.png";
+import quickscanSummitFlag from "@/assets/illustrations/quickscan-summit-flag.png";
 
 interface QuickscanIntroProps {
   onStart: () => void;
