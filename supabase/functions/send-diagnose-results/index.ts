@@ -63,11 +63,11 @@ const scoreLevelColors: Record<ScoreLevel, string> = {
 const tipsByDimension: Record<string, Record<ScoreLevel, string[]>> = {
   attractiveness: {
     orientation: [
-      "Breng in kaart welk percentage omzet afhankelijk is van uw top-3 klanten. Streef naar maximaal 15% per klant.",
-      "Documenteer uw persoonlijke taken en begin met het delegeren van klantrelaties aan uw team.",
+      "Breng in kaart hoe voorspelbaar uw omzet en winst zijn. Identificeer de grootste schommelingen en hun oorzaken.",
+      "Analyseer uw klantspreiding: welk percentage van de omzet komt van uw top-3 klanten? Streef naar maximaal 15% per klant.",
     ],
     foundation: [
-      "Werk actief aan klantspreiding door nieuwe marktsegmenten te benaderen.",
+      "Werk actief aan omzetstabiliteit door langere contracten en meer voorspelbare inkomstenstromen op te bouwen.",
       "Investeer in een tweede managementlaag die operationele beslissingen zelfstandig kan nemen.",
     ],
     good: [
@@ -76,21 +76,21 @@ const tipsByDimension: Record<string, Record<ScoreLevel, string[]>> = {
     ],
     ready: [
       "Laat een externe partij uw bedrijfscontinuïteit valideren om dit richting kopers te onderbouwen.",
-      "Documenteer uw groeistrategie en marktpotentieel als verkoopargument.",
+      "Documenteer uw groeistrategie en marktpotentieel als verkoopargument voor potentiële kopers.",
     ],
   },
   readiness: {
     orientation: [
       "Laat uw jaarrekeningen van de afgelopen drie jaar door een accountant controleren en normaliseren.",
-      "Maak een inventarisatie van alle lopende contracten, vergunningen en overeenkomsten.",
+      "Maak een inventarisatie van alle lopende contracten met klanten, leveranciers en personeel en beoordeel de overdraagbaarheid.",
     ],
     foundation: [
       "Implementeer maandelijkse managementrapportages met de belangrijkste financiële en operationele KPI's.",
-      "Zorg dat alle contracten op naam van de BV staan, niet op uw persoonlijke naam.",
+      "Zorg dat alle contracten op naam van de BV staan en niet afhankelijk zijn van uw persoonlijke betrokkenheid.",
     ],
     good: [
-      "Laat een fiscalist de holdingstructuur beoordelen op optimale overdrachtsgereedheid.",
-      "Bereid een vendor due diligence-rapport voor om het verkoopproces te versnellen.",
+      "Bereid een vendor due diligence-rapport voor om het verkoopproces te versnellen en verrassingen te voorkomen.",
+      "Zorg voor een digitale data room met alle relevante documenten gestructureerd beschikbaar.",
     ],
     ready: [
       "Laat een proef-due diligence uitvoeren om eventuele verrassingen vóór te zijn.",
@@ -100,7 +100,7 @@ const tipsByDimension: Record<string, Record<ScoreLevel, string[]>> = {
   owner: {
     orientation: [
       "Maak een persoonlijk financieel plan: hoeveel vermogen heeft u nodig om comfortabel te leven na de verkoop?",
-      "Denk na over wat u na de verkoop wilt doen — ondernemerschap, advieswerk, reizen, of iets anders.",
+      "Denk na over wat u na de verkoop wilt doen: ondernemerschap, advieswerk, reizen, of iets anders.",
     ],
     foundation: [
       "Schakel een financieel planner in die een persoonlijke vermogensprognose kan maken.",
