@@ -244,21 +244,19 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition"
-            >
-              <MessageSquare className="w-4 h-4" />
-              Plan een vrijblijvend gesprek
-              <ChevronRight className="w-4 h-4" />
-            </Link>
-            <Link
-              to="/werkwijze"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-border/30 px-7 py-4 text-base font-semibold text-foreground hover:border-border/60 transition-colors"
-            >
-              <BookOpen className="w-4 h-4" />
-              Bekijk onze werkwijze
-            </Link>
+            <Button asChild size="lg" className="rounded-full">
+              <Link to="/contact">
+                <MessageSquare className="w-4 h-4" />
+                Plan een vrijblijvend gesprek
+                <ChevronRight className="w-4 h-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="rounded-full">
+              <Link to="/werkwijze">
+                <BookOpen className="w-4 h-4" />
+                Bekijk onze werkwijze
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
