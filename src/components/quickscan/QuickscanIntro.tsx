@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ClipboardCheck, Clock, BarChart3, ArrowRight } from "lucide-react";
-import hikerFlag from "@/assets/illustrations/hiker-at-top-with-flag.png";
+import quickscanSummitFlag from "@/assets/illustrations/quickscan-summit-flag.png";
 
 interface QuickscanIntroProps {
   onStart: () => void;
@@ -9,10 +9,15 @@ interface QuickscanIntroProps {
 const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
   return (
     <section className="py-16 md:py-24 relative overflow-hidden">
-      {/* Decorative background circle + illustration */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-accent/30 blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] pointer-events-none opacity-[0.07]">
-        <img src={hikerFlag} alt="" className="w-[400px] h-auto" aria-hidden="true" />
+      {/* Yellow accent circle with centered illustration — matching subpage pattern */}
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] pointer-events-none">
+        <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
+        <img
+          src={quickscanSummitFlag}
+          alt=""
+          className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.07] pointer-events-none select-none"
+          aria-hidden="true"
+        />
       </div>
 
       <div className="container max-w-3xl mx-auto px-4 text-center relative">
