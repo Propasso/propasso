@@ -101,6 +101,27 @@ export type Database = {
         }
         Relationships: []
       }
+      rate_limit_log: {
+        Row: {
+          created_at: string
+          function_name: string
+          id: string
+          identifier: string
+        }
+        Insert: {
+          created_at?: string
+          function_name: string
+          id?: string
+          identifier: string
+        }
+        Update: {
+          created_at?: string
+          function_name?: string
+          id?: string
+          identifier?: string
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
