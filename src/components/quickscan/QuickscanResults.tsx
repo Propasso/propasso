@@ -7,8 +7,8 @@ import {
   dimensionLabels,
   getLowestDimensionInsight,
   tipsByDimension,
-  type QuestionCategory,
-} from "@/data/diagnoseData";
+  type QuestionCategory } from
+"@/data/diagnoseData";
 import QuickscanLeadForm from "./QuickscanLeadForm";
 import { cn } from "@/lib/utils";
 import { TrendingUp, AlertTriangle, CheckCircle2, Target, ChevronRight, MessageSquare, BookOpen } from "lucide-react";
@@ -45,17 +45,17 @@ function useAnimatedCount(target: number, duration = 1200) {
 // Score gauge — clean arc
 // ---------------------------------------------------------------------------
 
-function ScoreGauge({ score }: { score: number }) {
+function ScoreGauge({ score }: {score: number;}) {
   const level = getScoreLevel(score);
   const config = scoreLevelConfig[level];
   const animatedScore = useAnimatedCount(score);
 
   const radius = 80;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference - (animatedScore / 100) * circumference;
+  const strokeDashoffset = circumference - animatedScore / 100 * circumference;
 
   const levelIcon =
-    level === "ready" ? CheckCircle2 : level === "good" ? TrendingUp : level === "foundation" ? Target : AlertTriangle;
+  level === "ready" ? CheckCircle2 : level === "good" ? TrendingUp : level === "foundation" ? Target : AlertTriangle;
   const LevelIcon = levelIcon;
 
   return (
@@ -73,8 +73,8 @@ function ScoreGauge({ score }: { score: number }) {
             strokeLinecap="round"
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
-            className="transition-all duration-1000 ease-out"
-          />
+            className="transition-all duration-1000 ease-out" />
+          
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <span className="text-5xl font-bold text-foreground tabular-nums">{animatedScore}</span>
@@ -84,22 +84,22 @@ function ScoreGauge({ score }: { score: number }) {
       <div className="mt-6 text-center">
         <div
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-semibold"
-          style={{ backgroundColor: config.color + "18", color: config.color }}
-        >
+          style={{ backgroundColor: config.color + "18", color: config.color }}>
+          
           <LevelIcon className="w-4 h-4" />
           {config.label}
         </div>
         <p className="text-sm text-muted-foreground mt-3 max-w-sm leading-relaxed">{config.description}</p>
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ---------------------------------------------------------------------------
 // Subscore bar
 // ---------------------------------------------------------------------------
 
-function SubScoreBar({ label, score, delay = 0 }: { label: string; score: number; delay?: number }) {
+function SubScoreBar({ label, score, delay = 0 }: {label: string;score: number;delay?: number;}) {
   const level = getScoreLevel(score);
   const config = scoreLevelConfig[level];
   const [width, setWidth] = useState(0);
@@ -117,8 +117,8 @@ function SubScoreBar({ label, score, delay = 0 }: { label: string; score: number
           <span className="text-sm font-bold text-foreground tabular-nums">{score}%</span>
           <span
             className="text-[11px] px-2 py-0.5 rounded-full font-semibold"
-            style={{ backgroundColor: config.color + "18", color: config.color }}
-          >
+            style={{ backgroundColor: config.color + "18", color: config.color }}>
+            
             {config.label}
           </span>
         </div>
@@ -126,18 +126,18 @@ function SubScoreBar({ label, score, delay = 0 }: { label: string; score: number
       <div className="w-full h-2 bg-muted rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-1000 ease-out"
-          style={{ width: `${width}%`, backgroundColor: config.color }}
-        />
+          style={{ width: `${width}%`, backgroundColor: config.color }} />
+        
       </div>
-    </div>
-  );
+    </div>);
+
 }
 
 // ---------------------------------------------------------------------------
 // Tips
 // ---------------------------------------------------------------------------
 
-function TipsSection({ scores }: { scores: DiagnoseScores }) {
+function TipsSection({ scores }: {scores: DiagnoseScores;}) {
   const dimensions: Exclude<QuestionCategory, "snapshot">[] = ["attractiveness", "readiness", "owner"];
 
   return (
@@ -162,20 +162,20 @@ function TipsSection({ scores }: { scores: DiagnoseScores }) {
               <span className="text-xs font-semibold text-muted-foreground ml-auto tabular-nums">{score}%</span>
             </div>
             <ul className="space-y-4">
-              {tips.map((tip, i) => (
-                <li key={i} className="flex gap-3.5 text-sm text-muted-foreground leading-relaxed">
+              {tips.map((tip, i) =>
+              <li key={i} className="flex gap-3.5 text-sm text-muted-foreground leading-relaxed">
                   <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center mt-0.5">
                     {i + 1}
                   </span>
                   <span>{tip}</span>
                 </li>
-              ))}
+              )}
             </ul>
-          </div>
-        );
+          </div>);
+
       })}
-    </div>
-  );
+    </div>);
+
 }
 
 // ---------------------------------------------------------------------------
@@ -230,35 +230,35 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
         </div>
 
         {/* Lead gate or tips */}
-        {!showTips ? (
-          <QuickscanLeadForm
-            scores={scores}
-            snapshot={snapshot}
-            answers={answers}
-            onSuccess={() => setShowTips(true)}
-          />
-        ) : (
-          <TipsSection scores={scores} />
-        )}
+        {!showTips ?
+        <QuickscanLeadForm
+          scores={scores}
+          snapshot={snapshot}
+          answers={answers}
+          onSuccess={() => setShowTips(true)} /> :
 
-        {!showTips && (
-          <p className="text-xs text-muted-foreground text-center mt-10">
-            U kunt uw persoonlijk rapport later alsnog opvragen via propasso.nl/quickscan
-          </p>
-        )}
+
+        <TipsSection scores={scores} />
+        }
+
+        {!showTips
+
+
+
+        }
 
         {/* CTA section */}
         <div className="mt-16 pt-14 border-t border-border/15">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-foreground tracking-tight">
-              {showTips
-                ? "Wilt u deze inzichten omzetten in actie?"
-                : "Benieuwd wat deze score betekent voor uw situatie?"}
+              {showTips ?
+              "Wilt u deze inzichten omzetten in actie?" :
+              "Benieuwd wat deze score betekent voor uw situatie?"}
             </h3>
             <p className="text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
-              {showTips
-                ? "In een vrijblijvend strategisch gesprek bespreken we uw score en de concrete stappen om uw bedrijf verkoopklaar te maken."
-                : "Elke situatie is anders. In een kort gesprek vertalen we uw resultaten naar concrete vervolgstappen."}
+              {showTips ?
+              "In een vrijblijvend strategisch gesprek bespreken we uw score en de concrete stappen om uw bedrijf verkoopklaar te maken." :
+              "Elke situatie is anders. In een kort gesprek vertalen we uw resultaten naar concrete vervolgstappen."}
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -278,8 +278,8 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 };
 
 export default QuickscanResults;
