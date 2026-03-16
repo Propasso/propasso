@@ -255,6 +255,8 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         </section>
       )}
 
+      <QuickscanCallout />
+
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"
         primaryLabel={ctaLabel}
