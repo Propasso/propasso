@@ -325,11 +325,11 @@ export function getLowestDimensionInsight(scores: DiagnoseScores): string {
 
   const insights: Record<string, string> = {
     attractiveness:
-      'De aantrekkelijkheid van uw bedrijf voor een koper verdient aandacht. Denk aan het verminderen van uw persoonlijke rol, het spreiden van klanten en het borgen van processen.',
+      'De aantrekkelijkheid van uw bedrijf voor kopers verdient aandacht. Focus op voorspelbaarheid van omzet, klantspreiding, terugkerende inkomsten en het verminderen van uw persoonlijke rol.',
     readiness:
-      'Uw bedrijf is nog niet optimaal voorbereid op een transactie. Focus op financiële transparantie, contractbeheer en een helder strategisch plan.',
+      'Uw bedrijf is nog niet optimaal voorbereid op een transactie. Focus op financiële transparantie, contractbeheer, procesvastlegging en een helder strategisch plan.',
     owner:
-      'Uw persoonlijke voorbereiding verdient aandacht. Een helder plan voor na de verkoop en inzicht in uw financiële behoefte zijn essentieel voor een goede overdracht.',
+      'Uw persoonlijke voorbereiding verdient aandacht. Inzicht in uw financiële behoefte, een persoonlijk plan voor na de verkoop en een duidelijk tijdpad zijn essentieel.',
   };
 
   return insights[lowest.key];
