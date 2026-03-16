@@ -36,17 +36,17 @@ interface DiagnosePayload {
 type ScoreLevel = "orientation" | "foundation" | "good" | "ready";
 
 function getScoreLevel(percentage: number): ScoreLevel {
-  if (percentage <= 33) return "orientation";
-  if (percentage <= 55) return "foundation";
-  if (percentage <= 75) return "good";
+  if (percentage <= 40) return "orientation";
+  if (percentage <= 65) return "foundation";
+  if (percentage <= 82) return "good";
   return "ready";
 }
 
 const scoreLevelLabels: Record<ScoreLevel, string> = {
   orientation: "Oriëntatiefase",
-  foundation: "Fundamenten aanwezig",
-  good: "Goed op weg",
-  ready: "Transactiegereed",
+  foundation: "Verbeterfase",
+  good: "Sterke basis",
+  ready: "Verkoopklaar",
 };
 
 const scoreLevelColors: Record<ScoreLevel, string> = {
