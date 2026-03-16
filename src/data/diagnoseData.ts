@@ -177,13 +177,13 @@ const ownerQuestions: DiagnoseQuestion[] = [
   {
     id: 16,
     category: 'owner',
-    question: 'In hoeverre heeft u inzicht in het bedrag dat u nodig heeft om financieel onafhankelijk te zijn na een overdracht?',
+    question: 'In hoeverre weet u hoeveel vermogen u nodig heeft om financieel onafhankelijk te zijn na verkoop?',
     options: likertOptions,
   },
   {
     id: 17,
     category: 'owner',
-    question: 'In hoeverre heeft u een concreet plan voor uw persoonlijke invulling na de verkoop van uw bedrijf?',
+    question: 'In welke mate heeft u een duidelijk persoonlijk plan voor de periode na verkoop van uw bedrijf?',
     options: likertOptions,
   },
   {
@@ -195,13 +195,13 @@ const ownerQuestions: DiagnoseQuestion[] = [
   {
     id: 19,
     category: 'owner',
-    question: 'In hoeverre heeft u een team van adviseurs (accountant, jurist, M&A-adviseur) dat u begeleidt bij een toekomstige overdracht?',
+    question: 'In hoeverre beschikt u over een (team van) adviseur(s) of specialistische vertrouwenspersonen rondom een toekomstige overdracht?',
     options: likertOptions,
   },
   {
     id: 20,
     category: 'owner',
-    question: 'In hoeverre heeft u een duidelijk tijdpad en plan van aanpak voor het overdrachtsproces?',
+    question: 'Hoe duidelijk is het tijdpad waarbinnen u een overdracht overweegt?',
     options: likertOptions,
   },
 ];
