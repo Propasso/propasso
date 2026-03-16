@@ -93,20 +93,10 @@ function validatePayload(raw: unknown): { valid: true; data: ValidatedPayload } 
   const phone = validateString(obj.phone, 30) ?? "";
   const newsletter = obj.newsletter === true;
 
-  // Validate scores
+  // Validate scores (client sends percentage strings 0–100)
   const scores = obj.scores as Record<string, unknown> | undefined;
   if (!scores || typeof scores !== "object") return { valid: false, error: "Scores ontbreken." };
 
-  const attractScore = validateEnum(scores.business_attractiveness_score, ALLOWED_SCORES);
-  const readyScore = validateEnum(scores.business_readiness_score, ALLOWED_SCORES);
-  const ownerScore = validateEnum(scores.owner_readiness_score, ALLOWED_SCORES);
-
-  if (!attractScore || !readyScore || !ownerScore) {
-    return { valid: false, error: "Ongeldige score waarden. Verwacht 1–6 (als percentages, bijv. '67')." };
-  }
-
-  // Actually scores are percentages like "67", not Likert values. Let me re-validate as numeric percentage strings.
-  // Re-check: the client sends percentage strings. Validate as 0-100 integers.
   const validatePercentage = (val: unknown): string | null => {
     if (typeof val !== "string") return null;
     const num = parseInt(val, 10);
