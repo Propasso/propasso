@@ -15,7 +15,7 @@ const formSchema = z.object({
   name: z.string().trim().min(2, "Vul uw naam in").max(100),
   email: z.string().trim().email("Vul een geldig e-mailadres in").max(255),
   company: z.string().trim().max(100).optional(),
-  phone: z.string().trim().max(20).optional(),
+  phone: z.string().trim().max(20).optional()
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -36,7 +36,7 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { name: "", email: "", company: "", phone: "" },
+    defaultValues: { name: "", email: "", company: "", phone: "" }
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -58,30 +58,30 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
           scores: {
             business_attractiveness_score: scores.attractiveness.toString(),
             business_readiness_score: scores.readiness.toString(),
-            owner_readiness_score: scores.owner.toString(),
+            owner_readiness_score: scores.owner.toString()
           },
           snapshot: {
             revenue_band: snapshot.revenueBand,
             employee_band: snapshot.employeeBand,
             role_type: snapshot.roleType,
             profitability: snapshot.profitability,
-            exit_horizon: snapshot.exitHorizon,
-          },
-        },
+            exit_horizon: snapshot.exitHorizon
+          }
+        }
       });
 
       if (error) throw error;
 
       toast({
         title: "Rapport verzonden",
-        description: `Uw persoonlijk rapport is verstuurd naar ${values.email}.`,
+        description: `Uw persoonlijk rapport is verstuurd naar ${values.email}.`
       });
       onSuccess();
     } catch {
       toast({
         title: "Er ging iets mis",
         description: "Het rapport kon niet worden verzonden. Probeer het opnieuw.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
@@ -89,7 +89,7 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
   };
 
   return (
-    <div className="bg-accent/8 rounded-xl border-2 border-accent/30 p-6 md:p-10">
+    <div className="rounded-xl border-2 border-accent/30 p-6 md:p-10 bg-muted">
       <div className="text-center mb-6">
         <span className="inline-flex items-center gap-2 text-muted-foreground font-medium text-sm uppercase tracking-wider mb-3">
           <FileText className="w-4 h-4 text-primary" />
@@ -99,66 +99,66 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
           Ontvang gratis 2–3 concrete adviezen per onderdeel
         </h3>
         <p className="text-muted-foreground mt-2 max-w-md mx-auto leading-relaxed">
-          Op basis van uw scores stellen wij een persoonlijk rapport samen met praktische verbeterpunten per dimensie —
-          direct in uw inbox.
+          Op basis van uw scores stellen wij een persoonlijk rapport samen met praktische verbeterpunten per dimensie; de Aantrekkelijkheid van uw bedrijf voor een koper en uw Persoonlijke en Bedrijfsmatige Verkoopklaarheid.
+Direct zichtbaar en in uw inbox.
+        
         </p>
       </div>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 mt-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
+            <FormField control={form.control}
+            name="name"
+            render={({ field }) =>
+            <FormItem>
                   <FormLabel>Naam *</FormLabel>
                   <FormControl>
                     <Input placeholder="Uw naam" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-              )}
-            />
+            } />
+            
             <FormField
               control={form.control}
               name="email"
-              render={({ field }) => (
-                <FormItem>
+              render={({ field }) =>
+              <FormItem>
                   <FormLabel>E-mail *</FormLabel>
                   <FormControl>
                     <Input type="email" placeholder="uw@email.nl" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-              )}
-            />
+              } />
+            
             <FormField
               control={form.control}
               name="company"
-              render={({ field }) => (
-                <FormItem>
+              render={({ field }) =>
+              <FormItem>
                   <FormLabel>Bedrijfsnaam</FormLabel>
                   <FormControl>
                     <Input placeholder="Uw bedrijf" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-              )}
-            />
+              } />
+            
             <FormField
               control={form.control}
               name="phone"
-              render={({ field }) => (
-                <FormItem>
+              render={({ field }) =>
+              <FormItem>
                   <FormLabel>Telefoonnummer</FormLabel>
                   <FormControl>
                     <Input type="tel" placeholder="06 1234 5678" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
-              )}
-            />
+              } />
+            
           </div>
 
           <ConsentCheckboxes
@@ -169,23 +169,23 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
             }}
             newsletterChecked={newsletterChecked}
             onNewsletterChange={setNewsletterChecked}
-            privacyError={privacyError}
-          />
+            privacyError={privacyError} />
+          
 
           <Button type="submit" disabled={isSubmitting} className="w-full">
-            {isSubmitting ? (
-              <>
+            {isSubmitting ?
+            <>
                 <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                 Verzenden…
-              </>
-            ) : (
-              "Ontvang uw persoonlijk rapport"
-            )}
+              </> :
+
+            "Ontvang uw persoonlijk rapport"
+            }
           </Button>
         </form>
       </Form>
-    </div>
-  );
+    </div>);
+
 };
 
 export default QuickscanLeadForm;
