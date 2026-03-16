@@ -376,6 +376,14 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Validate field lengths
+    if (name.length > 200 || email.length > 255 || (company && company.length > 200) || (phone && phone.length > 30)) {
+      return new Response(
+        JSON.stringify({ error: "Invoer te lang." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(
@@ -386,6 +394,56 @@ Deno.serve(async (req) => {
         }
       );
     }
+
+    // Validate snapshot fields against allowlists
+    if (!VALID_REVENUE_BANDS.includes(snapshot?.revenue_band) ||
+        !VALID_EMPLOYEE_BANDS.includes(snapshot?.employee_band) ||
+        !VALID_ROLE_TYPES.includes(snapshot?.role_type) ||
+        !VALID_PROFITABILITY.includes(snapshot?.profitability) ||
+        !VALID_EXIT_HORIZONS.includes(snapshot?.exit_horizon)) {
+      return new Response(
+        JSON.stringify({ error: "Ongeldige waarden in bedrijfsprofiel." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Validate score values as integers 0-100
+    const scoreValues = [scores?.business_attractiveness_score, scores?.business_readiness_score, scores?.owner_readiness_score];
+    for (const s of scoreValues) {
+      const n = parseInt(s, 10);
+      if (isNaN(n) || n < 0 || n > 100 || String(n) !== s) {
+        return new Response(
+          JSON.stringify({ error: "Ongeldige scorewaarden." }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
+
+    // Rate limiting
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+    const cutoff = new Date(Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000).toISOString();
+    const { count } = await supabase
+      .from("rate_limit_log")
+      .select("*", { count: "exact", head: true })
+      .eq("function_name", "send-diagnose-results")
+      .eq("identifier", email)
+      .gte("created_at", cutoff);
+
+    if ((count ?? 0) >= RATE_LIMIT_MAX) {
+      return new Response(
+        JSON.stringify({ error: "Te veel verzoeken. Probeer het later opnieuw." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    // Log rate limit entry
+    await supabase.from("rate_limit_log").insert({
+      function_name: "send-diagnose-results",
+      identifier: email,
+    });
 
     const nameParts = name.trim().split(/\s+/);
     const firstName = nameParts[0];
