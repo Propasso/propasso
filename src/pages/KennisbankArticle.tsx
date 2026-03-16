@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
+import QuickscanCallout from "@/components/QuickscanCallout";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
@@ -254,6 +255,8 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
           </div>
         </section>
       )}
+
+      <QuickscanCallout />
 
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"

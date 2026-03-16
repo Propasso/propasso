@@ -5,6 +5,7 @@ import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
 import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
 import MethodologyFramework from "@/components/MethodologyFramework";
 import OutcomesSection from "@/components/werkwijze/OutcomesSection";
+import QuickscanCallout from "@/components/QuickscanCallout";
 import { motion } from "framer-motion";
 import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
@@ -75,7 +76,10 @@ const Werkwijze = () => {
       {/* 6. Wat dit oplevert */}
       <OutcomesSection />
 
-      {/* 7. Strategisch gesprek CTA */}
+      {/* 7. Quickscan callout */}
+      <QuickscanCallout />
+
+      {/* 8. Strategisch gesprek CTA */}
       <PageCTA
         title="Klaar voor een strategisch gesprek?"
         description="Neem vrijblijvend contact op voor een kennismaking en ontdek hoe Propasso uw bedrijf kan versterken."
