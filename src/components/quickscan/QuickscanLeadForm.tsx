@@ -96,11 +96,11 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
           Gratis persoonlijk rapport
         </span>
         <h3 className="text-2xl md:text-[1.65rem] font-bold text-foreground tracking-tight leading-snug">
-          Ontvang 2–3 concrete adviezen per onderdeel
+          Ontvang gratis 2–3 concrete adviezen per onderdeel
         </h3>
         <p className="text-muted-foreground mt-2 max-w-md mx-auto leading-relaxed">
-          Op basis van uw scores stellen wij een persoonlijk rapport samen met
-          praktische verbeterpunten per dimensie — direct in uw inbox.
+          Op basis van uw scores stellen wij een persoonlijk rapport samen met praktische verbeterpunten per dimensie —
+          direct in uw inbox.
         </p>
       </div>
 
