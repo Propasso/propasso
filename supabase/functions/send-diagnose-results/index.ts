@@ -521,6 +521,9 @@ Deno.serve(async (req) => {
     if (logResult.error) {
       console.error("Failed to log email:", logResult.error);
     }
+    if (unsubscribeTokenResult.error) {
+      console.error("Failed to store unsubscribe token:", unsubscribeTokenResult.error);
+    }
 
     // Wait for HubSpot (non-blocking — already started)
     await hubspotPromise;
