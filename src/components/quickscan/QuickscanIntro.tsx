@@ -28,7 +28,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
           Exit Readiness
           <span className="block text-muted-foreground">Quickscan</span>
         </h1>
-        <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
+        <p className="text-lg text-muted-foreground mb-12 max-w-xl leading-relaxed">
           Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een toekomstige overdracht. U
           ontvangt direct een score op drie dimensies, plus concrete verbeterpunten.
         </p>
