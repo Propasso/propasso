@@ -197,7 +197,8 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
               Uw resultaat
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3"> Score - <Hoe verkoopklaar en aantrekkelijk is uw onderneming        
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3">
+            Verkoopklaar- en aantrekkelijkheidsscore
           </h2>
           <p className="text-muted-foreground max-w-md mx-auto leading-relaxed">
             Op basis van uw antwoorden hebben wij de volgende score berekend.
