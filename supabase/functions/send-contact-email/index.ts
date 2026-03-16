@@ -46,6 +46,40 @@ serve(async (req) => {
       );
     }
 
+    // Validate field lengths
+    if (name.length > 200 || email.length > 255 || (phone && phone.length > 30) || message.length > 5000) {
+      return new Response(
+        JSON.stringify({ error: 'Invoer te lang.' }),
+        { status: 400, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Rate limiting
+    const supabase = createClient(
+      Deno.env.get("SUPABASE_URL")!,
+      Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
+    );
+
+    const cutoff = new Date(Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000).toISOString();
+    const { count } = await supabase
+      .from("rate_limit_log")
+      .select("*", { count: "exact", head: true })
+      .eq("function_name", "send-contact-email")
+      .eq("identifier", email)
+      .gte("created_at", cutoff);
+
+    if ((count ?? 0) >= RATE_LIMIT_MAX) {
+      return new Response(
+        JSON.stringify({ error: "Te veel verzoeken. Probeer het later opnieuw." }),
+        { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    await supabase.from("rate_limit_log").insert({
+      function_name: "send-contact-email",
+      identifier: email,
+    });
+
     // Split name into first and last
     const nameParts = name.trim().split(/\s+/);
     const firstName = nameParts[0];
