@@ -345,41 +345,41 @@ export const tipsByDimension: Record<
 > = {
   attractiveness: {
     orientation: [
-      'Breng in kaart welk percentage van uw omzet afhankelijk is van uw top-3 klanten. Streef naar maximaal 15% per klant.',
-      'Documenteer uw persoonlijke taken en begin met het delegeren van klantrelaties aan uw team.',
-      'Onderzoek mogelijkheden voor terugkerende inkomsten, zoals servicecontracten of abonnementsmodellen.',
+      'Breng in kaart hoe voorspelbaar uw omzet en winst zijn. Identificeer de grootste schommelingen en hun oorzaken.',
+      'Analyseer uw klantspreiding: welk percentage van de omzet komt van uw top-3 klanten? Streef naar maximaal 15% per klant.',
+      'Onderzoek mogelijkheden voor terugkerende inkomsten, zoals servicecontracten, abonnementen of raamovereenkomsten.',
     ],
     foundation: [
-      'Werk actief aan klantspreiding door nieuwe marktsegmenten te benaderen.',
+      'Werk actief aan omzetstabiliteit door langere contracten en meer voorspelbare inkomstenstromen op te bouwen.',
       'Investeer in een tweede managementlaag die operationele beslissingen zelfstandig kan nemen.',
-      'Versterk uw concurrentiepositie door te investeren in intellectueel eigendom, merk of technologie.',
+      'Versterk de zelfstandigheid van het managementteam door verantwoordelijkheden en beslissingsbevoegdheid formeel te delegeren.',
     ],
     good: [
       'Test uw bedrijfscontinuïteit door periodiek afwezig te zijn en de resultaten te monitoren.',
       'Optimaliseer uw klantcontracten met langere looptijden en automatische verlengingen.',
-      "Formaliseer uw managementteam met duidelijke verantwoordelijkheden en KPI's.",
+      'Professionaliseer de managementrapportages zodat prestaties ook zonder uw toelichting inzichtelijk zijn.',
     ],
     ready: [
       'Laat een externe partij uw bedrijfscontinuïteit valideren om dit richting kopers te onderbouwen.',
-      'Documenteer uw groeistrategie en marktpotentieel als verkoopargument.',
-      'Overweeg een management buy-in of externe CEO om uw onafhankelijkheid verder te versterken.',
+      'Documenteer uw groeistrategie en marktpotentieel als verkoopargument voor potentiële kopers.',
+      'Overweeg een management buy-in of externe CEO om de onafhankelijkheid van het bedrijf verder te versterken.',
     ],
   },
   readiness: {
     orientation: [
       'Laat uw jaarrekeningen van de afgelopen drie jaar door een accountant controleren en normaliseren.',
-      'Maak een inventarisatie van alle lopende contracten, vergunningen en overeenkomsten.',
-      'Begin met het vastleggen van uw belangrijkste bedrijfsprocessen in een operations manual.',
+      'Maak een inventarisatie van alle lopende contracten met klanten, leveranciers en personeel en beoordeel de overdraagbaarheid.',
+      'Begin met het vastleggen van uw belangrijkste bedrijfsprocessen en werkwijzen in een operations manual.',
     ],
     foundation: [
-      "Implementeer maandelijkse managementrapportages met de belangrijkste financiële en operationele KPI's.",
-      'Zorg dat alle contracten op naam van de BV staan, niet op uw persoonlijke naam.',
-      'Stel een strategisch 3-jarenplan op dat u aan een potentiële koper kunt presenteren.',
+      'Implementeer maandelijkse managementrapportages met de belangrijkste financiële en operationele KPI\'s.',
+      'Zorg dat alle contracten op naam van de BV staan en niet afhankelijk zijn van uw persoonlijke betrokkenheid.',
+      'Stel een strategisch plan op voor de komende 3–5 jaar dat u aan een potentiële koper kunt presenteren.',
     ],
     good: [
+      'Bereid een vendor due diligence-rapport voor om het verkoopproces te versnellen en verrassingen te voorkomen.',
+      'Zorg voor een digitale data room met alle relevante documenten gestructureerd beschikbaar.',
       'Laat een fiscalist de holdingstructuur beoordelen op optimale overdrachtsgereedheid.',
-      'Bereid een vendor due diligence-rapport voor om het verkoopproces te versnellen.',
-      'Zorg voor een clean data room met alle relevante documenten digitaal beschikbaar.',
     ],
     ready: [
       'Laat een proef-due diligence uitvoeren om eventuele verrassingen vóór te zijn.',
@@ -390,7 +390,7 @@ export const tipsByDimension: Record<
   owner: {
     orientation: [
       'Maak een persoonlijk financieel plan: hoeveel vermogen heeft u nodig om comfortabel te leven na de verkoop?',
-      'Denk na over wat u na de verkoop wilt doen — ondernemerschap, advieswerk, reizen, of iets anders.',
+      'Denk na over wat u na de verkoop wilt doen: ondernemerschap, advieswerk, reizen, of iets anders.',
       'Bespreek uw overdrachtsplannen met uw partner of familie om verwachtingen af te stemmen.',
     ],
     foundation: [
