@@ -222,7 +222,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
             <div>
               <h3 className="font-bold text-foreground mb-1.5 tracking-tight">Belangrijkste aandachtspunt</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{insight}</p>
-              <p className="italic text-sm text-muted-foreground leading-relaxed mt-4 mb-4">
+              <p className="italic text-sm text-muted-foreground leading-relaxed mt-4 mb-0">
                 Laat uw gegevens achter voor een uitgebreide analyse
               </p>
             </div>
