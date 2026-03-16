@@ -1,5 +1,6 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { useSearchParams } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import QuickscanIntro from "@/components/quickscan/QuickscanIntro";
 import QuickscanQuestionComponent from "@/components/quickscan/QuickscanQuestion";
@@ -14,10 +15,21 @@ import {
 
 type Phase = "intro" | "questions" | "results";
 
+// Debug mock answers to skip straight to results via ?debug=results
+const DEBUG_ANSWERS: Record<number, string> = {
+  1: '€3–10 mln', 2: '25–50', 3: 'Eigenaar-ondernemer', 4: 'Gezonde winst', 5: '3–5 jaar',
+  6: '4', 7: '3', 8: '3', 9: '2', 10: '4',
+  11: '3', 12: '4', 13: '2', 14: '3', 15: '4',
+  16: '2', 17: '3', 18: '2', 19: '3', 20: '4',
+};
+
 const Quickscan = () => {
-  const [phase, setPhase] = useState<Phase>("intro");
+  const [searchParams] = useSearchParams();
+  const isDebugResults = searchParams.get("debug") === "results";
+
+  const [phase, setPhase] = useState<Phase>(isDebugResults ? "results" : "intro");
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [answers, setAnswers] = useState<Record<number, string>>(isDebugResults ? DEBUG_ANSWERS : {});
 
   const handleStart = useCallback(() => {
     setPhase("questions");
