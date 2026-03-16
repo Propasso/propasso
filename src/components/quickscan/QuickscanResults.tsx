@@ -11,7 +11,8 @@ import {
 } from "@/data/diagnoseData";
 import QuickscanLeadForm from "./QuickscanLeadForm";
 import { cn } from "@/lib/utils";
-import { TrendingUp, AlertTriangle, CheckCircle2, Target } from "lucide-react";
+import { TrendingUp, AlertTriangle, CheckCircle2, Target, ChevronRight, MessageSquare, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface QuickscanResultsProps {
   scores: DiagnoseScores;
@@ -229,6 +230,37 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
             U kunt uw persoonlijk rapport later alsnog opvragen via propasso.nl/quickscan
           </p>
         )}
+
+        {/* CTA section */}
+        <div className="mt-16 pt-14 border-t border-border/15">
+          <div className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-foreground tracking-tight">
+              {showTips ? "Wilt u deze inzichten omzetten in actie?" : "Benieuwd wat deze score betekent voor uw situatie?"}
+            </h3>
+            <p className="text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
+              {showTips
+                ? "In een vrijblijvend strategisch gesprek bespreken we uw score en de concrete stappen om uw bedrijf verkoopklaar te maken."
+                : "Elke situatie is anders. In een kort gesprek vertalen we uw resultaten naar concrete vervolgstappen."}
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition"
+            >
+              <MessageSquare className="w-4 h-4" />
+              Plan een vrijblijvend gesprek
+              <ChevronRight className="w-4 h-4" />
+            </Link>
+            <Link
+              to="/werkwijze"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-border/30 px-7 py-4 text-base font-semibold text-foreground hover:border-border/60 transition-colors"
+            >
+              <BookOpen className="w-4 h-4" />
+              Bekijk onze werkwijze
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );
