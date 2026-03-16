@@ -9,43 +9,6 @@ const corsHeaders = {
 const HUBSPOT_PORTAL_ID = "147744482";
 const HUBSPOT_FORM_GUID = "bcfa7a30-7cbb-4658-9dac-4b2f76b38c96";
 
-// ---------------------------------------------------------------------------
-// Rate limiting
-// ---------------------------------------------------------------------------
-const RATE_LIMIT_MAX = 3;
-const RATE_LIMIT_WINDOW_MINUTES = 60;
-
-// ---------------------------------------------------------------------------
-// Input validation allowlists
-// ---------------------------------------------------------------------------
-const VALID_REVENUE_BANDS = [
-  "< €1M", "€1M – €3M", "€3M – €5M", "€5M – €10M", "€10M – €25M", "> €25M",
-];
-const VALID_EMPLOYEE_BANDS = [
-  "1-5", "5-15", "15-30", "30-50", "50-100", "100+",
-];
-const VALID_ROLE_TYPES = [
-  "DGA / Eigenaar", "Mede-eigenaar", "Directeur (niet-eigenaar)", "CFO / Financieel directeur", "Anders",
-];
-const VALID_PROFITABILITY = [
-  "Verlieslatend", "Break-even", "Licht winstgevend (< 10%)", "Winstgevend (10-20%)", "Zeer winstgevend (> 20%)",
-];
-const VALID_EXIT_HORIZONS = [
-  "< 1 jaar", "1-2 jaar", "2-5 jaar", "5-10 jaar", "> 10 jaar", "Weet ik nog niet",
-];
-
-// ---------------------------------------------------------------------------
-// HTML escaping
-// ---------------------------------------------------------------------------
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
 interface DiagnosePayload {
   name: string;
   email: string;
@@ -239,7 +202,7 @@ function buildEmailHtml(
             </td>
             <td align="right" valign="top">
               <img
-                src="https://propasso.lovable.app/propasso-logo-grey-yellow.png"
+                src="https://propasso.nl/propasso-logo-grey-yellow.png"
                 alt="Propasso"
                 width="120"
                 style="display:block;width:120px;height:auto;border:0;outline:none;text-decoration:none;"
@@ -382,20 +345,6 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Validate field lengths
-    if (typeof name !== "string" || name.length > 100) {
-      return new Response(JSON.stringify({ error: "Naam is te lang (max 100 tekens)." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-    if (typeof email !== "string" || email.length > 255) {
-      return new Response(JSON.stringify({ error: "E-mail is te lang (max 255 tekens)." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-    if (company && (typeof company !== "string" || company.length > 200)) {
-      return new Response(JSON.stringify({ error: "Bedrijfsnaam is te lang (max 200 tekens)." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-    if (phone && (typeof phone !== "string" || phone.length > 20)) {
-      return new Response(JSON.stringify({ error: "Telefoonnummer is te lang (max 20 tekens)." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(JSON.stringify({ error: "Ongeldig e-mailadres." }), {
@@ -404,61 +353,8 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Validate snapshot fields against allowlists
-    if (!VALID_REVENUE_BANDS.includes(snapshot?.revenue_band)) {
-      return new Response(JSON.stringify({ error: "Ongeldige omzetklasse." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-    if (!VALID_EMPLOYEE_BANDS.includes(snapshot?.employee_band)) {
-      return new Response(JSON.stringify({ error: "Ongeldig aantal medewerkers." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-    if (!VALID_ROLE_TYPES.includes(snapshot?.role_type)) {
-      return new Response(JSON.stringify({ error: "Ongeldig roltype." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-    if (!VALID_PROFITABILITY.includes(snapshot?.profitability)) {
-      return new Response(JSON.stringify({ error: "Ongeldige winstgevendheid." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-    if (!VALID_EXIT_HORIZONS.includes(snapshot?.exit_horizon)) {
-      return new Response(JSON.stringify({ error: "Ongeldige overdrachtshorizon." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-    }
-
-    // Validate score values as integers 0-100
-    const scoreFields = [scores?.business_attractiveness_score, scores?.business_readiness_score, scores?.owner_readiness_score];
-    for (const s of scoreFields) {
-      const n = parseInt(s, 10);
-      if (isNaN(n) || n < 0 || n > 100 || String(n) !== String(s)) {
-        return new Response(JSON.stringify({ error: "Ongeldige scorewaarde (0-100 verwacht)." }), { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } });
-      }
-    }
-
-    // -----------------------------------------------------------------------
-    // Rate limiting
-    // -----------------------------------------------------------------------
-    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
-    const supabase = createClient(supabaseUrl, supabaseServiceKey);
-
-    const windowStart = new Date(Date.now() - RATE_LIMIT_WINDOW_MINUTES * 60 * 1000).toISOString();
-    const { count: recentCount } = await supabase
-      .from("rate_limit_log")
-      .select("*", { count: "exact", head: true })
-      .eq("function_name", "send-diagnose-results")
-      .eq("identifier", email)
-      .gte("created_at", windowStart);
-
-    if ((recentCount ?? 0) >= RATE_LIMIT_MAX) {
-      return new Response(JSON.stringify({ error: "Te veel verzoeken. Probeer het later opnieuw." }), {
-        status: 429,
-        headers: { ...corsHeaders, "Content-Type": "application/json" },
-      });
-    }
-
-    await supabase.from("rate_limit_log").insert({
-      function_name: "send-diagnose-results",
-      identifier: email,
-    });
-
     const nameParts = name.trim().split(/\s+/);
-    const firstName = escapeHtml(nameParts[0]);
+    const firstName = nameParts[0];
     const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
 
     // -----------------------------------------------------------------------
@@ -559,24 +455,19 @@ Deno.serve(async (req) => {
     // -----------------------------------------------------------------------
     // 2. Enqueue branded rapport email
     // -----------------------------------------------------------------------
-    const numericScores = {
-      attractiveness: Math.min(100, Math.max(0, parseInt(scores.business_attractiveness_score, 10))),
-      readiness: Math.min(100, Math.max(0, parseInt(scores.business_readiness_score, 10))),
-      owner: Math.min(100, Math.max(0, parseInt(scores.owner_readiness_score, 10))),
-    };
+    const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
+    const supabaseServiceKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+    const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Escape snapshot values for safe HTML embedding
-    const safeSnapshot = {
-      revenue_band: escapeHtml(snapshot.revenue_band),
-      employee_band: escapeHtml(snapshot.employee_band),
-      role_type: escapeHtml(snapshot.role_type),
-      profitability: escapeHtml(snapshot.profitability),
-      exit_horizon: escapeHtml(snapshot.exit_horizon),
+    const numericScores = {
+      attractiveness: parseInt(scores.business_attractiveness_score, 10),
+      readiness: parseInt(scores.business_readiness_score, 10),
+      owner: parseInt(scores.owner_readiness_score, 10),
     };
 
     const messageId = `quickscan-rapport-${crypto.randomUUID()}`;
     const unsubscribeToken = crypto.randomUUID();
-    const html = buildEmailHtml(firstName, numericScores, safeSnapshot);
+    const html = buildEmailHtml(firstName, numericScores, snapshot);
 
     const emailPayload = {
       to: email,
