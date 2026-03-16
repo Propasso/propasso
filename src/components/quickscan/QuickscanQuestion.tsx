@@ -16,6 +16,8 @@ interface QuickscanQuestionProps {
   isLast: boolean;
 }
 
+const likertLabels = ['Helemaal niet', 'Nauwelijks', 'Beperkt', 'Redelijk', 'Grotendeels', 'Volledig'];
+
 const QuickscanQuestionComponent = ({
   question,
   currentIndex,
@@ -36,7 +38,6 @@ const QuickscanQuestionComponent = ({
         ? 'Verkoopklaarheid van het Bedrijf'
         : 'Verkoopklaarheid van de Ondernemer';
 
-  // Auto-advance for snapshot questions
   const handleSelect = useCallback((value: string) => {
     onSelect(value);
     if (isSnapshot) {
@@ -47,24 +48,15 @@ const QuickscanQuestionComponent = ({
     }
   }, [onSelect, onNext, isSnapshot]);
 
-  // Keyboard navigation: 1-6 for Likert, arrow keys
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === 'ArrowRight' || e.key === 'Enter') {
-        if (selectedValue) {
-          setDirection(1);
-          onNext();
-        }
+        if (selectedValue) { setDirection(1); onNext(); }
       } else if (e.key === 'ArrowLeft') {
-        if (canGoBack) {
-          setDirection(-1);
-          onPrev();
-        }
+        if (canGoBack) { setDirection(-1); onPrev(); }
       } else if (!isSnapshot) {
         const num = parseInt(e.key);
-        if (num >= 1 && num <= 6) {
-          onSelect(num.toString());
-        }
+        if (num >= 1 && num <= 6) onSelect(num.toString());
       }
     };
     window.addEventListener('keydown', handleKey);
@@ -92,40 +84,83 @@ const QuickscanQuestionComponent = ({
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="w-full max-w-2xl mx-auto"
       >
-        <p className="text-xs uppercase tracking-widest text-primary font-semibold mb-2">
-          {sectionLabel}
-        </p>
-        <h2 className="font-serif text-2xl md:text-3xl text-foreground mb-8 leading-snug">
+        {/* Section label */}
+        <div className="flex items-center gap-2 mb-4">
+          <span className="inline-block w-2 h-2 rounded-full bg-accent" />
+          <span className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground">
+            {sectionLabel}
+          </span>
+        </div>
+
+        {/* Question */}
+        <h2 className="text-xl md:text-2xl font-bold text-foreground mb-10 leading-snug tracking-tight">
           {question.question}
         </h2>
 
-        <div className={cn(
-          "grid gap-3 mb-10",
-          isSnapshot ? "grid-cols-1 sm:grid-cols-2" : "grid-cols-2 sm:grid-cols-3"
-        )}>
-          {question.options.map((option, idx) => {
-            const val = option.score?.toString() || option.value;
-            const isSelected = selectedValue === val;
-            return (
-              <button
-                key={option.label}
-                onClick={() => handleSelect(val)}
-                className={cn(
-                  "rounded-lg border-2 px-4 py-4 md:py-3 text-left transition-all duration-200 text-sm md:text-sm font-medium min-h-[48px] touch-manipulation",
-                  isSelected
-                    ? "border-primary bg-primary/5 text-foreground shadow-sm scale-[1.02]"
-                    : "border-border/30 bg-card text-muted-foreground hover:border-primary/40 hover:bg-card/80 active:scale-[0.98]"
-                )}
-              >
-                {!isSnapshot && (
-                  <span className="text-xs text-muted-foreground/50 mr-1.5">{idx + 1}</span>
-                )}
-                {option.label}
-              </button>
-            );
-          })}
-        </div>
+        {/* Likert scale — segmented horizontal control */}
+        {!isSnapshot && (
+          <div className="mb-10">
+            {/* Segmented bar */}
+            <div className="flex rounded-xl overflow-hidden border border-border/30 bg-card">
+              {question.options.map((option, idx) => {
+                const val = option.score?.toString() || option.value;
+                const isSelected = selectedValue === val;
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => handleSelect(val)}
+                    className={cn(
+                      "flex-1 relative py-4 md:py-5 transition-all duration-200 text-center min-h-[56px] touch-manipulation",
+                      "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset",
+                      idx > 0 && "border-l border-border/20",
+                      isSelected
+                        ? "bg-primary text-primary-foreground shadow-inner"
+                        : "hover:bg-muted/60 text-muted-foreground"
+                    )}
+                  >
+                    <span className={cn(
+                      "block text-lg md:text-xl font-bold transition-transform duration-200",
+                      isSelected && "scale-110"
+                    )}>
+                      {idx + 1}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+            {/* Labels below */}
+            <div className="flex justify-between mt-2.5 px-1">
+              <span className="text-xs text-muted-foreground">{likertLabels[0]}</span>
+              <span className="text-xs text-muted-foreground">{likertLabels[5]}</span>
+            </div>
+          </div>
+        )}
 
+        {/* Snapshot options — clean pill buttons */}
+        {isSnapshot && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+            {question.options.map((option) => {
+              const val = option.score?.toString() || option.value;
+              const isSelected = selectedValue === val;
+              return (
+                <button
+                  key={option.label}
+                  onClick={() => handleSelect(val)}
+                  className={cn(
+                    "rounded-lg border-2 px-5 py-4 text-left transition-all duration-200 text-sm font-medium min-h-[52px] touch-manipulation",
+                    isSelected
+                      ? "border-primary bg-primary/5 text-foreground shadow-sm"
+                      : "border-border/20 bg-card text-muted-foreground hover:border-primary/30 hover:bg-card/80 active:scale-[0.98]"
+                  )}
+                >
+                  {option.label}
+                </button>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Navigation */}
         <div className="flex justify-between items-center">
           <Button
             variant="ghost"
