@@ -3,14 +3,15 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /**
- * Quickscan callout — bottom-right anchored card on desktop,
- * slim bottom bar on mobile. Sits between sections in the page flow.
+ * Compact Quickscan callout — right-anchored in hero area.
+ * Desktop: dark card flush to right with hover slide.
+ * Mobile: compact bar.
  */
 const QuickscanSideCallout = () => {
   return (
     <>
-      {/* ── Desktop: right-anchored card ── */}
-      <div className="hidden md:flex justify-end -mt-6 mb-0 relative z-10">
+      {/* ── Desktop ── */}
+      <div className="hidden md:flex justify-end -mr-[calc((100vw-100%)/2)]">
         <div
           className="w-[280px] lg:w-[300px] rounded-l-xl
             bg-primary text-primary-foreground
@@ -48,8 +49,8 @@ const QuickscanSideCallout = () => {
         </div>
       </div>
 
-      {/* ── Mobile: compact bottom bar ── */}
-      <div className="md:hidden mx-4 -mt-4 mb-2 relative z-10">
+      {/* ── Mobile ── */}
+      <div className="md:hidden">
         <Link
           to="/quickscan"
           className="flex items-center justify-between gap-3
