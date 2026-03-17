@@ -5,7 +5,7 @@ import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
 import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
 import MethodologyFramework from "@/components/MethodologyFramework";
 import OutcomesSection from "@/components/werkwijze/OutcomesSection";
-import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
+import QuickscanBanner from "@/components/QuickscanBanner";
 import { motion } from "framer-motion";
 import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
