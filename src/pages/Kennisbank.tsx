@@ -220,6 +220,8 @@ const Kennisbank = () => {
         </div>
       </section>
 
+      <QuickscanSideCallout />
+
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"
         primaryLabel="Neem contact op"
