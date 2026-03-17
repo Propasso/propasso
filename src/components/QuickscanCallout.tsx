@@ -2,7 +2,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-const QuickscanSideCallout = () => {
+const QuickscanCallout = () => {
   return (
     <div className="relative z-10 -mt-8 mb-4 pointer-events-none">
       <div className="section-container flex justify-end">
@@ -79,4 +79,4 @@ const QuickscanSideCallout = () => {
   );
 };
 
-export default QuickscanSideCallout;
+export default QuickscanCallout;
