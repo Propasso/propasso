@@ -68,6 +68,13 @@ const Werkwijze = () => {
       {/* 2. De realiteit van het MKB */}
       <MKBRealitySection />
 
+      <div className="section-container">
+        <QuickscanCalloutBlock
+          contextLine="Benieuwd hoe jouw bedrijf scoort op verkoopklaarheid?"
+          withBackground
+        />
+      </div>
+
       {/* 3. Kernprincipe: drie verhalen */}
       <ThreeStoriesSection />
 
