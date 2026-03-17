@@ -61,6 +61,15 @@ const Werkwijze = () => {
             samenbrengt. Van analyse tot uitvoering, zodat het bedrijf
             sterker, onafhankelijker en overdraagbaar wordt.
           </motion.p>
+
+          {/* Quickscan callout — overlaps next section */}
+          <motion.div
+            {...fadeInUp}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="mt-10 mb-[-2rem] md:mb-[-3rem] relative z-20"
+          >
+            <QuickscanSideCallout />
+          </motion.div>
         </div>
       </section>
 
