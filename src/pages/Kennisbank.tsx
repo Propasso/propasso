@@ -153,8 +153,6 @@ const Kennisbank = () => {
         </div>
       </section>
 
-      <QuickscanSideCallout />
-
       {/* ═══════════ RECENT ARTICLES ═══════════ */}
       <section className="py-20 md:py-28 section-alt-bg">
         <div className="section-container">
