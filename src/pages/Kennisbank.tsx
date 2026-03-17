@@ -6,6 +6,7 @@ import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
+import QuickscanSideCallout from "@/components/QuickscanSideCallout";
 import { fetchAllPosts, fetchAllCategories } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import type { SanityPost } from "@/types/sanity";
@@ -151,6 +152,8 @@ const Kennisbank = () => {
           ) : null}
         </div>
       </section>
+
+      <QuickscanSideCallout />
 
       {/* ═══════════ RECENT ARTICLES ═══════════ */}
       <section className="py-20 md:py-28 section-alt-bg">
