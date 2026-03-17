@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import QuickscanBanner from "@/components/QuickscanBanner";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import SaleReadySection from "@/components/SaleReadySection";
