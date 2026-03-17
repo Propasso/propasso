@@ -37,7 +37,7 @@ const QuickscanSideCallout = () => {
                 shadow-sm hover:shadow-md transition-all duration-300"
             >
               <Link to="/quickscan">
-                Start
+                Ontdek jouw score
                 <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
             </Button>
