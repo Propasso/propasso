@@ -21,13 +21,13 @@ const QuickscanSideCallout = () => {
           <div className="flex items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary/60 mb-1.5">
-                Quickscan
+                Gratis diagnostisch instrument
               </p>
               <p className="text-[15px] font-bold leading-snug text-foreground">
-                Hoe verkoopklaar is uw bedrijf?
+                Hoe verkoopklaar is uw bedrijf vandaag?
               </p>
               <p className="mt-1 text-[12px] text-muted-foreground leading-relaxed">
-                In 4 minuten inzicht in waarde, overdraagbaarheid en verbeterpunten.
+                Doe de Quickscan en ontvang in enkele minuten inzicht in de aantrekkelijkheid, verkoopklaarheid en afhankelijkheid van uw bedrijf.
               </p>
             </div>
 
@@ -53,10 +53,10 @@ const QuickscanSideCallout = () => {
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="text-[13px] font-bold text-foreground leading-snug">
-                Hoe verkoopklaar is uw bedrijf?
+                Hoe verkoopklaar is uw bedrijf vandaag?
               </p>
               <p className="mt-0.5 text-[11px] text-muted-foreground">
-                Gratis quickscan — 4 minuten
+                Gratis diagnostisch instrument — enkele minuten
               </p>
             </div>
             <Button
