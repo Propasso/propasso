@@ -62,19 +62,18 @@ const Werkwijze = () => {
             sterker, onafhankelijker en overdraagbaar wordt.
           </motion.p>
 
-          {/* Quickscan callout — overlaps next section */}
-          <motion.div
-            {...fadeInUp}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-10 mb-[-2rem] md:mb-[-3rem] relative z-20"
-          >
-            <QuickscanSideCallout />
-          </motion.div>
         </div>
       </section>
 
       {/* 2. De realiteit van het MKB */}
       <MKBRealitySection />
+
+      {/* Quickscan callout — after reality check, before methodology */}
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
 
       {/* 3. Kernprincipe: drie verhalen */}
       <ThreeStoriesSection />

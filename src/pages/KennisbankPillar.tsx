@@ -259,6 +259,13 @@ const KennisbankPillar = () => {
         </div>
       </section>
 
+      {/* Quickscan callout — after articles, before extended intro */}
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
+
       {/* ═══════════ EXTENDED INTRO (SEO) ═══════════ */}
       {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
         <section className="py-16 md:py-20 section-alt-bg">
@@ -319,11 +326,6 @@ const KennisbankPillar = () => {
         </section>
       )}
 
-      <div className="py-12 md:py-16">
-        <div className="section-container">
-          <QuickscanSideCallout />
-        </div>
-      </div>
 
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"
