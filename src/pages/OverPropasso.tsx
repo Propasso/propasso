@@ -150,6 +150,13 @@ const OverPropasso = () => {
         </div>
       </section>
 
+      {/* Quickscan callout — after values, before personal story */}
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
+
       {/* ─── 3. VERHAAL (compact) + foto ─── */}
       <section className="py-20 md:py-28">
         <div className="section-container">

@@ -428,6 +428,13 @@ const VeelgesteldeVragen = () => {
         </div>
       </section>
 
+      {/* Quickscan callout — before final CTA */}
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
+
       <PageCTA />
     </PageLayout>
   );
