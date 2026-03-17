@@ -25,7 +25,6 @@ const QuickscanSideCallout = () => {
           <p className="relative text-[10px] font-semibold uppercase tracking-[0.2em] text-accent/70 mb-4">
             Weten waar jij staat?
           </p>
-
           <h3 className="relative text-[17px] font-bold leading-snug tracking-tight">xxx</h3>
 
           <p className="relative mt-2 text-[13px] text-background/50 leading-relaxed">
