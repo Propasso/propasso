@@ -50,8 +50,8 @@ const QuickscanSideCallout = () => {
         <div className="relative rounded-lg overflow-hidden bg-card border-l-[3px] border-primary px-4 py-3.5 shadow-sm">
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
-              <p className="text-[13px] font-bold text-foreground leading-snug">Hoe verkoopklaar is jouw bedrijf?</p>
-              <p className="mt-0.5 text-[11px] text-muted-foreground">Gratis quickscan — 4 minuten</p>
+              <p className="text-[13px] font-bold text-foreground leading-snug">Hoe aantrekkelijk is jouw bedrijf voor kopers?</p>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">Gratis quickscan, 4 minuten</p>
             </div>
             <Button
               asChild
