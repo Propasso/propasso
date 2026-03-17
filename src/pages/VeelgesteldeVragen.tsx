@@ -430,7 +430,7 @@ const VeelgesteldeVragen = () => {
             ))}
           </div>
 
-          <QuickscanCalloutBlock contextLine="Liever direct inzicht in jouw situatie?" />
+          
         </div>
       </section>
 

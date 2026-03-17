@@ -148,12 +148,10 @@ const OverPropasso = () => {
             ))}
           </div>
 
-          <QuickscanCalloutBlock
-            contextLine="Ontdek waar jouw bedrijf staat"
-            withBackground
-          />
         </div>
       </section>
+
+      <QuickscanBanner contextLine="Ontdek waar jouw bedrijf staat" />
 
       {/* ─── 3. VERHAAL (compact) + foto ─── */}
       <section className="py-20 md:py-28">
