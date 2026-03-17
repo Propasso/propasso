@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import QuickscanSideCallout from "@/components/QuickscanSideCallout";
+import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
 import { canonicalizeCategorySlug, fetchCategoryBySlug, fetchPostsByCategory, fetchAllCategories } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
@@ -256,15 +256,10 @@ const KennisbankPillar = () => {
               <p className="text-muted-foreground">Binnenkort verschijnen hier artikelen over dit thema.</p>
             </div>
           )}
+
+          <QuickscanCalloutBlock contextLine="Hoe scoort jouw bedrijf op dit thema?" />
         </div>
       </section>
-
-      {/* Quickscan callout — after articles, before extended intro */}
-      <div className="py-12 md:py-16">
-        <div className="section-container">
-          <QuickscanSideCallout />
-        </div>
-      </div>
 
       {/* ═══════════ EXTENDED INTRO (SEO) ═══════════ */}
       {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
