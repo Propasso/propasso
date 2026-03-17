@@ -23,9 +23,9 @@ const QuickscanSideCallout = () => {
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary/60 mb-1.5">
                 Gratis quickscan
               </p>
-              <p className="text-[15px] font-bold leading-snug text-foreground">Hoe verkoopklaar ben jij?</p>
+              <p className="text-[15px] font-bold leading-snug text-foreground">Hoe aantrekkelijk is jouw bedrijf voor kopers?</p>
               <p className="mt-1 text-[12px] text-muted-foreground leading-relaxed">
-                In 4 minuten inzicht in de aantrekkelijkheid, verkoopklaarheid en zelfstandigheid van je bedrijf.
+                Ontdek in 4 min jouw score op 3 dimensies
               </p>
             </div>
 
