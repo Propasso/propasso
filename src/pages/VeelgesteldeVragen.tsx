@@ -232,7 +232,7 @@ Een verkooptraject is de commerciële en juridische uitvoering: waardering, info
 Exit Planning leidt dus tot Exit Readiness en is het fundament; het verkooptraject is het proces dat leidt tot de daadwerkelijke deal.`,
       },
       {
-        question: 'Wat betekent "bedrijf verkoopklaar maken" concreet, en wat ziet een koper als \'must have\'?',
+        question: "Wat betekent \"bedrijf verkoopklaar maken\" concreet, en wat ziet een koper als 'must have'?",
         answer: `Bedrijf verkoopklaar maken betekent je bedrijf voorbereiden op een verkoop, met als doel dat een koper het bedrijf kan overnemen zonder dat de resultaten onder de overgang van eigenaar leiden.
 
 Stabiliteit, voorspelbaarheid en beheersbaarheid zijn samen met een duidelijk en overtuigend strategisch plan essentieel.`,
@@ -337,7 +337,10 @@ const VeelgesteldeVragen = () => {
     <PageLayout>
       <Helmet>
         <title>Veelgestelde vragen over Exit Planning | Propasso</title>
-        <meta name="description" content="Antwoorden op veelgestelde vragen van ondernemers over exit planning, bedrijfswaarde, overdraagbaarheid en bedrijfsoverdracht." />
+        <meta
+          name="description"
+          content="Antwoorden op veelgestelde vragen van ondernemers over exit planning, bedrijfswaarde, overdraagbaarheid en bedrijfsoverdracht."
+        />
         <link rel="canonical" href="https://propasso.nl/veelgestelde-vragen" />
       </Helmet>
       {/* JSON-LD FAQPage */}
@@ -352,13 +355,14 @@ const VeelgesteldeVragen = () => {
                 "@type": "Question",
                 name: faq.question,
                 acceptedAnswer: { "@type": "Answer", text: faq.answer },
-              }))
+              })),
             ),
           }),
         }}
       />
 
       {/* ═══════════ HERO ═══════════ */}
+      <QuickscanCallout />
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         {/* Faded accent circle with illustration */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
@@ -379,8 +383,7 @@ const VeelgesteldeVragen = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="mt-5 text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-balance"
           >
-            Antwoorden op veelgestelde vragen{" "}
-            <span className="text-muted-foreground">over exit planning</span>
+            Antwoorden op veelgestelde vragen <span className="text-muted-foreground">over exit planning</span>
           </motion.h1>
           <motion.p
             {...fadeInUp}
@@ -398,17 +401,11 @@ const VeelgesteldeVragen = () => {
         <div className="section-container max-w-4xl">
           <div className="space-y-16 md:space-y-20">
             {faqSections.map((section, sectionIndex) => (
-              <motion.div
-                key={section.title}
-                {...fadeInUp}
-                transition={{ duration: 0.5, delay: 0.05 * sectionIndex }}
-              >
+              <motion.div key={section.title} {...fadeInUp} transition={{ duration: 0.5, delay: 0.05 * sectionIndex }}>
                 {/* Section header with subtle left accent */}
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-1 h-8 rounded-full bg-primary/20" />
-                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-                    {section.title}
-                  </h2>
+                  <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{section.title}</h2>
                 </div>
 
                 <Accordion type="single" collapsible className="space-y-1">
@@ -433,7 +430,6 @@ const VeelgesteldeVragen = () => {
         </div>
       </section>
 
-      <QuickscanCallout />
       <PageCTA />
     </PageLayout>
   );
