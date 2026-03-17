@@ -94,6 +94,10 @@ const Kennisbank = () => {
           >
             Praktische artikelen over waardecreatie, verkoopklaarheid en de voorbereiding op een succesvolle bedrijfsoverdracht, gestructureerd rondom de zes pijlers van Exit Planning.
           </motion.p>
+
+          <div className="mt-10">
+            <QuickscanSideCallout />
+          </div>
         </div>
       </section>
 
