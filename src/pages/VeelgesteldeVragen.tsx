@@ -362,7 +362,6 @@ const VeelgesteldeVragen = () => {
       />
 
       {/* ═══════════ HERO ═══════════ */}
-      <QuickscanCallout />
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         {/* Faded accent circle with illustration */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
@@ -395,7 +394,7 @@ const VeelgesteldeVragen = () => {
           </motion.p>
         </div>
       </section>
-
+      <QuickscanCallout />
       {/* ═══════════ FAQ SECTIONS ═══════════ */}
       <section className="py-20 md:py-28">
         <div className="section-container max-w-4xl">
