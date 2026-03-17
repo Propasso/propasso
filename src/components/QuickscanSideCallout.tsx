@@ -35,14 +35,13 @@ const QuickscanSideCallout = () => {
             className="absolute right-4 top-1/2 -translate-y-1/2 w-16 h-16 object-contain opacity-[0.08] pointer-events-none select-none"
           />
 
-          <div className="relative z-10 flex items-start justify-between gap-4">
+          <div className="relative z-10 flex flex-col items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary/60 mb-1.5">
                 Gratis quickscan
               </p>
               <p className="text-[15px] font-bold leading-snug text-foreground">
-                Hoe aantrekkelijk is jouw bedrijf voor{" "}
-                <span className="text-primary">kopers</span>?
+                Hoe aantrekkelijk is jouw bedrijf voor <span className="text-primary">kopers</span>?
               </p>
               <p className="mt-1 text-[12px] text-muted-foreground leading-relaxed">
                 Ontdek in 4 min jouw score op 3 dimensies
@@ -80,8 +79,7 @@ const QuickscanSideCallout = () => {
           <div className="relative z-10 flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="text-[13px] font-bold text-foreground leading-snug">
-                Hoe aantrekkelijk is jouw bedrijf voor{" "}
-                <span className="text-primary">kopers</span>?
+                Hoe aantrekkelijk is jouw bedrijf voor <span className="text-primary">kopers</span>?
               </p>
               <p className="mt-0.5 text-[11px] text-muted-foreground">Gratis quickscan, 4 minuten</p>
             </div>
