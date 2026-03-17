@@ -62,11 +62,10 @@ const QuickscanSideCallout = () => {
           <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-accent/10 blur-2xl pointer-events-none" />
 
           <p className="relative text-[9px] font-semibold uppercase tracking-[0.2em] text-accent/70 mb-2">
-            Gratis diagnostisch instrument
+            Hoe verkoopklaar ben jij?
           </p>
-          <p className="relative text-sm font-bold leading-snug">Hoe verkoopklaar is uw bedrijf?</p>
           <p className="relative mt-1.5 text-[12px] text-background/45 leading-relaxed">
-            Ontvang in enkele minuten inzicht in uw verkoopklaarheid.
+            In 4 minuten inzicht in uw verkoopklaarheid, aantrekkelijkheid en zelfstandigheid van je bedrijf.
           </p>
 
           <div className="relative mt-4 flex items-center justify-between">
