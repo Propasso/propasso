@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { ChevronRight, Shield, Briefcase, Users, Eye } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
+import QuickscanBanner from "@/components/QuickscanBanner";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
 import karelKantoor from "@/assets/images/karel-kantoor.jpeg";
@@ -148,12 +148,10 @@ const OverPropasso = () => {
             ))}
           </div>
 
-          <QuickscanCalloutBlock
-            contextLine="Ontdek waar jouw bedrijf staat"
-            withBackground
-          />
         </div>
       </section>
+
+      <QuickscanBanner contextLine="Ontdek waar jouw bedrijf staat" />
 
       {/* ─── 3. VERHAAL (compact) + foto ─── */}
       <section className="py-20 md:py-28">

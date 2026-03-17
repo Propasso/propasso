@@ -5,7 +5,7 @@ import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
 import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
 import MethodologyFramework from "@/components/MethodologyFramework";
 import OutcomesSection from "@/components/werkwijze/OutcomesSection";
-import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
+import QuickscanBanner from "@/components/QuickscanBanner";
 import { motion } from "framer-motion";
 import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
@@ -68,12 +68,7 @@ const Werkwijze = () => {
       {/* 2. De realiteit van het MKB */}
       <MKBRealitySection />
 
-      <div className="section-container">
-        <QuickscanCalloutBlock
-          contextLine="Benieuwd hoe jouw bedrijf scoort op verkoopklaarheid?"
-          withBackground
-        />
-      </div>
+      <QuickscanBanner contextLine="Benieuwd hoe jouw bedrijf scoort op verkoopklaarheid?" />
 
       {/* 3. Kernprincipe: drie verhalen */}
       <ThreeStoriesSection />

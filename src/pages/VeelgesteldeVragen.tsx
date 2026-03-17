@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
+import QuickscanSideCallout from "@/components/QuickscanSideCallout";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import faqClimbersRopes from "@/assets/illustrations/faq-climbers-ropes.png";
 
@@ -392,6 +392,10 @@ const VeelgesteldeVragen = () => {
             Hieronder vind je antwoorden op veelgestelde vragen van ondernemers over exit planning, bedrijfswaarde,
             overdraagbaarheid en bedrijfsoverdracht.
           </motion.p>
+
+          <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.35 }} className="mt-10">
+            <QuickscanSideCallout />
+          </motion.div>
         </div>
       </section>
       {/* ═══════════ FAQ SECTIONS ═══════════ */}
@@ -426,7 +430,7 @@ const VeelgesteldeVragen = () => {
             ))}
           </div>
 
-          <QuickscanCalloutBlock contextLine="Liever direct inzicht in jouw situatie?" />
+          
         </div>
       </section>
 
