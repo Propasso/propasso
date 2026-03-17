@@ -60,7 +60,7 @@ const QuickscanSideCallout = () => {
                 hover:bg-primary/90 px-3.5 h-7 text-[11px] font-semibold shadow-sm"
             >
               <Link to="/quickscan">
-                Start
+                Ontdek jouw score
                 <ArrowRight className="w-3 h-3 ml-1" />
               </Link>
             </Button>
