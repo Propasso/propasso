@@ -23,10 +23,8 @@ const QuickscanSideCallout = () => {
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-accent/20 via-accent/5 to-transparent" />
 
           <p className="relative text-[10px] font-semibold uppercase tracking-[0.2em] text-accent/70 mb-4">
-            Weten waar jij staat?
+            Hoe verkoopklaar ben jij?
           </p>
-          <h3 className="relative text-[17px] font-bold leading-snug tracking-tight">xxx</h3>
-
           <p className="relative mt-2 text-[13px] text-background/50 leading-relaxed">
             Krijg in slechts 4 minuten inzicht in hoe verkoopklaar jij en je bedrijf vandaag zijn.
           </p>
