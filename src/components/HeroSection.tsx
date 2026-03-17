@@ -76,7 +76,7 @@ const HeroSection = () => {
             className="mt-10 flex flex-col sm:flex-row gap-4"
           >
             <Link
-              to="/contact"
+              to="/quickscan"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-teal-medium transition-colors"
             >
               Krijg inzicht in je verkoopklaarheid

@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import QuickscanBanner from "@/components/QuickscanBanner";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
 import SaleReadySection from "@/components/SaleReadySection";
@@ -30,6 +31,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <ProblemSection />
+        <QuickscanBanner contextLine="Herken je dit? Ontdek in 4 minuten hoe jouw bedrijf ervoor staat." />
         <SaleReadySection />
         <PhasesSection />
         <ClientLogos />
