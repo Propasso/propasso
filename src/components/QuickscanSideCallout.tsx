@@ -53,8 +53,6 @@ const QuickscanSideCallout = () => {
               </Link>
             </Button>
           </div>
-
-          <p className="relative mt-3 text-[11px] text-background/30">Praktisch, helder en zonder gedoe.</p>
         </div>
       </div>
 
