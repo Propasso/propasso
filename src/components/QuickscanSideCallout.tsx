@@ -25,15 +25,13 @@ const QuickscanSideCallout = () => {
           <p className="relative text-[10px] font-semibold uppercase tracking-[0.2em] text-accent/70 mb-4">
             Hoe verkoopklaar ben jij?
           </p>
-          <p className="relative mt-2 text-[13px] text-background/50 leading-relaxed">
-            Krijg in slechts 4 minuten inzicht in hoe verkoopklaar jij en je bedrijf vandaag zijn.
-          </p>
+          <p className="relative mt-2 text-[13px] text-background/50 leading-relaxed">In slechts 4 minuten:</p>
 
           {/* Value bullets */}
           <div className="relative mt-4 flex flex-col gap-1.5">
             <span className="flex items-center gap-2 text-[12px] text-background/60">
               <CheckCircle2 className="w-3.5 h-3.5 text-accent/60 shrink-0" />
-              Direct inzicht in de aantrekkelijkheid, verkoopklaarheid en zelfstandigheid van je bedrijf.
+              Inzicht in de aantrekkelijkheid, verkoopklaarheid en zelfstandigheid van je bedrijf.
             </span>
             <span className="flex items-center gap-2 text-[12px] text-background/60">
               <CheckCircle2 className="w-3.5 h-3.5 text-accent/60 shrink-0" />
