@@ -394,11 +394,6 @@ const VeelgesteldeVragen = () => {
           </motion.p>
         </div>
       </section>
-      <div className="py-12 md:py-16">
-        <div className="section-container">
-          <QuickscanSideCallout />
-        </div>
-      </div>
       {/* ═══════════ FAQ SECTIONS ═══════════ */}
       <section className="py-20 md:py-28">
         <div className="section-container max-w-4xl">
