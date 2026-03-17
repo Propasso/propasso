@@ -77,7 +77,11 @@ const Werkwijze = () => {
       <OutcomesSection />
 
       {/* 7. Quickscan callout */}
-      <QuickscanCallout />
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
 
       {/* 8. Strategisch gesprek CTA */}
       <PageCTA

@@ -256,7 +256,11 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         </section>
       )}
 
-      <QuickscanCallout />
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
 
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"
