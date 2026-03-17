@@ -31,6 +31,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <ProblemSection />
+        <QuickscanBanner contextLine="Herken je dit? Ontdek in 4 minuten hoe jouw bedrijf ervoor staat." />
         <SaleReadySection />
         <PhasesSection />
         <ClientLogos />
