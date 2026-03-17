@@ -22,7 +22,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
 
       <div className="section-container relative z-10 py-16 md:py-24">
         {/* Eyebrow — left-aligned with light border */}
-        <p className="eyebrow">Gratis diagnostisch instrument</p>
+        <p className="eyebrow">Gratis quickscan</p>
 
         <div className="text-center mt-8">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-3">

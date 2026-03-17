@@ -66,7 +66,7 @@ const Quickscan = () => {
         <title>Exit Readiness Quickscan | Propasso</title>
         <meta
           name="description"
-          content="Ontdek in 5 minuten hoe goed uw bedrijf en u persoonlijk voorbereid zijn op een toekomstige overdracht. Gratis quickscan met directe resultaten."
+          content="Ontdek in 5 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een toekomstige overdracht. Gratis quickscan met directe resultaten."
         />
       </Helmet>
 
