@@ -23,14 +23,13 @@ const QuickscanSideCallout = () => {
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-accent/20 via-accent/5 to-transparent" />
 
           <p className="relative text-[10px] font-semibold uppercase tracking-[0.2em] text-accent/70 mb-4">
-            Hoe verkoopklaar zijn jij en je bedrijf vandaag?
+            Weten waar jij staat?
           </p>
 
           <h3 className="relative text-[17px] font-bold leading-snug tracking-tight">xxx</h3>
 
           <p className="relative mt-2 text-[13px] text-background/50 leading-relaxed">
-            De Quickscan van Propasso geeft in slechts 4 minuten inzicht de aantrekkelijkheid, verkoopklaarheid en
-            zelfstandigheid van uw bedrijf. Plus gerichte aandachtspunten op basis van uw situatie.
+            Krijg in slechts 4 minuten inzicht in hoe verkoopklaar jij en je bedrijf vandaag zijn.
           </p>
 
           {/* Value bullets */}
@@ -41,7 +40,7 @@ const QuickscanSideCallout = () => {
             </span>
             <span className="flex items-center gap-2 text-[12px] text-background/60">
               <CheckCircle2 className="w-3.5 h-3.5 text-accent/60 shrink-0" />
-              Uitvoerbare verbeterpunten, afgestemd op de uitkom op basis van uw situatie.
+              Uitvoerbare verbeterpunten, afgestemd op uw situatie.
             </span>
           </div>
 
