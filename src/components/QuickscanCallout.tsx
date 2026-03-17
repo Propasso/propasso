@@ -79,4 +79,4 @@ const QuickscanSideCallout = () => {
   );
 };
 
-export default QuickscanCallout;
+export default QuickscanSideCallout;
