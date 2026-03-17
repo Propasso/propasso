@@ -3,45 +3,44 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 /**
- * Tear-off style Quickscan callout that appears fixed to the right edge.
- * Expands slightly on hover. Dark bg with accent highlights.
+ * Tear-off style Quickscan callout fixed to the right edge of the viewport.
+ * Slides left slightly on hover. Dark bg with accent highlights.
  */
 const QuickscanSideCallout = () => {
   return (
-    <div className="relative z-20 -mt-8 mb-0 pointer-events-none">
-      <div className="flex justify-end">
-        <div
-          className="pointer-events-auto mr-0 w-[280px] lg:w-[300px]
-            translate-x-3 hover:translate-x-0 hover:w-[310px] lg:hover:w-[320px]
-            transition-all duration-300 ease-out
-            rounded-l-xl
-            bg-primary text-primary-foreground
-            shadow-2xl shadow-primary/20
-            px-6 py-5
-            border-l-4 border-l-accent
-            cursor-default"
-        >
-          <p className="text-[11px] font-bold uppercase tracking-widest text-accent mb-2">
-            Quickscan
-          </p>
-          <h3 className="text-[15px] font-bold leading-snug">
-            Hoe verkoopklaar is uw bedrijf?
-          </h3>
-          <p className="mt-1.5 text-xs text-primary-foreground/70 leading-relaxed">
-            Ontdek het in 5 minuten — gratis en direct inzicht.
-          </p>
-          <div className="mt-4">
-            <Button
-              asChild
-              size="sm"
-              className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold px-5 group"
-            >
-              <Link to="/quickscan">
-                Start quickscan
-                <ArrowRight className="w-3.5 h-3.5 ml-1.5 transition-transform group-hover:translate-x-0.5" />
-              </Link>
-            </Button>
-          </div>
+    <div
+      className="fixed right-0 top-1/2 -translate-y-1/2 z-50
+        translate-x-[12px] hover:translate-x-0
+        transition-transform duration-300 ease-out
+        hidden md:block"
+    >
+      <div
+        className="w-[260px] rounded-l-xl
+          bg-primary text-primary-foreground
+          shadow-2xl shadow-black/20
+          px-5 py-5
+          border-l-[3px] border-l-accent"
+      >
+        <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-accent mb-1.5">
+          Quickscan
+        </p>
+        <h3 className="text-sm font-bold leading-snug">
+          Hoe verkoopklaar is uw bedrijf?
+        </h3>
+        <p className="mt-1 text-[12px] text-primary-foreground/65 leading-relaxed">
+          Ontdek het in 5 minuten — gratis en direct inzicht.
+        </p>
+        <div className="mt-3">
+          <Button
+            asChild
+            size="sm"
+            className="rounded-full bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-xs px-4 h-8 group"
+          >
+            <Link to="/quickscan">
+              Start quickscan
+              <ArrowRight className="w-3 h-3 ml-1.5 transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
