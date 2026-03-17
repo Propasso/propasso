@@ -65,7 +65,7 @@ const QuickscanSideCallout = () => {
             Hoe verkoopklaar ben jij?
           </p>
           <p className="relative mt-1.5 text-[12px] text-background/45 leading-relaxed">
-            In 4 minuten inzicht in uw verkoopklaarheid, aantrekkelijkheid en zelfstandigheid van je bedrijf.
+            In 4 minuten inzicht in de verkoopklaarheid, aantrekkelijkheid en zelfstandigheid van je bedrijf.
           </p>
 
           <div className="relative mt-4 flex items-center justify-between">
