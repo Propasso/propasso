@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import QuickscanSideCallout from "@/components/QuickscanSideCallout";
+import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import faqClimbersRopes from "@/assets/illustrations/faq-climbers-ropes.png";
 
