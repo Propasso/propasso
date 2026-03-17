@@ -60,21 +60,29 @@ const Header = () => {
             <Link
               key={item.href}
               to={item.href}
-              className={`text-sm font-medium transition-colors ${
-                item.href === "/quickscan"
-                  ? "border border-primary/20 rounded-full px-3.5 py-1.5 text-foreground/80 hover:text-foreground hover:border-primary/40"
-                  : "text-foreground/70 hover:text-foreground"
-              }`}
+              className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
             >
               {item.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-teal-medium transition-colors"
-          >
-            Contact
-          </Link>
+          <div className="flex items-center gap-3 ml-1">
+            <Link
+              to="/quickscan"
+              className="relative inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-foreground
+                bg-gradient-to-r from-accent/10 to-primary/[0.06] border border-border/40
+                hover:border-primary/30 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.2)] transition-all duration-300
+                overflow-hidden"
+              style={{ borderLeft: '2px solid hsl(var(--primary))' }}
+            >
+              Quickscan
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:bg-teal-medium transition-colors"
+            >
+              Contact
+            </Link>
+          </div>
         </nav>
 
         <button
