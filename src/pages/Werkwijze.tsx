@@ -68,7 +68,7 @@ const Werkwijze = () => {
       {/* 2. De realiteit van het MKB */}
       <MKBRealitySection />
 
-      <QuickscanBanner contextLine="Benieuwd hoe jouw bedrijf scoort op verkoopklaarheid?" />
+      <QuickscanBanner contextLine="Herken je deze uitdagingen? Ontdek in 4 minuten hoe jouw bedrijf scoort op verkoopklaarheid." />
 
       {/* 3. Kernprincipe: drie verhalen */}
       <ThreeStoriesSection />

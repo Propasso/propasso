@@ -257,7 +257,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
       )}
 
       <div className="section-container">
-        <QuickscanCalloutBlock contextLine="Benieuwd hoe dit bij jouw bedrijf speelt?" />
+        <QuickscanCalloutBlock contextLine="Wil je weten hoe dit bij jouw bedrijf speelt? Ontdek het in 4 minuten." />
       </div>
 
       <PageCTA
