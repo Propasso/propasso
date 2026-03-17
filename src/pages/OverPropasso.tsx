@@ -151,7 +151,7 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      <QuickscanBanner contextLine="Ontdek waar jouw bedrijf staat" />
+      <QuickscanBanner contextLine="Benieuwd hoe jouw bedrijf ervoor staat? Doe de gratis quickscan en ontvang direct inzicht." />
 
       {/* ─── 3. VERHAAL (compact) + foto ─── */}
       <section className="py-20 md:py-28">
