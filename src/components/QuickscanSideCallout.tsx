@@ -23,7 +23,7 @@ const QuickscanSideCallout = () => {
           <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-accent/20 via-accent/5 to-transparent" />
 
           <p className="relative text-[10px] font-semibold uppercase tracking-[0.2em] text-accent/70 mb-4">
-            Gratis diagnostisch instrument
+            Hoe verkoopklaar is jouw bedrijf vandaag, en jij?
           </p>
 
           <h3 className="relative text-[17px] font-bold leading-snug tracking-tight">
@@ -31,8 +31,8 @@ const QuickscanSideCallout = () => {
           </h3>
 
           <p className="relative mt-2 text-[13px] text-background/50 leading-relaxed">
-            Doe de Quickscan en ontvang in enkele minuten inzicht in de
-            aantrekkelijkheid, verkoopklaarheid en afhankelijkheid van uw bedrijf.
+            Doe de Quickscan en ontvang in enkele minuten inzicht in de aantrekkelijkheid, verkoopklaarheid en
+            afhankelijkheid van uw bedrijf.
           </p>
 
           {/* Value bullets */}
@@ -62,9 +62,7 @@ const QuickscanSideCallout = () => {
             </Button>
           </div>
 
-          <p className="relative mt-3 text-[11px] text-background/30">
-            Praktisch, helder en zonder gedoe.
-          </p>
+          <p className="relative mt-3 text-[11px] text-background/30">Praktisch, helder en zonder gedoe.</p>
         </div>
       </div>
 
@@ -76,9 +74,7 @@ const QuickscanSideCallout = () => {
           <p className="relative text-[9px] font-semibold uppercase tracking-[0.2em] text-accent/70 mb-2">
             Gratis diagnostisch instrument
           </p>
-          <p className="relative text-sm font-bold leading-snug">
-            Hoe verkoopklaar is uw bedrijf?
-          </p>
+          <p className="relative text-sm font-bold leading-snug">Hoe verkoopklaar is uw bedrijf?</p>
           <p className="relative mt-1.5 text-[12px] text-background/45 leading-relaxed">
             Ontvang in enkele minuten inzicht in uw verkoopklaarheid.
           </p>
