@@ -392,6 +392,10 @@ const VeelgesteldeVragen = () => {
             Hieronder vind je antwoorden op veelgestelde vragen van ondernemers over exit planning, bedrijfswaarde,
             overdraagbaarheid en bedrijfsoverdracht.
           </motion.p>
+
+          <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.35 }} className="mt-10">
+            <QuickscanSideCallout />
+          </motion.div>
         </div>
       </section>
       {/* ═══════════ FAQ SECTIONS ═══════════ */}
