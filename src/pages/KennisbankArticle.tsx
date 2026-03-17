@@ -6,7 +6,7 @@ import { Helmet } from "react-helmet-async";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import QuickscanCallout from "@/components/QuickscanCallout";
+import QuickscanSideCallout from "@/components/QuickscanSideCallout";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
@@ -256,7 +256,11 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         </section>
       )}
 
-      <QuickscanCallout />
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
 
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"

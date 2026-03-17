@@ -5,7 +5,7 @@ import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
 import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
 import MethodologyFramework from "@/components/MethodologyFramework";
 import OutcomesSection from "@/components/werkwijze/OutcomesSection";
-import QuickscanCallout from "@/components/QuickscanCallout";
+import QuickscanSideCallout from "@/components/QuickscanSideCallout";
 import { motion } from "framer-motion";
 import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
@@ -77,7 +77,11 @@ const Werkwijze = () => {
       <OutcomesSection />
 
       {/* 7. Quickscan callout */}
-      <QuickscanCallout />
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
 
       {/* 8. Strategisch gesprek CTA */}
       <PageCTA

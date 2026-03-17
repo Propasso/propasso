@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import QuickscanCallout from "@/components/QuickscanCallout";
+import QuickscanSideCallout from "@/components/QuickscanSideCallout";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import faqClimbersRopes from "@/assets/illustrations/faq-climbers-ropes.png";
 
@@ -394,7 +394,11 @@ const VeelgesteldeVragen = () => {
           </motion.p>
         </div>
       </section>
-      <QuickscanCallout />
+      <div className="py-12 md:py-16">
+        <div className="section-container">
+          <QuickscanSideCallout />
+        </div>
+      </div>
       {/* ═══════════ FAQ SECTIONS ═══════════ */}
       <section className="py-20 md:py-28">
         <div className="section-container max-w-4xl">
