@@ -68,13 +68,6 @@ const Werkwijze = () => {
       {/* 2. De realiteit van het MKB */}
       <MKBRealitySection />
 
-      {/* Quickscan callout — after reality check, before methodology */}
-      <div className="py-12 md:py-16">
-        <div className="section-container">
-          <QuickscanSideCallout />
-        </div>
-      </div>
-
       {/* 3. Kernprincipe: drie verhalen */}
       <ThreeStoriesSection />
 
