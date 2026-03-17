@@ -53,10 +53,10 @@ const QuickscanSideCallout = () => {
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="text-[13px] font-bold text-foreground leading-snug">
-                Hoe verkoopklaar is uw bedrijf?
+                Hoe verkoopklaar is uw bedrijf vandaag?
               </p>
               <p className="mt-0.5 text-[11px] text-muted-foreground">
-                Gratis quickscan — 4 minuten
+                Gratis diagnostisch instrument — enkele minuten
               </p>
             </div>
             <Button
