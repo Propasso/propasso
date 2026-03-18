@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const gaps = [
   {
-    founder: "De ondernemer ís het bedrijf",
+    founder: "De ondernemer is het bedrijf",
     buyer: "De koper wil een bedrijf dat zelfstandig draait",
   },
   {
