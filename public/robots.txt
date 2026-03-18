@@ -10,5 +10,10 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: *
 Allow: /
+
+Sitemap: https://propasso.nl/sitemap.xml

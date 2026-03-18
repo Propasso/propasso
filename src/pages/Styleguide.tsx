@@ -1,3 +1,5 @@
+import { Helmet } from "react-helmet-async";
+
 const colorTokens = [
   { name: "--background", label: "Background", usage: "Page background" },
   { name: "--foreground", label: "Foreground", usage: "Primary text" },
@@ -26,6 +28,11 @@ const tintTokens = [
 
 const Styleguide = () => {
   return (
+    <>
+    <Helmet>
+      <meta name="robots" content="noindex, nofollow" />
+      <title>Styleguide | Propasso (intern)</title>
+    </Helmet>
     <main className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-12">
@@ -266,6 +273,7 @@ const Styleguide = () => {
 
       </div>
     </main>
+    </>
   );
 };
 

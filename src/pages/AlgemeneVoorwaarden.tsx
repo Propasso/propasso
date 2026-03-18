@@ -1,8 +1,14 @@
+import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 
 const AlgemeneVoorwaarden = () => {
   return (
     <PageLayout>
+      <Helmet>
+        <title>Algemene Voorwaarden | Propasso</title>
+        <meta name="description" content="Algemene voorwaarden van Propasso te Vught." />
+        <link rel="canonical" href="https://propasso.nl/algemene-voorwaarden" />
+      </Helmet>
       <section className="py-20 bg-background">
         <div className="section-container max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Algemene Voorwaarden</h1>

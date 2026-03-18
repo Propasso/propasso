@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
@@ -16,19 +16,20 @@ const fadeInUp = {
 };
 
 const Werkwijze = () => {
-  useEffect(() => {
-    document.title = "Werkwijze | Propasso — Gestructureerde Exit Planning voor MKB";
-    const meta = document.querySelector('meta[name="description"]');
-    if (meta) {
-      meta.setAttribute(
-        "content",
-        "De werkwijze van Propasso: een gestructureerd traject van analyse tot verkoopklaarheid, gebaseerd op de Value Acceleration Methodology voor het Nederlandse MKB.",
-      );
-    }
-  }, []);
-
   return (
     <PageLayout>
+      <Helmet>
+        <title>Werkwijze | Propasso — Gestructureerde Exit Planning voor MKB</title>
+        <meta
+          name="description"
+          content="De werkwijze van Propasso: een gestructureerd traject van analyse tot verkoopklaarheid, gebaseerd op de Value Acceleration Methodology voor het Nederlandse MKB."
+        />
+        <link rel="canonical" href="https://propasso.nl/werkwijze" />
+        <meta property="og:title" content="Werkwijze | Propasso — Gestructureerde Exit Planning voor MKB" />
+        <meta property="og:description" content="De werkwijze van Propasso: een gestructureerd traject van analyse tot verkoopklaarheid, gebaseerd op de Value Acceleration Methodology voor het Nederlandse MKB." />
+        <meta property="og:url" content="https://propasso.nl/werkwijze" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       {/* 1. Hero */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
         {/* Yellow accent circle with centered illustration */}
