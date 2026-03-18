@@ -7,4 +7,4 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
-Sitemap: https://propasso.nl/sitemap.xml
+Sitemap: https://qqxohovmhrvshpoxkpdd.supabase.co/functions/v1/sitemap
