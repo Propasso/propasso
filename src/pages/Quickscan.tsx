@@ -68,6 +68,11 @@ const Quickscan = () => {
           name="description"
           content="Ontdek in 5 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een toekomstige overdracht. Gratis quickscan met directe resultaten."
         />
+        <link rel="canonical" href="https://propasso.nl/quickscan" />
+        <meta property="og:title" content="Exit Readiness Quickscan | Propasso" />
+        <meta property="og:description" content="Ontdek in 5 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een toekomstige overdracht." />
+        <meta property="og:url" content="https://propasso.nl/quickscan" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       {phase === "intro" && <QuickscanIntro onStart={handleStart} />}
