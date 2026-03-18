@@ -79,7 +79,7 @@ const QuickscanSideCallout = () => {
           <div className="relative z-10 flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="text-[13px] font-bold text-foreground leading-snug">
-                Hoe aantrekkelijk is jouw bedrijf voor <span className="text-primary">kopers</span>?
+                Hoe <span className="text-primary">verkoopklaar</span> is jouw bedrijf?
               </p>
               <p className="mt-0.5 text-[11px] text-muted-foreground">Gratis quickscan, 4 minuten</p>
             </div>
