@@ -17,13 +17,12 @@ const fadeInUp = {
 
 const Werkwijze = () => {
   useEffect(() => {
-    document.title =
-      "Werkwijze | Propasso — Gestructureerde Exit Planning voor MKB";
+    document.title = "Werkwijze | Propasso — Gestructureerde Exit Planning voor MKB";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
       meta.setAttribute(
         "content",
-        "De werkwijze van Propasso: een gestructureerd traject van analyse tot verkoopklaarheid, gebaseerd op de Value Acceleration Methodology voor het Nederlandse MKB."
+        "De werkwijze van Propasso: een gestructureerd traject van analyse tot verkoopklaarheid, gebaseerd op de Value Acceleration Methodology voor het Nederlandse MKB.",
       );
     }
   }, []);
@@ -48,27 +47,24 @@ const Werkwijze = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground max-w-3xl text-balance"
           >
-            Verkoopklaarheid bouw je op,{" "}
-            <span className="text-muted-foreground">in de jaren vóór de overdracht.</span>
+            Verkoopklaarheid bouw je op, <span className="text-muted-foreground">in de jaren vóór de overdracht.</span>
           </motion.h1>
           <motion.p
             {...fadeInUp}
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Propasso begeleidt ondernemers met een gestructureerde aanpak die
-            de ondernemer, de onderneming en de financiële realiteit
-            samenbrengt. Van analyse tot uitvoering, zodat het bedrijf
-            sterker, onafhankelijker en overdraagbaar wordt.
+            Propasso begeleidt ondernemers met een gestructureerde aanpak die de ondernemer, de onderneming en de
+            financiële realiteit samenbrengt. Van analyse tot uitvoering, zodat het bedrijf sterker, onafhankelijker en
+            overdraagbaar wordt.
           </motion.p>
-
         </div>
       </section>
 
       {/* 2. De realiteit van het MKB */}
       <MKBRealitySection />
 
-      <QuickscanBanner contextLine="Herken je deze uitdagingen? Ontdek in 4 minuten hoe jouw bedrijf scoort op verkoopklaarheid." />
+      <QuickscanBanner contextLine="Benieuwd naar het verbeterpotentieel van jouw bedrijf?" />
 
       {/* 3. Kernprincipe: drie verhalen */}
       <ThreeStoriesSection />
@@ -78,7 +74,6 @@ const Werkwijze = () => {
 
       {/* 6. Wat dit oplevert */}
       <OutcomesSection />
-
 
       {/* 8. Strategisch gesprek CTA */}
       <PageCTA
