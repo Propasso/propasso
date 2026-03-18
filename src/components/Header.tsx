@@ -116,6 +116,12 @@ const Header = () => {
                 </Link>
               ))}
               <Link
+                to="/quickscan"
+                className="text-base font-medium text-foreground/70 hover:text-foreground py-2"
+              >
+                Quickscan
+              </Link>
+              <Link
                 to="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground mt-2"
               >

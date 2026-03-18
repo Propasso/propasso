@@ -1,8 +1,14 @@
+import { Helmet } from "react-helmet-async";
 import PageLayout from "@/components/PageLayout";
 
 const Privacyverklaring = () => {
   return (
     <PageLayout>
+      <Helmet>
+        <title>Privacyverklaring | Propasso</title>
+        <meta name="description" content="Privacyverklaring van Propasso. Lees hoe wij omgaan met uw persoonsgegevens." />
+        <link rel="canonical" href="https://propasso.nl/privacyverklaring" />
+      </Helmet>
       <section className="py-20 bg-background">
         <div className="section-container max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Privacyverklaring</h1>
