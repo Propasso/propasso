@@ -28,4 +28,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://propasso.nl/sitemap.xml
+Sitemap: https://qqxohovmhrvshpoxkpdd.supabase.co/functions/v1/sitemap
