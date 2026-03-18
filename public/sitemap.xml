@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- This is a static fallback sitemap. The dynamic sitemap is served via edge function at /functions/v1/sitemap -->
+<!-- Update robots.txt to point to the correct sitemap URL for your deployment -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Strategic pages -->
   <url>
     <loc>https://propasso.nl/</loc>
     <changefreq>weekly</changefreq>
@@ -9,6 +10,11 @@
   <url>
     <loc>https://propasso.nl/werkwijze</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://propasso.nl/kennisbank</loc>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
@@ -31,15 +37,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-
-  <!-- Kennisbank hub -->
-  <url>
-    <loc>https://propasso.nl/kennisbank</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <!-- Pillar pages (6 pillars) -->
   <url>
     <loc>https://propasso.nl/kennisbank/thema/bedrijfswaarde-en-winstgevendheid-verbeteren</loc>
     <changefreq>weekly</changefreq>
@@ -70,8 +67,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-
-  <!-- Legal pages -->
   <url>
     <loc>https://propasso.nl/privacyverklaring</loc>
     <changefreq>yearly</changefreq>
