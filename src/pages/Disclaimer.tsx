@@ -7,7 +7,10 @@ const Disclaimer = () => {
     <PageLayout>
       <Helmet>
         <title>Disclaimer | Propasso</title>
-        <meta name="description" content="Disclaimer van Propasso. Lees onze juridische voorwaarden en aansprakelijkheid." />
+        <meta
+          name="description"
+          content="Disclaimer van Propasso. Lees onze juridische voorwaarden en aansprakelijkheid."
+        />
         <link rel="canonical" href="https://propasso.nl/disclaimer" />
       </Helmet>
       <section className="py-20 bg-background">
@@ -15,17 +18,21 @@ const Disclaimer = () => {
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8">Disclaimer</h1>
 
           <div className="prose prose-lg text-muted-foreground space-y-6">
+            <p>© {new Date().getFullYear()} Propasso. Alle rechten voorbehouden.</p>
             <p>
-              © {new Date().getFullYear()} Propasso. Alle rechten voorbehouden.
+              De informatie op deze website dient uitsluitend ter algemene informatie en vormt geen juridisch,
+              financieel of zakelijk advies. Er kunnen geen rechten aan worden ontleend en Propasso biedt geen garantie
+              op specifieke resultaten. Hoewel wij ons inspannen voor de best mogelijke resultaten, garanderen wij geen
+              specifiek eindresultaat.
             </p>
             <p>
-              De informatie op deze website dient uitsluitend ter algemene informatie en vormt geen juridisch, financieel of zakelijk advies. Er kunnen geen rechten aan worden ontleend en Propasso biedt geen garantie op specifieke resultaten. Hoewel wij ons inspannen voor de best mogelijke resultaten, garanderen wij geen specifiek eindresultaat.
+              Claims of uitspraken op deze website over resultaten zijn indicatief en kunnen variëren per situatie. Geen
+              enkele tekst op deze website kan worden beschouwd als een gegarandeerde belofte van succes.
             </p>
             <p>
-              Claims of uitspraken op deze website over resultaten zijn indicatief en kunnen variëren per situatie. Geen enkele tekst op deze website kan worden beschouwd als een gegarandeerde belofte van succes.
-            </p>
-            <p>
-              Propasso is niet aansprakelijk voor enige schade als gevolg van het gebruik van deze website, waaronder onjuistheden, verouderde informatie, technische storingen of beslissingen op basis van de verstrekte inhoud. Eventuele externe links vallen buiten de verantwoordelijkheid van Propasso.
+              Propasso is niet aansprakelijk voor enige schade als gevolg van het gebruik van deze website, waaronder
+              onjuistheden, verouderde informatie, technische storingen of beslissingen op basis van de verstrekte
+              inhoud. Eventuele externe links vallen buiten de verantwoordelijkheid van Propasso.
             </p>
             <p>
               Onze privacyverklaring vindt u{" "}
