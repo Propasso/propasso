@@ -20,7 +20,7 @@ const Index = () => {
     if (meta) {
       meta.setAttribute(
         "content",
-        "Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid."
+        "Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid.",
       );
     }
   }, []);
@@ -31,7 +31,7 @@ const Index = () => {
       <main>
         <HeroSection />
         <ProblemSection />
-        <QuickscanBanner contextLine="Herken je dit? Ontdek in 4 minuten hoe jouw bedrijf ervoor staat." />
+        <QuickscanBanner contextLine="Benieuwd naar de status en het potentieel van jouw bedrijf?" />
         <SaleReadySection />
         <PhasesSection />
         <ClientLogos />
