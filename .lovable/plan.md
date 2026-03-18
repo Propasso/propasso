@@ -1,22 +1,15 @@
 
 
-## Plan: Implement Option A — Dynamic Sitemap via Edge Function
+## Plan: Delete static sitemap.xml
 
-### Changes
+### Problem
+The static `public/sitemap.xml` file was supposed to be removed in previous steps but was never actually deleted. It contains only 17 hardcoded URLs (no articles) and will conflict with the Cloudflare Worker proxy that serves the dynamic sitemap at the same path.
 
-**1. Update `public/robots.txt`**
-Point the Sitemap directive to the dynamic edge function URL. Remove the old `propasso.nl/sitemap.xml` reference.
+### Change
 
-```
-Sitemap: https://qqxohovmhrvshpoxkpdd.supabase.co/functions/v1/sitemap
-```
+**Delete `public/sitemap.xml`**
 
-**2. Delete `public/sitemap.xml`**
-Remove the static fallback file entirely. It currently contains only 17 static URLs (no articles) and would mislead crawlers who discover it by convention at `/sitemap.xml`.
+Remove the file entirely. The Cloudflare Worker will handle requests to `/sitemap.xml` by proxying to the dynamic edge function. If the static file remains, the hosting server may serve it instead of letting the Worker intercept the request.
 
-**3. Verify dynamic sitemap**
-Fetch the live edge function to confirm it includes all required URLs and excludes drafts/noIndex/styleguide/404. Report back URL count, article count, and sample article URLs.
-
-### No other files need changes
-The edge function (`supabase/functions/sitemap/index.ts`) and its config (`verify_jwt = false`) are already correctly set up.
+No other files need changes — `robots.txt` already points to `https://propasso.nl/sitemap.xml`.
 
