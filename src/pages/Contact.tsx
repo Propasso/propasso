@@ -163,6 +163,15 @@ const Contact = () => {
 
   return (
     <PageLayout>
+      <Helmet>
+        <title>Contact | Propasso — Neem vrijblijvend contact op</title>
+        <meta name="description" content="Neem vrijblijvend contact op met Propasso voor een persoonlijke kennismaking over exit planning en bedrijfsoverdracht." />
+        <link rel="canonical" href="https://propasso.nl/contact" />
+        <meta property="og:title" content="Contact | Propasso" />
+        <meta property="og:description" content="Neem vrijblijvend contact op met Propasso voor een persoonlijke kennismaking over exit planning en bedrijfsoverdracht." />
+        <meta property="og:url" content="https://propasso.nl/contact" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       {/* Hero / Intro */}
       <section className="py-16 md:py-24 lg:py-28">
         <div className="section-container">
