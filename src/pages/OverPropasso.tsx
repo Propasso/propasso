@@ -87,6 +87,7 @@ const OverPropasso = () => {
         <meta property="og:description" content="Propasso begeleidt MKB-ondernemers bij exit planning en bedrijfsoverdracht. Leer meer over Karel Cremers, zijn achtergrond en de missie van Propasso." />
         <meta property="og:url" content="https://propasso.nl/over-propasso" />
         <meta property="og:type" content="website" />
+      </Helmet>
 
       {/* ─── 1. HERO ─── */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
