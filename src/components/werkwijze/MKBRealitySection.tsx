@@ -14,7 +14,7 @@ const gaps = [
     buyer: "De koper waardeert voorspelbare, terugkerende inkomsten",
   },
   {
-    founder: "Kennis zit bij de mensen, niet in systemen",
+    founder: "Kennis zit in hoofden, niet in systemen",
     buyer: "De koper verwacht gedocumenteerde processen",
   },
 ];
@@ -46,14 +46,20 @@ const MKBRealitySection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
         >
-          Ondernemers beoordelen hun bedrijf op basis van wat zij hebben opgebouwd. Kopers kijken naar iets anders:
-          risico, voorspelbaarheid en overdraagbaarheid.
+          Ondernemers beoordelen hun bedrijf op basis van wat zij hebben
+          opgebouwd. Kopers kijken naar iets anders: risico, voorspelbaarheid
+          en overdraagbaarheid.
         </motion.p>
 
         {/* Elegant gap comparison */}
         <div className="mt-16 max-w-4xl">
           {gaps.map((gap, i) => (
-            <motion.div key={i} {...fadeInUp} transition={{ duration: 0.5, delay: 0.12 * i + 0.3 }} className="group">
+            <motion.div
+              key={i}
+              {...fadeInUp}
+              transition={{ duration: 0.5, delay: 0.12 * i + 0.3 }}
+              className="group"
+            >
               {/* Desktop: side-by-side */}
               <div className="hidden md:grid grid-cols-[1fr,auto,1fr] items-center gap-10 py-7 border-b border-border/15 last:border-b-0">
                 <div className="text-right">
@@ -62,7 +68,9 @@ const MKBRealitySection = () => {
                       De ondernemer
                     </span>
                   )}
-                  <p className="text-base font-medium text-foreground leading-relaxed">{gap.founder}</p>
+                  <p className="text-base font-medium text-foreground leading-relaxed">
+                    {gap.founder}
+                  </p>
                 </div>
                 <div className="flex flex-col items-center">
                   <div className="h-2 w-2 rounded-full bg-accent" />
@@ -73,7 +81,9 @@ const MKBRealitySection = () => {
                       De koper
                     </span>
                   )}
-                  <p className="text-base text-muted-foreground leading-relaxed">{gap.buyer}</p>
+                  <p className="text-base text-muted-foreground leading-relaxed">
+                    {gap.buyer}
+                  </p>
                 </div>
               </div>
 
@@ -84,7 +94,9 @@ const MKBRealitySection = () => {
                     De ondernemer
                   </span>
                 )}
-                <p className="text-sm font-medium text-foreground leading-relaxed">{gap.founder}</p>
+                <p className="text-sm font-medium text-foreground leading-relaxed">
+                  {gap.founder}
+                </p>
                 <div className="flex items-center gap-3">
                   <div className="h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
                   <div className="h-px flex-1 bg-border/20" />
@@ -94,7 +106,9 @@ const MKBRealitySection = () => {
                     De koper
                   </span>
                 )}
-                <p className="text-sm text-muted-foreground leading-relaxed">{gap.buyer}</p>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {gap.buyer}
+                </p>
               </div>
             </motion.div>
           ))}
