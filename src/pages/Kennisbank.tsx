@@ -241,7 +241,7 @@ const Kennisbank = () => {
             </>
           ) : (
             <p className="mt-12 text-muted-foreground">Nog geen artikelen beschikbaar.</p>
-          )
+          )}
         </div>
       </section>
 
