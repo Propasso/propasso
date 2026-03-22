@@ -15,9 +15,7 @@ interface QuickscanBannerProps {
 const QuickscanBanner = ({ contextLine }: QuickscanBannerProps) => {
   return (
     <div className="section-container my-12 md:my-16">
-      {contextLine && (
-        <p className="text-sm text-muted-foreground mb-3">{contextLine}</p>
-      )}
+      {contextLine && <p className="text-sm text-muted-foreground mb-3">{contextLine}</p>}
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -39,8 +37,7 @@ const QuickscanBanner = ({ contextLine }: QuickscanBannerProps) => {
           <div
             className="absolute left-0 top-0 bottom-0 w-[3px]"
             style={{
-              background:
-                "linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--accent)))",
+              background: "linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--accent)))",
             }}
           />
 
@@ -58,15 +55,13 @@ const QuickscanBanner = ({ contextLine }: QuickscanBannerProps) => {
             {/* Text block */}
             <div className="flex-1 min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary/60 mb-1.5">
-                Gratis quickscan
+                Exit Readiness Quickscan voor MKB-ondernemers
               </p>
               <p className="text-lg md:text-xl font-bold leading-snug text-foreground">
-                Hoe aantrekkelijk is jouw bedrijf voor{" "}
-                <span className="text-primary">kopers</span>?
+                Hoe aantrekkelijk is jouw bedrijf voor <span className="text-primary">kopers</span>?
               </p>
               <p className="mt-1 text-sm text-muted-foreground leading-relaxed max-w-lg">
-                Ontdek in 4 minuten jouw score op aantrekkelijkheid,
-                verkoopklaarheid en overdraagbaarheid.
+                Ontdek in 4 minuten jouw score op aantrekkelijkheid, verkoopklaarheid en overdraagbaarheid.
               </p>
             </div>
 
