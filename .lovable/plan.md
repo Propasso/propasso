@@ -1,25 +1,30 @@
 
 
-## Plan: Add "Load More" to Kennisbank Recente Publicaties
+## Problem
 
-### What changes
+Bing (and other non-JS crawlers) only see the static `index.html`. The `<body>` contains just `<div id="root"></div>` with no `<h1>`. The actual `<h1>` is rendered client-side by React in `HeroSection.tsx`, which Bing doesn't execute.
 
-**File: `src/pages/Kennisbank.tsx`**
+## Solution
 
-1. Add a `visibleCount` state, initialized to 6
-2. Replace `recentPosts` slice with `posts?.slice(0, visibleCount)`
-3. Add a "Meer artikelen laden" button below the grid that increments `visibleCount` by 6
-4. Hide the button when all posts are visible
-5. Button uses existing design system (`Button` component, `variant="outline"`)
+Add a **server-side-visible `<h1>`** inside `index.html` that React will overwrite once it mounts. This gives crawlers immediate access to the heading.
 
-### Technical detail
+### File: `index.html`
 
-- No new routes, pages, or API calls needed
-- The `fetchAllPosts` query already returns all published posts; we just control how many render
-- Button text: "Meer artikelen laden" with a subtle count indicator like "(6 van 18)"
-- Smooth scroll-friendly: new cards animate in with existing `fadeInUp` motion variants
+Add an `<h1>` inside `<div id="root">` as fallback content. React's `createRoot().render()` replaces the contents of `#root`, so this text is only visible to bots and disappears instantly for real users.
+
+```html
+<div id="root">
+  <h1 style="position:absolute;left:-9999px">Propasso — Exit Planning &amp; Bedrijfsoverdracht voor MKB-ondernemers</h1>
+</div>
+```
+
+The `h1` text mirrors the page `<title>` and core keyword strategy. The off-screen positioning ensures no flash of unstyled content before React hydrates.
+
+### Why this works
+- Bing, Google's basic crawler, and AI bots see the `<h1>` in the raw HTML
+- React replaces `#root` contents on mount — no duplicate heading for users
+- No conflict with per-page `<h1>` tags rendered by React components
+- Zero impact on existing components or routing
 
 ### No other files affected
-
-The existing query, routing, and page structure remain unchanged.
 
