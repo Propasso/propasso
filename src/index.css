@@ -52,6 +52,7 @@
     /* Supporting tones for hierarchy & accessibility */
     --surface-raised: 195 20% 98%;
     --text-subtle: 200 12% 55%;
+    --section-stats: 100 33% 92%;
     --success: 160 60% 40%;
     --success-foreground: 0 0% 100%;
     --warning: 40 90% 50%;
