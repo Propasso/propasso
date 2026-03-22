@@ -17,16 +17,23 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Propasso | Exit Planning &amp; Bedrijfsoverdracht voor MKB</title>
+        <title>Propasso | Exit Planning & Bedrijfsoverdracht voor MKB</title>
+
         <meta
           name="description"
           content="Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid."
         />
+
         <link rel="canonical" href="https://propasso.nl/" />
-        <meta property="og:title" content="Propasso | Exit Planning & Bedrijfsoverdracht voor MKB" />
-        <meta property="og:description" content="Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid." />
-        <meta property="og:url" content="https://propasso.nl/" />
+
+        {/* Open Graph */}
         <meta property="og:type" content="website" />
+        <meta property="og:title" content="Propasso | Exit Planning & Bedrijfsoverdracht voor MKB" />
+        <meta
+          property="og:description"
+          content="Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid."
+        />
+        <meta property="og:url" content="https://propasso.nl/" />
       </Helmet>
       <script
         type="application/ld+json"
@@ -37,7 +44,8 @@ const Index = () => {
             name: "Propasso",
             url: "https://propasso.nl",
             logo: "https://propasso.nl/propasso-logo-grey-yellow.png",
-            description: "Propasso begeleidt MKB-ondernemers bij exit planning en bedrijfsoverdracht naar maximale waarde en verkoopbaarheid.",
+            description:
+              "Propasso begeleidt MKB-ondernemers bij exit planning en bedrijfsoverdracht naar maximale waarde en verkoopbaarheid.",
             address: {
               "@type": "PostalAddress",
               streetAddress: "Nieuwe Linie 12",
@@ -52,10 +60,7 @@ const Index = () => {
               email: "info@propasso.nl",
               availableLanguage: "Dutch",
             },
-            sameAs: [
-              "https://www.linkedin.com/company/propasso",
-              "https://www.linkedin.com/in/karelcremers",
-            ],
+            sameAs: ["https://www.linkedin.com/company/propasso", "https://www.linkedin.com/in/karelcremers"],
             founder: {
               "@type": "Person",
               name: "Karel Cremers",
