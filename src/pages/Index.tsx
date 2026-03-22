@@ -1,7 +1,9 @@
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import QuickscanBanner from "@/components/QuickscanBanner";
+import TrustBanner from "@/components/TrustBanner";
 import HeroSection from "@/components/HeroSection";
+import StatsBar from "@/components/StatsBar";
 import ProblemSection from "@/components/ProblemSection";
 import SaleReadySection from "@/components/SaleReadySection";
 import PhasesSection from "@/components/PhasesSection";
@@ -67,8 +69,10 @@ const Index = () => {
         }}
       />
       <Header />
+      <TrustBanner />
       <main>
         <HeroSection />
+        <StatsBar />
         <ProblemSection />
         <QuickscanBanner contextLine="Benieuwd naar de status en het potentieel van jouw bedrijf?" />
         <SaleReadySection />
