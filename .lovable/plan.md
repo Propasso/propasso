@@ -1,37 +1,25 @@
 
 
-## Diagnosis
+## Plan: Add "Load More" to Kennisbank Recente Publicaties
 
-The file `public/sitemap.xml` was deleted from the codebase but the CDN is still serving a cached version at `propasso.nl/sitemap.xml`. Lovable's hosting platform does not support server-level 301 redirects or cache purging, so we cannot force-clear this from the platform side.
+### What changes
 
-## Solution: Replace with a Sitemap Index
+**File: `src/pages/Kennisbank.tsx`**
 
-Create a new `public/sitemap.xml` that acts as a **sitemap index file** pointing to the dynamic edge function. This approach:
+1. Add a `visibleCount` state, initialized to 6
+2. Replace `recentPosts` slice with `posts?.slice(0, visibleCount)`
+3. Add a "Meer artikelen laden" button below the grid that increments `visibleCount` by 6
+4. Hide the button when all posts are visible
+5. Button uses existing design system (`Button` component, `variant="outline"`)
 
-1. **Overwrites** the cached static file on next publish with a fresh, tiny file
-2. **Redirects crawlers** to the real dynamic sitemap via the standard sitemapindex protocol
-3. **Eliminates confusion** — any crawler hitting `/sitemap.xml` is immediately forwarded to the edge function
+### Technical detail
 
-### File: `public/sitemap.xml`
+- No new routes, pages, or API calls needed
+- The `fetchAllPosts` query already returns all published posts; we just control how many render
+- Button text: "Meer artikelen laden" with a subtle count indicator like "(6 van 18)"
+- Smooth scroll-friendly: new cards animate in with existing `fadeInUp` motion variants
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <sitemap>
-    <loc>https://sitemap.propasso.nl</loc>
-  </sitemap>
-</sitemapindex>
-```
+### No other files affected
 
-This is a valid XML sitemap index (per the sitemaps protocol) that tells Google: "the actual sitemap lives at `sitemap.propasso.nl`."
-
-### No other changes needed
-
-- `robots.txt` already points to `https://sitemap.propasso.nl` — no changes
-- The edge function continues to work as-is
-- Google Search Console will follow the sitemapindex to the dynamic sitemap
-
-### After implementation
-
-Publish the project so the new file replaces the cached version on the CDN.
+The existing query, routing, and page structure remain unchanged.
 
