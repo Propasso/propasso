@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
@@ -11,6 +12,7 @@ import { fetchAllPosts, fetchAllCategories } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import type { SanityPost } from "@/types/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 import kennisbankBasecamp from "@/assets/illustrations/kennisbank-basecamp.png";
 
 const fadeInUp = {
@@ -19,7 +21,11 @@ const fadeInUp = {
   viewport: { once: true, margin: "-50px" },
 };
 
+const POSTS_PER_PAGE = 6;
+
 const Kennisbank = () => {
+  const [visibleCount, setVisibleCount] = useState(POSTS_PER_PAGE);
+
   const { data: posts, isLoading: postsLoading } = useQuery({
     queryKey: ["sanity-posts"],
     queryFn: fetchAllPosts,
@@ -35,7 +41,9 @@ const Kennisbank = () => {
   const categoryPostCount = (categoryId: string) =>
     posts?.filter((p) => p.categories?.some((c) => c._id === categoryId)).length || 0;
 
-  const recentPosts = posts?.slice(0, 6) || [];
+  const visiblePosts = posts?.slice(0, visibleCount) || [];
+  const totalPosts = posts?.length || 0;
+  const hasMore = visibleCount < totalPosts;
 
   return (
     <PageLayout>
@@ -176,51 +184,64 @@ const Kennisbank = () => {
                 </div>
               ))}
             </div>
-          ) : recentPosts.length > 0 ? (
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-              {recentPosts.map((post: SanityPost, index: number) => (
-                <motion.article
-                  key={post._id}
-                  {...fadeInUp}
-                  transition={{ duration: 0.5, delay: 0.06 * index }}
-                  className="group"
-                >
-                  <Link to={`/kennisbank/${post.slug.current}`} className="block">
-                    <div className="aspect-[3/2] rounded-2xl overflow-hidden bg-secondary mb-5 ring-1 ring-border/10">
-                      {post.mainImage ? (
-                        <img
-                          src={urlFor(post.mainImage).width(600).height(400).url()}
-                          alt={post.altText || post.title}
-                          className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                          loading="lazy"
-                        />
-                      ) : (
-                        <div className="h-full w-full bg-muted flex items-center justify-center text-muted-foreground text-sm">
-                          <BookOpen size={32} className="opacity-30" />
-                        </div>
+          ) : visiblePosts.length > 0 ? (
+            <>
+              <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {visiblePosts.map((post: SanityPost, index: number) => (
+                  <motion.article
+                    key={post._id}
+                    {...fadeInUp}
+                    transition={{ duration: 0.5, delay: 0.06 * (index % POSTS_PER_PAGE) }}
+                    className="group"
+                  >
+                    <Link to={`/kennisbank/${post.slug.current}`} className="block">
+                      <div className="aspect-[3/2] rounded-2xl overflow-hidden bg-secondary mb-5 ring-1 ring-border/10">
+                        {post.mainImage ? (
+                          <img
+                            src={urlFor(post.mainImage).width(600).height(400).url()}
+                            alt={post.altText || post.title}
+                            className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="h-full w-full bg-muted flex items-center justify-center text-muted-foreground text-sm">
+                            <BookOpen size={32} className="opacity-30" />
+                          </div>
+                        )}
+                      </div>
+                      {post.categories && post.categories.length > 0 && (
+                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                          {post.categories[0].title}
+                        </p>
                       )}
-                    </div>
-                    {post.categories && post.categories.length > 0 && (
-                      <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
-                        {post.categories[0].title}
+                      <h3 className="text-lg font-bold leading-snug group-hover:text-primary transition-colors duration-300">
+                        {post.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
+                        {post.summary}
                       </p>
-                    )}
-                    <h3 className="text-lg font-bold leading-snug group-hover:text-primary transition-colors duration-300">
-                      {post.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-                      {post.summary}
-                    </p>
-                    <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-300">
-                      Verder lezen <ArrowRight size={14} />
-                    </span>
-                  </Link>
-                </motion.article>
-              ))}
-            </div>
+                      <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-300">
+                        Verder lezen <ArrowRight size={14} />
+                      </span>
+                    </Link>
+                  </motion.article>
+                ))}
+              </div>
+
+              {hasMore && (
+                <div className="mt-12 text-center">
+                  <Button
+                    variant="outline"
+                    onClick={() => setVisibleCount((prev) => prev + POSTS_PER_PAGE)}
+                  >
+                    Meer artikelen laden ({visibleCount} van {totalPosts})
+                  </Button>
+                </div>
+              )}
+            </>
           ) : (
             <p className="mt-12 text-muted-foreground">Nog geen artikelen beschikbaar.</p>
-          )}
+          )
         </div>
       </section>
 
