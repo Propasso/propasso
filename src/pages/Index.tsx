@@ -17,7 +17,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Propasso | Exit Planning & Bedrijfsoverdracht voor MKB Ondernemingen</title>
+        <title>Exit Planning voor MKB Ondernemingen | Bedrijf verkoopklaar maken – Propasso</title>
         <meta
           name="description"
           content="Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid."
@@ -25,7 +25,10 @@ const Index = () => {
         <link rel="canonical" href="https://propasso.nl/" />
         {/* Open Graph */}
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Propasso | Exit Planning & Bedrijfsoverdracht voor MKB Ondernemingen" />
+        <meta
+          property="og:title"
+          content="Exit Planning voor MKB Ondernemingen | Bedrijf verkoopklaar maken – Propasso"
+        />
         <meta
           property="og:description"
           content="Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid."
