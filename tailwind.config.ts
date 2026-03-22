@@ -47,8 +47,7 @@ export default {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
   			},
-			'section-alt': 'hsl(var(--section-alt))',
-			'section-stats': 'hsl(var(--section-stats))',
+  			'section-alt': 'hsl(var(--section-alt))',
   			'teal-deep': 'hsl(var(--teal-deep))',
   			'teal-medium': 'hsl(var(--teal-medium))',
   			'surface-raised': 'hsl(var(--surface-raised))',
