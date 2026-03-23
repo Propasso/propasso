@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
@@ -15,24 +15,70 @@ const fadeInUp = {
   viewport: { once: true, margin: "-50px" },
 };
 
+const pageDescription =
+  "Ontdek de werkwijze van Propasso voor exit planning in het MKB: een gestructureerde aanpak om bedrijven sterker, minder afhankelijk en beter overdraagbaar te maken.";
+
+const pageSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "Werkwijze | Exit Planning voor MKB | Propasso",
+    url: "https://propasso.nl/werkwijze",
+    description: pageDescription,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Propasso",
+      url: "https://propasso.nl/",
+    },
+    about: {
+      "@type": "ProfessionalService",
+      name: "Propasso",
+      url: "https://propasso.nl/",
+    },
+    inLanguage: "nl-NL",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
+      { "@type": "ListItem", position: 2, name: "Werkwijze", item: "https://propasso.nl/werkwijze" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "Exit Planning begeleiding voor MKB-ondernemers",
+    provider: {
+      "@type": "Organization",
+      name: "Propasso",
+      url: "https://propasso.nl/",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Nederland",
+    },
+    serviceType: "Exit Planning",
+    description:
+      "Gestructureerde begeleiding voor MKB-ondernemers gericht op waardecreatie, verkoopklaarheid en overdraagbaarheid van het bedrijf.",
+  },
+];
+
 const Werkwijze = () => {
   return (
     <PageLayout>
-      <Helmet>
-        <title>Werkwijze | Propasso — Gestructureerde Exit Planning voor MKB</title>
-        <meta
-          name="description"
-          content="De werkwijze van Propasso: een gestructureerd traject van analyse tot verkoopklaarheid, gebaseerd op de Value Acceleration Methodology voor het Nederlandse MKB."
-        />
-        <link rel="canonical" href="https://propasso.nl/werkwijze" />
-        <meta property="og:title" content="Werkwijze | Propasso — Gestructureerde Exit Planning voor MKB" />
-        <meta property="og:description" content="De werkwijze van Propasso: een gestructureerd traject van analyse tot verkoopklaarheid, gebaseerd op de Value Acceleration Methodology voor het Nederlandse MKB." />
-        <meta property="og:url" content="https://propasso.nl/werkwijze" />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEO
+        title="Werkwijze Verkoopklaar maken van Bedrijven"
+        description={pageDescription}
+        canonical="https://propasso.nl/werkwijze"
+        ogTitle="Werkwijze Verkoopklaar maken van Bedrijven | Propasso"
+        ogDescription={pageDescription}
+        ogType="website"
+        jsonLd={pageSchemas}
+      />
+
       {/* 1. Hero */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
-        {/* Yellow accent circle with centered illustration */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
           <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
           <img
@@ -48,7 +94,7 @@ const Werkwijze = () => {
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground max-w-3xl text-balance"
           >
-            Verkoopklaarheid bouw je op, <span className="text-muted-foreground">in de jaren vóór de overdracht.</span>
+            Verkoopklaar maken van je bedrijf, <span className="text-muted-foreground"> doe je in de jaren vóór de overdracht.</span>
           </motion.h1>
           <motion.p
             {...fadeInUp}
@@ -56,30 +102,25 @@ const Werkwijze = () => {
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
             Propasso begeleidt ondernemers met een gestructureerde aanpak die de ondernemer, de onderneming en de
-            financiële realiteit samenbrengt. Van analyse tot uitvoering, zodat het bedrijf sterker, onafhankelijker en
-            overdraagbaar wordt.
+            financiële realiteit samenbrengt. We staan naast je van analyse tot uitvoering, zodat het bedrijf sterker, onafhankelijker en
+            overdraagbaar wordt. 
           </motion.p>
         </div>
       </section>
 
-      {/* 2. De realiteit van het MKB */}
       <MKBRealitySection />
 
       <QuickscanBanner contextLine="Benieuwd naar het verbeterpotentieel van jouw bedrijf?" />
 
-      {/* 3. Kernprincipe: drie verhalen */}
       <ThreeStoriesSection />
 
-      {/* 4. Methodology Framework (centerpiece) */}
       <MethodologyFramework />
 
-      {/* 6. Wat dit oplevert */}
       <OutcomesSection />
 
-      {/* 8. Strategisch gesprek CTA */}
       <PageCTA
         title="Klaar voor een strategisch gesprek?"
-        description="Neem vrijblijvend contact op voor een kennismaking en ontdek hoe Propasso uw bedrijf kan versterken."
+        description="Neem vrijblijvend contact op voor een kennismaking en ontdek hoe Propasso jouw bedrijf kan versterken."
         primaryLabel="Plan een gesprek"
         primaryHref="/contact"
         secondaryLabel="Bekijk de kennisbank"
