@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import PageLayout from "@/components/PageLayout";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -82,6 +81,46 @@ const fadeUp = {
   }),
 };
 
+const pageDescription =
+  "Neem vrijblijvend contact op voor een persoonlijke kennismaking over exit planning, bedrijfsoverdracht en verkoopklaarheid in het MKB.";
+
+const contactSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact | Propasso",
+    url: "https://propasso.nl/contact",
+    description: pageDescription,
+    inLanguage: "nl-NL",
+    mainEntity: {
+      "@type": "Organization",
+      name: "Propasso",
+      url: "https://propasso.nl/",
+      email: "hallo@propasso.nl",
+      telephone: "+31 6 1005 7566",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Nieuwe Linie 12",
+        postalCode: "5264PJ",
+        addressLocality: "Vught",
+        addressCountry: "NL",
+      },
+      sameAs: [
+        "https://www.linkedin.com/company/propasso",
+        "https://www.linkedin.com/in/karelcremers",
+      ],
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
+      { "@type": "ListItem", position: 2, name: "Contact", item: "https://propasso.nl/contact" },
+    ],
+  },
+];
+
 const GoogleMapsEmbed = () => {
   const { hasConsent } = useCookieConsent();
 
@@ -127,13 +166,20 @@ const Contact = () => {
 
   const form = useForm<ContactFormValues>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { name: "", email: "", phone: "", message: "", privacy: undefined as unknown as true, newsletter: false },
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: "",
+      privacy: undefined as unknown as true,
+      newsletter: false,
+    },
   });
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
     try {
-      const { data: result, error } = await supabase.functions.invoke('send-contact-email', {
+      const { error } = await supabase.functions.invoke("send-contact-email", {
         body: {
           name: data.name,
           email: data.email,
@@ -149,7 +195,7 @@ const Contact = () => {
       form.reset();
       toast({
         title: "Bericht verzonden",
-        description: "Bedankt! Ik neem zo snel mogelijk contact met je op.",
+        description: "Bedankt. Ik neem zo snel mogelijk contact met je op.",
       });
     } catch {
       toast({
@@ -164,15 +210,16 @@ const Contact = () => {
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>Contact | Propasso — Neem vrijblijvend contact op</title>
-        <meta name="description" content="Neem vrijblijvend contact op met Propasso voor een persoonlijke kennismaking over exit planning en bedrijfsoverdracht." />
-        <link rel="canonical" href="https://propasso.nl/contact" />
-        <meta property="og:title" content="Contact | Propasso" />
-        <meta property="og:description" content="Neem vrijblijvend contact op met Propasso voor een persoonlijke kennismaking over exit planning en bedrijfsoverdracht." />
-        <meta property="og:url" content="https://propasso.nl/contact" />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEO
+        title="Contact voor Exit Planning en bedrijfsoverdracht"
+        description={pageDescription}
+        canonical="https://propasso.nl/contact"
+        ogTitle="Contact | Propasso"
+        ogDescription={pageDescription}
+        ogType="website"
+        jsonLd={contactSchemas}
+      />
+
       {/* Hero / Intro */}
       <section className="py-16 md:py-24 lg:py-28">
         <div className="section-container">
@@ -315,7 +362,6 @@ const Contact = () => {
       <section className="py-16 md:py-20 section-alt-bg">
         <div className="section-container">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
-            {/* Left: trust + context */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -328,11 +374,10 @@ const Contact = () => {
               <h2 className="mt-4 text-2xl md:text-3xl font-bold">Liever een bericht sturen?</h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 Vul het formulier in en ik neem persoonlijk contact met je op.
-                Geen verplichtingen, geen verkooppraatje. Gewoon een eerlijk gesprek
+                Geen verplichtingen, geen verkooppraatje. Een open gesprek
                 over jouw situatie.
               </p>
 
-              {/* Trust signals */}
               <div className="mt-8 space-y-4">
                 {[
                   "Persoonlijke reactie binnen 24 uur",
@@ -346,7 +391,6 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* Karel photo on mobile */}
               <div className="mt-8 lg:hidden">
                 <img
                   src={karelImg}
@@ -357,7 +401,6 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            {/* Right: form */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -421,8 +464,7 @@ const Contact = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel>
-                              Telefoon{" "}
-                              <span className="text-muted-foreground font-normal">(optioneel)</span>
+                              Telefoon <span className="text-muted-foreground font-normal">(optioneel)</span>
                             </FormLabel>
                             <FormControl>
                               <Input type="tel" placeholder="06 1234 5678" className="h-12 rounded-xl" {...field} />
@@ -450,10 +492,11 @@ const Contact = () => {
                         )}
                       />
 
-                      {/* Consent checkboxes */}
                       <ConsentCheckboxes
                         privacyChecked={form.watch("privacy") === true}
-                        onPrivacyChange={(checked) => form.setValue("privacy", checked as true, { shouldValidate: true })}
+                        onPrivacyChange={(checked) =>
+                          form.setValue("privacy", checked as true, { shouldValidate: true })
+                        }
                         newsletterChecked={form.watch("newsletter") ?? false}
                         onNewsletterChange={(checked) => form.setValue("newsletter", checked)}
                         showNewsletter={true}
