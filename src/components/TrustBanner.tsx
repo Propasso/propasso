@@ -1,50 +1,75 @@
 import { motion } from "framer-motion";
 
-const trustItems = [
-  "CEPA-gecertificeerd adviseur",
-  "Gespecialiseerd in MKB exitplanning",
-  "12+ jaar ondernemer",
-];
+const trustItems = ["CEPA-gecertificeerd adviseur", "Gespecialiseerd in MKB exitplanning", "12+ jaar ondernemer"];
+
+const CheckIcon = () => (
+  <svg
+    width="14"
+    height="14"
+    viewBox="0 0 14 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ flexShrink: 0 }}
+  >
+    <path d="M2.5 7L5.5 10L11.5 4" stroke="#DEF249" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 6 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: [0, 0, 0.2, 1] },
+  },
+};
 
 const TrustBanner = () => {
   return (
     <div
-      className="relative w-full bg-primary"
-      style={{ borderBottom: "1px solid hsla(var(--teal-medium), 0.5)" }}
+      className="w-full bg-primary"
+      style={{
+        borderBottom: "1px solid hsla(var(--teal-medium), 0.4)",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-4 py-3">
-        {/* Desktop: horizontal row */}
-        <div className="hidden md:flex items-center justify-center gap-0">
+      <div className="max-w-7xl mx-auto px-6 py-3.5">
+        {/* Desktop */}
+        <motion.div
+          className="hidden md:flex items-center justify-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {trustItems.map((item, i) => (
             <div key={item} className="flex items-center">
               {i > 0 && (
                 <div
-                  className="mx-6"
+                  className="mx-5"
                   style={{
                     width: "1px",
-                    height: "16px",
+                    height: "14px",
                     backgroundColor: "hsla(var(--teal-medium), 0.35)",
                   }}
                 />
               )}
-              <motion.div
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.4,
-                  delay: i * 0.15,
-                  ease: [0, 0, 0.2, 1],
-                }}
-                className="flex items-center gap-2"
-              >
-                <span style={{ color: "#DEF249", fontSize: "15px" }}>✓</span>
+              <motion.div variants={itemVariants} className="flex items-center gap-2">
+                <CheckIcon />
                 <span
-                  className="text-primary-foreground/90"
+                  className="text-primary-foreground/80"
                   style={{
-                    fontSize: "13px",
-                    letterSpacing: "1.5px",
-                    textTransform: "uppercase" as const,
-                    fontWeight: 400,
+                    fontSize: "12px",
+                    letterSpacing: "0.1em",
+                    textTransform: "uppercase",
+                    fontWeight: 500,
                   }}
                 >
                   {item}
@@ -52,37 +77,32 @@ const TrustBanner = () => {
               </motion.div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Mobile: vertical stack */}
-        <div className="flex md:hidden flex-col gap-2.5 px-4">
-          {trustItems.map((item, i) => (
-            <motion.div
-              key={item}
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.4,
-                delay: i * 0.15,
-                ease: [0, 0, 0.2, 1],
-              }}
-              className="flex items-center gap-2"
-            >
-              <span style={{ color: "#DEF249", fontSize: "15px" }}>✓</span>
+        {/* Mobile */}
+        <motion.div
+          className="flex md:hidden flex-col gap-3 px-2"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {trustItems.map((item) => (
+            <motion.div key={item} variants={itemVariants} className="flex items-center gap-2.5">
+              <CheckIcon />
               <span
-                className="text-primary-foreground/90"
+                className="text-primary-foreground/80"
                 style={{
-                  fontSize: "13px",
-                  letterSpacing: "1.5px",
-                  textTransform: "uppercase" as const,
-                  fontWeight: 400,
+                  fontSize: "12px",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  fontWeight: 500,
                 }}
               >
                 {item}
               </span>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
