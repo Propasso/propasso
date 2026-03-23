@@ -3,13 +3,19 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
+import { pillarOgImages } from "@/constants/pillarOgImages";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
-import { canonicalizeCategorySlug, fetchCategoryBySlug, fetchPostsByCategory, fetchAllCategories } from "@/lib/sanityQueries";
+import {
+  canonicalizeCategorySlug,
+  fetchCategoryBySlug,
+  fetchPostsByCategory,
+  fetchAllCategories,
+} from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { SanityPost } from "@/types/sanity";
@@ -37,7 +43,8 @@ const KennisbankPillar = () => {
     }
   }, [categorySlug, navigate]);
 
-  const content = categorySlug ? pillarContent[canonicalizeCategorySlug(categorySlug)] : undefined;
+  const normalizedSlug = categorySlug ? canonicalizeCategorySlug(categorySlug) : undefined;
+  const content = normalizedSlug ? pillarContent[normalizedSlug] : undefined;
 
   const { data: category, isLoading: catLoading } = useQuery({
     queryKey: ["sanity-category", categorySlug],
@@ -69,7 +76,10 @@ const KennisbankPillar = () => {
           <div className="section-container text-center">
             <h1 className="text-4xl font-bold">Thema niet gevonden</h1>
             <p className="mt-4 text-muted-foreground">Deze categorie bestaat niet of is verplaatst.</p>
-            <Link to="/kennisbank" className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+            <Link
+              to="/kennisbank"
+              className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:underline"
+            >
               Terug naar kennisbank
             </Link>
           </div>
@@ -80,59 +90,80 @@ const KennisbankPillar = () => {
 
   const pillarCanonical = category
     ? `https://propasso.nl/kennisbank/thema/${category.slug.current}`
-    : undefined;
+    : "";
+
+  const pillarTitle = category
+    ? `${category.title} | Exit Planning | Propasso`
+    : "Kennisbank thema | Propasso";
+
+  const pillarDescription =
+    (content?.heroIntro || category?.description || "").trim() ||
+    (category?.title
+      ? `Lees artikelen, inzichten en praktische aandachtspunten over ${category.title.toLowerCase()} voor MKB-ondernemers die hun bedrijf sterker, zelfstandiger en verkoopklaar willen maken.`
+      : "Lees artikelen en inzichten uit de kennisbank van Propasso over exit planning, waardecreatie en bedrijfsoverdracht.");
+  
+  const pillarOgImage =
+    category?.slug?.current ? pillarOgImages[category.slug.current] : undefined;
+  
+  const itemListSchema =
+    category && posts && posts.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          itemListElement: posts.map((post: SanityPost, index: number) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `https://propasso.nl/kennisbank/${post.slug.current}`,
+            name: post.title,
+          })),
+        }
+      : null;
 
   return (
     <PageLayout>
-      {/* SEO head */}
       {category && (
-        <Helmet>
-          <title>{category.title} | Kennisbank | Propasso</title>
-          {category.description && <meta name="description" content={category.description} />}
-          {pillarCanonical && <link rel="canonical" href={pillarCanonical} />}
-          <meta property="og:title" content={`${category.title} | Propasso`} />
-          {category.description && <meta property="og:description" content={category.description} />}
-          {pillarCanonical && <meta property="og:url" content={pillarCanonical} />}
-          <meta property="og:type" content="website" />
-        </Helmet>
-      )}
-
-      {/* JSON-LD */}
-      {category && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+        <SEO
+          title={pillarTitle}
+          description={pillarDescription}
+          canonical={pillarCanonical}
+          ogTitle={`${category.title} | Propasso`}
+          ogDescription={pillarDescription}
+          ogType="website"
+          ogImage={pillarOgImage}
+          jsonLd={[
+            {
               "@context": "https://schema.org",
               "@type": "CollectionPage",
               name: category.title,
-              description: category.description || `Artikelen over ${category.title}`,
-              url: `https://propasso.nl/kennisbank/thema/${category.slug.current}`,
-              isPartOf: { "@type": "WebPage", name: "Kennisbank", url: "https://propasso.nl/kennisbank" },
-            }),
-          }}
-        />
-      )}
-      {category && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+              description: pillarDescription,
+              url: pillarCanonical,
+              isPartOf: {
+                "@type": "WebPage",
+                name: "Kennisbank",
+                url: "https://propasso.nl/kennisbank",
+              },
+            },
+            {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
                 { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
                 { "@type": "ListItem", position: 2, name: "Kennisbank", item: "https://propasso.nl/kennisbank" },
-                { "@type": "ListItem", position: 3, name: category.title, item: `https://propasso.nl/kennisbank/thema/${category.slug.current}` },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: category.title,
+                  item: pillarCanonical,
+                },
               ],
-            }),
-          }}
+            },
+            ...(itemListSchema ? [itemListSchema] : []),
+          ]}
         />
       )}
 
       {/* ═══════════ HERO ═══════════ */}
       <section className="relative overflow-hidden pt-16 pb-12 md:pt-24 md:pb-16">
-        {/* Decorative background accent */}
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/[0.07] blur-[120px]" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[300px] rounded-full bg-primary/[0.04] blur-[100px]" />
@@ -161,7 +192,6 @@ const KennisbankPillar = () => {
                 {category?.title}
               </h1>
 
-              {/* Intro card */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -175,7 +205,6 @@ const KennisbankPillar = () => {
                 </p>
               </motion.div>
 
-              {/* Article count badge */}
               {posts && posts.length > 0 && (
                 <div className="mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground">
                   <BookOpen size={16} />
@@ -240,9 +269,7 @@ const KennisbankPillar = () => {
                     <h3 className="text-lg font-bold leading-snug group-hover:text-primary transition-colors duration-300">
                       {post.title}
                     </h3>
-                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-                      {post.summary}
-                    </p>
+                    <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{post.summary}</p>
                     <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-300">
                       Verder lezen <ArrowRight size={14} />
                     </span>
@@ -320,7 +347,6 @@ const KennisbankPillar = () => {
           </div>
         </section>
       )}
-
 
       <PageCTA
         title="Wil je weten waar jouw bedrijf staat?"
