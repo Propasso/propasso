@@ -18,14 +18,14 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Propasso | Exit Planning & Bedrijfsoverdracht voor MKB</title>
+        <title>Exit Planning voor het MKB | Bedrijf verkoopklaar maken - Propasso</title>
         <meta
           name="description"
           content="Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid."
         />
         <link rel="canonical" href="https://propasso.nl/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Propasso | Exit Planning & Bedrijfsoverdracht voor MKB" />
+        <meta property="og:title" content="Exit Planning voor het MKB | Bedrijf verkoopklaar maken - Propasso" />
         <meta
           property="og:description"
           content="Propasso begeleidt MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en verkoopbaarheid."
