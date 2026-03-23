@@ -35,7 +35,7 @@ const HeroSection = () => {
             transition={{ duration: 0.7 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground text-balance"
           >
-            Een succesvolle verkoop <span className="text-muted-foreground">begint jaren vóór de deal.</span>
+            Exit Planning voor MKB-ondernemers <span className="text-muted-foreground">| Bedrijf verkoopklaar maken</span>
           </motion.h1>
 
           <motion.div
