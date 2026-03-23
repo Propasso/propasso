@@ -6,21 +6,32 @@ import QuickscanIntro from "@/components/quickscan/QuickscanIntro";
 import QuickscanQuestionComponent from "@/components/quickscan/QuickscanQuestion";
 import QuickscanProgress from "@/components/quickscan/QuickscanProgress";
 import QuickscanResults from "@/components/quickscan/QuickscanResults";
-import {
-  allQuestions,
-  TOTAL_QUESTIONS,
-  calculateScores,
-  extractSnapshot,
-} from "@/data/diagnoseData";
+import { allQuestions, TOTAL_QUESTIONS, calculateScores, extractSnapshot } from "@/data/diagnoseData";
 
 type Phase = "intro" | "questions" | "results";
 
 // Debug mock answers to skip straight to results via ?debug=results
 const DEBUG_ANSWERS: Record<number, string> = {
-  1: '€3–10 mln', 2: '25–50', 3: 'Eigenaar-ondernemer', 4: 'Gezonde winst', 5: '3–5 jaar',
-  6: '4', 7: '3', 8: '3', 9: '2', 10: '4',
-  11: '3', 12: '4', 13: '2', 14: '3', 15: '4',
-  16: '2', 17: '3', 18: '2', 19: '3', 20: '4',
+  1: "€3–10 mln",
+  2: "25–50",
+  3: "Eigenaar-ondernemer",
+  4: "Gezonde winst",
+  5: "3–5 jaar",
+  6: "4",
+  7: "3",
+  8: "3",
+  9: "2",
+  10: "4",
+  11: "3",
+  12: "4",
+  13: "2",
+  14: "3",
+  15: "4",
+  16: "2",
+  17: "3",
+  18: "2",
+  19: "3",
+  20: "4",
 };
 
 const Quickscan = () => {
@@ -40,7 +51,7 @@ const Quickscan = () => {
     (value: string) => {
       setAnswers((prev) => ({ ...prev, [allQuestions[currentIndex].id]: value }));
     },
-    [currentIndex]
+    [currentIndex],
   );
 
   const handleNext = useCallback(() => {
@@ -64,10 +75,10 @@ const Quickscan = () => {
     <PageLayout>
       <SEO
         title="Exit Readiness Quickscan"
-        description="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis met direct tips en resultaten."
+        description="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis, direct resultaten en tips."
         canonical="https://propasso.nl/quickscan"
         ogTitle="Exit Readiness Quickscan | Propasso"
-        ogDescription="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een toekomstige overdracht."
+        ogDescription="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis, direct resultaten en tips."
         ogType="website"
       />
 
