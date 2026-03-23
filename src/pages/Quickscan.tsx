@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { useSearchParams } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
 import QuickscanIntro from "@/components/quickscan/QuickscanIntro";
@@ -62,18 +62,14 @@ const Quickscan = () => {
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>Exit Readiness Quickscan | Propasso</title>
-        <meta
-          name="description"
-          content="Ontdek in 5 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een toekomstige overdracht. Gratis quickscan met directe resultaten."
-        />
-        <link rel="canonical" href="https://propasso.nl/quickscan" />
-        <meta property="og:title" content="Exit Readiness Quickscan | Propasso" />
-        <meta property="og:description" content="Ontdek in 5 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een toekomstige overdracht." />
-        <meta property="og:url" content="https://propasso.nl/quickscan" />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEO
+        title="Exit Readiness Quickscan"
+        description="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis met direct tips en resultaten."
+        canonical="https://propasso.nl/quickscan"
+        ogTitle="Exit Readiness Quickscan | Propasso"
+        ogDescription="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een toekomstige overdracht."
+        ogType="website"
+      />
 
       {phase === "intro" && <QuickscanIntro onStart={handleStart} />}
 
