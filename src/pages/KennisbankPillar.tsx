@@ -201,8 +201,16 @@ const KennisbankPillar = () => {
                 <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
                   {content?.heroIntro ||
                     category?.description ||
-                    "Ontdek de belangrijkste inzichten en strategieën rondom dit thema. Elk artikel helpt je stap voor stap bij de voorbereiding op een succesvolle bedrijfsoverdracht."}
-                </p>
+                    "Ontdek de belangrijkste inzichten en strategieën rondom dit thema. Elk artikel helpt je stap voor stap bij de voorbereiding op een succesvolle bedrijfsoverdracht."} </p>
+              
+                {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
+                  <a
+                    href="#verdieping"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2 transition-all"
+                  >
+                    Meer info over {category?.title?.toLowerCase()} <ArrowRight size={14} />
+                  </a>
+                )}
               </motion.div>
 
               {posts && posts.length > 0 && (
@@ -290,12 +298,12 @@ const KennisbankPillar = () => {
 
       {/* ═══════════ EXTENDED INTRO (SEO) ═══════════ */}
       {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
-        <section className="py-16 md:py-20 section-alt-bg">
+        <section id="verdieping" className="py-16 md:py-20 section-alt-bg scroll-mt-24">
           <div className="section-container">
             <div className="max-w-3xl">
-              <p className="eyebrow mb-4">Verdieping</p>
+              <p className="eyebrow mb-4">Meer over dit exit planning-thema</p>
               <h2 className="text-2xl md:text-3xl font-bold mb-8">
-                Meer over {category?.title?.toLowerCase()}
+                Meer info over {category?.title?.toLowerCase()}
               </h2>
               <div className="space-y-6">
                 {content.bodyParagraphs.map((paragraph, index) => (
