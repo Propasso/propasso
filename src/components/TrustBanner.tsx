@@ -15,7 +15,7 @@ const CheckIcon = () => (
     <circle cx="8" cy="8" r="8" fill="rgba(222, 242, 73, 0.12)" />
     <path
       d="M5 8.2L7 10.2L11 6.2"
-      stroke="rgba(222, 242, 73, 0.9)"
+      stroke="hsl(var(--primary))"
       strokeWidth="1.8"
       strokeLinecap="round"
       strokeLinejoin="round"
