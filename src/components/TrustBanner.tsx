@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 const trustItems = ["CEPA-gecertificeerd adviseur", "Gespecialiseerd in MKB exitplanning", "12+ jaar ondernemer"];
 
@@ -15,7 +15,7 @@ const CheckIcon = () => (
   </svg>
 );
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -24,12 +24,12 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 6 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0, 0, 0.2, 1] },
+    transition: { duration: 0.4, ease: "easeOut" },
   },
 };
 
