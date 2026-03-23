@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import QuickscanSideCallout from "@/components/QuickscanSideCallout";
@@ -332,38 +332,49 @@ Het informatiememorandum vormt de basis waarop kopers beslissen of zij interesse
   },
 ];
 
+const pageDescription =
+  "Antwoorden op veelgestelde vragen van ondernemers over exit planning, bedrijfswaarde, overdraagbaarheid en bedrijfsoverdracht.";
+
+const faqSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqSections.flatMap((section) =>
+      section.items.map((faq) => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      }))
+    ),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
+      { "@type": "ListItem", position: 2, name: "Veelgestelde vragen", item: "https://propasso.nl/veelgestelde-vragen" },
+    ],
+  },
+];
+
 const VeelgesteldeVragen = () => {
   return (
     <PageLayout>
-      <Helmet>
-        <title>Veelgestelde vragen over Exit Planning | Propasso</title>
-        <meta
-          name="description"
-          content="Antwoorden op veelgestelde vragen van ondernemers over exit planning, bedrijfswaarde, overdraagbaarheid en bedrijfsoverdracht."
-        />
-        <link rel="canonical" href="https://propasso.nl/veelgestelde-vragen" />
-      </Helmet>
-      {/* JSON-LD FAQPage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqSections.flatMap((section) =>
-              section.items.map((faq) => ({
-                "@type": "Question",
-                name: faq.question,
-                acceptedAnswer: { "@type": "Answer", text: faq.answer },
-              })),
-            ),
-          }),
-        }}
+      <SEO
+        title="Veelgestelde vragen over Exit Planning"
+        description={pageDescription}
+        canonical="https://propasso.nl/veelgestelde-vragen"
+        ogTitle="Veelgestelde vragen over Exit Planning | Propasso"
+        ogDescription={pageDescription}
+        ogType="website"
+        jsonLd={faqSchemas}
       />
 
       {/* ═══════════ HERO ═══════════ */}
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
-        {/* Faded accent circle with illustration */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
           <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
           <img
@@ -398,13 +409,13 @@ const VeelgesteldeVragen = () => {
           </motion.div>
         </div>
       </section>
+
       {/* ═══════════ FAQ SECTIONS ═══════════ */}
       <section className="py-20 md:py-28">
         <div className="section-container max-w-4xl">
           <div className="space-y-16 md:space-y-20">
             {faqSections.map((section, sectionIndex) => (
               <motion.div key={section.title} {...fadeInUp} transition={{ duration: 0.5, delay: 0.05 * sectionIndex }}>
-                {/* Section header with subtle left accent */}
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-1 h-8 rounded-full bg-primary/20" />
                   <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{section.title}</h2>
@@ -429,8 +440,6 @@ const VeelgesteldeVragen = () => {
               </motion.div>
             ))}
           </div>
-
-          
         </div>
       </section>
 
