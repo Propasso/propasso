@@ -1,30 +1,39 @@
 
 
-## Problem
+## Revised Plan: Trust Banner + Stats Bar + H1 Fix
 
-Bing (and other non-JS crawlers) only see the static `index.html`. The `<body>` contains just `<div id="root"></div>` with no `<h1>`. The actual `<h1>` is rendered client-side by React in `HeroSection.tsx`, which Bing doesn't execute.
+### Changes from previous plan
 
-## Solution
+1. **TrustBanner**: `position: relative` (not fixed), no z-index. No `pt` adjustment on HeroSection — keep `pt-20` as-is.
+2. **Fonts**: No Inter import. Use existing DM Sans (the project body font) for all text in both components.
+3. **H1 fix**: Change the `<h1>` in HeroSection to read "Exit Planning voor MKB-ondernemers | Bedrijf verkoopklaar maken" as the SEO-visible text, styled with existing heading classes.
 
-Add a **server-side-visible `<h1>`** inside `index.html` that React will overwrite once it mounts. This gives crawlers immediate access to the heading.
+### Files
 
-### File: `index.html`
+**New: `src/components/TrustBanner.tsx`**
+- `position: relative`, full-width, navy background (`hsl(var(--primary))`), 1px bottom border in teal at 50% opacity
+- Three trust signals in centered row with lime checkmarks, uppercase labels in DM Sans 13px, teal separators
+- Staggered fade-up via framer-motion (0/150/300ms delays, 6px rise, 400ms)
+- Mobile: vertical stack, no separators
 
-Add an `<h1>` inside `<div id="root">` as fallback content. React's `createRoot().render()` replaces the contents of `#root`, so this text is only visible to bots and disappears instantly for real users.
+**New: `src/components/StatsBar.tsx`**
+- Background `#E7F2DC`, 56px vertical padding, three-column layout
+- Stats in DM Sans Bold 52px, descriptions in DM Sans 14px color `#2C786F`
+- Count-up animation via IntersectionObserver for 78% and 40%+; fade-in for "3–5 jaar"
+- Olive separators, mobile vertical stack with horizontal lines
 
-```html
-<div id="root">
-  <h1 style="position:absolute;left:-9999px">Propasso — Exit Planning &amp; Bedrijfsoverdracht voor MKB-ondernemers</h1>
-</div>
-```
+**Modified: `src/components/HeroSection.tsx`**
+- Change the `<motion.h1>` text content to: `"Exit Planning voor MKB-ondernemers | Bedrijf verkoopklaar maken"`
+- Keep existing two-tone styling: first part in `text-foreground`, second part (after `|`) in `text-muted-foreground` via a `<span>`
+- Keep `pt-20` unchanged
 
-The `h1` text mirrors the page `<title>` and core keyword strategy. The off-screen positioning ensures no flash of unstyled content before React hydrates.
+**Modified: `src/pages/Index.tsx`**
+- Import `TrustBanner` and `StatsBar`
+- Insert `<TrustBanner />` between `<Header />` and `<main>`
+- Insert `<StatsBar />` between `<HeroSection />` and `<ProblemSection />`
 
-### Why this works
-- Bing, Google's basic crawler, and AI bots see the `<h1>` in the raw HTML
-- React replaces `#root` contents on mount — no duplicate heading for users
-- No conflict with per-page `<h1>` tags rendered by React components
-- Zero impact on existing components or routing
+**Modified: `index.html`**
+- Update the fallback `<h1>` text to match: "Exit Planning voor MKB-ondernemers | Bedrijf verkoopklaar maken – Propasso"
 
-### No other files affected
+**No changes to `src/index.css`** — no new font imports.
 
