@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import { ChevronRight, Shield, Briefcase, Users, Eye } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
@@ -36,11 +36,11 @@ const values = [
     icon: Users,
     title: "Ervaringsdeskundige",
     description:
-      "Geen theoretische modellen maar begeleiding door iemand die zelf ondernemers is geweest met 100+ medewerkers.",
+      "Geen lange rapporten maar begeleiding door iemand die zelf ondernemer is geweest en weet hoe het is om 100+ medewerkers te hebben, in goede én in slechte tijden.",
   },
   {
     icon: Eye,
-    title: "Transparant & Direct",
+    title: "Transparant & Betrokken",
     description:
       "Integriteit en vertrouwen als basis, maar scherp en direct op de inhoud wanneer een doorbraak nodig is.",
   },
@@ -73,28 +73,88 @@ const timeline = [
   },
 ];
 
+const pageDescription =
+  "Leer meer over Karel Cremers en Propasso: ervaring uit ondernemerschap, strategie en bedrijfsoverdracht voor MKB-ondernemers die hun bedrijf willen versterken of verkoopklaar maken.";
+
+const aboutSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "Over Propasso en Karel Cremers | Exit Planning voor MKB",
+    url: "https://propasso.nl/over-propasso",
+    description: pageDescription,
+    inLanguage: "nl-NL",
+    about: [
+      { "@id": "https://propasso.nl/#organization" },
+      { "@id": "https://propasso.nl/#person-karel-cremers" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://propasso.nl/#organization",
+    name: "Propasso",
+    url: "https://propasso.nl/",
+    logo: "https://propasso.nl/propasso-logo-grey-yellow.png",
+    email: "hallo@propasso.nl",
+    telephone: "+31 6 1005 7566",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Nieuwe Linie 12",
+      postalCode: "5264PJ",
+      addressLocality: "Vught",
+      addressCountry: "NL",
+    },
+    sameAs: ["https://www.linkedin.com/company/propasso"],
+    founder: {
+      "@id": "https://propasso.nl/#person-karel-cremers",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://propasso.nl/#person-karel-cremers",
+    name: "Karel Cremers",
+    url: "https://propasso.nl/over-propasso",
+    image: "https://propasso.nl/og-default.png",
+    jobTitle: "Exit Planning Adviseur",
+    worksFor: {
+      "@id": "https://propasso.nl/#organization",
+    },
+    sameAs: ["https://www.linkedin.com/in/karelcremers"],
+    knowsAbout: [
+      "Exit Planning",
+      "Bedrijfsoverdracht",
+      "Waardecreatie",
+      "Bedrijfsverbetering",
+      "MKB ondernemerschap",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
+      { "@type": "ListItem", position: 2, name: "Over Propasso", item: "https://propasso.nl/over-propasso" },
+    ],
+  },
+];
+
 const OverPropasso = () => {
   return (
     <PageLayout>
-      <Helmet>
-        <title>Over Propasso | Exit Planning & Bedrijfsoverdracht begeleiding</title>
-        <meta
-          name="description"
-          content="Propasso begeleidt MKB-ondernemers bij exit planning en bedrijfsoverdracht. Leer meer over Karel Cremers, zijn achtergrond en de missie van Propasso."
-        />
-        <link rel="canonical" href="https://propasso.nl/over-propasso" />
-        <meta property="og:title" content="Over Propasso | Exit Planning & Bedrijfsoverdracht begeleiding" />
-        <meta
-          property="og:description"
-          content="Propasso begeleidt MKB-ondernemers bij exit planning en bedrijfsoverdracht. Leer meer over Karel Cremers, zijn achtergrond en de missie van Propasso."
-        />
-        <meta property="og:url" content="https://propasso.nl/over-propasso" />
-        <meta property="og:type" content="website" />
-      </Helmet>
+      <SEO
+        title="Over Propasso en Karel Cremers | Exit Planning voor MKB"
+        description={pageDescription}
+        canonical="https://propasso.nl/over-propasso"
+        ogTitle="Over Propasso en Karel Cremers | Exit Planning voor MKB"
+        ogDescription={pageDescription}
+        ogType="website"
+        jsonLd={aboutSchemas}
+      />
 
       {/* ─── 1. HERO ─── */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
-        {/* Yellow accent circle with centered illustration */}
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
           <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
           <img
@@ -125,7 +185,6 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      {/* ─── 2. WAARDEN ─── */}
       <section className="py-20 md:py-28 section-alt-bg">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="text-center mb-14">
@@ -160,7 +219,6 @@ const OverPropasso = () => {
 
       <QuickscanBanner contextLine="Benieuwd hoe jouw bedrijf ervoor staat? Doe de gratis quickscan en ontvang direct inzicht." />
 
-      {/* ─── 3. VERHAAL (compact) + foto ─── */}
       <section className="py-20 md:py-28">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -205,7 +263,6 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      {/* ─── 4. QUOTE + TESTIMONIALS ─── */}
       <section className="py-16 md:py-20 tint-teal-bg">
         <div className="section-container">
           <motion.blockquote {...fadeInUp} transition={{ duration: 0.6 }} className="text-center max-w-3xl mx-auto">
@@ -221,7 +278,6 @@ const OverPropasso = () => {
 
       <TestimonialsSection />
 
-      {/* ─── 5. NAAM & MISSIE ─── */}
       <section className="py-20 md:py-28 section-alt-bg">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -259,7 +315,6 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      {/* ─── 6. PERSOONLIJK (kort) ─── */}
       <section className="py-20 md:py-28">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -292,7 +347,6 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      {/* ─── 7. MID-PAGE CTA ─── */}
       <section className="py-16 md:py-20 tint-teal-bg">
         <div className="section-container text-center">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
@@ -313,7 +367,6 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      {/* ─── 8. TIMELINE ─── */}
       <section className="py-20 md:py-28 section-alt-bg">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="text-center mb-16">
@@ -352,7 +405,6 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      {/* ─── 9. FOTO'S + CTA ─── */}
       <section className="py-20 md:py-28">
         <div className="section-container">
           <div className="grid md:grid-cols-3 gap-6">
