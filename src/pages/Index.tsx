@@ -39,8 +39,8 @@ const homepageSchemas = [
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer support",
-      telephone: "+31 6 5333 0439",
-      email: "karel@propasso.nl",
+      telephone: "+31 6 1005 7566",
+      email: "hallo@propasso.nl",
       availableLanguage: ["nl-NL"],
     },
     sameAs: [
