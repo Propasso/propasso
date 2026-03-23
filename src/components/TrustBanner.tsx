@@ -36,7 +36,7 @@ const itemVariants: Variants = {
 const TrustBanner = () => {
   return (
     <div
-      className="w-full bg-primary"
+      className="w-full bg-primary mt-20"
       style={{
         borderBottom: "1px solid hsla(var(--teal-medium), 0.4)",
       }}
