@@ -10,7 +10,7 @@ type SEOProps = {
   ogImage?: string;
   noIndex?: boolean;
   robots?: string;
-  jsonLd?: Record<string, any> | Record<string, any>[];
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 };
 
 const DEFAULT_OG_IMAGE = "https://propasso.nl/og-default.png";
