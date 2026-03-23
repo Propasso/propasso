@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { PortableText } from "@portabletext/react";
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
@@ -78,17 +78,16 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>{title} | Propasso</title>
-        <meta name="description" content={description} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta property="og:title" content={ogTitle} />
-        <meta property="og:description" content={ogDescription} />
-        <meta property="og:url" content={canonicalUrl} />
-        <meta property="og:type" content="article" />
-        {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-        {post.noIndex && <meta name="robots" content="noindex, nofollow" />}
-      </Helmet>
+      <SEO
+        title={title}
+        description={description}
+        canonical={canonicalUrl}
+        ogTitle={ogTitle}
+        ogDescription={ogDescription}
+        ogType="article"
+        ogImage={ogImageUrl}
+        noIndex={post.noIndex}
+      />
       {/* Article JSON-LD */}
       {post.body && (
         <script
