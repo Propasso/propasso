@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
-import TrustBanner from "@/components/TrustBanner";
 import QuickscanBanner from "@/components/QuickscanBanner";
 import HeroSection from "@/components/HeroSection";
 import StatsBar from "@/components/StatsBar";
@@ -69,7 +68,6 @@ const Index = () => {
         }}
       />
       <Header />
-      <TrustBanner />
       <main>
         <HeroSection />
         <StatsBar />

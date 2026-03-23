@@ -1,5 +1,3 @@
-
-
 ## Revised Plan: Trust Banner + Stats Bar + H1 Fix
 
 ### Changes from previous plan
@@ -11,29 +9,31 @@
 ### Files
 
 **New: `src/components/TrustBanner.tsx`**
+
 - `position: relative`, full-width, navy background (`hsl(var(--primary))`), 1px bottom border in teal at 50% opacity
 - Three trust signals in centered row with lime checkmarks, uppercase labels in DM Sans 13px, teal separators
 - Staggered fade-up via framer-motion (0/150/300ms delays, 6px rise, 400ms)
 - Mobile: vertical stack, no separators
 
 **New: `src/components/StatsBar.tsx`**
+
 - Background `#E7F2DC`, 56px vertical padding, three-column layout
 - Stats in DM Sans Bold 52px, descriptions in DM Sans 14px color `#2C786F`
 - Count-up animation via IntersectionObserver for 78% and 40%+; fade-in for "3–5 jaar"
 - Olive separators, mobile vertical stack with horizontal lines
 
 **Modified: `src/components/HeroSection.tsx`**
+
 - Change the `<motion.h1>` text content to: `"Exit Planning voor MKB-ondernemers | Bedrijf verkoopklaar maken"`
 - Keep existing two-tone styling: first part in `text-foreground`, second part (after `|`) in `text-muted-foreground` via a `<span>`
 - Keep `pt-20` unchanged
 
 **Modified: `src/pages/Index.tsx`**
-- Import `TrustBanner` and `StatsBar`
-- Insert `<TrustBanner />` between `<Header />` and `<main>`
+
 - Insert `<StatsBar />` between `<HeroSection />` and `<ProblemSection />`
 
 **Modified: `index.html`**
+
 - Update the fallback `<h1>` text to match: "Exit Planning voor MKB-ondernemers | Bedrijf verkoopklaar maken – Propasso"
 
 **No changes to `src/index.css`** — no new font imports.
-
