@@ -205,11 +205,12 @@ const KennisbankPillar = () => {
               
                 {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
                   <a
-                    href="#verdieping"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:gap-2 transition-all"
-                  >
-                    Meer info over {category?.title?.toLowerCase()} <ArrowRight size={14} />
-                  </a>
+                  href="#verdieping"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/60 px-4 py-2 text-sm font-semibold text-primary backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-background hover:gap-3"
+                >
+                  Meer info over {category?.title?.toLowerCase()}
+                  <ArrowRight size={14} />
+                </a>
                 )}
               </motion.div>
 
