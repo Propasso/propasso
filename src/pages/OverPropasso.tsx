@@ -116,7 +116,7 @@ const aboutSchemas = [
     "@id": "https://propasso.nl/#person-karel-cremers",
     name: "Karel Cremers",
     url: "https://propasso.nl/over-propasso",
-    image: "https://propasso.nl/og-default.png",
+    image: aboutOgImage,
     jobTitle: "Exit Planning Adviseur",
     worksFor: {
       "@id": "https://propasso.nl/#organization",
@@ -126,8 +126,9 @@ const aboutSchemas = [
       "Exit Planning",
       "Bedrijfsoverdracht",
       "Waardecreatie",
-      "Bedrijfsverbetering",
+      "Resultaatverbetering",
       "MKB ondernemerschap",
+      "Familiebedrijven",
     ],
   },
   {
@@ -150,6 +151,7 @@ const OverPropasso = () => {
         ogTitle="Over Propasso en Karel Cremers | Exit Planning voor MKB"
         ogDescription={pageDescription}
         ogType="website"
+        ogImage={aboutOgImage}
         jsonLd={aboutSchemas}
       />
 
