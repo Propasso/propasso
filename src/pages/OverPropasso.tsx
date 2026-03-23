@@ -36,7 +36,7 @@ const values = [
     icon: Users,
     title: "Ervaringsdeskundige",
     description:
-      "Geen theoretische modellen, maar begeleiding door iemand die zelf het ondernemerspad heeft bewandeld. Inclusief de dalen.",
+      "Geen theoretische modellen maar begeleiding door iemand die zelf ondernemers is geweest met 100+ medewerkers.",
   },
   {
     icon: Eye,
@@ -84,7 +84,10 @@ const OverPropasso = () => {
         />
         <link rel="canonical" href="https://propasso.nl/over-propasso" />
         <meta property="og:title" content="Over Propasso | Exit Planning & Bedrijfsoverdracht begeleiding" />
-        <meta property="og:description" content="Propasso begeleidt MKB-ondernemers bij exit planning en bedrijfsoverdracht. Leer meer over Karel Cremers, zijn achtergrond en de missie van Propasso." />
+        <meta
+          property="og:description"
+          content="Propasso begeleidt MKB-ondernemers bij exit planning en bedrijfsoverdracht. Leer meer over Karel Cremers, zijn achtergrond en de missie van Propasso."
+        />
         <meta property="og:url" content="https://propasso.nl/over-propasso" />
         <meta property="og:type" content="website" />
       </Helmet>
@@ -152,7 +155,6 @@ const OverPropasso = () => {
               </motion.div>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -169,8 +171,9 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Na een loopbaan in Strategy & Development bij CRH Plc., met focus op fusies, overnames en business development,
-                  koos ik in 2013 voor ondernemerschap. Niet in een opwaartse markt, maar midden in de recessie.
+                  Na een loopbaan in Strategy & Development bij CRH Plc., met focus op fusies, overnames en business
+                  development, koos ik in 2013 voor ondernemerschap. Niet in een opwaartse markt, maar midden in de
+                  recessie.
                 </p>
                 <p>
                   Ik begeleidde het familiebedrijf door een faillissement en doorstart, en bouwde het uit tot een
@@ -178,8 +181,8 @@ const OverPropasso = () => {
                   2024 een groot deel van het bedrijf. Achteraf gezien was ik mijn eigen Exit Planning adviseur.
                 </p>
                 <p>
-                  Die ervaring, de groei, de resultaatverbeteringen, de uitdagingen en de overdracht, is
-                  precies wat ik nu inzet voor MKB-ondernemers via Propasso.
+                  Die ervaring, de groei, de resultaatverbeteringen, de uitdagingen en de overdracht, is precies wat ik
+                  nu inzet voor MKB-ondernemers via Propasso.
                 </p>
               </div>
             </motion.div>
@@ -229,8 +232,8 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  De naam Propasso is een verbastering van het Italiaanse <em>Prossimi Passi</em>, wat "de volgende stap" betekent.
-                  Het staat voor groei en vooruitgang.
+                  De naam Propasso is een verbastering van het Italiaanse <em>Prossimi Passi</em>, wat "de volgende
+                  stap" betekent. Het staat voor groei en vooruitgang.
                 </p>
                 <p>
                   <strong>Mijn overtuiging:</strong> verandering brengt onzekerheid, maar juist daar, buiten de
@@ -275,9 +278,9 @@ const OverPropasso = () => {
               <h2 className="mt-5 text-3xl md:text-4xl font-bold leading-tight">Bergbeklimmer met hoogtevrees</h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Bergbeklimmer met hoogtevrees? Ja, echt. Ik geloof dat échte groei buiten je comfortzone zit,
-                  zakelijk én privé. Ondanks lichte hoogtevrees trek ik elk jaar met vrienden de bergen in:
-                  trailrunning, fietsen en bergwandelen.
+                  Bergbeklimmer met hoogtevrees? Ja, echt. Ik geloof dat échte groei buiten je comfortzone zit, zakelijk
+                  én privé. Ondanks lichte hoogtevrees trek ik elk jaar met vrienden de bergen in: trailrunning, fietsen
+                  en bergwandelen.
                 </p>
                 <p>
                   Diezelfde mentaliteit breng ik mee in mijn werk: de moed om stappen te zetten die richting geven en
