@@ -8,13 +8,6 @@
 
 ### Files
 
-**New: `src/components/TrustBanner.tsx`**
-
-- `position: relative`, full-width, navy background (`hsl(var(--primary))`), 1px bottom border in teal at 50% opacity
-- Three trust signals in centered row with lime checkmarks, uppercase labels in DM Sans 13px, teal separators
-- Staggered fade-up via framer-motion (0/150/300ms delays, 6px rise, 400ms)
-- Mobile: vertical stack, no separators
-
 **New: `src/components/StatsBar.tsx`**
 
 - Background `#E7F2DC`, 56px vertical padding, three-column layout
