@@ -12,7 +12,7 @@ const CheckIcon = () => (
     className="shrink-0"
     aria-hidden="true"
   >
-    <circle cx="8" cy="8" r="8" fill="hsl(var(--primary) / 0.14)" />
+    <circle cx="8" cy="8" r="8" fill="rgba(222, 242, 73, 0.12)" />
     <path
       d="M5 8.2L7 10.2L11 6.2"
       stroke="rgba(222, 242, 73, 0.9)"
