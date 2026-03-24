@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import ConsentCheckboxes from "@/components/ConsentCheckboxes";
 import { useToast } from "@/hooks/use-toast";
 import { Loader2, FileText } from "lucide-react";
+import { pushEvent } from "@/lib/tracking";
 
 const formSchema = z.object({
   name: z.string().trim().min(2, "Vul uw naam in").max(100),
@@ -72,6 +73,7 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
 
       if (error) throw error;
 
+      pushEvent("quickscan_lead_submit", { event_source: "quickscan" });
       toast({
         title: "Rapport verzonden",
         description: `Uw persoonlijk rapport is verstuurd naar ${values.email}.`

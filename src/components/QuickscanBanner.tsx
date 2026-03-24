@@ -25,6 +25,10 @@ const QuickscanBanner = ({ contextLine }: QuickscanBannerProps) => {
       >
         <Link
           to="/quickscan"
+          onClick={() => {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "banner" });
+          }}
           className="group relative block rounded-2xl overflow-hidden
             bg-gradient-to-br from-primary/[0.04] via-card to-accent/[0.06]
             backdrop-blur-sm

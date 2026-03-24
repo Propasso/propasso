@@ -68,6 +68,10 @@ const Header = () => {
           <div className="flex items-center gap-3 ml-1">
             <Link
               to="/quickscan"
+              onClick={() => {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "header" });
+              }}
               className="relative inline-flex items-center justify-center rounded-full h-10 px-5 text-sm font-semibold text-foreground
                 bg-gradient-to-r from-accent/10 to-primary/[0.06] border border-border/40
                 hover:border-primary/30 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.2)] transition-all duration-300
@@ -117,6 +121,10 @@ const Header = () => {
               ))}
               <Link
                 to="/quickscan"
+                onClick={() => {
+                  window.dataLayer = window.dataLayer || [];
+                  window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "header_mobile" });
+                }}
                 className="text-base font-medium text-foreground/70 hover:text-foreground py-2"
               >
                 Quickscan
