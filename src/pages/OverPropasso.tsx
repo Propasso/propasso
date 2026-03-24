@@ -14,6 +14,8 @@ import viaFerrata from "@/assets/images/via-ferrata.png";
 import mountainClimberSvg from "@/assets/images/mountain-climber-line-drawing.svg";
 import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
+const aboutOgImage = "https://propasso.nl/og-over-propasso.jpg";
+
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
