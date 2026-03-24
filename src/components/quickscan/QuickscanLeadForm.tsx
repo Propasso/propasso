@@ -49,26 +49,30 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase.functions.invoke("send-diagnose-results", {
-        body: {
-          name: values.name,
-          email: values.email,
-          company: values.company || undefined,
-          phone: values.phone || undefined,
-          newsletter: newsletterChecked,
-          scores: {
-            business_attractiveness_score: scores.attractiveness.toString(),
-            business_readiness_score: scores.readiness.toString(),
-            owner_readiness_score: scores.owner.toString()
-          },
-          snapshot: {
-            revenue_band: snapshot.revenueBand,
-            employee_band: snapshot.employeeBand,
-            role_type: snapshot.roleType,
-            profitability: snapshot.profitability,
-            exit_horizon: snapshot.exitHorizon
-          }
+      const payload = {
+        name: values.name,
+        email: values.email,
+        company: values.company || undefined,
+        phone: values.phone || undefined,
+        newsletter: newsletterChecked,
+        scores: {
+          business_attractiveness_score: scores.attractiveness.toString(),
+          business_readiness_score: scores.readiness.toString(),
+          owner_readiness_score: scores.owner.toString()
+        },
+        snapshot: {
+          revenue_band: snapshot.revenueBand,
+          employee_band: snapshot.employeeBand,
+          role_type: snapshot.roleType,
+          profitability: snapshot.profitability,
+          exit_horizon: snapshot.exitHorizon
         }
+      };
+
+      console.log("[QuickscanLeadForm] Submitting payload snapshot:", JSON.stringify(payload.snapshot));
+
+      const { error } = await supabase.functions.invoke("send-diagnose-results", {
+        body: payload
       });
 
       if (error) throw error;
