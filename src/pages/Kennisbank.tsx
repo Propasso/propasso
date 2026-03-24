@@ -97,7 +97,6 @@ const Kennisbank = () => {
         jsonLd={knowledgeBaseSchemas}
       />
 
-      {/* ═══════════ HERO ═══════════ */}
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
           <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
@@ -129,7 +128,8 @@ const Kennisbank = () => {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Praktische artikelen over waardecreatie, verkoopklaarheid en de voorbereiding op een succesvolle bedrijfsoverdracht, gestructureerd rondom de zes pijlers van Exit Planning.
+            Praktische artikelen over waardecreatie, verkoopklaarheid en de voorbereiding op een succesvolle
+            bedrijfsoverdracht, gestructureerd rondom de zes pijlers van Exit Planning.
           </motion.p>
 
           <div className="mt-10">
@@ -138,11 +138,10 @@ const Kennisbank = () => {
         </div>
       </section>
 
-      {/* ═══════════ PILLAR CARDS ═══════════ */}
       <section className="py-20 md:py-28">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-            <p className="eyebrow">Thema's</p>
+            <p className="eyebrow">Thema&apos;s</p>
             <h2 className="mt-5 text-3xl md:text-4xl font-bold">De zes pijlers van Exit Planning</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
               Elk thema vertegenwoordigt een strategisch onderdeel van het Exit Planning-traject.
@@ -197,7 +196,6 @@ const Kennisbank = () => {
         </div>
       </section>
 
-      {/* ═══════════ RECENT ARTICLES ═══════════ */}
       <section className="py-20 md:py-28 section-alt-bg">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
@@ -249,9 +247,7 @@ const Kennisbank = () => {
                       <h3 className="text-lg font-bold leading-snug group-hover:text-primary transition-colors duration-300">
                         {post.title}
                       </h3>
-                      <p className="mt-2 text-sm text-muted-foreground line-clamp-2">
-                        {post.summary}
-                      </p>
+                      <p className="mt-2 text-sm text-muted-foreground line-clamp-2">{post.summary}</p>
                       <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-300">
                         Verder lezen <ArrowRight size={14} />
                       </span>
@@ -287,4 +283,3 @@ const Kennisbank = () => {
 };
 
 export default Kennisbank;
-
