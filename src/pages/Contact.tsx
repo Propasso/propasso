@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useCookieConsent } from "@/hooks/use-cookie-consent";
 import ConsentCheckboxes from "@/components/ConsentCheckboxes";
+import { pushEvent } from "@/lib/tracking";
 import {
   ChevronRight,
   Phone,
@@ -193,6 +194,7 @@ const Contact = () => {
 
       setIsSubmitted(true);
       form.reset();
+      pushEvent("contact_submit", { event_source: "contact" });
       toast({
         title: "Bericht verzonden",
         description: "Bedankt. Ik neem zo snel mogelijk contact met je op.",

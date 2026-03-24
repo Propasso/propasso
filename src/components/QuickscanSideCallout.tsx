@@ -56,7 +56,10 @@ const QuickscanSideCallout = () => {
                 shadow-sm transition-all duration-300
                 group-hover:shadow-[0_0_16px_-2px_hsl(var(--primary)/0.35)]"
             >
-              <Link to="/quickscan">
+              <Link to="/quickscan" onClick={() => {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "side_callout" });
+              }}>
                 Ontdek jouw score
                 <ArrowRight className="w-3.5 h-3.5 ml-1 transition-transform duration-300 group-hover:translate-x-0.5" />
               </Link>
@@ -91,7 +94,10 @@ const QuickscanSideCallout = () => {
                 shadow-sm transition-all duration-300
                 group-hover:shadow-[0_0_12px_-2px_hsl(var(--primary)/0.3)]"
             >
-              <Link to="/quickscan">
+              <Link to="/quickscan" onClick={() => {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "side_callout" });
+              }}>
                 Ontdek jouw score
                 <ArrowRight className="w-3 h-3 ml-1" />
               </Link>

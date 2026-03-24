@@ -49,6 +49,10 @@ const CTASection = () => {
         >
           <Link
             to="/quickscan"
+            onClick={() => {
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "cta_section" });
+            }}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition"
           >
             Doe de gratis quickscan

@@ -77,6 +77,10 @@ const HeroSection = () => {
           >
             <Link
               to="/quickscan"
+              onClick={() => {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "homepage" });
+              }}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-teal-medium transition-colors"
             >
               Krijg inzicht in je verkoopklaarheid

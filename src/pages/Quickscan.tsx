@@ -7,6 +7,7 @@ import QuickscanQuestionComponent from "@/components/quickscan/QuickscanQuestion
 import QuickscanProgress from "@/components/quickscan/QuickscanProgress";
 import QuickscanResults from "@/components/quickscan/QuickscanResults";
 import { allQuestions, TOTAL_QUESTIONS, calculateScores, extractSnapshot } from "@/data/diagnoseData";
+import { pushEvent } from "@/lib/tracking";
 
 type Phase = "intro" | "questions" | "results";
 
@@ -45,6 +46,7 @@ const Quickscan = () => {
   const handleStart = useCallback(() => {
     setPhase("questions");
     setCurrentIndex(0);
+    pushEvent("quickscan_start", { event_source: "quickscan" });
   }, []);
 
   const handleSelect = useCallback(
@@ -57,6 +59,7 @@ const Quickscan = () => {
   const handleNext = useCallback(() => {
     if (currentIndex === TOTAL_QUESTIONS - 1) {
       setPhase("results");
+      pushEvent("quickscan_complete", { event_source: "quickscan" });
     } else {
       setCurrentIndex((i) => i + 1);
     }
