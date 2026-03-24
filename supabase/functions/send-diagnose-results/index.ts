@@ -123,6 +123,13 @@ function validatePayload(raw: unknown): { valid: true; data: ValidatedPayload } 
   const exit_horizon = validateEnum(snap.exit_horizon, ALLOWED_HORIZON);
 
   if (!revenue_band || !employee_band || !role_type || !profitability || !exit_horizon) {
+    const failedFields = [];
+    if (!revenue_band) failedFields.push(`revenue_band=${JSON.stringify(snap.revenue_band)}`);
+    if (!employee_band) failedFields.push(`employee_band=${JSON.stringify(snap.employee_band)}`);
+    if (!role_type) failedFields.push(`role_type=${JSON.stringify(snap.role_type)}`);
+    if (!profitability) failedFields.push(`profitability=${JSON.stringify(snap.profitability)}`);
+    if (!exit_horizon) failedFields.push(`exit_horizon=${JSON.stringify(snap.exit_horizon)}`);
+    console.warn(`Snapshot validation failed: ${failedFields.join(", ")}`);
     return { valid: false, error: "Ongeldige snapshot waarden." };
   }
 
