@@ -284,6 +284,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
         </div>
         )}
       </div>
+      <CallbackRequestModal open={callbackOpen} onOpenChange={setCallbackOpen} />
     </section>);
 
 };
