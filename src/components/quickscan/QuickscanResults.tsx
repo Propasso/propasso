@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { TrendingUp, AlertTriangle, CheckCircle2, Target, ChevronRight, MessageSquare, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import CallbackRequestModal from "./CallbackRequestModal";
 
 interface QuickscanResultsProps {
   scores: DiagnoseScores;
@@ -137,6 +138,7 @@ function SubScoreBar({ label, score, delay = 0 }: {label: string;score: number;d
 
 const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) => {
   const [showTips, setShowTips] = useState(false);
+  const [callbackOpen, setCallbackOpen] = useState(false);
   const insight = getLowestDimensionInsight(scores);
 
   return (
