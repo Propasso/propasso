@@ -217,30 +217,54 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
               <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-6">
                 Op basis van je score zien we vaak dat gefundeerde keuzes het verschil maken tussen een goed draaiend bedrijf en een bedrijf dat écht verkoopklaar en overdraagbaar is.
               </p>
+
+              {/* CTA inside confirmation card */}
+              <div className="mt-10 pt-8 border-t border-border/10">
+                <h4 className="text-xl md:text-2xl font-bold text-foreground tracking-tight">
+                  Wil je weten wat deze uitkomst concreet betekent voor jouw bedrijf?
+                </h4>
+                <p className="text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
+                  In een kort gesprek vertalen we je uitkomst naar concrete vervolgstappen voor jouw bedrijf.
+                </p>
+                <p className="text-sm text-muted-foreground mt-2 max-w-lg mx-auto leading-relaxed">
+                  In 30 minuten krijg je helder waar de grootste waarde en risico's zitten.
+                </p>
+
+                <div className="mt-8 flex flex-col items-center gap-3">
+                  <Button asChild size="lg" className="rounded-full">
+                    <Link to="/contact">
+                      <MessageSquare className="w-4 h-4" />
+                      Plan een kort gesprek
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  </Button>
+
+                  <p className="text-sm text-muted-foreground mt-2">
+                    Liever wat korte uitleg over het rapport?
+                  </p>
+
+                  <Button asChild variant="outline" size="lg" className="rounded-full">
+                    <Link to="/contact">
+                      <Phone className="w-4 h-4" />
+                      Laat je terugbellen
+                    </Link>
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         )}
 
-        {/* CTA section */}
+        {/* CTA section — only shown pre-submit */}
+        {!showTips && (
         <div className="mt-16 pt-14 border-t border-border/15">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-foreground tracking-tight">
-              {showTips
-                ? "Wil je weten wat deze uitkomst concreet betekent voor jouw bedrijf?"
-                : "Benieuwd wat deze score betekent voor jouw situatie?"}
+              Benieuwd wat deze score betekent voor jouw situatie?
             </h3>
-
             <p className="text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
-              {showTips
-                ? "In een kort gesprek vertalen we je uitkomst naar concrete vervolgstappen voor jouw bedrijf."
-                : "Elke situatie is anders. In een kort gesprek vertalen we je resultaten naar concrete vervolgstappen."}
+              Elke situatie is anders. In een kort gesprek vertalen we je resultaten naar concrete vervolgstappen.
             </p>
-
-            {showTips && (
-              <p className="text-sm text-muted-foreground mt-4 max-w-lg mx-auto leading-relaxed">
-                In 30 minuten krijg je helder waar de grootste waarde en risico’s zitten.
-              </p>
-            )}
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -260,6 +284,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
             </Button>
           </div>
         </div>
+        )}
       </div>
     </section>);
 
