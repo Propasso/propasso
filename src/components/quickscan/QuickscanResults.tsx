@@ -245,11 +245,9 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
                     Liever wat korte uitleg over het rapport?
                   </p>
 
-                  <Button asChild variant="outline" size="lg" className="rounded-full">
-                    <Link to="/contact">
+                  <Button variant="outline" size="lg" className="rounded-full" onClick={() => setCallbackOpen(true)}>
                       <Phone className="w-4 h-4" />
                       Laat je terugbellen
-                    </Link>
                   </Button>
                 </div>
               </div>
@@ -278,11 +276,9 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
               </Link>
             </Button>
 
-            <Button asChild variant="outline" size="lg" className="rounded-full">
-              <Link to="/contact">
+            <Button variant="outline" size="lg" className="rounded-full" onClick={() => setCallbackOpen(true)}>
                 <Phone className="w-4 h-4" />
                 Laat je terugbellen
-              </Link>
             </Button>
           </div>
         </div>
