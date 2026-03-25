@@ -46,6 +46,7 @@ const Quickscan = () => {
   const handleStart = useCallback(() => {
     setPhase("questions");
     setCurrentIndex(0);
+    window.scrollTo({ top: 0, behavior: "smooth" });
     pushEvent("quickscan_start", { event_source: "quickscan" });
   }, []);
 
