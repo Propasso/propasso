@@ -5,13 +5,11 @@ import {
   getScoreLevel,
   scoreLevelConfig,
   dimensionLabels,
-  getLowestDimensionInsight,
-  tipsByDimension,
-  type QuestionCategory } from
-"@/data/diagnoseData";
+  getLowestDimensionInsight
+} from "@/data/diagnoseData";
 import QuickscanLeadForm from "./QuickscanLeadForm";
 import { cn } from "@/lib/utils";
-import { TrendingUp, AlertTriangle, CheckCircle2, Target, ChevronRight, MessageSquare, BookOpen } from "lucide-react";
+import { TrendingUp, AlertTriangle, CheckCircle2, Target, ChevronRight, MessageSquare, Phone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
@@ -134,51 +132,6 @@ function SubScoreBar({ label, score, delay = 0 }: {label: string;score: number;d
 }
 
 // ---------------------------------------------------------------------------
-// Tips
-// ---------------------------------------------------------------------------
-
-function TipsSection({ scores }: {scores: DiagnoseScores;}) {
-  const dimensions: Exclude<QuestionCategory, "snapshot">[] = ["attractiveness", "readiness", "owner"];
-
-  return (
-    <div className="mt-16 space-y-8">
-      <div className="text-center mb-10">
-        <h3 className="text-2xl font-bold text-foreground tracking-tight">Uw persoonlijke verbeterpunten</h3>
-        <p className="text-sm text-muted-foreground mt-2">
-          Concrete aanbevelingen per dimensie op basis van uw scores.
-        </p>
-      </div>
-      {dimensions.map((dim) => {
-        const score = scores[dim];
-        const level = getScoreLevel(score);
-        const tips = tipsByDimension[dim][level];
-        const config = scoreLevelConfig[level];
-
-        return (
-          <div key={dim} className="rounded-xl border border-border/15 bg-card p-6 md:p-8">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: config.color }} />
-              <h4 className="font-bold text-foreground tracking-tight">{dimensionLabels[dim]}</h4>
-              <span className="text-xs font-semibold text-muted-foreground ml-auto tabular-nums">{score}%</span>
-            </div>
-            <ul className="space-y-4">
-              {tips.map((tip, i) =>
-              <li key={i} className="flex gap-3.5 text-sm text-muted-foreground leading-relaxed">
-                  <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-bold flex items-center justify-center mt-0.5">
-                    {i + 1}
-                  </span>
-                  <span>{tip}</span>
-                </li>
-              )}
-            </ul>
-          </div>);
-
-      })}
-    </div>);
-
-}
-
-// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -231,49 +184,78 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
           </div>
         </div>
 
-        {/* Lead gate or tips */}
-        {!showTips ? <QuickscanLeadForm
-          scores={scores}
-          snapshot={snapshot}
-          answers={answers}
-          onSuccess={() => setShowTips(true)} /> :
+        {/* Lead gate or post-submit confirmation */}
+        {!showTips ? (
+          <QuickscanLeadForm
+            scores={scores}
+            snapshot={snapshot}
+            answers={answers}
+            onSuccess={() => setShowTips(true)}
+          />
+        ) : (
+          <div className="rounded-xl border border-border/15 bg-card p-6 md:p-8 mb-14">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-2 mb-4">
+                <span className="inline-block w-2 h-2 rounded-full bg-accent" />
+                <span className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground">
+                  Rapport verzonden
+                </span>
+              </div>
 
+              <h3 className="text-2xl font-bold text-foreground tracking-tight mb-4">
+                Het rapport met de analyse is verzonden
+              </h3>
 
-        <TipsSection scores={scores} />
-        }
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+                Je ontvangt een e-mail met je resultaten, de belangrijkste bevindingen en praktische aandachtspunten.
+              </p>
 
-        {!showTips
+              <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-4">
+                Het rapport geeft inzicht en richting, maar de echte waarde zit in de vertaalslag naar jouw situatie en belangrijker: de uitvoering.
+              </p>
 
-
-
-        }
+              <p className="text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-6">
+                Op basis van je score zien we vaak dat gefundeerde keuzes het verschil maken tussen een goed draaiend bedrijf en een bedrijf dat écht verkoopklaar en overdraagbaar is.
+              </p>
+            </div>
+          </div>
+        )}
 
         {/* CTA section */}
         <div className="mt-16 pt-14 border-t border-border/15">
           <div className="text-center mb-8">
             <h3 className="text-2xl font-bold text-foreground tracking-tight">
-              {showTips ?
-              "Wilt u deze inzichten omzetten in actie?" :
-              "Benieuwd wat deze score betekent voor uw situatie?"}
+              {showTips
+                ? "Wil je weten wat deze uitkomst concreet betekent voor jouw bedrijf?"
+                : "Benieuwd wat deze score betekent voor jouw situatie?"}
             </h3>
+
             <p className="text-muted-foreground mt-3 max-w-lg mx-auto leading-relaxed">
-              {showTips ?
-              "In een vrijblijvend strategisch gesprek bespreken we uw score en de concrete stappen om uw bedrijf verkoopklaar te maken." :
-              "Elke situatie is anders. In een kort gesprek vertalen we uw resultaten naar concrete vervolgstappen."}
+              {showTips
+                ? "In een kort gesprek vertalen we je uitkomst naar concrete vervolgstappen voor jouw bedrijf."
+                : "Elke situatie is anders. In een kort gesprek vertalen we je resultaten naar concrete vervolgstappen."}
             </p>
+
+            {showTips && (
+              <p className="text-sm text-muted-foreground mt-4 max-w-lg mx-auto leading-relaxed">
+                In 30 minuten krijg je helder waar de grootste waarde en risico’s zitten.
+              </p>
+            )}
           </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="rounded-full">
               <Link to="/contact">
                 <MessageSquare className="w-4 h-4" />
-                Plan een vrijblijvend gesprek
+                Plan een kort gesprek
                 <ChevronRight className="w-4 h-4" />
               </Link>
             </Button>
+
             <Button asChild variant="outline" size="lg" className="rounded-full">
-              <Link to="/werkwijze">
-                <BookOpen className="w-4 h-4" />
-                Bekijk onze werkwijze
+              <Link to="/contact">
+                <Phone className="w-4 h-4" />
+                Laat je terugbellen
               </Link>
             </Button>
           </div>
