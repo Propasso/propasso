@@ -361,6 +361,41 @@ const Contact = () => {
         </div>
       </section>
 
+      {/* Meetings Embed */}
+      <section className="py-16 md:py-20 section-alt-bg">
+        <div className="section-container">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            custom={0}
+            className="max-w-3xl mx-auto text-center mb-10"
+          >
+            <p className="eyebrow">Afspraak inplannen</p>
+            <h2 className="mt-4 text-2xl md:text-3xl font-bold">
+              Liever direct een moment inplannen?
+            </h2>
+            <p className="mt-3 text-muted-foreground max-w-xl mx-auto leading-relaxed">
+              Kies hieronder een geschikt tijdstip in mijn agenda voor een
+              vrijblijvende kennismaking. Geen verplichtingen, gewoon een
+              open gesprek over jouw situatie.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            custom={1}
+            className="max-w-3xl mx-auto bg-background rounded-2xl border border-border/30 p-4 md:p-8 shadow-sm overflow-hidden"
+          >
+            <HubSpotMeetingsEmbed />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Contact Form */}
       <section className="py-16 md:py-20 section-alt-bg">
         <div className="section-container">
