@@ -26,6 +26,7 @@ import {
   MapPinned,
 } from "lucide-react";
 import karelImg from "@/assets/images/karel-met-ondernemers.png";
+import HubSpotMeetingsEmbed from "@/components/HubSpotMeetingsEmbed";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Naam is verplicht").max(100),
