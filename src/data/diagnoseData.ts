@@ -51,8 +51,8 @@ const snapshotQuestions: DiagnoseQuestion[] = [
     category: "snapshot",
     question: "Wat is je rol in het bedrijf?",
     options: [
-      { label: "Eigenaar-ondernemer", value: "Eigenaar-ondernemer" },
-      { label: "Aandeelhouder (niet-operationeel)", value: "Aandeelhouder" },
+      { label: "Ondernemer (DGA, groot-aandeelhouder)", value: "Ondernemer (DGA, groot-aandeelhouder)" },
+      { label: "Ondernemer (mede-aandeelhouder)", value: "Ondernemer (mede-aandeelhouder)" },
       { label: "Directie / management (niet aandeelhouder)", value: "Directie/management" },
       { label: "Non-executive / adviseur", value: "Non-executive/adviseur" },
     ],
