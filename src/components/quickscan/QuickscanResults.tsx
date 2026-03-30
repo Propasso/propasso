@@ -232,8 +232,8 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
                   In 30 minuten krijg je helder waar de grootste waarde en risico's zitten.
                 </p>
 
-                <div className="mt-8 flex flex-col items-center gap-3">
-                  <Button asChild size="lg" className="rounded-full">
+                <div className="mt-8 flex flex-col items-center gap-3 w-full px-4 sm:px-0">
+                  <Button asChild size="lg" className="rounded-full w-full sm:w-auto">
                     <Link to="/contact">
                       <MessageSquare className="w-4 h-4" />
                       Plan een kort gesprek
@@ -245,7 +245,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
                     Liever wat korte uitleg over het rapport?
                   </p>
 
-                  <Button variant="outline" size="lg" className="rounded-full" onClick={() => setCallbackOpen(true)}>
+                  <Button variant="outline" size="lg" className="rounded-full w-full sm:w-auto" onClick={() => setCallbackOpen(true)}>
                       <Phone className="w-4 h-4" />
                       Laat je terugbellen
                   </Button>
