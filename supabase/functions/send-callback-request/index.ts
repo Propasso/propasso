@@ -85,7 +85,11 @@ Deno.serve(async (req) => {
     // Split name for HubSpot
     const nameParts = name.split(/\s+/);
     const firstName = nameParts[0];
-    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "";
+    const lastName = nameParts.length > 1 ? nameParts.slice(1).join(" ") : "-";
+
+    // Generate placeholder email for HubSpot (required field)
+    const sanitizedPhone = phone.replace(/[^0-9]/g, "");
+    const placeholderEmail = `callback+${sanitizedPhone}@leads.propasso.nl`;
 
     // Build message for HubSpot
     const hubspotMessage = [
@@ -99,6 +103,7 @@ Deno.serve(async (req) => {
     const fields: Array<{ objectTypeId: string; name: string; value: string }> = [
       { objectTypeId: "0-1", name: "firstname", value: firstName },
       { objectTypeId: "0-1", name: "lastname", value: lastName },
+      { objectTypeId: "0-1", name: "email", value: placeholderEmail },
       { objectTypeId: "0-1", name: "phone", value: phone },
       { objectTypeId: "0-1", name: "message", value: hubspotMessage },
     ];
