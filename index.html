@@ -1,82 +1,116 @@
 <!doctype html>
 <html lang="nl">
-  <head>
-    <meta charset="UTF-8" />
+    <head>
+          <meta charset="UTF-8" />
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-M5RVXXTL');</script>
-    <!-- End Google Tag Manager -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-
-    <!-- Neutral fallback SEO -->
-    <title>Exit Planning voor MKB bedrijven - Propasso</title>
-    <meta
-      name="description"
-      content="Propasso helpt ondernemers hun bedrijf verkoopklaar te maken en de verkoopwaarde te maximaliseren."
-    />
-    <meta name="author" content="Propasso" />
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="language" content="nl" />
-
-    <!-- Global social defaults -->
-    <meta property="og:site_name" content="Propasso" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://propasso.nl/" />
-    <meta property="og:title" content="Propasso" />
-    <meta
-      property="og:description"
-      content="Propasso helpt ondernemers hun bedrijf verkoopklaar te maken en de verkoopwaarde te maximaliseren."
-    />
-    <meta property="og:image" content="https://propasso.nl/og-default.png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="nl_NL" />
-
-    <!-- Twitter / X defaults -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Propasso" />
-    <meta
-      name="twitter:description"
-      content="Propasso helpt ondernemers hun bedrijf verkoopklaar te maken en de verkoopwaarde te maximaliseren."
-    />
-    <meta name="twitter:image" content="https://propasso.nl/og-default.png" />
-
-    <!-- Lightweight fallback structured data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebSite",
-            "@id": "https://propasso.nl/#website",
-            "url": "https://propasso.nl/",
-            "name": "Propasso",
-            "inLanguage": "nl-NL"
-          },
-          {
-            "@type": "Organization",
-            "@id": "https://propasso.nl/#organization",
-            "name": "Propasso",
-            "url": "https://propasso.nl/",
-            "logo": "https://propasso.nl/propasso-logo-grey-yellow.png"
-          }
-        ]
-      }
-    </script>
-  </head>
+          <!-- Google Tag Manager -->
+          <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                                                                    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                                      })(window,document,'script','dataLayer','GTM-M5RVXXTL');</script>
+        <!-- End Google Tag Manager -->
+    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+    
+        <!-- Fallback SEO (overridden per-page by React Helmet) -->
+        <title>Exit Planning voor MKB-ondernemers | Propasso</title>
+        <meta
+                name="description"
+                content="Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf en het maximaliseren van de verkoopwaarde."
+              />
+        <meta name="author" content="Propasso" />
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="language" content="nl" />
+    
+        <!-- Geo targeting: Netherlands -->
+        <meta name="geo.region" content="NL" />
+        <meta name="geo.placename" content="Nederland" />
+        <meta name="geo.position" content="51.6978;5.3037" />
+        <meta name="ICBM" content="51.6978, 5.3037" />
+    
+        <!-- Global social defaults (overridden per-page by React Helmet) -->
+        <meta property="og:site_name" content="Propasso" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://propasso.nl/" />
+        <meta property="og:title" content="Exit Planning voor MKB-ondernemers | Propasso" />
+        <meta
+                property="og:description"
+                content="Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf en het maximaliseren van de verkoopwaarde."
+              />
+        <meta property="og:image" content="https://propasso.nl/og-default.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="nl_NL" />
+    
+        <!-- Twitter / X defaults -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Exit Planning voor MKB-ondernemers | Propasso" />
+        <meta
+                name="twitter:description"
+                content="Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf en het maximaliseren van de verkoopwaarde."
+              />
+        <meta name="twitter:image" content="https://propasso.nl/og-default.png" />
+    
+        <!-- Structured data: Organisation + ProfessionalService -->
+        <script type="application/ld+json">
+            {
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  "@id": "https://propasso.nl/#website",
+                  "url": "https://propasso.nl/",
+                  "name": "Propasso",
+                  "inLanguage": "nl-NL",
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://propasso.nl/kennisbank?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                  }
+                },
+                {
+                  "@type": ["Organization", "ProfessionalService"],
+                  "@id": "https://propasso.nl/#organization",
+                  "name": "Propasso",
+                  "url": "https://propasso.nl/",
+                  "logo": "https://propasso.nl/propasso-logo-grey-yellow.png",
+                  "image": "https://propasso.nl/og-default.png",
+                  "description": "Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf en het maximaliseren van de verkoopwaarde.",
+                  "telephone": "+31610057566",
+                  "email": "hallo@propasso.nl",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "Nieuwe Linie 12",
+                    "addressLocality": "Vught",
+                    "postalCode": "5264 PJ",
+                    "addressCountry": "NL"
+                  },
+                  "areaServed": {
+                    "@type": "Country",
+                    "name": "Nederland"
+                  },
+                  "serviceType": "Exit Planning, Bedrijfsoverdracht, Verkoopklaar maken",
+                  "priceRange": "op aanvraag",
+                  "sameAs": [
+                    "https://www.linkedin.com/company/propasso"
+                  ]
+                }
+              ]
+            }
+        </script>
+    </head>
 
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5RVXXTL"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M5RVXXTL"
+                        height="0" width="0" style="display:none;visibility:hidden"></iframe>iframe></noscript>
+      <!-- End Google Tag Manager (noscript) -->
+  
+      <div id="root"></div>div>
+      <script type="module" src="/src/main.tsx"></script>
   </body>
-</html>
+</html>html></noscript>
+  </body></title></script>
+    </head>
