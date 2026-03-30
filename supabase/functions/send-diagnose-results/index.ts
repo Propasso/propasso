@@ -2,7 +2,6 @@ import {
   escHtml,
   isValidEmail,
   validateString,
-  validateEnum,
   pickAllowedKeys,
   checkRateLimit,
   recordRateLimitHit,
@@ -43,9 +42,68 @@ const RATE_LIMIT_CONFIG_IP = {
 
 const ALLOWED_REVENUE = ["< €1 mln", "€1–3 mln", "€3–10 mln", "€10–25 mln", "€25–50 mln", "> €50 mln"] as const;
 const ALLOWED_EMPLOYEES = ["1–10", "10–25", "25–50", "50–100", "100+"] as const;
-const ALLOWED_ROLES = ["Eigenaar-ondernemer", "Aandeelhouder", "Directie/management", "Non-executive/adviseur"] as const;
+const ALLOWED_ROLES = [
+  "Ondernemer (DGA, groot-aandeelhouder)",
+  "Ondernemer (mede-aandeelhouder)",
+  "Directie/management",
+  "Non-executive/adviseur",
+] as const;
 const ALLOWED_PROFITABILITY = ["Verlieslatend", "Break-even", "Lage winst", "Gezonde winst", "Zeer winstgevend"] as const;
 const ALLOWED_HORIZON = ["0–2 jaar", "3–5 jaar", "5–10 jaar", "Nog niet concreet"] as const;
+
+function normalizeEnumValue(value: string): string {
+  return value
+    .normalize("NFKC")
+    .replace(/[‐‑‒–—−]/g, "-")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+const aliasKey = (value: string) => normalizeEnumValue(value);
+
+const SNAPSHOT_ALIASES = {
+  revenue: {
+    [aliasKey("< €1 miljoen")]: "< €1 mln",
+    [aliasKey("€1 – €3 miljoen")]: "€1–3 mln",
+    [aliasKey("€3 – €10 miljoen")]: "€3–10 mln",
+    [aliasKey("€10 – €25 miljoen")]: "€10–25 mln",
+    [aliasKey("€25 – €50 miljoen")]: "€25–50 mln",
+    [aliasKey("> €50 miljoen")]: "> €50 mln",
+  },
+  employees: {
+    [aliasKey("1 - 10")]: "1–10",
+    [aliasKey("10 - 25")]: "10–25",
+    [aliasKey("25 - 50")]: "25–50",
+    [aliasKey("50 - 100")]: "50–100",
+  },
+  roles: {
+    [aliasKey("Eigenaar-ondernemer")]: "Ondernemer (DGA, groot-aandeelhouder)",
+    [aliasKey("Aandeelhouder")]: "Ondernemer (mede-aandeelhouder)",
+    [aliasKey("Directie / management (niet aandeelhouder)")]: "Directie/management",
+  },
+  horizon: {
+    [aliasKey("0 - 2 jaar")]: "0–2 jaar",
+    [aliasKey("3 - 5 jaar")]: "3–5 jaar",
+    [aliasKey("5 - 10 jaar")]: "5–10 jaar",
+  },
+} as const;
+
+function validateSnapshotEnum(
+  value: unknown,
+  allowed: readonly string[],
+  aliases?: Record<string, string>,
+): string | null {
+  if (typeof value !== "string") return null;
+  const raw = value.trim();
+  if (allowed.includes(raw)) return raw;
+
+  const normalized = normalizeEnumValue(raw);
+  if (aliases?.[normalized]) return aliases[normalized];
+
+  const canonicalMatch = allowed.find((entry) => normalizeEnumValue(entry) === normalized);
+  return canonicalMatch ?? null;
+}
 
 
 const ALLOWED_PAYLOAD_KEYS = ["name", "email", "company", "phone", "newsletter", "scores", "snapshot"] as const;
@@ -116,11 +174,11 @@ function validatePayload(raw: unknown): { valid: true; data: ValidatedPayload } 
   const snap = obj.snapshot as Record<string, unknown> | undefined;
   if (!snap || typeof snap !== "object") return { valid: false, error: "Snapshot ontbreekt." };
 
-  const revenue_band = validateEnum(snap.revenue_band, ALLOWED_REVENUE);
-  const employee_band = validateEnum(snap.employee_band, ALLOWED_EMPLOYEES);
-  const role_type = validateEnum(snap.role_type, ALLOWED_ROLES);
-  const profitability = validateEnum(snap.profitability, ALLOWED_PROFITABILITY);
-  const exit_horizon = validateEnum(snap.exit_horizon, ALLOWED_HORIZON);
+  const revenue_band = validateSnapshotEnum(snap.revenue_band, ALLOWED_REVENUE, SNAPSHOT_ALIASES.revenue);
+  const employee_band = validateSnapshotEnum(snap.employee_band, ALLOWED_EMPLOYEES, SNAPSHOT_ALIASES.employees);
+  const role_type = validateSnapshotEnum(snap.role_type, ALLOWED_ROLES, SNAPSHOT_ALIASES.roles);
+  const profitability = validateSnapshotEnum(snap.profitability, ALLOWED_PROFITABILITY);
+  const exit_horizon = validateSnapshotEnum(snap.exit_horizon, ALLOWED_HORIZON, SNAPSHOT_ALIASES.horizon);
 
   if (!revenue_band || !employee_band || !role_type || !profitability || !exit_horizon) {
     const failedFields = [];
