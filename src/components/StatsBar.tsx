@@ -26,7 +26,7 @@ const stats: StatItem[] = [
     suffix: "%+",
     countTo: 40,
     description:
-      "hogere bedrijfswaarde is haalbaar met de juiste exitstrategie",
+      "hogere bedrijfswaarde is haalbaar met de juiste voorbereiding",
   },
 ];
 
