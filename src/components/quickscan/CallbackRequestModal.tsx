@@ -68,7 +68,7 @@ const CallbackRequestModal = ({ open, onOpenChange }: CallbackRequestModalProps)
     } catch {
       toast({
         title: "Er ging iets mis",
-        description: "Het verzoek kon niet worden verzonden. Probeer het opnieuw.",
+        description: "Het formulier kon niet worden verzonden. Probeer het opnieuw.",
         variant: "destructive",
       });
     } finally {
