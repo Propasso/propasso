@@ -6,7 +6,7 @@ export type ScoreLevel = "orientation" | "foundation" | "good" | "ready";
 export interface DiagnoseOption {
   label: string;
   value: string;
-  score?: number; // 1–6 for diagnostic questions
+  score?: number; // 1–6 for diagnostische vragen
 }
 
 export interface DiagnoseQuestion {
@@ -89,7 +89,7 @@ const snapshotQuestions: DiagnoseQuestion[] = [
 const likertOptions: DiagnoseOption[] = [
   { label: "Zeer zwak / niet aanwezig", value: "1", score: 1 },
   { label: "Onderontwikkeld", value: "2", score: 2 },
-  { label: "Onder gemiddeld", value: "3", score: 3 },
+  { label: "Net niet voldoende", value: "3", score: 3 },
   { label: "Redelijk ontwikkeld", value: "4", score: 4 },
   { label: "Goed ontwikkeld", value: "5", score: 5 },
   { label: "Best practice / zeer sterk", value: "6", score: 6 },
@@ -103,7 +103,7 @@ const attractivenessQuestions: DiagnoseQuestion[] = [
   {
     id: 6,
     category: "attractiveness",
-    question: "Hoe voorspelbaar en stabiel zijn omzet en winst van je bedrijf?",
+    question: "Hoe voorspelbaar en stabiel zijn de omzet en winst van je bedrijf?",
     options: likertOptions,
   },
   {
@@ -115,7 +115,7 @@ const attractivenessQuestions: DiagnoseQuestion[] = [
   {
     id: 8,
     category: "attractiveness",
-    question: "In welke mate wordt de jaaromzet gerealiseerd uit terugkerende omzet?",
+    question: "Welk deel van de jaaromzet komt uit terugkerende contracten of abonnementen?",
     options: likertOptions,
   },
   {
@@ -127,7 +127,7 @@ const attractivenessQuestions: DiagnoseQuestion[] = [
   {
     id: 10,
     category: "attractiveness",
-    question: "Hoe sterk en zelfstandig is het managementteam naast jou?",
+    question: "Hoe sterk is de marktpositie en het onderscheidend vermogen van je bedrijf en je belangrijkste productgroep?",
     options: likertOptions,
   },
 ];
@@ -140,32 +140,31 @@ const readinessQuestions: DiagnoseQuestion[] = [
   {
     id: 11,
     category: "readiness",
-    question: "Hoe professioneel en inzichtelijk zijn de financiële rapportages voor een externe partij?",
+    question: "Hoe professioneel en inzichtelijk zijn de stuurinformatie en (financiële) rapportages voor een externe partij?",
     options: likertOptions,
   },
   {
     id: 12,
     category: "readiness",
-    question: "In hoeverre zijn contracten met klanten, leveranciers en personeel goed vastgelegd en overdraagbaar?",
+    question: "Hoe goed zijn contracten met klanten, leveranciers en personeel vastgelegd en overdraagbaar?",
     options: likertOptions,
   },
   {
     id: 13,
     category: "readiness",
-    question: "Hoe goed zijn processen, systemen en werkwijzen vastgelegd in de organisatie?",
+    question: "Hoe goed zijn processen, systemen en werkwijzen gedocumenteerd en geborgd in de organisatie?",
     options: likertOptions,
   },
   {
     id: 14,
     category: "readiness",
-    question:
-      "Hoe snel kan een externe partij inzicht krijgen in de prestaties van jouw bedrijf (rapportages, systemen, data)?",
+    question: "Hoe goed is de juridische en fiscale structuur van je bedrijf ingericht voor een toekomstige overdracht?",
     options: likertOptions,
   },
   {
     id: 15,
     category: "readiness",
-    question: "Hoe duidelijk en uitgewerkt is de strategie en het groeiplan voor de komende 3–5 jaar?",
+    question: "Hoe concreet en communiceerbaar is het groeiplan van je bedrijf voor een potentiële koper?",
     options: likertOptions,
   },
 ];
@@ -178,32 +177,31 @@ const ownerQuestions: DiagnoseQuestion[] = [
   {
     id: 16,
     category: "owner",
-    question: "In hoeverre weet je hoeveel vermogen je nodig hebt om financieel onafhankelijk te zijn na verkoop?",
+    question: "Hoe helder heb jij in beeld welk vermogen je nodig hebt om financieel onafhankelijk te zijn na verkoop?",
     options: likertOptions,
   },
   {
     id: 17,
     category: "owner",
-    question: "In welke mate heb je een duidelijk persoonlijk plan voor de periode na verkoop van uw bedrijf?",
+    question: "Hoe concreet is jouw persoonlijke plan voor de periode na verkoop van je bedrijf?",
     options: likertOptions,
   },
   {
     id: 18,
     category: "owner",
-    question: "In hoeverre voel je je emotioneel klaar om het bedrijf los te laten?",
+    question: "Hoe actief werk jij eraan om je bedrijf onafhankelijk van jou te laten draaien?",
     options: likertOptions,
   },
   {
     id: 19,
     category: "owner",
-    question:
-      "In hoeverre beschik je over een (team van) adviseur(s) of sparringpartner die ondersteunen bij een toekomstige overdracht?",
+    question: "Hoe goed ben je omringd door adviseurs die je kunnen begeleiden bij een toekomstige bedrijfsoverdracht?",
     options: likertOptions,
   },
   {
     id: 20,
     category: "owner",
-    question: "Hoe duidelijk is het tijdpad waarbinnen je een overdracht overweegt?",
+    question: "Hoe urgent voelt het voor jou om nu concrete stappen te zetten richting een exitstrategie?",
     options: likertOptions,
   },
 ];
@@ -238,24 +236,25 @@ export const scoreLevelConfig: Record<ScoreLevel, { label: string; color: string
     label: "Oriëntatiefase",
     color: "hsl(0, 70%, 55%)",
     description:
-      "De basis voor een overdraagbaar bedrijf is nog beperkt ontwikkeld. Een verkoopproces zou momenteel waarschijnlijk leiden tot een lage waardering of beperkte interesse van kopers.",
+      "De basis voor een overdraagbaar bedrijf is nog beperkt ontwikkeld. Een verkoopproces zou momenteel waarschijnlijk leiden tot een lage waardering of beperkte interesse van kopers. Dit is het moment om grip te krijgen op inzicht, overzicht en structuur.",
   },
   foundation: {
     label: "Verbeterfase",
     color: "hsl(35, 85%, 55%)",
     description:
-      "Er zijn duidelijke fundamenten aanwezig, maar meerdere factoren beperken de aantrekkelijkheid of verkoopbaarheid van het bedrijf.",
+      "Er zijn duidelijke fundamenten aanwezig, maar meerdere factoren beperken de aantrekkelijkheid of verkoopbaarheid van je bedrijf. Gerichte verbeteringen kunnen de waarde en verkoopbaarheid significant verhogen.",
   },
   good: {
     label: "Sterke basis",
     color: "hsl(45, 90%, 50%)",
     description:
-      "Het bedrijf heeft een solide fundament en meerdere kenmerken die aantrekkelijk zijn voor kopers of investeerders.",
+      "Het bedrijf heeft een solide fundament en meerdere kenmerken die aantrekkelijk zijn voor kopers of investeerders. Met gerichte verbeteringen van de zwakste onderdelen ben je goed op weg, met een solide uitgangspositie.",
   },
   ready: {
     label: "Verkoopklaar",
     color: "hsl(160, 60%, 40%)",
-    description: "Het bedrijf beschikt over veel kenmerken van een goed overdraagbare onderneming.",
+    description:
+      "Je bedrijf heeft de kenmerken van een goed overdraagbare onderneming. Zorg dat je ook persoonlijk klaar bent voor de volgende stap, dat is vaak waar het verschil wordt gemaakt.",
   },
 };
 
@@ -273,7 +272,7 @@ export interface DiagnoseScores {
   attractiveness: number; // 0–100
   readiness: number; // 0–100
   owner: number; // 0–100
-  overall: number; // 0–100 (average)
+  overall: number; // 0–100 (gemiddelde)
 }
 
 export function calculateScores(answers: Record<number, string>): DiagnoseScores {
@@ -294,7 +293,7 @@ export function calculateScores(answers: Record<number, string>): DiagnoseScores
 }
 
 // ---------------------------------------------------------------------------
-// Snapshot data extraction
+// Snapshot data extractie
 // ---------------------------------------------------------------------------
 
 export interface SnapshotData {
@@ -316,7 +315,7 @@ export function extractSnapshot(answers: Record<number, string>): SnapshotData {
 }
 
 // ---------------------------------------------------------------------------
-// Insight: laagst scorende dimensie
+// Inzicht: laagst scorende dimensie
 // ---------------------------------------------------------------------------
 
 export function getLowestDimensionInsight(scores: DiagnoseScores): string {
@@ -330,11 +329,11 @@ export function getLowestDimensionInsight(scores: DiagnoseScores): string {
 
   const insights: Record<string, string> = {
     attractiveness:
-      "De aantrekkelijkheid van uw bedrijf voor kopers verdient aandacht. Focus op voorspelbaarheid van omzet, klantspreiding, terugkerende inkomsten en het verminderen van uw persoonlijke rol.",
+      "Een lage score op aantrekkelijkheid betekent dat kopers waarschijnlijk een risico-opslag hanteren — of afhaken. De grootste hefbomen zijn omzetpredictabiliteit, klantspreiding en het verminderen van jouw persoonlijke rol in het bedrijf.",
     readiness:
-      "Uw bedrijf is nog niet optimaal voorbereid op een transactie. Focus op financiële transparantie, contractbeheer, procesvastlegging en een helder strategisch plan.",
+      "Verkoopklaarheid bepaalt hoe soepel een due diligence verloopt. Een laag scorende ondernemer loopt het risico op prijsdruk of een afgebroken deal. Prioriteit: financiële transparantie, contractbeheer en procesvastlegging.",
     owner:
-      "Uw persoonlijke voorbereiding verdient aandacht. Inzicht in uw financiële behoefte, een persoonlijk plan voor na de verkoop en een duidelijk tijdpad zijn essentieel.",
+      "De grootste dealkillers zitten niet altijd in het bedrijf — maar in de ondernemer zelf. Zonder helder persoonlijk plan, financieel doelbeeld en emotionele gereedheid vergroot je de kans op een suboptimale beslissing op het verkeerde moment.",
   };
 
   return insights[lowest.key];
@@ -347,68 +346,68 @@ export function getLowestDimensionInsight(scores: DiagnoseScores): string {
 export const tipsByDimension: Record<Exclude<QuestionCategory, "snapshot">, Record<ScoreLevel, string[]>> = {
   attractiveness: {
     orientation: [
-      "Breng in kaart hoe voorspelbaar uw omzet en winst zijn. Identificeer de grootste schommelingen en hun oorzaken.",
-      "Analyseer uw klantspreiding: welk percentage van de omzet komt van uw top-3 klanten? Streef naar maximaal 15% per klant.",
-      "Onderzoek mogelijkheden voor terugkerende inkomsten, zoals servicecontracten, abonnementen of raamovereenkomsten.",
+      "Breng in kaart hoe stabiel je omzet en winst zijn over de afgelopen drie jaar — schommelingen zijn voor een koper altijd een signaal van risico.",
+      "Analyseer je klantspreiding: als één klant meer dan 20% van je omzet vertegenwoordigt, is dat een kwetsbaarheid die kopers direct zullen benoemen.",
+      "Inventariseer hoeveel van je omzet 'zeker' is aan het begin van een jaar — terugkerende contracten of abonnementen verhogen de waarde van je bedrijf aanzienlijk.",
     ],
     foundation: [
-      "Werk actief aan omzetstabiliteit door langere contracten en meer voorspelbare inkomstenstromen op te bouwen.",
-      "Investeer in een tweede managementlaag die operationele beslissingen zelfstandig kan nemen.",
-      "Versterk de zelfstandigheid van het managementteam door verantwoordelijkheden en beslissingsbevoegdheid formeel te delegeren.",
+      "Werk aan langere contracten en raamovereenkomsten met je belangrijkste klanten — dit maakt je omzet voorspelbaarder én aantrekkelijker voor een koper.",
+      "Benoem expliciet wat jouw bedrijf onderscheidt van concurrenten en waarom klanten niet gemakkelijk overstappen — dit is de kern van je verkoopverhaal.",
+      "Begin verantwoordelijkheden formeel te beleggen bij je management: een bedrijf dat zonder jou draait is structureel meer waard.",
     ],
     good: [
-      "Test uw bedrijfscontinuïteit door periodiek afwezig te zijn en de resultaten te monitoren.",
-      "Optimaliseer uw klantcontracten met langere looptijden en automatische verlengingen.",
-      "Professionaliseer de managementrapportages zodat prestaties ook zonder uw toelichting inzichtelijk zijn.",
+      "Test de zelfstandigheid van je bedrijf door bewust afstand te nemen en te observeren wat er wél en niet goed gaat zonder jouw directe betrokkenheid.",
+      "Documenteer je concurrentievoordelen expliciet — een koper wil begrijpen waarom jouw marktpositie duurzaam is en niet eenvoudig te kopiëren.",
+      "Optimaliseer contracten richting langere looptijden en automatische verlengingen — dit verhoogt de kwaliteit van je omzet in de ogen van een koper.",
     ],
     ready: [
-      "Laat een externe partij uw bedrijfscontinuïteit valideren om dit richting kopers te onderbouwen.",
-      "Documenteer uw groeistrategie en marktpotentieel als verkoopargument voor potentiële kopers.",
-      "Overweeg een management buy-in of externe CEO om de onafhankelijkheid van het bedrijf verder te versterken.",
+      "Laat een onafhankelijke waardebepaling uitvoeren zodat je weet wat je bedrijf waard is en wat je uitgangspositie is in onderhandelingen.",
+      "Laat een externe partij de continuïteit en zelfstandigheid van je bedrijf valideren — dit versterkt je positie richting kopers aanzienlijk.",
+      "Documenteer je groeistrategie en marktpotentieel als onderdeel van je verkoopverhaal: kopers kopen de toekomst, niet het verleden.",
     ],
   },
   readiness: {
     orientation: [
-      "Laat uw jaarrekeningen van de afgelopen drie jaar door een accountant controleren en normaliseren.",
-      "Maak een inventarisatie van alle lopende contracten met klanten, leveranciers en personeel en beoordeel de overdraagbaarheid.",
-      "Begin met het vastleggen van uw belangrijkste bedrijfsprocessen en werkwijzen in een operations manual.",
+      "Laat je jaarrekeningen van de afgelopen drie jaar normaliseren door je accountant — dit is de eerste stap naar financiële transparantie voor een externe partij.",
+      "Maak een overzicht van alle lopende contracten met klanten, leveranciers en personeel en check of deze overdraagbaar zijn zonder jouw persoonlijke handtekening.",
+      "Begin met het beschrijven van je belangrijkste bedrijfsprocessen: wie doet wat, hoe, en wat zijn de stappen die alleen jij nu nog kent?",
     ],
     foundation: [
-      "Implementeer maandelijkse managementrapportages met de belangrijkste financiële en operationele KPI's.",
-      "Zorg dat alle contracten op naam van de BV staan en niet afhankelijk zijn van uw persoonlijke betrokkenheid.",
-      "Stel een strategisch plan op voor de komende 3–5 jaar dat u aan een potentiële koper kunt presenteren.",
+      "Voer maandelijkse managementrapportages in met de belangrijkste financiële en operationele KPI's — zodat prestaties leesbaar zijn zonder jouw toelichting.",
+      "Zorg dat alle contracten op naam van de BV staan en niet afhankelijk zijn van jouw persoonlijke relatie of aanwezigheid.",
+      "Stel een groeiplan op voor de komende 3–5 jaar — niet alleen voor jezelf, maar als document dat je aan een geïnteresseerde partij kunt overhandigen.",
     ],
     good: [
-      "Bereid een vendor due diligence-rapport voor om het verkoopproces te versnellen en verrassingen te voorkomen.",
-      "Zorg voor een digitale data room met alle relevante documenten gestructureerd beschikbaar.",
-      "Laat een fiscalist de holdingstructuur beoordelen op optimale overdrachtsgereedheid.",
+      "Laat je fiscalist en jurist de holdingstructuur beoordelen: is deze optimaal ingericht voor een toekomstige overdracht?",
+      "Bereid een vendor due diligence voor om het verkoopproces later te versnellen en onaangename verrassingen tijdens onderhandelingen te voorkomen.",
+      "Inventariseer of intellectueel eigendom, merkrechten of licenties goed geregistreerd en overdraagbaar zijn.",
     ],
     ready: [
-      "Laat een proef-due diligence uitvoeren om eventuele verrassingen vóór te zijn.",
-      "Bespreek met uw adviseur de optimale transactiestructuur (share deal vs. asset deal).",
-      "Stel een information memorandum op dat uw bedrijf professioneel presenteert aan potentiële kopers.",
+      "Richt een digitale dataroom in met alle relevante documenten gestructureerd beschikbaar — dit is de eerste indruk die een koper van je organisatie krijgt.",
+      "Bepaal samen met je adviseurs welke transactiestructuur fiscaal en juridisch het meest gunstig is voor jouw specifieke situatie.",
+      "Stel een informatiememorandum op dat je bedrijf helder en aantrekkelijk presenteert — dit is je visitekaartje richting serieuze kopers.",
     ],
   },
   owner: {
     orientation: [
-      "Maak een persoonlijk financieel plan: hoeveel vermogen heeft u nodig om comfortabel te leven na de verkoop?",
-      "Denk na over wat u na de verkoop wilt doen: ondernemerschap, advieswerk, reizen, of iets anders.",
-      "Bespreek uw overdrachtsplannen met uw partner of familie om verwachtingen af te stemmen.",
+      "Stel jezelf de vraag: welk bedrag heb ik nodig om na verkoop financieel onafhankelijk te zijn? Dit getal is het vertrekpunt van alles wat volgt.",
+      "Denk na over wie je bent als je niet langer ondernemer bent — veel DGA's onderschatten hoe groot die vraag is totdat het moment er is.",
+      "Bedenk of je huidige adviseurs de kennis en ervaring hebben om je door een overdrachtsproces te begeleiden — en of je dat team eventueel moet aanvullen.",
     ],
     foundation: [
-      "Schakel een financieel planner in die een persoonlijke vermogensprognose kan maken.",
-      "Verken concrete activiteiten voor na de overdracht: bestuursfuncties, mentoring, of een nieuw project.",
-      "Begin met het opbouwen van een netwerk buiten uw huidige bedrijf.",
+      "Schakel een financieel planner in die een persoonlijke vermogensprognose maakt op basis van jouw levensstijl en doelen na verkoop.",
+      "Bespreek je overdrachtsplannen met je partner of naaste familie — hun verwachtingen en steun zijn bepalend voor hoe je dit proces doorloopt.",
+      "Verken wat je na de overdracht wilt doen: een concrete invulling vermindert de emotionele weerstand tegen loslaten.",
     ],
     good: [
-      "Stel samen met een adviseur een realistisch tijdpad op voor het overdrachtsproces.",
-      "Assembleer uw adviesteam: accountant, fiscalist, M&A-adviseur en eventueel een coach.",
-      "Oefen met het loslaten door steeds meer verantwoordelijkheden over te dragen.",
+      "Stel samen met je adviseurs een realistisch tijdpad op voor het overdrachtsproces — een goede voorbereiding duurt gemiddeld twee tot vier jaar.",
+      "Zorg dat je adviesteam compleet is: accountant, fiscalist, M&A-adviseur en eventueel een persoonlijk coach die je begeleidt in het proces.",
+      "Draag bewust en stapsgewijs verantwoordelijkheden over aan je team — dit maakt je bedrijf sterker én maakt het loslaten voor jou makkelijker.",
     ],
     ready: [
-      "Bespreek met uw adviseurs de optimale timing van de verkoop in relatie tot marktomstandigheden.",
-      "Bereid u mentaal voor op het due diligence-proces en de emotionele impact daarvan.",
-      "Maak concrete afspraken over uw rol in de transitieperiode na overdracht.",
+      "Bespreek met je adviseurs de optimale timing: marktomstandigheden, je persoonlijke situatie en de staat van je bedrijf bepalen samen het juiste moment.",
+      "Realiseer je dat due diligence intensief is — kopers kijken overal in. Een goede voorbereiding beschermt je prijs én je energie tijdens het proces.",
+      "Maak heldere afspraken over jouw rol in de transitieperiode na overdracht: hoelang blijf je betrokken, in welke hoedanigheid, en wat heb je daarvoor nodig?",
     ],
   },
 };
