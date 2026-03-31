@@ -40,13 +40,11 @@ const QuickscanQuestionComponent = ({
 
   const handleSelect = useCallback((value: string) => {
     onSelect(value);
-    if (isSnapshot) {
-      setTimeout(() => {
-        setDirection(1);
-        onNext();
-      }, 300);
-    }
-  }, [onSelect, onNext, isSnapshot]);
+    setTimeout(() => {
+      setDirection(1);
+      onNext();
+    }, 350);
+  }, [onSelect, onNext]);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
