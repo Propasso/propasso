@@ -77,8 +77,8 @@ const SEO = ({
                                                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
                                               />
                                 ))}
-          </Helmet>Helmet>
+          </Helmet>
         );
 };
 
-export default SEO;</Helmet>
+export default SEO;
