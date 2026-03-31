@@ -54,7 +54,7 @@ const Index = () => {
                 <BlogSection />
                 <QuickscanBanner />
                 <CTASection />
-          </PageLayout>PageLayout>
+          </PageLayout>
         );
 };
 
