@@ -16,7 +16,7 @@ const fadeInUp = {
 };
 
 const pageDescription =
-  "Ontdek de werkwijze van Propasso voor exit planning in het MK: een gestructureerde aanpak om bedrijven sterker, minder afhankelijk en beter overdraagbaar te maken.";
+  "Ontdek de werkwijze van Propasso voor exit planning in het MKB: een gestructureerde aanpak om bedrijven sterker, minder afhankelijk en beter overdraagbaar te maken.";
 
 const pageSchemas = [
   {
