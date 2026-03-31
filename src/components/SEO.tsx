@@ -45,7 +45,7 @@ const SEO = ({
 
     return (
           <Helmet>
-                <title>{fullTitle}</title>title>
+                <title>{fullTitle}</title>
                 <meta name="description" content={description} />
                 <link rel="canonical" href={canonical} />
                 <meta name="robots" content={robotsContent} />
@@ -77,8 +77,8 @@ const SEO = ({
                                                 dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
                                               />
                                 ))}
-          </Helmet>Helmet>
+          </Helmet>
         );
 };
 
-export default SEO;</Helmet>
+export default SEO;
