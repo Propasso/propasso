@@ -147,10 +147,10 @@ const OverPropasso = () => {
   return (
     <PageLayout>
       <SEO
-        title="Over Propasso en Karel Cremers | Exit Planning voor MKB"
+        title="Over Propasso — Exit Planning voor MKB Ondernemingen"
         description={pageDescription}
         canonical="https://propasso.nl/over-propasso"
-        ogTitle="Over Propasso en Karel Cremers | Exit Planning voor MKB"
+        ogTitle="Over Propasso | Exit Planning voor MKB Ondernemingen"
         ogDescription={pageDescription}
         ogType="website"
         ogImage={aboutOgImage}
