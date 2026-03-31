@@ -9,14 +9,14 @@ import QuickscanBanner from "@/components/QuickscanBanner";
 import { motion } from "framer-motion";
 import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
-const fadeInUp = {
+const fadeInUp = 
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-50px" },
 };
 
 const pageDescription =
-  "Ontdek de werkwijze van Propasso voor exit planning in het MKB: een gestructureerde aanpak om bedrijven sterker, minder afhankelijk en beter overdraagbaar te maken.";
+  "Ontdek de werkwijze van Propasso voor exit planning in het MK: een gestructureerde aanpak om bedrijven sterker, minder afhankelijk en beter overdraagbaar te maken.";
 
 const pageSchemas = [
   {
@@ -68,7 +68,7 @@ const Werkwijze = () => {
   return (
     <PageLayout>
       <SEO
-        title="Werkwijze Verkoopklaar maken van Bedrijven"
+        title="Werkwijze Verkoopklaar maken van Bedrijven | Propasso"
         description={pageDescription}
         canonical="https://propasso.nl/werkwijze"
         ogTitle="Werkwijze Verkoopklaar maken van Bedrijven | Propasso"
