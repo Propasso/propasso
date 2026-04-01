@@ -69,8 +69,6 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
         }
       };
 
-      console.log("[QuickscanLeadForm] Submitting payload snapshot:", JSON.stringify(payload.snapshot));
-
       const { error } = await supabase.functions.invoke("send-diagnose-results", {
         body: payload
       });
