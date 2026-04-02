@@ -42,7 +42,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="mt-6 h-10 md:h-12 overflow-hidden"
+            className="mt-6 h-16 sm:h-10 md:h-12 overflow-hidden"
           >
             <AnimatePresence mode="wait">
               <motion.p
