@@ -49,9 +49,10 @@ const TestimonialsSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-base text-muted-foreground max-w-2xl leading-relaxed"
         >
-          Verwacht geen adviseur in een pak met een vlotte babbel. Karel is
-          ondernemer geweest, heeft multinationals helpen groeien, verkocht en
-          investeert in bedrijven waarin hij gelooft.
+          Verwacht geen adviseur in een pak met een vlotte babbel. Ik ben
+          ondernemer geweest, heb multinationals helpen groeien, droeg mijn
+          bedrijf over en verkocht het. Ik ken het en weet hoe mooi, maar ook
+          hoe moeilijk ondernemen is.
         </motion.p>
 
         <div className="mt-14 grid gap-8 md:grid-cols-3">
