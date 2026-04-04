@@ -1,15 +1,17 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import { Link } from "react-router-dom";
 
 const Disclaimer = () => {
   return (
     <PageLayout>
-      <Helmet>
-        <title>Disclaimer | Propasso</title>
-        <meta name="description" content="Disclaimer van Propasso. Lees onze juridische voorwaarden en aansprakelijkheid." />
-        <link rel="canonical" href="https://propasso.nl/disclaimer" />
-      </Helmet>
+      <SEO
+        title="Disclaimer | Propasso"
+        description="Disclaimer van Propasso. Lees onze juridische voorwaarden, aansprakelijkheid en gebruiksvoorwaarden van de website."
+        canonical="https://propasso.nl/disclaimer"
+        ogTitle="Disclaimer | Propasso"
+        ogDescription="Disclaimer van Propasso. Lees onze juridische voorwaarden, aansprakelijkheid en gebruiksvoorwaarden van de website."
+      />
       <section className="py-20 bg-background">
         <div className="section-container max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-8">Disclaimer</h1>
