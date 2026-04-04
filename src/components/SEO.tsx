@@ -53,6 +53,8 @@ const SEO = ({
             {/* Geo targeting — Netherlands */}
                 <meta name="geo.region" content="NL" />
                 <meta name="geo.placename" content="Nederland" />
+                <meta name="geo.position" content="51.6978;5.3037" />
+                <meta name="ICBM" content="51.6978, 5.3037" />
           
                 <meta property="og:site_name" content="Propasso" />
                 <meta property="og:locale" content="nl_NL" />
