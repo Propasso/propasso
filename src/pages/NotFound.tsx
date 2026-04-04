@@ -1,7 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
-import { Helmet } from "react-helmet-async";
-import { ArrowLeft, Home } from "lucide-react";
+import SEO from "@/components/SEO";
+import { Home } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -14,11 +14,12 @@ const NotFound = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Pagina niet gevonden | Propasso</title>
-        <meta name="robots" content="noindex, nofollow" />
-        <meta name="description" content="Deze pagina bestaat niet of is verplaatst." />
-      </Helmet>
+      <SEO
+        title="Pagina niet gevonden | Propasso"
+        description="Deze pagina bestaat niet of is verplaatst."
+        canonical="https://propasso.nl/404"
+        noIndex={true}
+      />
       <Header />
       <main className="pt-20">
         <section className="flex min-h-[60vh] items-center justify-center">

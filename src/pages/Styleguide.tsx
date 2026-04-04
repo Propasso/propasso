@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 
 const colorTokens = [
   { name: "--background", label: "Background", usage: "Page background" },
@@ -29,10 +29,12 @@ const tintTokens = [
 const Styleguide = () => {
   return (
     <>
-    <Helmet>
-      <meta name="robots" content="noindex, nofollow" />
-      <title>Styleguide | Propasso (intern)</title>
-    </Helmet>
+    <SEO
+      title="Styleguide | Propasso (intern)"
+      description="Intern referentiedocument voor het Propasso design system."
+      canonical="https://propasso.nl/styleguide"
+      noIndex={true}
+    />
     <main className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <div className="bg-primary text-primary-foreground py-12">

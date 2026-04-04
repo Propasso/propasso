@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import { Link } from "react-router-dom";
 import { useCookieConsent } from "@/hooks/use-cookie-consent";
@@ -10,11 +10,13 @@ const Cookieverklaring = () => {
 
   return (
     <PageLayout>
-      <Helmet>
-        <title>Cookieverklaring | Propasso</title>
-        <meta name="description" content="Cookieverklaring van Propasso. Lees welke cookies wij gebruiken en waarom." />
-        <link rel="canonical" href="https://propasso.nl/cookieverklaring" />
-      </Helmet>
+      <SEO
+        title="Cookieverklaring | Propasso"
+        description="Cookieverklaring van Propasso. Lees welke cookies wij gebruiken, waarom en hoe u uw voorkeuren kunt beheren."
+        canonical="https://propasso.nl/cookieverklaring"
+        ogTitle="Cookieverklaring | Propasso"
+        ogDescription="Cookieverklaring van Propasso. Lees welke cookies wij gebruiken, waarom en hoe u uw voorkeuren kunt beheren."
+      />
       <section className="py-20 bg-background">
         <div className="section-container max-w-3xl">
           <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Cookieverklaring</h1>
