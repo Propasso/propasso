@@ -239,11 +239,12 @@ const KennisbankPillar = () => {
                 className="mt-8 rounded-2xl tint-teal-bg p-8 md:p-10 border border-border/20"
               >
                 <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
-                  {content?.heroIntro ||
+                  {category?.heroIntro ||
+                    content?.heroIntro ||
                     category?.description ||
                     "Ontdek de belangrijkste inzichten en strategieën rondom dit thema. Elk artikel helpt je stap voor stap bij de voorbereiding op een succesvolle bedrijfsoverdracht."} </p>
               
-                {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
+                {((category?.body && category.body.length > 0) || (content?.bodyParagraphs && content.bodyParagraphs.length > 0)) && (
                   <a
                   href="#verdieping"
                   className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/60 px-4 py-2 text-sm font-semibold text-primary backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-background hover:gap-3"
