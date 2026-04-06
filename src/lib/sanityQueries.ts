@@ -84,7 +84,7 @@ export async function fetchCategoryBySlug(slug: string): Promise<SanityCategoryS
   const slugs = getCategorySlugAliases(canonicalizeCategorySlug(slug));
 
   const category = await sanityClient.fetch<SanityCategorySummary | null>(
-    `*[_type == "category" && slug.current in $slugs][0] { _id, title, slug, description }`,
+    `*[_type == "category" && slug.current in $slugs][0] { _id, title, slug, description, heroIntro, body, metaTitle, metaDescription }`,
     { slugs }
   );
 
