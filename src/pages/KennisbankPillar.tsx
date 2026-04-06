@@ -133,11 +133,11 @@ const KennisbankPillar = () => {
     : "";
 
   const pillarTitle = category
-    ? `${category.title} | Exit Planning | Propasso`
+    ? (category.metaTitle || `${category.title} | Exit Planning | Propasso`)
     : "Kennisbank thema | Propasso";
 
   const pillarDescription =
-    (content?.heroIntro || category?.description || "").trim() ||
+    (category?.metaDescription || content?.heroIntro || category?.description || "").trim() ||
     (category?.title
       ? `Lees artikelen, inzichten en praktische aandachtspunten over ${category.title.toLowerCase()} voor MKB-ondernemers die hun bedrijf sterker, zelfstandiger en verkoopklaar willen maken.`
       : "Lees artikelen en inzichten uit de kennisbank van Propasso over exit planning, waardecreatie en bedrijfsoverdracht.");
