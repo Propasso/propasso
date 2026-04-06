@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { PortableText } from "@portabletext/react";
 import SEO from "@/components/SEO";
 import { pillarOgImages } from "@/constants/pillarOgImages";
 
@@ -20,6 +21,45 @@ import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { SanityPost } from "@/types/sanity";
 import { pillarContent } from "@/data/pillarContent";
+
+const portableTextComponents = {
+  block: {
+    h2: ({ children }: { children?: React.ReactNode }) => (
+      <h2 className="text-2xl font-bold mt-10 mb-4">{children}</h2>
+    ),
+    h3: ({ children }: { children?: React.ReactNode }) => (
+      <h3 className="text-xl font-bold mt-8 mb-3">{children}</h3>
+    ),
+    normal: ({ children }: { children?: React.ReactNode }) => (
+      <p className="text-muted-foreground leading-relaxed mb-4">{children}</p>
+    ),
+    blockquote: ({ children }: { children?: React.ReactNode }) => (
+      <blockquote className="border-l-4 border-primary pl-4 my-6 italic text-muted-foreground">
+        {children}
+      </blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="list-disc pl-6 mb-4 space-y-1 text-muted-foreground">{children}</ul>
+    ),
+    number: ({ children }: { children?: React.ReactNode }) => (
+      <ol className="list-decimal pl-6 mb-4 space-y-1 text-muted-foreground">{children}</ol>
+    ),
+  },
+  marks: {
+    link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => (
+      <a
+        href={value?.href}
+        className="text-primary underline hover:no-underline"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
+    ),
+  },
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -93,11 +133,11 @@ const KennisbankPillar = () => {
     : "";
 
   const pillarTitle = category
-    ? `${category.title} | Exit Planning | Propasso`
+    ? (category.metaTitle || `${category.title} | Exit Planning | Propasso`)
     : "Kennisbank thema | Propasso";
 
   const pillarDescription =
-    (content?.heroIntro || category?.description || "").trim() ||
+    (category?.metaDescription || content?.heroIntro || category?.description || "").trim() ||
     (category?.title
       ? `Lees artikelen, inzichten en praktische aandachtspunten over ${category.title.toLowerCase()} voor MKB-ondernemers die hun bedrijf sterker, zelfstandiger en verkoopklaar willen maken.`
       : "Lees artikelen en inzichten uit de kennisbank van Propasso over exit planning, waardecreatie en bedrijfsoverdracht.");
@@ -199,11 +239,12 @@ const KennisbankPillar = () => {
                 className="mt-8 rounded-2xl tint-teal-bg p-8 md:p-10 border border-border/20"
               >
                 <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
-                  {content?.heroIntro ||
+                  {category?.heroIntro ||
+                    content?.heroIntro ||
                     category?.description ||
                     "Ontdek de belangrijkste inzichten en strategieën rondom dit thema. Elk artikel helpt je stap voor stap bij de voorbereiding op een succesvolle bedrijfsoverdracht."} </p>
               
-                {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
+                {((category?.body && category.body.length > 0) || (content?.bodyParagraphs && content.bodyParagraphs.length > 0)) && (
                   <a
                   href="#verdieping"
                   className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-background/60 px-4 py-2 text-sm font-semibold text-primary backdrop-blur-sm transition-all duration-300 hover:border-primary/40 hover:bg-background hover:gap-3"
@@ -298,7 +339,7 @@ const KennisbankPillar = () => {
       </section>
 
       {/* ═══════════ EXTENDED INTRO (SEO) ═══════════ */}
-      {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
+      {((category?.body && category.body.length > 0) || (content?.bodyParagraphs && content.bodyParagraphs.length > 0)) && (
         <section id="verdieping" className="py-16 md:py-20 section-alt-bg scroll-mt-24">
           <div className="section-container">
             <div className="max-w-3xl">
@@ -306,13 +347,19 @@ const KennisbankPillar = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-8">
                 Meer info over {category?.title?.toLowerCase()}
               </h2>
-              <div className="space-y-6">
-                {content.bodyParagraphs.map((paragraph, index) => (
-                  <p key={index} className="text-muted-foreground leading-relaxed text-base">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
+              {category?.body && category.body.length > 0 ? (
+                <div className="prose-pillar">
+                  <PortableText value={category.body} components={portableTextComponents} />
+                </div>
+              ) : content?.bodyParagraphs ? (
+                <div className="space-y-6">
+                  {content.bodyParagraphs.map((paragraph, index) => (
+                    <p key={index} className="text-muted-foreground leading-relaxed text-base">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
         </section>

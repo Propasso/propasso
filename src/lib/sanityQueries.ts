@@ -70,6 +70,11 @@ export interface SanityCategorySummary {
   title: string;
   slug: { current: string };
   description?: string;
+  heroIntro?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body?: any[];
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export async function fetchAllCategories(): Promise<SanityCategorySummary[]> {
@@ -84,7 +89,7 @@ export async function fetchCategoryBySlug(slug: string): Promise<SanityCategoryS
   const slugs = getCategorySlugAliases(canonicalizeCategorySlug(slug));
 
   const category = await sanityClient.fetch<SanityCategorySummary | null>(
-    `*[_type == "category" && slug.current in $slugs][0] { _id, title, slug, description }`,
+    `*[_type == "category" && slug.current in $slugs][0] { _id, title, slug, description, heroIntro, body, metaTitle, metaDescription }`,
     { slugs }
   );
 
