@@ -3,6 +3,11 @@ export interface SanityCategory {
   title: string;
   slug?: { current: string };
   description?: string;
+  heroIntro?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body?: any[];
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export interface SanityPost {
