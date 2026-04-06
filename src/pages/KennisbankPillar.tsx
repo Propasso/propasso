@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import { PortableText } from "@portabletext/react";
 import SEO from "@/components/SEO";
 import { pillarOgImages } from "@/constants/pillarOgImages";
 
