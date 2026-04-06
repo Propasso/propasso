@@ -339,7 +339,7 @@ const KennisbankPillar = () => {
       </section>
 
       {/* ═══════════ EXTENDED INTRO (SEO) ═══════════ */}
-      {content?.bodyParagraphs && content.bodyParagraphs.length > 0 && (
+      {((category?.body && category.body.length > 0) || (content?.bodyParagraphs && content.bodyParagraphs.length > 0)) && (
         <section id="verdieping" className="py-16 md:py-20 section-alt-bg scroll-mt-24">
           <div className="section-container">
             <div className="max-w-3xl">
@@ -347,13 +347,19 @@ const KennisbankPillar = () => {
               <h2 className="text-2xl md:text-3xl font-bold mb-8">
                 Meer info over {category?.title?.toLowerCase()}
               </h2>
-              <div className="space-y-6">
-                {content.bodyParagraphs.map((paragraph, index) => (
-                  <p key={index} className="text-muted-foreground leading-relaxed text-base">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
+              {category?.body && category.body.length > 0 ? (
+                <div className="prose-pillar">
+                  <PortableText value={category.body} components={portableTextComponents} />
+                </div>
+              ) : content?.bodyParagraphs ? (
+                <div className="space-y-6">
+                  {content.bodyParagraphs.map((paragraph, index) => (
+                    <p key={index} className="text-muted-foreground leading-relaxed text-base">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              ) : null}
             </div>
           </div>
         </section>
