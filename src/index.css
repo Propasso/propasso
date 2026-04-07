@@ -39,6 +39,7 @@
 
     /* Propasso custom tokens */
     --section-alt: 88 33% 93%;
+    --section-neutral: 195 25% 95%; /* #EEF3F5 — koele blauwgrijs, voor neutrale/probleemgerichte secties */
     --section-cool: 195 25% 95%;
     --hero-accent: 67 62% 52%;
     --teal-deep: 192 35% 18%;
