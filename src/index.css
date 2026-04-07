@@ -126,6 +126,10 @@
     background-color: hsl(var(--section-cool));
   }
 
+  .section-neutral-bg {
+    background-color: hsl(var(--section-neutral));
+  }
+
   .tint-teal-bg {
     background-color: hsl(var(--tint-teal) / var(--tint-teal-alpha));
   }
