@@ -130,7 +130,7 @@ const SaleReadySection = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="aanpak" className="relative py-20 md:py-28 overflow-hidden">
+    <section id="aanpak" className="relative py-16 md:py-24 lg:py-36 overflow-hidden">
       {/* Subtle background treatment */}
       <div className="absolute inset-0 pointer-events-none">
         <div

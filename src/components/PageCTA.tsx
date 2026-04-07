@@ -20,7 +20,7 @@ const PageCTA = ({
   secondaryHref = "/werkwijze",
 }: PageCTAProps) => {
   return (
-    <section className="py-20 md:py-28 relative overflow-hidden">
+    <section className="py-16 md:py-24 lg:py-36 relative overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: `url(${mountainImg})` }}

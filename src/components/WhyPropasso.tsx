@@ -37,7 +37,7 @@ const fadeInUp = {
 
 const WhyPropasso = () => {
   return (
-    <section id="waarom" className="py-20 md:py-28">
+    <section id="waarom" className="py-16 md:py-24 lg:py-36">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Partner voor succesvolle bedrijfsoverdracht</p>

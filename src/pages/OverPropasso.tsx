@@ -189,7 +189,7 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 section-alt-bg">
+      <section className="py-16 md:py-24 lg:py-36 section-alt-bg">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="text-center mb-14">
             <p className="eyebrow justify-center">Hoe wij werken</p>
@@ -223,7 +223,7 @@ const OverPropasso = () => {
 
       <QuickscanBanner contextLine="Benieuwd hoe jouw bedrijf ervoor staat? Doe de gratis quickscan en ontvang direct inzicht." />
 
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-24 lg:py-36">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
@@ -282,7 +282,7 @@ const OverPropasso = () => {
 
       <TestimonialsSection />
 
-      <section className="py-20 md:py-28 section-alt-bg">
+      <section className="py-16 md:py-24 lg:py-36 section-alt-bg">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
@@ -319,7 +319,7 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-24 lg:py-36">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="order-2 lg:order-1 relative">
@@ -371,7 +371,7 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      <section className="py-20 md:py-28 section-alt-bg">
+      <section className="py-16 md:py-24 lg:py-36 section-alt-bg">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="text-center mb-16">
             <p className="eyebrow justify-center">Mijn route</p>
@@ -409,7 +409,7 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-24 lg:py-36">
         <div className="section-container">
           <div className="grid md:grid-cols-3 gap-6">
             <motion.div

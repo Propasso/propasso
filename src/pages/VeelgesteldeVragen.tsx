@@ -411,7 +411,7 @@ const VeelgesteldeVragen = () => {
       </section>
 
       {/* ═══════════ FAQ SECTIONS ═══════════ */}
-      <section className="py-20 md:py-28">
+      <section className="py-16 md:py-24 lg:py-36">
         <div className="section-container max-w-4xl">
           <div className="space-y-16 md:space-y-20">
             {faqSections.map((section, sectionIndex) => (

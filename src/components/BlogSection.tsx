@@ -22,7 +22,7 @@ const BlogSection = () => {
   const displayPosts = posts?.slice(0, 3) ?? [];
 
   return (
-    <section id="inzichten" className="py-20 md:py-28 section-alt-bg">
+    <section id="inzichten" className="py-16 md:py-24 lg:py-36 section-alt-bg">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Inzichten & artikelen</p>

@@ -25,7 +25,7 @@ const fadeInUp = {
 
 const TargetAudience = () => {
   return (
-    <section id="voor-wie" className="py-20 md:py-28 section-alt-bg">
+    <section id="voor-wie" className="py-16 md:py-24 lg:py-36 section-alt-bg">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Voor ondernemers die vooruit kijken</p>

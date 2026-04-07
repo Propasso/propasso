@@ -264,7 +264,7 @@ const Styleguide = () => {
         <section>
           <h2 className="text-3xl font-bold border-b border-border pb-4 mb-8">Spacing & Layout</h2>
           <div className="p-6 rounded-xl border border-border space-y-3 text-sm">
-            <p><strong>Section padding:</strong> py-20 md:py-28</p>
+            <p><strong>Section padding:</strong> py-16 md:py-24 lg:py-36</p>
             <p><strong>Container:</strong> section-container (max-w-7xl, px-5 sm:px-8 lg:px-12)</p>
             <p><strong>Grid gaps:</strong> gap-6 to gap-8</p>
             <p><strong>Card padding:</strong> p-6 to p-8</p>
