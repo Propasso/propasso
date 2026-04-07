@@ -185,9 +185,13 @@ const Styleguide = () => {
               <p className="text-sm font-bold">Warm Mint — section-alt-bg</p>
               <p className="text-sm text-muted-foreground">Warme sectie-afwisseling (#E9F2DF). Gebruik: resultaat- en positieve secties.</p>
             </div>
+            <div className="p-8 rounded-xl border border-border section-neutral-bg">
+              <p className="text-sm font-bold">Cool Blue-Grey — section-neutral-bg</p>
+              <p className="text-sm text-muted-foreground">Koele blauwgrijze achtergrond (#EEF3F5). Gebruik: probleem-, analytische en kennisbank-secties.</p>
+            </div>
             <div className="p-8 rounded-xl border border-border section-cool-bg">
               <p className="text-sm font-bold">Cool Grey — section-cool-bg</p>
-              <p className="text-sm text-muted-foreground">Koele blauwgrijze achtergrond (#EDF2F3). Gebruik: analytische/zakelijke secties.</p>
+              <p className="text-sm text-muted-foreground">Alternatieve koele achtergrond (#EDF2F3). Gebruik: zakelijke secties.</p>
             </div>
             <div className="p-8 rounded-xl bg-primary text-primary-foreground">
               <p className="text-sm font-bold">Dark — bg-primary</p>
