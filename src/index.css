@@ -39,6 +39,7 @@
 
     /* Propasso custom tokens */
     --section-alt: 88 33% 93%;
+    --section-cool: 195 25% 95%;
     --hero-accent: 67 62% 52%;
     --teal-deep: 192 35% 18%;
     --teal-medium: 195 45% 25%;
@@ -118,6 +119,10 @@
 
   .section-alt-bg {
     background-color: hsl(var(--section-alt));
+  }
+
+  .section-cool-bg {
+    background-color: hsl(var(--section-cool));
   }
 
   .tint-teal-bg {

@@ -12,7 +12,8 @@ const colorTokens = [
   { name: "--accent-foreground", label: "Accent Foreground", usage: "Text on accent" },
   { name: "--destructive", label: "Destructive", usage: "Errors, negative states" },
   { name: "--border", label: "Border", usage: "Dividers, card borders" },
-  { name: "--section-alt", label: "Section Alt", usage: "Alternating section backgrounds" },
+  { name: "--section-alt", label: "Section Alt (Mint)", usage: "Warme sectie-afwisseling" },
+  { name: "--section-cool", label: "Section Cool (Blauwgrijs)", usage: "Koele zakelijke secties" },
   { name: "--teal-deep", label: "Teal Deep", usage: "Deep brand teal" },
   { name: "--teal-medium", label: "Teal Medium", usage: "Hero subtitle, hover states" },
   { name: "--surface-raised", label: "Surface Raised", usage: "Elevated card surfaces" },
@@ -181,8 +182,12 @@ const Styleguide = () => {
               <p className="text-sm text-muted-foreground">White background sections</p>
             </div>
             <div className="p-8 rounded-xl border border-border section-alt-bg">
-              <p className="text-sm font-bold">Alternate — section-alt-bg</p>
-              <p className="text-sm text-muted-foreground">Light teal-tinted section background</p>
+              <p className="text-sm font-bold">Warm Mint — section-alt-bg</p>
+              <p className="text-sm text-muted-foreground">Warme sectie-afwisseling (#E9F2DF). Gebruik: resultaat- en positieve secties.</p>
+            </div>
+            <div className="p-8 rounded-xl border border-border section-cool-bg">
+              <p className="text-sm font-bold">Cool Grey — section-cool-bg</p>
+              <p className="text-sm text-muted-foreground">Koele blauwgrijze achtergrond (#EDF2F3). Gebruik: analytische/zakelijke secties.</p>
             </div>
             <div className="p-8 rounded-xl bg-primary text-primary-foreground">
               <p className="text-sm font-bold">Dark — bg-primary</p>
