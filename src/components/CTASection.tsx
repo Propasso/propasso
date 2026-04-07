@@ -11,7 +11,7 @@ const fadeInUp = {
 
 const CTASection = () => {
   return (
-    <section id="quickscan" className="py-20 md:py-28 relative overflow-hidden">
+    <section id="quickscan" className="py-16 md:py-24 lg:py-36 relative overflow-hidden">
       {/* Fixed background image */}
       <div className="absolute inset-0 bg-fixed bg-cover bg-center" style={{ backgroundImage: `url(${mountainBg})` }} />
       {/* Dark overlay */}

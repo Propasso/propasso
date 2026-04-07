@@ -29,7 +29,7 @@ const fadeInUp = {
 
 const PhasesSection = () => {
   return (
-    <section className="py-20 md:py-28 section-alt-bg">
+    <section className="py-16 md:py-24 lg:py-36 section-alt-bg">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">De drie fases van een bedrijfsoverdracht</p>

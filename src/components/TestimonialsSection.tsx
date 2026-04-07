@@ -30,7 +30,7 @@ const fadeInUp = {
 
 const TestimonialsSection = () => {
   return (
-    <section id="referenties" className="py-20 md:py-28">
+    <section id="referenties" className="py-16 md:py-24 lg:py-36">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Klanten en referenties</p>
