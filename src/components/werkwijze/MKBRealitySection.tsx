@@ -27,7 +27,7 @@ const fadeInUp = {
 
 const MKBRealitySection = () => {
   return (
-    <section className="py-24 md:py-36 section-alt-bg">
+    <section className="py-24 md:py-36 section-neutral-bg">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">De realiteit</p>

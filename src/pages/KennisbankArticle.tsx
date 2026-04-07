@@ -199,7 +199,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
 
       {/* Verder lezen: related posts + parent pillar */}
       {((post.relatedPosts && post.relatedPosts.length > 0) || parentCategory?.slug) && (
-        <section className="py-16 section-alt-bg">
+        <section className="py-16 section-neutral-bg">
           <div className="section-container">
             <h2 className="text-2xl font-bold mb-8">Verder lezen</h2>
 
