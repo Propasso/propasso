@@ -196,7 +196,7 @@ const Kennisbank = () => {
         </div>
       </section>
 
-      <section className="py-16 md:py-24 lg:py-36 section-alt-bg">
+      <section className="py-16 md:py-24 lg:py-36 section-neutral-bg">
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
             <p className="eyebrow">Recente publicaties</p>

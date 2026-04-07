@@ -36,7 +36,7 @@ const fadeInUp = {
 
 const ProblemSection = () => {
   return (
-    <section id="probleem" className="py-16 md:py-24 lg:py-36 section-alt-bg">
+    <section id="probleem" className="py-16 md:py-24 lg:py-36 section-neutral-bg">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Wat ondernemers onderschatten</p>

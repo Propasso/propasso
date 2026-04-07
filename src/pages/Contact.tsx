@@ -255,7 +255,7 @@ const Contact = () => {
       </section>
 
       {/* Direct Contact Options */}
-      <section className="py-16 md:py-20 section-alt-bg">
+      <section className="py-16 md:py-20 section-neutral-bg">
         <div className="section-container">
           <motion.div
             initial="hidden"

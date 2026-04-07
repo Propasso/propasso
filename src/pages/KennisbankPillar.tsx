@@ -340,7 +340,7 @@ const KennisbankPillar = () => {
 
       {/* ═══════════ EXTENDED INTRO (SEO) ═══════════ */}
       {((category?.body && category.body.length > 0) || (content?.bodyParagraphs && content.bodyParagraphs.length > 0)) && (
-        <section id="verdieping" className="py-16 md:py-20 section-alt-bg scroll-mt-24">
+        <section id="verdieping" className="py-16 md:py-20 section-neutral-bg scroll-mt-24">
           <div className="section-container">
             <div className="max-w-3xl">
               <p className="eyebrow mb-4">Meer over dit exit planning-thema</p>
