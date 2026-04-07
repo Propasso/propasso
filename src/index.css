@@ -31,14 +31,14 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 173 46% 32%;
+    --border: 195 20% 86%;
     --input: 195 15% 88%;
     --ring: 195 45% 20%;
 
     --radius: 0.5rem;
 
     /* Propasso custom tokens */
-    --section-alt: 195 25% 95%;
+    --section-alt: 88 33% 93%;
     --hero-accent: 67 62% 52%;
     --teal-deep: 195 55% 15%;
     --teal-medium: 195 45% 25%;
@@ -84,17 +84,22 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: "DM Sans", sans-serif;
+    line-height: 1.75;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  h1, 
+  h2, 
+  h3, 
+  h4, 
+  h5, 
   h6 {
-    font-family: "DM Sans", sans-serif;
-    @apply font-bold tracking-tight text-foreground;
+  font-family: "DM Sans", sans-serif;
+  @apply font-bold text-foreground;
   }
+  
+  h1 { letter-spacing: -0.02em; }
+  h2 { letter-spacing: -0.01em; }
+  h3, h4 { @apply font-medium; letter-spacing: 0; }
 }
 
 @layer components {
@@ -120,7 +125,15 @@
   }
 
   .tint-white-bg {
-    background-color: hsl(var(--tint-white) / var(--tint-white-alpha));
+      background-color: hsl(var(--tint-white) / var(--tint-white-alpha));
+    }
+  
+    .stat-number {
+      font-family: "DM Serif Display", serif;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      color: hsl(var(--primary));
+    }
   }
 }
 
@@ -157,4 +170,11 @@
 
 .animate-scroll-bounce {
   animation: scroll-bounce 2s ease-in-out infinite;
+}
+  
+.stat-number {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: hsl(var(--primary));
 }
