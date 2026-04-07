@@ -121,6 +121,10 @@
     background-color: hsl(var(--section-alt));
   }
 
+  .section-cool-bg {
+    background-color: hsl(var(--section-cool));
+  }
+
   .tint-teal-bg {
     background-color: hsl(var(--tint-teal) / var(--tint-teal-alpha));
   }
