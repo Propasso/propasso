@@ -14,10 +14,8 @@ type Phase = "intro" | "questions" | "results";
 // Debug mock answers to skip straight to results via ?debug=results
 const DEBUG_ANSWERS: Record<number, string> = {
   1: "€3–10 mln",
-  2: "25–50",
-  3: "Eigenaar-ondernemer",
-  4: "Gezonde winst",
-  5: "3–5 jaar",
+  2: "Goed winstgevend met gezonde marges",
+  3: "3–5 jaar",
   6: "4",
   7: "3",
   8: "3",
