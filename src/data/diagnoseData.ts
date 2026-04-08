@@ -14,10 +14,24 @@ export interface DiagnoseQuestion {
   category: QuestionCategory;
   question: string;
   options: DiagnoseOption[];
+  format?: "likert" | "scenario";
 }
 
 // ---------------------------------------------------------------------------
-// Snapshot vragen (Q1–Q5) — niet gescoord
+// Likert schaal (gedeeld door alle diagnostische likert-vragen)
+// ---------------------------------------------------------------------------
+
+const likertOptions: DiagnoseOption[] = [
+  { label: "Klopt helemaal", value: "6", score: 6 },
+  { label: "Klopt grotendeels", value: "5", score: 5 },
+  { label: "Klopt deels", value: "4", score: 4 },
+  { label: "Klopt nauwelijks", value: "3", score: 3 },
+  { label: "Klopt niet", value: "2", score: 2 },
+  { label: "Weet ik niet / n.v.t.", value: "1", score: 1 },
+];
+
+// ---------------------------------------------------------------------------
+// Snapshot vragen (Q1–Q3) — niet gescoord
 // ---------------------------------------------------------------------------
 
 const snapshotQuestions: DiagnoseQuestion[] = [
@@ -37,40 +51,16 @@ const snapshotQuestions: DiagnoseQuestion[] = [
   {
     id: 2,
     category: "snapshot",
-    question: "Hoeveel medewerkers heeft het bedrijf?",
+    question: "Hoe zou je de winstgevendheid van je bedrijf omschrijven?",
     options: [
-      { label: "1 – 10", value: "1–10" },
-      { label: "10 – 25", value: "10–25" },
-      { label: "25 – 50", value: "25–50" },
-      { label: "50 – 100", value: "50–100" },
-      { label: "100+", value: "100+" },
+      { label: "Onder druk of dalend", value: "Onder druk of dalend" },
+      { label: "Rond break-even", value: "Rond break-even" },
+      { label: "Redelijke winst maar weinig marge", value: "Redelijke winst maar weinig marge" },
+      { label: "Goed winstgevend met gezonde marges", value: "Goed winstgevend met gezonde marges" },
     ],
   },
   {
     id: 3,
-    category: "snapshot",
-    question: "Wat is je rol in het bedrijf?",
-    options: [
-      { label: "Ondernemer (DGA, groot-aandeelhouder)", value: "Ondernemer (DGA, groot-aandeelhouder)" },
-      { label: "Ondernemer (mede-aandeelhouder)", value: "Ondernemer (mede-aandeelhouder)" },
-      { label: "Directie / management (niet aandeelhouder)", value: "Directie/management" },
-      { label: "Non-executive / adviseur", value: "Non-executive/adviseur" },
-    ],
-  },
-  {
-    id: 4,
-    category: "snapshot",
-    question: "Hoe winstgevend is het bedrijf momenteel?",
-    options: [
-      { label: "Verlieslatend", value: "Verlieslatend" },
-      { label: "Break-even", value: "Break-even" },
-      { label: "Lage winst", value: "Lage winst" },
-      { label: "Gezonde winst", value: "Gezonde winst" },
-      { label: "Zeer winstgevend", value: "Zeer winstgevend" },
-    ],
-  },
-  {
-    id: 5,
     category: "snapshot",
     question: "Overweeg je een overdracht en zo ja, op welke termijn?",
     options: [
@@ -83,19 +73,6 @@ const snapshotQuestions: DiagnoseQuestion[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Likert schaal (gedeeld door alle diagnostische vragen)
-// ---------------------------------------------------------------------------
-
-const likertOptions: DiagnoseOption[] = [
-  { label: "Zeer zwak / niet aanwezig", value: "1", score: 1 },
-  { label: "Onderontwikkeld", value: "2", score: 2 },
-  { label: "Net niet voldoende", value: "3", score: 3 },
-  { label: "Redelijk ontwikkeld", value: "4", score: 4 },
-  { label: "Goed ontwikkeld", value: "5", score: 5 },
-  { label: "Best practice / zeer sterk", value: "6", score: 6 },
-];
-
-// ---------------------------------------------------------------------------
 // Dimensie 1: Aantrekkelijkheid van het Bedrijf (Q6–Q10)
 // ---------------------------------------------------------------------------
 
@@ -103,31 +80,46 @@ const attractivenessQuestions: DiagnoseQuestion[] = [
   {
     id: 6,
     category: "attractiveness",
-    question: "Hoe voorspelbaar en stabiel zijn de omzet en winst van je bedrijf?",
+    format: "likert",
+    question: "Onze omzet is voorspelbaar: ik kan aan het begin van het jaar goed inschatten wat we gaan draaien.",
     options: likertOptions,
   },
   {
     id: 7,
     category: "attractiveness",
-    question: "Hoe goed is het klantenbestand gespreid (zonder afhankelijkheid van enkele klanten)?",
-    options: likertOptions,
+    format: "scenario",
+    question: "Welke situatie beschrijft jouw klantenbestand het best?",
+    options: [
+      { label: "Eén of twee klanten zijn goed voor meer dan de helft van onze omzet", value: "1", score: 1 },
+      { label: "Onze top-3 klanten vertegenwoordigt 30–50% van de omzet", value: "3", score: 3 },
+      { label: "Geen enkele klant is groter dan 15% van onze omzet", value: "5", score: 5 },
+      { label: "We hebben een breed en divers klantenbestand zonder noemenswaardige concentratie", value: "6", score: 6 },
+    ],
   },
   {
     id: 8,
     category: "attractiveness",
-    question: "Welk deel van de jaaromzet komt uit terugkerende contracten of abonnementen?",
-    options: likertOptions,
+    format: "scenario",
+    question: "Welk deel van je omzet is terugkerend (contracten, abonnementen, doorlopende opdrachten)?",
+    options: [
+      { label: "Vrijwel niets; onze omzet is grotendeels projectmatig of eenmalig", value: "1", score: 1 },
+      { label: "Minder dan 25% komt uit doorlopende afspraken", value: "3", score: 3 },
+      { label: "Ongeveer de helft is terugkerend", value: "5", score: 5 },
+      { label: "Het grootste deel van onze omzet is contractueel vastgelegd of terugkerend", value: "6", score: 6 },
+    ],
   },
   {
     id: 9,
     category: "attractiveness",
-    question: "Hoe zelfstandig kan het bedrijf opereren zonder jouw dagelijkse betrokkenheid?",
+    format: "likert",
+    question: "Mijn bedrijf kan prima twee maanden door als ik er niet ben.",
     options: likertOptions,
   },
   {
     id: 10,
     category: "attractiveness",
-    question: "Hoe sterk is de marktpositie en het onderscheidend vermogen van je bedrijf en je belangrijkste productgroep?",
+    format: "likert",
+    question: "We hebben een duidelijke marktpositie: klanten kiezen bewust voor ons en niet voor een concurrent.",
     options: likertOptions,
   },
 ];
@@ -140,31 +132,46 @@ const readinessQuestions: DiagnoseQuestion[] = [
   {
     id: 11,
     category: "readiness",
-    question: "Hoe professioneel en inzichtelijk zijn de stuurinformatie en (financiële) rapportages voor een externe partij?",
+    format: "likert",
+    question: "Een externe partij kan binnen een week een helder beeld krijgen van het bedrijf, onze (financiële) stuurinformatie en dynamiek.",
     options: likertOptions,
   },
   {
     id: 12,
     category: "readiness",
-    question: "Hoe goed zijn contracten met klanten, leveranciers en personeel vastgelegd en overdraagbaar?",
+    format: "likert",
+    question: "Alle belangrijke klant- en leveranciersrelaties zijn contractueel vastgelegd op naam van de BV.",
     options: likertOptions,
   },
   {
     id: 13,
     category: "readiness",
-    question: "Hoe goed zijn processen, systemen en werkwijzen gedocumenteerd en geborgd in de organisatie?",
-    options: likertOptions,
+    format: "scenario",
+    question: "Hoe staat het met de vastlegging van jullie belangrijkste werkprocessen?",
+    options: [
+      { label: "De meeste kennis zit in de hoofden van een paar mensen", value: "1", score: 1 },
+      { label: "Er zijn wat beschrijvingen, maar ze zijn niet actueel of compleet", value: "3", score: 3 },
+      { label: "De kernprocessen zijn vastgelegd en worden ook daadwerkelijk gevolgd", value: "5", score: 5 },
+      { label: "Alle belangrijke processen zijn gedocumenteerd, geborgd én regelmatig geüpdatet", value: "6", score: 6 },
+    ],
   },
   {
     id: 14,
     category: "readiness",
-    question: "Hoe goed is de juridische en fiscale structuur van je bedrijf ingericht voor een toekomstige overdracht?",
-    options: likertOptions,
+    format: "scenario",
+    question: "Hoe is de juridische en fiscale structuur van je bedrijf voorbereid op een toekomstige overdracht?",
+    options: [
+      { label: "Ik heb hier eerlijk gezegd geen zicht op", value: "1", score: 1 },
+      { label: "Ik vermoed dat het niet optimaal is, maar het is nooit beoordeeld", value: "3", score: 3 },
+      { label: "Een adviseur heeft het bekeken, maar er zijn nog aanbevelingen open", value: "5", score: 5 },
+      { label: "De structuur is recent beoordeeld en ingericht met het oog op overdracht", value: "6", score: 6 },
+    ],
   },
   {
     id: 15,
     category: "readiness",
-    question: "Hoe concreet en communiceerbaar is het groeiplan van je bedrijf voor een potentiële koper?",
+    format: "likert",
+    question: "Ons groeiplan voor de komende 3–5 jaar is uitgewerkt en zou ik morgen aan een geïnteresseerde partij kunnen presenteren.",
     options: likertOptions,
   },
 ];
@@ -177,44 +184,59 @@ const ownerQuestions: DiagnoseQuestion[] = [
   {
     id: 16,
     category: "owner",
-    question: "Hoe helder heb jij in beeld welk vermogen je nodig hebt om financieel onafhankelijk te zijn na verkoop?",
+    format: "likert",
+    question: "Ik weet precies welk bedrag ik nodig heb om na verkoop financieel onafhankelijk te zijn.",
     options: likertOptions,
   },
   {
     id: 17,
     category: "owner",
-    question: "Hoe concreet is jouw persoonlijke plan voor de periode na verkoop van je bedrijf?",
-    options: likertOptions,
+    format: "scenario",
+    question: "Hoe ver ben je met je persoonlijke plan voor de periode na je bedrijf?",
+    options: [
+      { label: "Daar heb ik nog niet serieus over nagedacht.", value: "1", score: 1 },
+      { label: "Ik denk weleens na over wat ik zou willen, het is nog vaag.", value: "3", score: 3 },
+      { label: "Ik heb een redelijk beeld van wat ik wil en een paar lijntjes uit staan, maar het is niet concreet.", value: "5", score: 5 },
+      { label: "Ik heb een concreet plan en heb dit besproken met mijn partner of naasten.", value: "6", score: 6 },
+    ],
   },
   {
     id: 18,
     category: "owner",
-    question: "Hoe actief werk jij eraan om je bedrijf onafhankelijk van jou te laten draaien?",
+    format: "likert",
+    question: "Ik draag bewust en stapsgewijs verantwoordelijkheden over aan mijn team.",
     options: likertOptions,
   },
   {
     id: 19,
     category: "owner",
-    question: "Hoe goed ben je omringd door adviseurs die je kunnen begeleiden bij een toekomstige bedrijfsoverdracht?",
-    options: likertOptions,
+    format: "scenario",
+    question: "Hoe ziet jouw adviesteam eruit voor een toekomstige overdracht?",
+    options: [
+      { label: "Mijn boekhouder kent mijn bedrijf goed, daarnaast heb ik onze vaste notaris", value: "1", score: 1 },
+      { label: "Ik heb een goede accountant en jurist, maar ze hebben geen ervaring met bedrijfsoverdrachten", value: "3", score: 3 },
+      { label: "Ik heb adviseurs die ervaring hebben met overdrachten, maar het team is nog niet compleet", value: "5", score: 5 },
+      { label: "Ik heb een compleet team (procesbegeleider, accountant, fiscalist, M&A-adviseur) dat ervaring heeft met overdrachten", value: "6", score: 6 },
+    ],
   },
   {
     id: 20,
     category: "owner",
-    question: "Hoe urgent voelt het voor jou om nu concrete stappen te zetten richting een exitstrategie?",
+    format: "likert",
+    question: "Ik voel dat het nu tijd is om concrete stappen te zetten richting de toekomst van mijn bedrijf.",
     options: likertOptions,
   },
 ];
 
 // ---------------------------------------------------------------------------
-// Alle vragen samengevoegd
+// Alle vragen samengevoegd (diagnostisch eerst, snapshot laatst)
 // ---------------------------------------------------------------------------
 
 export const allQuestions: DiagnoseQuestion[] = [
-  ...snapshotQuestions,
   ...attractivenessQuestions,
   ...readinessQuestions,
   ...ownerQuestions,
+  ...snapshotQuestions,
 ];
 
 export const TOTAL_QUESTIONS = allQuestions.length;
@@ -298,8 +320,6 @@ export function calculateScores(answers: Record<number, string>): DiagnoseScores
 
 export interface SnapshotData {
   revenueBand: string;
-  employeeBand: string;
-  roleType: string;
   profitability: string;
   exitHorizon: string;
 }
@@ -307,10 +327,8 @@ export interface SnapshotData {
 export function extractSnapshot(answers: Record<number, string>): SnapshotData {
   return {
     revenueBand: answers[1] || "",
-    employeeBand: answers[2] || "",
-    roleType: answers[3] || "",
-    profitability: answers[4] || "",
-    exitHorizon: answers[5] || "",
+    profitability: answers[2] || "",
+    exitHorizon: answers[3] || "",
   };
 }
 
@@ -409,5 +427,28 @@ export const tipsByDimension: Record<Exclude<QuestionCategory, "snapshot">, Reco
       "Realiseer je dat due diligence intensief is — kopers kijken overal in. Een goede voorbereiding beschermt je prijs én je energie tijdens het proces.",
       "Maak heldere afspraken over jouw rol in de transitieperiode na overdracht: hoelang blijf je betrokken, in welke hoedanigheid, en wat heb je daarvoor nodig?",
     ],
+  },
+};
+
+// ---------------------------------------------------------------------------
+// Section intros (voor UI-weergave bij categorie-overgangen)
+// ---------------------------------------------------------------------------
+
+export const sectionIntros: Record<string, { title: string; intro: string }> = {
+  attractiveness: {
+    title: "Bedrijfsaantrekkelijkheid",
+    intro: "De volgende stellingen gaan over hoe aantrekkelijk uw bedrijf is vanuit het perspectief van een potentiële koper.",
+  },
+  readiness: {
+    title: "Verkoopklaarheid Bedrijf",
+    intro: "Nu kijken we naar de operationele kant: is uw bedrijf klaar om overgedragen te worden?",
+  },
+  owner: {
+    title: "Verkoopklaarheid Ondernemer",
+    intro: "Tot slot: uw persoonlijke gereedheid. Dit is het onderdeel dat ondernemers het vaakst onderschatten — en dat het vaakst tot een afgeblazen deal leidt.",
+  },
+  snapshot: {
+    title: "Achtergrondvragen",
+    intro: "Om uw rapport zo relevant mogelijk te maken, nog een paar korte achtergrondvragen.",
   },
 };
