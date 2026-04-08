@@ -32,8 +32,6 @@ const QuickscanQuestionComponent = ({
   const isLikert = !isSnapshot && !isScenario; // format "likert" or undefined diagnostic
   const [direction, setDirection] = useState(1);
 
-  // Likert labels for the 1–6 numbered buttons
-  const likertLabels = ["Geen zicht op", "Klopt niet", "Klopt nauwelijks", "Klopt een beetje", "Klopt grotendeels", "Klopt volledig"];
 
   const handleSelectAndAdvance = useCallback(
     (value: string) => {
