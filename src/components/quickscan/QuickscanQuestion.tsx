@@ -1,9 +1,10 @@
 import { useEffect, useCallback, useState } from "react";
-import { DiagnoseQuestion as QuestionType, SNAPSHOT_COUNT } from "@/data/diagnoseData";
+import { DiagnoseQuestion as QuestionType } from "@/data/diagnoseData";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
+import ScenarioQuestion from "./ScenarioQuestion";
 
 interface QuickscanQuestionProps {
   question: QuestionType;
@@ -16,8 +17,6 @@ interface QuickscanQuestionProps {
   isLast: boolean;
 }
 
-const likertLabels = ['Helemaal niet', 'Nauwelijks', 'Beperkt', 'Redelijk', 'Grotendeels', 'Volledig'];
-
 const QuickscanQuestionComponent = ({
   question,
   currentIndex,
@@ -28,41 +27,66 @@ const QuickscanQuestionComponent = ({
   canGoBack,
   isLast,
 }: QuickscanQuestionProps) => {
-  const isSnapshot = question.category === 'snapshot';
+  const isSnapshot = question.category === "snapshot";
+  const isScenario = question.format === "scenario";
+  const isLikert = !isSnapshot && !isScenario; // format "likert" or undefined diagnostic
   const [direction, setDirection] = useState(1);
-  const sectionLabel = isSnapshot
-    ? 'Uw bedrijf'
-    : currentIndex < SNAPSHOT_COUNT + 5
-      ? 'Aantrekkelijkheid van het Bedrijf'
-      : currentIndex < SNAPSHOT_COUNT + 10
-        ? 'Verkoopklaarheid van het Bedrijf'
-        : 'Verkoopklaarheid van de Ondernemer';
 
-  const handleSelect = useCallback((value: string) => {
-    onSelect(value);
-    setTimeout(() => {
-      setDirection(1);
-      onNext();
-    }, 350);
-  }, [onSelect, onNext]);
+  // Likert labels for the 1–6 numbered buttons
+  const likertLabels = ["Weet ik niet", "Klopt niet", "Klopt nauwelijks", "Klopt deels", "Klopt grotendeels", "Klopt helemaal"];
+
+  const handleSelectAndAdvance = useCallback(
+    (value: string) => {
+      onSelect(value);
+      const delay = isScenario ? 600 : 350;
+      setTimeout(() => {
+        setDirection(1);
+        onNext();
+      }, delay);
+    },
+    [onSelect, onNext, isScenario],
+  );
+
+  const handleScenarioSelect = useCallback(
+    (value: string) => {
+      onSelect(value);
+      setTimeout(() => {
+        setDirection(1);
+        onNext();
+      }, 600);
+    },
+    [onSelect, onNext],
+  );
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowRight' || e.key === 'Enter') {
-        if (selectedValue) { setDirection(1); onNext(); }
-      } else if (e.key === 'ArrowLeft') {
-        if (canGoBack) { setDirection(-1); onPrev(); }
-      } else if (!isSnapshot) {
+      if (e.key === "ArrowRight" || e.key === "Enter") {
+        if (selectedValue) {
+          setDirection(1);
+          onNext();
+        }
+      } else if (e.key === "ArrowLeft") {
+        if (canGoBack) {
+          setDirection(-1);
+          onPrev();
+        }
+      } else if (isLikert) {
         const num = parseInt(e.key);
         if (num >= 1 && num <= 6) onSelect(num.toString());
       }
     };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [selectedValue, onNext, onPrev, onSelect, canGoBack, isSnapshot]);
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [selectedValue, onNext, onPrev, onSelect, canGoBack, isLikert]);
 
-  const handlePrev = () => { setDirection(-1); onPrev(); };
-  const handleNext = () => { setDirection(1); onNext(); };
+  const handlePrev = () => {
+    setDirection(-1);
+    onPrev();
+  };
+  const handleNext = () => {
+    setDirection(1);
+    onNext();
+  };
 
   const variants = {
     enter: (d: number) => ({ x: d > 0 ? 60 : -60, opacity: 0 }),
@@ -82,21 +106,22 @@ const QuickscanQuestionComponent = ({
         transition={{ duration: 0.25, ease: "easeOut" }}
         className="w-full max-w-2xl mx-auto"
       >
-        {/* Section label */}
-        <div className="flex items-center gap-2 mb-4">
-          <span className="inline-block w-2 h-2 rounded-full bg-accent" />
-          <span className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground">
-            {sectionLabel}
-          </span>
-        </div>
-
         {/* Question */}
         <h2 className="text-xl md:text-2xl font-bold text-foreground mb-10 leading-snug tracking-tight">
           {question.question}
         </h2>
 
-        {/* Likert scale — individual labeled steps */}
-        {!isSnapshot && (
+        {/* Scenario cards */}
+        {isScenario && (
+          <ScenarioQuestion
+            options={question.options}
+            selectedValue={selectedValue}
+            onSelect={handleScenarioSelect}
+          />
+        )}
+
+        {/* Likert scale — individual labeled steps (reversed: 6 = Klopt helemaal shown first) */}
+        {isLikert && (
           <div className="mb-10">
             <div className="grid grid-cols-6 gap-2">
               {question.options.map((option, idx) => {
@@ -105,26 +130,30 @@ const QuickscanQuestionComponent = ({
                 return (
                   <button
                     key={idx}
-                    onClick={() => handleSelect(val)}
+                    onClick={() => handleSelectAndAdvance(val)}
                     className={cn(
                       "flex flex-col items-center gap-1.5 rounded-lg py-4 px-1 transition-all duration-200 touch-manipulation",
                       "focus:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                       "border-2",
                       isSelected
                         ? "border-primary bg-primary text-primary-foreground shadow-md scale-[1.04]"
-                        : "border-border/20 bg-card hover:border-primary/30 hover:bg-muted/40 text-muted-foreground"
+                        : "border-border/20 bg-card hover:border-primary/30 hover:bg-muted/40 text-muted-foreground",
                     )}
                   >
-                    <span className={cn(
-                      "text-lg md:text-xl font-bold",
-                      isSelected ? "text-primary-foreground" : "text-foreground"
-                    )}>
-                      {idx + 1}
+                    <span
+                      className={cn(
+                        "text-lg md:text-xl font-bold",
+                        isSelected ? "text-primary-foreground" : "text-foreground",
+                      )}
+                    >
+                      {option.score || idx + 1}
                     </span>
-                    <span className={cn(
-                      "text-[10px] md:text-xs leading-tight text-center font-medium",
-                      isSelected ? "text-primary-foreground/90" : "text-muted-foreground"
-                    )}>
+                    <span
+                      className={cn(
+                        "text-[10px] md:text-xs leading-tight text-center font-medium",
+                        isSelected ? "text-primary-foreground/90" : "text-muted-foreground",
+                      )}
+                    >
                       {likertLabels[idx]}
                     </span>
                   </button>
@@ -143,12 +172,12 @@ const QuickscanQuestionComponent = ({
               return (
                 <button
                   key={option.label}
-                  onClick={() => handleSelect(val)}
+                  onClick={() => handleSelectAndAdvance(val)}
                   className={cn(
                     "rounded-lg border-2 px-5 py-4 text-left transition-all duration-200 text-sm font-medium min-h-[52px] touch-manipulation",
                     isSelected
                       ? "border-primary bg-primary/5 text-foreground shadow-sm"
-                      : "border-border/20 bg-card text-muted-foreground hover:border-primary/30 hover:bg-card/80 active:scale-[0.98]"
+                      : "border-border/20 bg-card text-muted-foreground hover:border-primary/30 hover:bg-card/80 active:scale-[0.98]",
                   )}
                 >
                   {option.label}
@@ -171,12 +200,8 @@ const QuickscanQuestionComponent = ({
           </Button>
 
           {!isSnapshot && (
-            <Button
-              onClick={handleNext}
-              disabled={!selectedValue}
-              className="px-8 min-h-[48px]"
-            >
-              {isLast ? 'Bekijk resultaat' : 'Volgende'}
+            <Button onClick={handleNext} disabled={!selectedValue} className="px-8 min-h-[48px]">
+              {isLast ? "Bekijk resultaat" : "Volgende"}
               {!isLast && <ArrowRight className="w-4 h-4 ml-2" />}
             </Button>
           )}
