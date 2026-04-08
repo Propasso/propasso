@@ -32,8 +32,6 @@ const QuickscanQuestionComponent = ({
   const isLikert = !isSnapshot && !isScenario; // format "likert" or undefined diagnostic
   const [direction, setDirection] = useState(1);
 
-  // Likert labels for the 1–6 numbered buttons
-  const likertLabels = ["Geen zicht op", "Klopt niet", "Klopt nauwelijks", "Klopt een beetje", "Klopt grotendeels", "Klopt volledig"];
 
   const handleSelectAndAdvance = useCallback(
     (value: string) => {
@@ -120,16 +118,16 @@ const QuickscanQuestionComponent = ({
           />
         )}
 
-        {/* Likert scale — individual labeled steps (reversed: 6 = Klopt helemaal shown first) */}
+        {/* Likert scale — buttons from 1 (low) to 6 (high), left to right */}
         {isLikert && (
           <div className="mb-10">
             <div className="grid grid-cols-6 gap-2">
-              {question.options.map((option, idx) => {
+              {[...question.options].reverse().map((option) => {
                 const val = option.score?.toString() || option.value;
                 const isSelected = selectedValue === val;
                 return (
                   <button
-                    key={idx}
+                    key={val}
                     onClick={() => handleSelectAndAdvance(val)}
                     className={cn(
                       "flex flex-col items-center gap-1.5 rounded-lg py-4 px-1 transition-all duration-200 touch-manipulation",
@@ -146,7 +144,7 @@ const QuickscanQuestionComponent = ({
                         isSelected ? "text-primary-foreground" : "text-foreground",
                       )}
                     >
-                      {option.score || idx + 1}
+                      {option.score}
                     </span>
                     <span
                       className={cn(
@@ -154,7 +152,7 @@ const QuickscanQuestionComponent = ({
                         isSelected ? "text-primary-foreground/90" : "text-muted-foreground",
                       )}
                     >
-                      {likertLabels[idx]}
+                      {option.label}
                     </span>
                   </button>
                 );
