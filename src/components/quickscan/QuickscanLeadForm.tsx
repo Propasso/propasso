@@ -62,8 +62,6 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
         },
         snapshot: {
           revenue_band: snapshot.revenueBand,
-          employee_band: snapshot.employeeBand,
-          role_type: snapshot.roleType,
           profitability: snapshot.profitability,
           exit_horizon: snapshot.exitHorizon
         }
