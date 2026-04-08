@@ -99,7 +99,7 @@ function validateSnapshotEnum(
   return canonicalMatch ?? null;
 }
 
-const ALLOWED_PAYLOAD_KEYS = ["name", "email", "company", "phone", "newsletter", "scores", "snapshot"] as const;
+const ALLOWED_PAYLOAD_KEYS = ["name", "email", "company", "phone", "newsletter", "scores", "snapshot", "answers"] as const;
 
 // ---------------------------------------------------------------------------
 // Payload interface & validation
