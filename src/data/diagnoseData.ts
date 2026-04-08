@@ -452,3 +452,94 @@ export const sectionIntros: Record<string, { title: string; intro: string }> = {
     intro: "Om uw rapport zo relevant mogelijk te maken, nog een paar korte achtergrondvragen.",
   },
 };
+
+// ---------------------------------------------------------------------------
+// Per-question tips (used by results page)
+// ---------------------------------------------------------------------------
+
+export const questionTips: Record<number, { critical: string; improvement: string; strong: string }> = {
+  6: {
+    critical: "Als je niet kunt voorspellen wat je gaat draaien, kan een koper dat ook niet. Voorspelbare omzet is de basis van een gezonde waardering. Kijk naar contractvormen die meer zekerheid bieden.",
+    improvement: "Er is enige voorspelbaarheid, maar er is ruimte om dit te versterken. Denk aan langere contracttermijnen, abonnementsmodellen, of raamovereenkomsten.",
+    strong: "Sterke omzetvoorspelbaarheid. Dit is aantrekkelijk voor kopers en ondersteunt een gezonde waardering.",
+  },
+  7: {
+    critical: "Dit is een van de sterkste rode vlaggen bij bedrijfsoverdracht. Hoge klantconcentratie betekent hoog risico voor een koper. Begin nu met het diversifiëren van je klantenbestand.",
+    improvement: "Je klantspreiding is redelijk maar niet optimaal. Werk actief aan het verkleinen van de afhankelijkheid van je grootste klanten.",
+    strong: "Goede klantspreiding. Dit vermindert het risicoprofiel van je bedrijf aanzienlijk.",
+  },
+  8: {
+    critical: "Terugkerende omzet is de nummer 1 waarde-driver bij bedrijfsoverdracht. Zonder contractuele omzetzekerheid is je bedrijf fundamenteel minder waard. Onderzoek welke diensten of producten je kunt omzetten naar doorlopende contracten.",
+    improvement: "Er is een basis aan terugkerende omzet. Vergroot dit aandeel door bestaande klantrelaties om te zetten naar contractuele afspraken.",
+    strong: "Uitstekend. Een hoog aandeel terugkerende omzet is het sterkste verkoopargument richting kopers.",
+  },
+  9: {
+    critical: "Dit is de meest voorkomende deal-killer. Als het bedrijf niet zonder jou kan, koopt een koper een risico in plaats van een bedrijf. Begin met het delegeren van je meest kritieke taken en bouw een managementlaag op.",
+    improvement: "Het bedrijf heeft enige zelfstandigheid, maar is nog te afhankelijk van jou. Werk aan het formaliseren van verantwoordelijkheden en het opleiden van sleutelpersonen.",
+    strong: "Sterk. Een bedrijf dat kan draaien zonder de eigenaar is fundamenteel meer waard.",
+  },
+  10: {
+    critical: "Zonder duidelijke positionering ben je inwisselbaar. Kopers zoeken bedrijven met een verdedigbare marktpositie. Definieer scherper waarin je uniek bent en voor wie.",
+    improvement: "Je hebt een positie, maar die is nog niet scherp genoeg gedefinieerd. Werk aan je onderscheidend vermogen en maak het concreet en communiceerbaar.",
+    strong: "Goed gepositioneerd. Een duidelijke marktpositie maakt je bedrijf aantrekkelijker en verdedigbaarder.",
+  },
+  11: {
+    critical: "Een koper die geen helder beeld kan krijgen, haakt af. Investeer in heldere rapportages, genormaliseerde cijfers, en een overzichtelijke administratie. Dit is een hygiënefactor.",
+    improvement: "De basis staat, maar een externe partij zou te lang nodig hebben om je bedrijf te doorgronden. Werk aan de presentatie en toegankelijkheid van je stuurinformatie.",
+    strong: "Goed. Financiële transparantie versnelt het due diligence proces en bouwt vertrouwen.",
+  },
+  12: {
+    critical: "Relaties die op jouw naam staan in plaats van op de BV zijn een risico bij overdracht. Begin met het formaliseren van alle klant- en leveranciersrelaties op naam van de onderneming.",
+    improvement: "Een deel is vastgelegd, maar check of alle kritieke relaties juridisch overdraagbaar zijn. Dit is een veelvoorkomend struikelblok in due diligence.",
+    strong: "Goed geregeld. Contractuele overdraagbaarheid is een belangrijke randvoorwaarde voor een soepele deal.",
+  },
+  13: {
+    critical: "Als kennis alleen in hoofden zit, verliest een koper die kennis bij vertrek van sleutelpersonen. Begin met het documenteren van je 5 belangrijkste werkprocessen.",
+    improvement: "Er is een begin gemaakt, maar de vastlegging is niet compleet of actueel. Maak er een doorlopend project van om kernprocessen bij te houden.",
+    strong: "Sterk. Gedocumenteerde en geborgde processen verhogen de overdraagbaarheid en verlagen het risico voor kopers.",
+  },
+  14: {
+    critical: "Veel ondernemers hebben hier geen zicht op, en dat is precies het probleem. Laat een fiscalist of jurist met M&A-ervaring je structuur beoordelen. Dit kan je tonnen schelen bij een deal.",
+    improvement: "Je bent op de hoogte maar er zijn nog openstaande punten. Pak de aanbevelingen van je adviseur op — hoe eerder, hoe meer opties je hebt.",
+    strong: "Goed voorbereid. Een doordachte juridische en fiscale structuur is een groot voordeel bij onderhandeling.",
+  },
+  15: {
+    critical: "Kopers kopen de toekomst, niet het verleden. Zonder concreet groeiplan ontbreekt het verkoopverhaal. Werk een plan uit voor de komende 3–5 jaar dat je morgen kunt presenteren.",
+    improvement: "Er zijn ideeën over groei, maar ze zijn nog niet uitgewerkt of presentabel. Maak het concreet: marktkansen, actieplan, benodigde investering.",
+    strong: "Sterk. Een helder groeiverhaal is een van de belangrijkste waardebepalers.",
+  },
+  16: {
+    critical: "Zonder dit getal kun je geen exit-strategie bepalen. Je weet niet of de verkoopprijs genoeg oplevert. Laat een wealth gap analyse maken: wat heb je nodig, en wat is je bedrijf waard?",
+    improvement: "Je hebt een globaal idee, maar het is nog niet scherp genoeg om beslissingen op te baseren. Werk het uit met een financieel adviseur.",
+    strong: "Goed. Je weet wat je nodig hebt. Dat is de basis voor elke exit-strategie.",
+  },
+  17: {
+    critical: "75% van ondernemers die dit overslaan heeft spijt binnen een jaar na verkoop. Je identiteit is verweven met je bedrijf — wat doe je als dat wegvalt? Ga dit gesprek aan, met jezelf en met je naasten.",
+    improvement: "Je denkt erover na, maar het is nog vaag. Dat is normaal, maar maak het concreter. Praat erover met je partner en vertrouwde adviseurs.",
+    strong: "Goed voorbereid. Een concreet persoonlijk plan na de exit voorkomt het 'zwarte gat' waar veel ondernemers in vallen.",
+  },
+  18: {
+    critical: "Dit is de schakel tussen bedrijfswaarde en persoonlijke gereedheid. Als je niet actief loslaat, groeit het bedrijf niet voorbij jou. Begin met het delegeren van één verantwoordelijkheid per maand.",
+    improvement: "Je bent begonnen met loslaten, maar het gaat nog niet systematisch. Maak er een bewust plan van: wie neemt wat over, en wanneer?",
+    strong: "Sterk. Actief delegeren bouwt tegelijkertijd bedrijfswaarde en persoonlijke vrijheid.",
+  },
+  19: {
+    critical: "Het juiste team is het verschil tussen een goede en een slechte deal. Een boekhouder en notaris zijn niet genoeg. Je hebt specialisten nodig met ervaring in bedrijfsoverdrachten.",
+    improvement: "Je hebt goede adviseurs, maar ze missen M&A-ervaring. Vul je team aan met een procesbegeleider of M&A-adviseur die dit vaker doet.",
+    strong: "Goed team. De juiste adviseurs aan tafel geeft vertrouwen en beschermt je belangen.",
+  },
+  20: {
+    critical: "Exit planning is present tense: de beste deals worden gesloten door ondernemers die ruim op tijd beginnen. Als het nog niet urgent voelt, is dat juist het moment om te starten.",
+    improvement: "Je voelt dat het eraan komt. Gebruik die energie om nu de eerste concrete stappen te zetten — wachten maakt het niet makkelijker.",
+    strong: "Goed. Urgentie gecombineerd met een plan is de sterkste uitgangspositie.",
+  },
+};
+
+// Helper: get tip for a question based on score
+export function getQuestionTip(questionId: number, score: number): string {
+  const tips = questionTips[questionId];
+  if (!tips) return "";
+  if (score <= 2) return tips.critical;
+  if (score <= 4) return tips.improvement;
+  return tips.strong;
+}
