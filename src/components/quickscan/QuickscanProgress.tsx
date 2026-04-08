@@ -1,19 +1,35 @@
 import { TOTAL_QUESTIONS } from "@/data/diagnoseData";
 
 interface QuickscanProgressProps {
-  currentQuestion: number;
+  answeredCount: number;
+  sectionLabel: string;
+  sectionQuestionIndex?: number;
+  sectionQuestionTotal?: number;
+  isTransition?: boolean;
 }
 
-const QuickscanProgress = ({ currentQuestion }: QuickscanProgressProps) => {
-  const progress = ((currentQuestion + 1) / TOTAL_QUESTIONS) * 100;
+const QuickscanProgress = ({
+  answeredCount,
+  sectionLabel,
+  sectionQuestionIndex,
+  sectionQuestionTotal,
+  isTransition,
+}: QuickscanProgressProps) => {
+  const progress = (answeredCount / TOTAL_QUESTIONS) * 100;
+
+  const contextText = isTransition
+    ? sectionLabel
+    : sectionQuestionIndex != null && sectionQuestionTotal != null
+      ? `${sectionLabel} — vraag ${sectionQuestionIndex} van ${sectionQuestionTotal}`
+      : sectionLabel;
 
   return (
     <div className="w-full max-w-2xl mx-auto mb-10">
       <div className="flex justify-between items-center mb-2">
-        <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground">
-          Vraag {currentQuestion + 1} van {TOTAL_QUESTIONS}
+        <span className="text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground truncate mr-2">
+          {contextText}
         </span>
-        <span className="text-xs font-semibold text-muted-foreground tabular-nums">
+        <span className="text-xs font-semibold text-muted-foreground tabular-nums flex-shrink-0">
           {Math.round(progress)}%
         </span>
       </div>
