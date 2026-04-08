@@ -22,12 +22,12 @@ export interface DiagnoseQuestion {
 // ---------------------------------------------------------------------------
 
 const likertOptions: DiagnoseOption[] = [
-  { label: "Klopt helemaal", value: "6", score: 6 },
+  { label: "Klopt volledig", value: "6", score: 6 },
   { label: "Klopt grotendeels", value: "5", score: 5 },
-  { label: "Klopt deels", value: "4", score: 4 },
+  { label: "Klopt een beetje", value: "4", score: 4 },
   { label: "Klopt nauwelijks", value: "3", score: 3 },
   { label: "Klopt niet", value: "2", score: 2 },
-  { label: "Weet ik niet / n.v.t.", value: "1", score: 1 },
+  { label: "Hier heb ik geen zicht op", value: "1", score: 1 },
 ];
 
 // ---------------------------------------------------------------------------

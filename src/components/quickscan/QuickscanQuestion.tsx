@@ -33,7 +33,7 @@ const QuickscanQuestionComponent = ({
   const [direction, setDirection] = useState(1);
 
   // Likert labels for the 1–6 numbered buttons
-  const likertLabels = ["Weet ik niet", "Klopt niet", "Klopt nauwelijks", "Klopt deels", "Klopt grotendeels", "Klopt helemaal"];
+  const likertLabels = ["Geen zicht op", "Klopt niet", "Klopt nauwelijks", "Klopt een beetje", "Klopt grotendeels", "Klopt volledig"];
 
   const handleSelectAndAdvance = useCallback(
     (value: string) => {
