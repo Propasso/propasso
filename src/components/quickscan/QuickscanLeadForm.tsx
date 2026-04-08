@@ -64,7 +64,8 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
           revenue_band: snapshot.revenueBand,
           profitability: snapshot.profitability,
           exit_horizon: snapshot.exitHorizon
-        }
+        },
+        answers,
       };
 
       const { error } = await supabase.functions.invoke("send-diagnose-results", {
