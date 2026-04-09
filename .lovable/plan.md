@@ -1,31 +1,53 @@
 
 
-## Plan: E-mail queue herstellen
+## Plan: Juridische pagina's koppelen aan Sanity CMS
 
-### Probleem
-1. De pg_cron job voor `process-email-queue` ontbreekt — nieuwe e-mails worden wel ge-enqueued maar nooit verstuurd
-2. 33 eerdere quickscan-rapporten zijn verlopen (TTL overschreden) of in de dead-letter queue beland door "domain_not_verified" fouten — deze kunnen niet meer via de normale queue worden verstuurd
+### Verified against Sanity schema
 
-### Stappen
+The uploaded `legalPage.ts` defines four fields:
+- `title` (string, required)
+- `slug` (slug, required)
+- `content` (array of block = Portable Text)
+- `lastUpdated` (datetime, optional)
 
-**Stap 1: E-mail infrastructuur opnieuw opzetten**
-- `setup_email_infra` aanroepen om de cron job en vault secret opnieuw aan te maken
-- Dit is veilig/idempotent en herstelt de ontbrekende cron job
+The plan's GROQ query and type definition match these fields exactly.
 
-**Stap 2: Oude pending e-mails opnieuw verzenden**
-- De 33 "pending" rijen in `email_send_log` hebben geen corresponderende queue-berichten meer (queue is leeg)
-- Optie A: De gebruiker kan een nieuwe quickscan invullen om te testen of de keten nu werkt
-- Optie B: We kunnen een script maken dat de unieke pending message_id's ophaalt, de originele payloads reconstrueert uit `send-diagnose-results` data, en opnieuw in de queue plaatst — maar dit vereist dat de originele e-mail HTML nog beschikbaar is, wat niet het geval is (de payloads worden niet opgeslagen)
+### Changes
 
-**Stap 3: Verificatie**
-- Na het herstellen van de cron job, een test-quickscan invullen en controleren of de e-mail aankomt
-- `email_send_log` controleren op nieuwe "sent" statussen
+**1. Add type to `src/types/sanity.ts`**
+```typescript
+export interface SanityLegalPage {
+  title: string;
+  slug: string; // projected from slug.current
+  content?: any[];
+  lastUpdated?: string;
+}
+```
 
-### Technische details
-- De cron job roept elke 5 seconden `process-email-queue` aan met de service role key
-- De edge function leest batches uit pgmq en verstuurt ze via de Lovable Email API
-- Nu het domein geverifieerd is, zullen nieuwe verzendingen slagen
+**2. Add query to `src/lib/sanityQueries.ts`**
+```typescript
+export async function fetchLegalPageBySlug(slug: string): Promise<SanityLegalPage | null> {
+  return sanityClient.fetch(
+    `*[_type == "legalPage" && slug.current == $slug][0]{
+      title, "slug": slug.current, content, lastUpdated
+    }`,
+    { slug }
+  );
+}
+```
 
-### Belangrijk
-De 33 eerder ingediende quickscan-rapporten die niet zijn verstuurd, kunnen **niet automatisch opnieuw worden verzonden** — de e-mail payloads (HTML-inhoud) worden niet bewaard in de database. Deze gebruikers hebben hun rapport niet ontvangen.
+**3. Create shared `src/components/LegalPage.tsx`**
+- Props: `slug`, `fallbackTitle`, `seoDescription`, `canonical`
+- Uses `useQuery` + `fetchLegalPageBySlug`
+- Renders content via `<PortableText>` reusing the same `portableTextComponents` from KennisbankArticle
+- Shows Skeleton loading state, error fallback, optional "Laatst bijgewerkt" date
+- Wraps in existing `PageLayout` + `SEO`
+
+**4. Simplify the three page components**
+Each becomes a thin wrapper passing slug and SEO metadata to `LegalPage`:
+- `AlgemeneVoorwaarden.tsx` -> slug `"algemene-voorwaarden"`
+- `Disclaimer.tsx` -> slug `"disclaimer"`
+- `Privacyverklaring.tsx` -> slug `"privacyverklaring"`
+
+All hardcoded legal text is removed.
 
