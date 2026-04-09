@@ -1,53 +1,60 @@
 
 
-## Plan: Juridische pagina's koppelen aan Sanity CMS
+## Plan: Contactpagina Redesign
 
-### Verified against Sanity schema
+### Overzicht
+Volledige herschrijving van `src/pages/Contact.tsx` — van 6 rommelige secties naar 4 gestructureerde secties met conversiehiërarchie.
 
-The uploaded `legalPage.ts` defines four fields:
-- `title` (string, required)
-- `slug` (slug, required)
-- `content` (array of block = Portable Text)
-- `lastUpdated` (datetime, optional)
+### Sectie-indeling
 
-The plan's GROQ query and type definition match these fields exactly.
+**1. Hero** (`bg-background`)
+- Persoonlijke kop: "Laten we kennismaken"
+- Subtekst: verwachtingsmanagement (open gesprek, geen verplichtingen)
+- Eén primaire CTA (lime, rounded-full) die smooth-scrollt naar agenda-sectie
+- Karel-foto rechts met teal-tint overlay
+- Mobiel: foto verborgen, CTA full-width
 
-### Changes
+**2. Twee contactpaden** (`section-neutral-bg`)
+- `lg:grid-cols-5` layout (3/5 + 2/5)
+- **Pad A (primair, 3/5):** HubSpotMeetingsEmbed in kaart met korte intro
+- **Pad B (secundair, 2/5):** Drie compacte contactitems (Bellen, WhatsApp, E-mail) + bereikbaarheidstekst
+- WhatsApp via `wa.me/31610057566` link met vooringevuld bericht
+- WhatsApp-icoon: `MessageCircle` uit lucide-react (of inline SVG)
+- LinkedIn-tegels verwijderd
+- Mobiel: paden onder elkaar, agenda bovenaan
 
-**1. Add type to `src/types/sanity.ts`**
-```typescript
-export interface SanityLegalPage {
-  title: string;
-  slug: string; // projected from slug.current
-  content?: any[];
-  lastUpdated?: string;
-}
-```
+**3. Contactformulier + vertrouwen** (`section-alt-bg`, mint)
+- `lg:grid-cols-5` (2/5 + 3/5), zelfde patroon als huidig
+- Links: kop, verwachtingstekst, 3 checkmarks, testimonial-citaat (placeholder)
+- Rechts: bestaand formulier (Zod, react-hook-form, Supabase edge function, ConsentCheckboxes)
+- **Navy button** (geen lime op mint achtergrond)
+- Bestaande `onSubmit`, succesbericht, en form state volledig behouden
 
-**2. Add query to `src/lib/sanityQueries.ts`**
-```typescript
-export async function fetchLegalPageBySlug(slug: string): Promise<SanityLegalPage | null> {
-  return sanityClient.fetch(
-    `*[_type == "legalPage" && slug.current == $slug][0]{
-      title, "slug": slug.current, content, lastUpdated
-    }`,
-    { slug }
-  );
-}
-```
+**4. Locatie + afsluitende CTA** (`bg-background` + `bg-primary`)
+- Compact adresblok (geen Google Maps embed, `GoogleMapsEmbed` component verwijderd)
+- Adres + "Bekijk op Google Maps" link
+- Navy CTA-balk met één kop + twee buttons: "Bel direct" (accent/lime) + "Plan een kennismaking" (outline wit, scrollt naar agenda)
 
-**3. Create shared `src/components/LegalPage.tsx`**
-- Props: `slug`, `fallbackTitle`, `seoDescription`, `canonical`
-- Uses `useQuery` + `fetchLegalPageBySlug`
-- Renders content via `<PortableText>` reusing the same `portableTextComponents` from KennisbankArticle
-- Shows Skeleton loading state, error fallback, optional "Laatst bijgewerkt" date
-- Wraps in existing `PageLayout` + `SEO`
+### Technische details
 
-**4. Simplify the three page components**
-Each becomes a thin wrapper passing slug and SEO metadata to `LegalPage`:
-- `AlgemeneVoorwaarden.tsx` -> slug `"algemene-voorwaarden"`
-- `Disclaimer.tsx` -> slug `"disclaimer"`
-- `Privacyverklaring.tsx` -> slug `"privacyverklaring"`
+**Behouden:**
+- Alle imports: `PageLayout`, `SEO`, `Form`/`FormField` etc., `Input`, `Textarea`, `Button`, `ConsentCheckboxes`, `HubSpotMeetingsEmbed`, `useToast`, `pushEvent`
+- `contactSchema` (Zod), `onSubmit` handler, Supabase `send-contact-email` edge function
+- SEO component + JSON-LD structured data
+- Framer Motion `fadeUp` variant (spaarzaam gebruikt)
+- `karelImg` import
 
-All hardcoded legal text is removed.
+**Verwijderd:**
+- `GoogleMapsEmbed` component + `useCookieConsent` import (niet meer nodig)
+- LinkedIn contactopties
+- `MapPinned` import (niet meer nodig)
+- Dubbele telefoon/mail CTA's
+
+**Toegevoegd:**
+- WhatsApp contactoptie met `wa.me` link
+- Smooth scroll naar agenda-sectie via `id="agenda"` + `scrollIntoView`
+- Testimonial placeholder blok
+- WhatsApp in JSON-LD `sameAs` array
+
+**Bestand:** Alleen `src/pages/Contact.tsx` wordt herschreven. Geen andere bestanden wijzigen.
 
