@@ -63,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-8 text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl"
+            className="mt-6 text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl"
           >
             Wij begeleiden MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en
             verkoopbaarheid, met een helder plan en regie voor de ondernemer.
@@ -73,7 +73,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
+            className="mt-8 flex flex-col sm:flex-row gap-4"
           >
             <Link
               to="/quickscan"
