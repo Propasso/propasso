@@ -23,17 +23,17 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100svh-5rem)] flex items-center pt-20 overflow-hidden">
+    <section className="relative min-h-[calc(100svh-5rem)] flex items-center pt-16 overflow-hidden">
       {/* Yellow accent circle */}
       <div className="absolute top-20 right-0 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 translate-x-1/4 md:translate-x-1/6" />
 
-      <div className="section-container relative z-10 py-10 md:py-24">
+      <div className="section-container relative z-10 py-6 md:py-16">
         <div className="max-w-3xl">
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground text-balance"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold leading-[1.05] text-foreground text-balance"
           >
             Een succesvolle bedrijfsoverdracht <span className="text-muted-foreground">begint jaren vóór de deal.</span>
           </motion.h1>
@@ -63,7 +63,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-8 text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl"
+            className="mt-6 text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl"
           >
             Wij begeleiden MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en
             verkoopbaarheid, met een helder plan en regie voor de ondernemer.
@@ -73,7 +73,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-10 flex flex-col sm:flex-row gap-4"
+            className="mt-8 flex flex-col sm:flex-row gap-4"
           >
             <Link
               to="/quickscan"
