@@ -94,19 +94,21 @@ const directContactItems = [
     label: "Bellen",
     value: "06 1005 7566",
     href: "tel:+31610057566",
+    color: "bg-primary/10 text-primary",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
     value: "06 1005 7566",
     href: "https://wa.me/31610057566?text=Hallo%20Karel%2C%20ik%20heb%20een%20vraag%20over%20exit%20planning.",
-    external: true,
+    color: "bg-[hsl(142,70%,45%)]/10 text-[hsl(142,70%,35%)]",
   },
   {
     icon: Mail,
     label: "E-mail",
     value: "hallo@propasso.nl",
     href: "mailto:hallo@propasso.nl",
+    color: "bg-primary/10 text-primary",
   },
 ];
 
@@ -177,8 +179,12 @@ const Contact = () => {
       />
 
       {/* ── Sectie 1: Hero ── */}
-      <section className="py-16 md:py-24 lg:py-28">
-        <div className="section-container">
+      <section className="py-16 md:py-24 lg:py-28 relative overflow-hidden">
+        {/* Subtle decorative elements */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle,hsl(var(--accent)/0.08)_0%,transparent_70%)] -translate-y-1/4 translate-x-1/4 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle,hsl(var(--primary)/0.04)_0%,transparent_70%)] translate-y-1/4 -translate-x-1/4 pointer-events-none" />
+
+        <div className="section-container relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
               <p className="eyebrow">Contact</p>
@@ -191,7 +197,7 @@ const Contact = () => {
               </p>
               <Button
                 onClick={scrollToAgenda}
-                className="mt-8 rounded-full px-8 py-4 h-auto text-base font-semibold bg-accent text-accent-foreground hover:brightness-110 w-full sm:w-auto"
+                className="mt-8 rounded-full px-8 py-4 h-auto text-base font-semibold bg-accent text-accent-foreground hover:brightness-110 w-full sm:w-auto shadow-[0_4px_16px_hsl(var(--accent)/0.3)]"
               >
                 Plan een kennismaking
                 <ChevronRight size={18} />
@@ -200,11 +206,12 @@ const Contact = () => {
 
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={1} className="hidden lg:block">
               <div className="relative">
-                <div className="absolute -inset-4 rounded-3xl tint-teal-bg" />
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[hsl(var(--tint-teal)/0.15)] to-[hsl(var(--accent)/0.08)]" />
+                <div className="absolute -inset-4 rounded-3xl border border-[hsl(var(--tint-teal)/0.1)]" />
                 <img
                   src={karelImg}
                   alt="Karel Cremers in gesprek met ondernemers over exit planning"
-                  className="relative rounded-2xl w-full object-cover aspect-[3/4]"
+                  className="relative rounded-2xl w-full object-cover aspect-[3/4] shadow-xl"
                   loading="eager"
                 />
               </div>
@@ -214,8 +221,10 @@ const Contact = () => {
       </section>
 
       {/* ── Sectie 2: Twee contactpaden ── */}
-      <section id="agenda" className="py-16 md:py-24 lg:py-36 section-neutral-bg">
-        <div className="section-container">
+      <section id="agenda" className="py-16 md:py-24 lg:py-36 section-neutral-bg relative">
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,hsl(var(--section-neutral))_0%,hsl(195_25%_93%)_100%)] pointer-events-none" />
+        
+        <div className="section-container relative">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -230,20 +239,24 @@ const Contact = () => {
             </h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
-            {/* Pad A — Agenda (primair) */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
+            {/* Pad A — Agenda */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               variants={fadeUp}
               custom={1}
-              className="lg:col-span-3"
             >
-              <div className="bg-background rounded-2xl border border-border/30 p-4 md:p-8 shadow-sm overflow-hidden">
-                <h3 className="text-lg font-medium text-foreground mb-2">
-                  Plan een kennismaking
-                </h3>
+              <div className="bg-background rounded-2xl border border-border/40 p-4 md:p-8 shadow-sm overflow-hidden h-full">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
+                    <ChevronRight className="w-4 h-4 text-accent-foreground" />
+                  </div>
+                  <h3 className="text-lg font-medium text-foreground">
+                    Plan een kennismaking
+                  </h3>
+                </div>
                 <p className="text-sm text-muted-foreground mb-6 leading-[1.75]">
                   Kies een moment in mijn agenda. Vrijblijvend, 30 minuten, online of op locatie.
                 </p>
@@ -251,31 +264,29 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            {/* Pad B — Direct contact (secundair) */}
+            {/* Pad B — Direct contact + adres */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               variants={fadeUp}
               custom={2}
-              className="lg:col-span-2"
             >
-              <div className="bg-background rounded-2xl border border-border/30 p-6 md:p-8 shadow-sm h-full flex flex-col">
+              <div className="bg-background rounded-2xl border border-border/40 p-6 md:p-8 shadow-sm h-full flex flex-col">
                 <h3 className="text-lg font-medium text-foreground mb-6">
                   Direct contact
                 </h3>
 
-                <div className="space-y-4 flex-1">
+                <div className="space-y-3 flex-1">
                   {directContactItems.map((item) => (
                     <a
                       key={item.label}
                       href={item.href}
-                      target={item.external ? "_blank" : undefined}
-                      rel={item.external ? "noopener noreferrer" : undefined}
-                      className="group flex items-center gap-4 p-4 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-md transition-all duration-300"
+                      {...(item.label === "WhatsApp" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className="group flex items-center gap-4 p-4 rounded-xl border border-border/40 hover:border-primary/30 hover:shadow-md transition-all duration-300 bg-[hsl(var(--surface-raised))]"
                     >
-                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
-                        <item.icon className="w-5 h-5 text-primary" />
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${item.color}`}>
+                        <item.icon className="w-5 h-5" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -290,9 +301,35 @@ const Contact = () => {
                   ))}
                 </div>
 
-                <p className="mt-6 text-sm text-muted-foreground leading-[1.75]">
+                <p className="mt-5 text-sm text-muted-foreground leading-[1.75]">
                   Bereikbaar op werkdagen. Reactie binnen 24 uur.
                 </p>
+
+                {/* Bezoekadres — ingebed in Direct contact kaart */}
+                <div className="mt-6 pt-6 border-t border-border/40">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <MapPin className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">
+                        Bezoekadres
+                      </p>
+                      <p className="text-sm font-medium text-foreground leading-relaxed">
+                        Nieuwe Linie 12<br />5264 PJ Vught
+                      </p>
+                      <a
+                        href="https://www.google.com/maps/search/?api=1&query=Nieuwe+Linie+12+5264+PJ+Vught"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 mt-2 text-xs font-semibold text-primary hover:underline"
+                      >
+                        Bekijk op Google Maps
+                        <ArrowRight className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -300,8 +337,10 @@ const Contact = () => {
       </section>
 
       {/* ── Sectie 3: Formulier + vertrouwen ── */}
-      <section className="py-16 md:py-24 lg:py-36 section-alt-bg">
-        <div className="section-container">
+      <section className="py-16 md:py-24 lg:py-36 section-alt-bg relative">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle,hsl(var(--accent)/0.06)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="section-container relative">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
             {/* Linkerkolom — vertrouwen */}
             <motion.div
@@ -328,14 +367,16 @@ const Contact = () => {
                   "20+ jaar ervaring met ondernemers",
                 ].map((item) => (
                   <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                    </div>
                     <span className="text-sm font-medium text-foreground">{item}</span>
                   </div>
                 ))}
               </div>
 
-              {/* Testimonial placeholder */}
-              <div className="mt-10 border-l-4 border-primary/20 pl-5">
+              {/* Testimonial */}
+              <div className="mt-10 rounded-xl bg-background/60 border border-border/30 p-5">
                 <p className="text-sm italic text-muted-foreground leading-[1.75]">
                   "Karel denkt echt mee. Geen verkooppraatje, gewoon een eerlijk gesprek
                   over wat er speelt en wat de opties zijn."
@@ -367,7 +408,7 @@ const Contact = () => {
               <div className="bg-background rounded-2xl border border-border/30 p-6 md:p-10 shadow-sm">
                 {isSubmitted ? (
                   <div className="py-12 text-center">
-                    <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                    <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-6">
                       <CheckCircle2 className="w-8 h-8 text-primary" />
                     </div>
                     <h3 className="text-xl font-medium text-foreground">Dank voor je bericht</h3>
@@ -475,36 +516,12 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* ── Sectie 4: Locatie + afsluitende CTA ── */}
-      <section className="py-16 md:py-20">
-        <div className="section-container">
-          <div className="flex items-start gap-4 max-w-lg">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <MapPin className="w-5 h-5 text-primary" />
-            </div>
-            <div>
-              <p className="font-semibold text-foreground">Bezoekadres</p>
-              <p className="text-muted-foreground leading-[1.75]">
-                Nieuwe Linie 12<br />5264 PJ Vught
-              </p>
-              <a
-                href="https://www.google.com/maps/search/?api=1&query=Nieuwe+Linie+12+5264+PJ+Vught"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-primary hover:underline"
-              >
-                Bekijk op Google Maps
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Afsluitende CTA */}
+      {/* ── Sectie 4: Afsluitende CTA ── */}
       <section className="py-16 md:py-24 lg:py-36 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary" />
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/15 translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute inset-0 bg-[linear-gradient(135deg,hsl(var(--primary))_0%,hsl(203_88%_18%)_100%)]" />
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/10 translate-x-1/3 -translate-y-1/3 blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[hsl(var(--tint-teal)/0.15)] -translate-x-1/3 translate-y-1/3 blur-2xl" />
 
         <div className="section-container relative z-10 text-center">
           <motion.div
@@ -524,14 +541,14 @@ const Contact = () => {
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:+31610057566"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition shadow-[0_4px_16px_hsl(var(--accent)/0.3)]"
               >
                 <Phone className="w-4 h-4" />
                 Bel direct
               </a>
               <button
                 onClick={scrollToAgenda}
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-foreground/30 px-7 py-4 text-base font-semibold text-primary-foreground hover:border-primary-foreground/60 transition-colors"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-foreground/30 px-7 py-4 text-base font-semibold text-primary-foreground hover:border-primary-foreground/60 hover:bg-primary-foreground/5 transition-colors"
               >
                 Plan een kennismaking
                 <ArrowRight className="w-4 h-4" />
