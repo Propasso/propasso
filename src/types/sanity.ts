@@ -10,6 +10,14 @@ export interface SanityCategory {
   metaDescription?: string;
 }
 
+export interface SanityLegalPage {
+  title: string;
+  slug: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  content?: any[];
+  lastUpdated?: string;
+}
+
 export interface SanityPost {
   _id: string;
   title: string;

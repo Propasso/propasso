@@ -1,5 +1,5 @@
 import { sanityClient } from "./sanity";
-import type { SanityPost } from "@/types/sanity";
+import type { SanityPost, SanityLegalPage } from "@/types/sanity";
 
 const postFields = `
   _id,
