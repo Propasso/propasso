@@ -1,5 +1,5 @@
 import { sanityClient } from "./sanity";
-import type { SanityPost } from "@/types/sanity";
+import type { SanityPost, SanityLegalPage } from "@/types/sanity";
 
 const postFields = `
   _id,
@@ -119,5 +119,14 @@ export async function fetchPostBySlug(slug: string): Promise<SanityPost | null> 
   );
 
   return post ? normalizePostCategorySlugs(post) : null;
+}
+
+export async function fetchLegalPageBySlug(slug: string): Promise<SanityLegalPage | null> {
+  return sanityClient.fetch<SanityLegalPage | null>(
+    `*[_type == "legalPage" && slug.current == $slug][0]{
+      title, "slug": slug.current, content, lastUpdated
+    }`,
+    { slug }
+  );
 }
 
