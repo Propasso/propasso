@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { useCookieConsent } from "@/hooks/use-cookie-consent";
 import ConsentCheckboxes from "@/components/ConsentCheckboxes";
 import { pushEvent } from "@/lib/tracking";
 import {
@@ -19,11 +18,9 @@ import {
   Phone,
   Mail,
   MapPin,
-  Linkedin,
-  Building2,
   CheckCircle2,
   ArrowRight,
-  MapPinned,
+  MessageCircle,
 } from "lucide-react";
 import karelImg from "@/assets/images/karel-met-ondernemers.png";
 import HubSpotMeetingsEmbed from "@/components/HubSpotMeetingsEmbed";
@@ -40,39 +37,6 @@ const contactSchema = z.object({
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
-
-const contactOptions = [
-  {
-    icon: Phone,
-    label: "Bel direct",
-    value: "06 1005 7566",
-    href: "tel:+31610057566",
-    description: "Bereikbaar op werkdagen",
-  },
-  {
-    icon: Mail,
-    label: "E-mail",
-    value: "hallo@propasso.nl",
-    href: "mailto:hallo@propasso.nl",
-    description: "Reactie binnen 24 uur",
-  },
-  {
-    icon: Linkedin,
-    label: "LinkedIn",
-    value: "Karel Cremers",
-    href: "https://www.linkedin.com/in/karelcremers",
-    description: "Persoonlijk profiel",
-    external: true,
-  },
-  {
-    icon: Building2,
-    label: "LinkedIn",
-    value: "Propasso",
-    href: "https://www.linkedin.com/company/propasso",
-    description: "Bedrijfspagina",
-    external: true,
-  },
-];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -110,6 +74,7 @@ const contactSchemas = [
       sameAs: [
         "https://www.linkedin.com/company/propasso",
         "https://www.linkedin.com/in/karelcremers",
+        "https://wa.me/31610057566",
       ],
     },
   },
@@ -123,42 +88,30 @@ const contactSchemas = [
   },
 ];
 
-const GoogleMapsEmbed = () => {
-  const { hasConsent } = useCookieConsent();
+const directContactItems = [
+  {
+    icon: Phone,
+    label: "Bellen",
+    value: "06 1005 7566",
+    href: "tel:+31610057566",
+  },
+  {
+    icon: MessageCircle,
+    label: "WhatsApp",
+    value: "06 1005 7566",
+    href: "https://wa.me/31610057566?text=Hallo%20Karel%2C%20ik%20heb%20een%20vraag%20over%20exit%20planning.",
+    external: true,
+  },
+  {
+    icon: Mail,
+    label: "E-mail",
+    value: "hallo@propasso.nl",
+    href: "mailto:hallo@propasso.nl",
+  },
+];
 
-  if (!hasConsent("marketing")) {
-    return (
-      <div className="w-full h-[300px] bg-muted rounded-t-2xl flex flex-col items-center justify-center gap-3 text-center p-6">
-        <MapPinned className="w-10 h-10 text-muted-foreground/40" />
-        <p className="text-sm text-muted-foreground font-medium">
-          Accepteer cookies om de Google Maps-kaart te laden.
-        </p>
-        <a
-          href="https://www.google.com/maps/search/?api=1&query=Nieuwe+Linie+12+5264+PJ+Vught"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
-        >
-          Bekijk locatie op Google Maps
-          <ArrowRight className="w-3.5 h-3.5" />
-        </a>
-      </div>
-    );
-  }
-
-  return (
-    <iframe
-      title="Propasso locatie - Nieuwe Linie 12, Vught"
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2487.5!2d5.2918!3d51.6565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c6e9a0a3a0a1%3A0x0!2sNieuwe+Linie+12%2C+5264+PJ+Vught!5e0!3m2!1snl!2snl!4v1700000000000"
-      width="100%"
-      height="300"
-      style={{ border: 0 }}
-      allowFullScreen
-      loading="lazy"
-      referrerPolicy="no-referrer-when-downgrade"
-      className="pointer-events-none"
-    />
-  );
+const scrollToAgenda = () => {
+  document.getElementById("agenda")?.scrollIntoView({ behavior: "smooth" });
 };
 
 const Contact = () => {
@@ -223,20 +176,26 @@ const Contact = () => {
         jsonLd={contactSchemas}
       />
 
-      {/* Hero / Intro */}
+      {/* ── Sectie 1: Hero ── */}
       <section className="py-16 md:py-24 lg:py-28">
         <div className="section-container">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
               <p className="eyebrow">Contact</p>
-              <h1 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] text-balance">
-                Meer weten?{" "}
-                <span className="block">Of gelijk aan de slag.</span>
+              <h1 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-[-0.02em] text-balance">
+                Laten we kennismaken
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-xl">
-                Neem vrijblijvend contact op voor een persoonlijke kennismaking.
-                Ik denk graag mee over jouw situatie, zonder verplichtingen.
+              <p className="mt-6 text-lg text-muted-foreground leading-[1.75] max-w-xl">
+                Een open gesprek over jouw situatie, zonder verplichtingen.
+                Ik denk graag mee — persoonlijk en vrijblijvend.
               </p>
+              <Button
+                onClick={scrollToAgenda}
+                className="mt-8 rounded-full px-8 py-4 h-auto text-base font-semibold bg-accent text-accent-foreground hover:brightness-110 w-full sm:w-auto"
+              >
+                Plan een kennismaking
+                <ChevronRight size={18} />
+              </Button>
             </motion.div>
 
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={1} className="hidden lg:block">
@@ -254,8 +213,8 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Direct Contact Options */}
-      <section className="py-16 md:py-20 section-neutral-bg">
+      {/* ── Sectie 2: Twee contactpaden ── */}
+      <section id="agenda" className="py-16 md:py-24 lg:py-36 section-neutral-bg">
         <div className="section-container">
           <motion.div
             initial="hidden"
@@ -265,141 +224,86 @@ const Contact = () => {
             custom={0}
             className="mb-12"
           >
-            <p className="eyebrow">Direct contact</p>
-            <h2 className="mt-4 text-2xl md:text-3xl font-bold text-left">Neem direct contact op</h2>
-            <p className="mt-3 text-muted-foreground max-w-lg">
-              Kies de manier die bij je past. Ik ben persoonlijk bereikbaar.
-            </p>
+            <p className="eyebrow">Kennismaken</p>
+            <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-[-0.01em]">
+              Kies wat bij je past
+            </h2>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            {contactOptions.map((option, i) => (
-              <motion.a
-                key={option.value}
-                href={option.href}
-                target={option.external ? "_blank" : undefined}
-                rel={option.external ? "noopener noreferrer" : undefined}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-30px" }}
-                variants={fadeUp}
-                custom={i + 1}
-                className="group relative flex flex-col items-center text-center p-6 md:p-8 rounded-2xl bg-background border border-border/30 hover:border-primary/30 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
-                  <option.icon className="w-5 h-5 text-primary" />
-                </div>
-                <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-1">
-                  {option.label}
-                </span>
-                <span className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {option.value}
-                </span>
-                <span className="text-sm text-muted-foreground mt-1">{option.description}</span>
-                <ArrowRight className="w-4 h-4 text-muted-foreground mt-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Address + Map */}
-      <section className="py-16 md:py-20">
-        <div className="section-container">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div className="grid lg:grid-cols-5 gap-8 lg:gap-12">
+            {/* Pad A — Agenda (primair) */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               variants={fadeUp}
-              custom={0}
+              custom={1}
+              className="lg:col-span-3"
             >
-              <p className="eyebrow">Bezoekadres</p>
-              <h2 className="mt-4 text-2xl md:text-3xl font-bold">Kom langs voor een kop koffie</h2>
-              <div className="mt-6 flex items-start gap-4">
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Propasso</p>
-                  <p className="text-muted-foreground">
-                    Nieuwe Linie 12
-                    <br />
-                    5264 PJ Vught
-                  </p>
-                  <a
-                    href="https://www.google.com/maps/search/?api=1&query=Nieuwe+Linie+12+5264+PJ+Vught"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-primary hover:underline"
-                  >
-                    Bekijk op Google Maps
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
-                </div>
+              <div className="bg-background rounded-2xl border border-border/30 p-4 md:p-8 shadow-sm overflow-hidden">
+                <h3 className="text-lg font-medium text-foreground mb-2">
+                  Plan een kennismaking
+                </h3>
+                <p className="text-sm text-muted-foreground mb-6 leading-[1.75]">
+                  Kies een moment in mijn agenda. Vrijblijvend, 30 minuten, online of op locatie.
+                </p>
+                <HubSpotMeetingsEmbed />
               </div>
             </motion.div>
 
-            <motion.a
-              href="https://www.google.com/maps/search/?api=1&query=Nieuwe+Linie+12+5264+PJ+Vught"
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Pad B — Direct contact (secundair) */}
+            <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
               variants={fadeUp}
-              custom={1}
-              className="block rounded-2xl overflow-hidden border border-border/30 hover:shadow-lg transition-shadow"
+              custom={2}
+              className="lg:col-span-2"
             >
-              <GoogleMapsEmbed />
-              <div className="p-4 bg-background flex items-center justify-between">
-                <span className="text-sm font-medium text-muted-foreground">Open in Google Maps</span>
-                <ArrowRight className="w-4 h-4 text-muted-foreground" />
+              <div className="bg-background rounded-2xl border border-border/30 p-6 md:p-8 shadow-sm h-full flex flex-col">
+                <h3 className="text-lg font-medium text-foreground mb-6">
+                  Direct contact
+                </h3>
+
+                <div className="space-y-4 flex-1">
+                  {directContactItems.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target={item.external ? "_blank" : undefined}
+                      rel={item.external ? "noopener noreferrer" : undefined}
+                      className="group flex items-center gap-4 p-4 rounded-xl border border-border/30 hover:border-primary/30 hover:shadow-md transition-all duration-300"
+                    >
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/15 transition-colors">
+                        <item.icon className="w-5 h-5 text-primary" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+                          {item.label}
+                        </span>
+                        <span className="block text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {item.value}
+                        </span>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                    </a>
+                  ))}
+                </div>
+
+                <p className="mt-6 text-sm text-muted-foreground leading-[1.75]">
+                  Bereikbaar op werkdagen. Reactie binnen 24 uur.
+                </p>
               </div>
-            </motion.a>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Meetings Embed */}
-      <section className="py-16 md:py-20 section-alt-bg">
-        <div className="section-container">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeUp}
-            custom={0}
-            className="max-w-3xl mx-auto text-center mb-10"
-          >
-            <p className="eyebrow">Afspraak inplannen</p>
-            <h2 className="mt-4 text-2xl md:text-3xl font-bold">
-              Liever direct een moment inplannen?
-            </h2>
-            <p className="mt-3 text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Kies hieronder een geschikt tijdstip in mijn agenda voor een
-              vrijblijvende kennismaking. Geen verplichtingen, gewoon een
-              open gesprek over jouw situatie.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeUp}
-            custom={1}
-            className="max-w-3xl mx-auto bg-background rounded-2xl border border-border/30 p-4 md:p-8 shadow-sm overflow-hidden"
-          >
-            <HubSpotMeetingsEmbed />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Form */}
-      <section className="py-16 md:py-20 section-alt-bg">
+      {/* ── Sectie 3: Formulier + vertrouwen ── */}
+      <section className="py-16 md:py-24 lg:py-36 section-alt-bg">
         <div className="section-container">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
+            {/* Linkerkolom — vertrouwen */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -409,11 +313,12 @@ const Contact = () => {
               className="lg:col-span-2"
             >
               <p className="eyebrow">Stuur een bericht</p>
-              <h2 className="mt-4 text-2xl md:text-3xl font-bold">Liever een bericht sturen?</h2>
-              <p className="mt-4 text-muted-foreground leading-relaxed">
+              <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-[-0.01em]">
+                Liever een bericht sturen?
+              </h2>
+              <p className="mt-4 text-muted-foreground leading-[1.75]">
                 Vul het formulier in en ik neem persoonlijk contact met je op.
-                Geen verplichtingen, geen verkooppraatje. Een open gesprek
-                over jouw situatie.
+                Geen verplichtingen, geen verkooppraatje.
               </p>
 
               <div className="mt-8 space-y-4">
@@ -429,6 +334,17 @@ const Contact = () => {
                 ))}
               </div>
 
+              {/* Testimonial placeholder */}
+              <div className="mt-10 border-l-4 border-primary/20 pl-5">
+                <p className="text-sm italic text-muted-foreground leading-[1.75]">
+                  "Karel denkt echt mee. Geen verkooppraatje, gewoon een eerlijk gesprek
+                  over wat er speelt en wat de opties zijn."
+                </p>
+                <p className="mt-3 text-xs font-semibold text-foreground">
+                  — MKB-ondernemer, maakindustrie
+                </p>
+              </div>
+
               <div className="mt-8 lg:hidden">
                 <img
                   src={karelImg}
@@ -439,6 +355,7 @@ const Contact = () => {
               </div>
             </motion.div>
 
+            {/* Rechterkolom — formulier */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -453,7 +370,7 @@ const Contact = () => {
                     <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
                       <CheckCircle2 className="w-8 h-8 text-primary" />
                     </div>
-                    <h3 className="text-xl font-bold text-foreground">Dank voor je bericht</h3>
+                    <h3 className="text-xl font-medium text-foreground">Dank voor je bericht</h3>
                     <p className="mt-3 text-muted-foreground max-w-md mx-auto">
                       Ik neem zo spoedig mogelijk contact met je op.
                     </p>
@@ -558,7 +475,33 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Trust CTA */}
+      {/* ── Sectie 4: Locatie + afsluitende CTA ── */}
+      <section className="py-16 md:py-20">
+        <div className="section-container">
+          <div className="flex items-start gap-4 max-w-lg">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+              <MapPin className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <p className="font-semibold text-foreground">Bezoekadres</p>
+              <p className="text-muted-foreground leading-[1.75]">
+                Nieuwe Linie 12<br />5264 PJ Vught
+              </p>
+              <a
+                href="https://www.google.com/maps/search/?api=1&query=Nieuwe+Linie+12+5264+PJ+Vught"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-3 text-sm font-semibold text-primary hover:underline"
+              >
+                Bekijk op Google Maps
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Afsluitende CTA */}
       <section className="py-16 md:py-24 lg:py-36 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary" />
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/15 translate-x-1/3 -translate-y-1/3" />
@@ -571,10 +514,10 @@ const Contact = () => {
             variants={fadeUp}
             custom={0}
           >
-            <h2 className="text-3xl md:text-4xl font-bold max-w-3xl mx-auto leading-tight text-primary-foreground text-balance">
+            <h2 className="text-3xl md:text-4xl font-bold max-w-3xl mx-auto leading-tight text-primary-foreground text-balance tracking-[-0.01em]">
               Elke succesvolle exit begint met een goed gesprek
             </h2>
-            <p className="mt-6 text-lg text-primary-foreground/70 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-lg text-primary-foreground/70 max-w-2xl mx-auto leading-[1.75]">
               Geen verplichtingen. Geen verkooppraatje. Gewoon een eerlijk gesprek
               over jouw situatie en wat de mogelijkheden zijn.
             </p>
@@ -584,15 +527,15 @@ const Contact = () => {
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition"
               >
                 <Phone className="w-4 h-4" />
-                Bel 06 1005 7566
+                Bel direct
               </a>
-              <a
-                href="mailto:hallo@propasso.nl"
+              <button
+                onClick={scrollToAgenda}
                 className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-foreground/30 px-7 py-4 text-base font-semibold text-primary-foreground hover:border-primary-foreground/60 transition-colors"
               >
-                <Mail className="w-4 h-4" />
-                Mail direct
-              </a>
+                Plan een kennismaking
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
           </motion.div>
         </div>
