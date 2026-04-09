@@ -33,7 +33,7 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground text-balance"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold leading-[1.05] text-foreground text-balance"
           >
             Een succesvolle bedrijfsoverdracht <span className="text-muted-foreground">begint jaren vóór de deal.</span>
           </motion.h1>
