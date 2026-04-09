@@ -94,21 +94,24 @@ const directContactItems = [
     label: "Bellen",
     value: "06 1005 7566",
     href: "tel:+31610057566",
-    color: "bg-primary/10 text-primary",
+    iconColor: "text-primary",
+    iconBg: "bg-primary/10",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
     value: "06 1005 7566",
     href: "https://wa.me/31610057566?text=Hallo%20Karel%2C%20ik%20heb%20een%20vraag%20over%20exit%20planning.",
-    color: "bg-[hsl(142,70%,45%)]/10 text-[hsl(142,70%,35%)]",
+    iconColor: "text-green-700",
+    iconBg: "bg-green-100",
   },
   {
     icon: Mail,
     label: "E-mail",
     value: "hallo@propasso.nl",
     href: "mailto:hallo@propasso.nl",
-    color: "bg-primary/10 text-primary",
+    iconColor: "text-primary",
+    iconBg: "bg-primary/10",
   },
 ];
 
@@ -180,9 +183,7 @@ const Contact = () => {
 
       {/* ── Sectie 1: Hero ── */}
       <section className="py-16 md:py-24 lg:py-28 relative overflow-hidden">
-        {/* Subtle decorative elements */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle,hsl(var(--accent)/0.08)_0%,transparent_70%)] -translate-y-1/4 translate-x-1/4 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[radial-gradient(circle,hsl(var(--primary)/0.04)_0%,transparent_70%)] translate-y-1/4 -translate-x-1/4 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-accent/5 -translate-y-1/4 translate-x-1/4 blur-3xl pointer-events-none" />
 
         <div className="section-container relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -197,7 +198,7 @@ const Contact = () => {
               </p>
               <Button
                 onClick={scrollToAgenda}
-                className="mt-8 rounded-full px-8 py-4 h-auto text-base font-semibold bg-accent text-accent-foreground hover:brightness-110 w-full sm:w-auto shadow-[0_4px_16px_hsl(var(--accent)/0.3)]"
+                className="mt-8 rounded-full px-8 py-4 h-auto text-base font-semibold bg-accent text-accent-foreground hover:brightness-110 w-full sm:w-auto shadow-lg shadow-accent/20"
               >
                 Plan een kennismaking
                 <ChevronRight size={18} />
@@ -206,8 +207,8 @@ const Contact = () => {
 
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={1} className="hidden lg:block">
               <div className="relative">
-                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-[hsl(var(--tint-teal)/0.15)] to-[hsl(var(--accent)/0.08)]" />
-                <div className="absolute -inset-4 rounded-3xl border border-[hsl(var(--tint-teal)/0.1)]" />
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/5 to-accent/10" />
+                <div className="absolute -inset-4 rounded-3xl border border-primary/5" />
                 <img
                   src={karelImg}
                   alt="Karel Cremers in gesprek met ondernemers over exit planning"
@@ -221,10 +222,8 @@ const Contact = () => {
       </section>
 
       {/* ── Sectie 2: Twee contactpaden ── */}
-      <section id="agenda" className="py-16 md:py-24 lg:py-36 section-neutral-bg relative">
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,hsl(var(--section-neutral))_0%,hsl(195_25%_93%)_100%)] pointer-events-none" />
-        
-        <div className="section-container relative">
+      <section id="agenda" className="py-16 md:py-24 lg:py-36 section-neutral-bg">
+        <div className="section-container">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -277,16 +276,16 @@ const Contact = () => {
                   Direct contact
                 </h3>
 
-                <div className="space-y-3 flex-1">
+                <div className="space-y-3">
                   {directContactItems.map((item) => (
                     <a
                       key={item.label}
                       href={item.href}
                       {...(item.label === "WhatsApp" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className="group flex items-center gap-4 p-4 rounded-xl border border-border/40 hover:border-primary/30 hover:shadow-md transition-all duration-300 bg-[hsl(var(--surface-raised))]"
+                      className="group flex items-center gap-4 p-4 rounded-xl border border-border/40 hover:border-primary/30 hover:shadow-md transition-all duration-300"
                     >
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${item.color}`}>
-                        <item.icon className="w-5 h-5" />
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${item.iconBg}`}>
+                        <item.icon className={`w-5 h-5 ${item.iconColor}`} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
@@ -305,7 +304,7 @@ const Contact = () => {
                   Bereikbaar op werkdagen. Reactie binnen 24 uur.
                 </p>
 
-                {/* Bezoekadres — ingebed in Direct contact kaart */}
+                {/* Bezoekadres */}
                 <div className="mt-6 pt-6 border-t border-border/40">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -337,8 +336,8 @@ const Contact = () => {
       </section>
 
       {/* ── Sectie 3: Formulier + vertrouwen ── */}
-      <section className="py-16 md:py-24 lg:py-36 section-alt-bg relative">
-        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[radial-gradient(circle,hsl(var(--accent)/0.06)_0%,transparent_70%)] pointer-events-none" />
+      <section className="py-16 md:py-24 lg:py-36 section-alt-bg relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/5 blur-3xl pointer-events-none" />
 
         <div className="section-container relative">
           <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
@@ -517,11 +516,9 @@ const Contact = () => {
       </section>
 
       {/* ── Sectie 4: Afsluitende CTA ── */}
-      <section className="py-16 md:py-24 lg:py-36 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary" />
-        <div className="absolute inset-0 bg-[linear-gradient(135deg,hsl(var(--primary))_0%,hsl(203_88%_18%)_100%)]" />
+      <section className="py-16 md:py-24 lg:py-36 relative overflow-hidden bg-primary">
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent/10 translate-x-1/3 -translate-y-1/3 blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-[hsl(var(--tint-teal)/0.15)] -translate-x-1/3 translate-y-1/3 blur-2xl" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full bg-primary-foreground/5 -translate-x-1/3 translate-y-1/3 blur-2xl" />
 
         <div className="section-container relative z-10 text-center">
           <motion.div
@@ -541,7 +538,7 @@ const Contact = () => {
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="tel:+31610057566"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition shadow-[0_4px_16px_hsl(var(--accent)/0.3)]"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition shadow-lg shadow-accent/20"
               >
                 <Phone className="w-4 h-4" />
                 Bel direct
