@@ -30,7 +30,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
             <span className="block text-muted-foreground">Quickscan</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
-            Ontdek in 4 minuten hoe uw bedrijf en u persoonlijk voorbereid zijn op een toekomstige overdracht. U
+            Ontdek in 4 minuten hoe jouw bedrijf en jezelf persoonlijk voorbereid zijn op een toekomstige overdracht. U
             ontvangt direct een score op drie dimensies, plus concrete tips en verbeterpunten.
           </p>
 
