@@ -196,13 +196,13 @@ const Contact = () => {
                 Een open gesprek over jouw situatie, zonder verplichtingen.
                 Ik denk graag mee — persoonlijk en vrijblijvend.
               </p>
-              <Button
+              <button
                 onClick={scrollToAgenda}
-                className="mt-8 rounded-full px-8 py-4 h-auto text-base font-semibold bg-accent text-accent-foreground hover:brightness-110 w-full sm:w-auto shadow-lg shadow-accent/20"
+                className="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-teal-medium transition-colors w-full sm:w-auto"
               >
                 Plan een kennismaking
                 <ChevronRight size={18} />
-              </Button>
+              </button>
             </motion.div>
 
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={1} className="hidden lg:block">
@@ -536,20 +536,20 @@ const Contact = () => {
               over jouw situatie en wat de mogelijkheden zijn.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={scrollToAgenda}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition"
+              >
+                Plan een kennismaking
+                <ChevronRight className="w-4 h-4" />
+              </button>
               <a
                 href="tel:+31610057566"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition shadow-lg shadow-accent/20"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-foreground/30 px-7 py-4 text-base font-semibold text-primary-foreground hover:border-primary-foreground/60 hover:bg-primary-foreground/5 transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 Bel direct
               </a>
-              <button
-                onClick={scrollToAgenda}
-                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-primary-foreground/30 px-7 py-4 text-base font-semibold text-primary-foreground hover:border-primary-foreground/60 hover:bg-primary-foreground/5 transition-colors"
-              >
-                Plan een kennismaking
-                <ArrowRight className="w-4 h-4" />
-              </button>
             </div>
           </motion.div>
         </div>
