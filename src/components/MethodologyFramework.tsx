@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Search,
-  Waves,
-  Compass,
-  Rocket,
-} from "lucide-react";
+import { Search, Waves, Compass, Rocket } from "lucide-react";
 
 const phases = [
   {
@@ -21,16 +16,12 @@ const phases = [
       "Welke risico's en afhankelijkheden bestaan er?",
       "Wat is de huidige marktpositie?",
     ],
-    deliverables: [
-      "Ondernemersverhaal",
-      "Analyse van de onderneming",
-      "Financiële analyse",
-    ],
+    deliverables: ["Ondernemersverhaal", "Analyse van de onderneming", "Financiële analyse"],
   },
   {
     number: "02",
-    title: "Onderstroom",
-    subtitle: "Herkennen",
+    title: "De Realiteit",
+    subtitle: "Identificeren",
     icon: Waves,
     description:
       "Waar schuurt het? Identificatie van de spanning tussen de ambities van de ondernemer, de realiteit van het bedrijf en de financiële prestaties.",
@@ -59,11 +50,7 @@ const phases = [
       "Welke strategische keuzes moeten nu gemaakt worden?",
       "Hoe vertalen we ambities naar meetbare doelen?",
     ],
-    deliverables: [
-      "Strategische richting",
-      "Waardecreatieplan",
-      "OGSM-structuur",
-    ],
+    deliverables: ["Strategische richting", "Waardecreatieplan", "OGSM-structuur"],
   },
   {
     number: "04",
@@ -78,11 +65,7 @@ const phases = [
       "Hoe houden we momentum en focus?",
       "Wanneer is het bedrijf écht verkoopklaar?",
     ],
-    deliverables: [
-      "Implementatieplan",
-      "Governance-structuur",
-      "Ritme van uitvoering",
-    ],
+    deliverables: ["Implementatieplan", "Governance-structuur", "Ritme van uitvoering"],
   },
 ];
 
@@ -126,8 +109,8 @@ const MethodologyFramework = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
         >
-          Een gestructureerd traject dat begint bij inzicht en eindigt bij
-          verkoopklaarheid. Elke fase bouwt voort op de vorige.
+          Een gestructureerd traject dat begint bij inzicht en eindigt bij verkoopklaarheid. Elke fase bouwt voort op de
+          vorige.
         </motion.p>
 
         {/* ── Horizontal roadmap (desktop) ── */}
@@ -156,9 +139,7 @@ const MethodologyFramework = () => {
                       <motion.div
                         animate={{
                           scale: isActive ? 1.15 : 1,
-                          backgroundColor: isActive
-                            ? "hsl(var(--accent))"
-                            : "hsl(var(--background))",
+                          backgroundColor: isActive ? "hsl(var(--accent))" : "hsl(var(--background))",
                         }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
                         className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full border-2 border-border shadow-sm"
@@ -166,17 +147,13 @@ const MethodologyFramework = () => {
                         <Icon
                           size={24}
                           className={`transition-colors duration-250 ${
-                            isActive
-                              ? "text-accent-foreground"
-                              : "text-primary"
+                            isActive ? "text-accent-foreground" : "text-primary"
                           }`}
                         />
                       </motion.div>
 
                       {/* Connector bar (not on last) */}
-                      {i < phases.length - 1 && (
-                        <div className="flex-1 h-px bg-border mx-2" />
-                      )}
+                      {i < phases.length - 1 && <div className="flex-1 h-px bg-border mx-2" />}
                     </div>
 
                     {/* Phase content */}
@@ -191,12 +168,8 @@ const MethodologyFramework = () => {
                       >
                         {phase.title}
                       </h3>
-                      <p className="mt-1 text-sm font-medium text-muted-foreground italic">
-                        {phase.subtitle}
-                      </p>
-                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                        {phase.description}
-                      </p>
+                      <p className="mt-1 text-sm font-medium text-muted-foreground italic">{phase.subtitle}</p>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{phase.description}</p>
 
                       {/* Expandable detail on hover */}
                       <AnimatePresence>
@@ -233,10 +206,7 @@ const MethodologyFramework = () => {
                               </span>
                               <ul className="mt-2 space-y-1.5">
                                 {phase.deliverables.map((d) => (
-                                  <li
-                                    key={d}
-                                    className="text-sm font-medium text-foreground flex items-start gap-2"
-                                  >
+                                  <li key={d} className="text-sm font-medium text-foreground flex items-start gap-2">
                                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                                     {d}
                                   </li>
@@ -271,24 +241,18 @@ const MethodologyFramework = () => {
                     {...fadeInUp}
                     transition={{ duration: 0.5, delay: 0.1 * i }}
                     className="relative"
-                    onClick={() =>
-                      setActivePhase(isActive ? null : i)
-                    }
+                    onClick={() => setActivePhase(isActive ? null : i)}
                   >
                     {/* Node */}
                     <div
                       className={`absolute -left-10 top-0 flex h-10 w-10 items-center justify-center rounded-full border-2 transition-colors duration-250 ${
-                        isActive
-                          ? "bg-accent border-accent"
-                          : "bg-background border-border"
+                        isActive ? "bg-accent border-accent" : "bg-background border-border"
                       }`}
                     >
                       <Icon
                         size={18}
                         className={`transition-colors duration-250 ${
-                          isActive
-                            ? "text-accent-foreground"
-                            : "text-primary"
+                          isActive ? "text-accent-foreground" : "text-primary"
                         }`}
                       />
                     </div>
@@ -298,15 +262,9 @@ const MethodologyFramework = () => {
                       <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground">
                         Fase {phase.number}
                       </span>
-                      <h3 className="mt-1 text-xl font-bold">
-                        {phase.title}
-                      </h3>
-                      <p className="mt-0.5 text-sm font-medium text-muted-foreground italic">
-                        {phase.subtitle}
-                      </p>
-                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                        {phase.description}
-                      </p>
+                      <h3 className="mt-1 text-xl font-bold">{phase.title}</h3>
+                      <p className="mt-0.5 text-sm font-medium text-muted-foreground italic">{phase.subtitle}</p>
+                      <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{phase.description}</p>
 
                       <AnimatePresence>
                         {isActive && (
@@ -340,10 +298,7 @@ const MethodologyFramework = () => {
                               </span>
                               <ul className="mt-2 space-y-1.5">
                                 {phase.deliverables.map((d) => (
-                                  <li
-                                    key={d}
-                                    className="text-sm font-medium text-foreground flex items-start gap-2"
-                                  >
+                                  <li key={d} className="text-sm font-medium text-foreground flex items-start gap-2">
                                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
                                     {d}
                                   </li>
