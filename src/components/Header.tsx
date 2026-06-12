@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import logo from "@/assets/logos/propasso-logo.png";
@@ -17,6 +17,22 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [compactLogo, setCompactLogo] = useState(false);
   const location = useLocation();
+
+  const isKennisbankActive = location.pathname.startsWith("/kennisbank");
+
+  const navLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `text-sm transition-colors ${
+      isActive
+        ? "font-semibold text-foreground"
+        : "font-medium text-foreground/70 hover:text-foreground"
+    }`;
+
+  const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+    `text-base py-2 transition-colors ${
+      isActive
+        ? "font-semibold text-foreground"
+        : "font-medium text-foreground/70 hover:text-foreground"
+    }`;
 
   useEffect(() => {
     setMobileOpen(false);
@@ -56,22 +72,33 @@ const Header = () => {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              to={item.href}
-              className="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) => {
+            // Kennisbank is also active on /kennisbank/* (pillar + article pages)
+            const forceActive = item.href === "/kennisbank" && isKennisbankActive;
+            return (
+              <NavLink
+                key={item.href}
+                to={item.href}
+                end={item.href !== "/kennisbank"}
+                className={({ isActive }) =>
+                  navLinkClass({ isActive: isActive || forceActive })
+                }
+                aria-current={
+                  location.pathname === item.href || forceActive ? "page" : undefined
+                }
+              >
+                {item.label}
+              </NavLink>
+            );
+          })}
           <div className="flex items-center gap-3 ml-1">
-            <Link
+            <NavLink
               to="/quickscan"
               onClick={() => {
                 window.dataLayer = window.dataLayer || [];
                 window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "header" });
               }}
+              aria-current={location.pathname === "/quickscan" ? "page" : undefined}
               className="relative inline-flex items-center justify-center rounded-full h-10 px-5 text-sm font-semibold text-foreground
                 bg-gradient-to-r from-accent/10 to-primary/[0.06] border border-border/40
                 hover:border-primary/30 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.2)] transition-all duration-300
@@ -79,13 +106,14 @@ const Header = () => {
               style={{ borderLeft: '2px solid hsl(var(--primary))' }}
             >
               Quickscan
-            </Link>
-            <Link
+            </NavLink>
+            <NavLink
               to="/contact"
+              aria-current={location.pathname === "/contact" ? "page" : undefined}
               className="inline-flex items-center justify-center rounded-full h-10 px-5 text-sm font-semibold text-primary-foreground bg-primary hover:bg-teal-medium transition-colors"
             >
               Contact
-            </Link>
+            </NavLink>
           </div>
         </nav>
 
@@ -107,34 +135,46 @@ const Header = () => {
             className="lg:hidden bg-background border-t border-border overflow-hidden"
           >
             <nav className="section-container py-6 flex flex-col gap-4">
-              <Link to="/" className="text-base font-medium text-foreground/70 hover:text-foreground py-2">
+              <NavLink to="/" end className={mobileNavLinkClass}>
                 Home
-              </Link>
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  to={item.href}
-                  className="text-base font-medium text-foreground/70 hover:text-foreground py-2"
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link
+              </NavLink>
+              {navItems.map((item) => {
+                const forceActive = item.href === "/kennisbank" && isKennisbankActive;
+                return (
+                  <NavLink
+                    key={item.href}
+                    to={item.href}
+                    end={item.href !== "/kennisbank"}
+                    className={({ isActive }) =>
+                      mobileNavLinkClass({ isActive: isActive || forceActive })
+                    }
+                    aria-current={
+                      location.pathname === item.href || forceActive ? "page" : undefined
+                    }
+                  >
+                    {item.label}
+                  </NavLink>
+                );
+              })}
+              <NavLink
                 to="/quickscan"
                 onClick={() => {
                   window.dataLayer = window.dataLayer || [];
                   window.dataLayer.push({ event: "cta_click_quickscan", page_path: window.location.pathname, event_source: "header_mobile" });
                 }}
-                className="text-base font-medium text-foreground/70 hover:text-foreground py-2"
+                end
+                className={mobileNavLinkClass}
+                aria-current={location.pathname === "/quickscan" ? "page" : undefined}
               >
                 Quickscan
-              </Link>
-              <Link
+              </NavLink>
+              <NavLink
                 to="/contact"
+                aria-current={location.pathname === "/contact" ? "page" : undefined}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground mt-2"
               >
                 Contact
-              </Link>
+              </NavLink>
             </nav>
           </motion.div>
         )}
