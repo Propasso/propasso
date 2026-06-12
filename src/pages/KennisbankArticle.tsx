@@ -245,7 +245,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                         {related.title}
                       </h3>
                       <span className="mt-2 inline-flex items-center gap-1 text-sm text-primary font-semibold">
-                        Lees meer <ArrowRight size={14} />
+                        Lees het artikel: {related.title} <ArrowRight size={14} />
                       </span>
                     </div>
                   </Link>
