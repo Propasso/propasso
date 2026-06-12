@@ -11,6 +11,7 @@ import CTASection from "@/components/CTASection";
 import StatsBar from "@/components/StatsBar";
 import ClientLogos from "@/components/ClientLogos";
 import QuickscanBanner from "@/components/QuickscanBanner";
+import MeetKarelSection from "@/components/MeetKarelSection";
 
 const homepageJsonLd = [
   {
@@ -50,6 +51,7 @@ const Index = () => {
                 <WhyPropasso />
                 <ClientLogos />
                 <TargetAudience />
+                <MeetKarelSection />
                 <TestimonialsSection />
                 <BlogSection />
                 <QuickscanBanner />
