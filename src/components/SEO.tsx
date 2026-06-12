@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { safeJsonLd } from "@/lib/safeJsonLd";
 
 type SEOProps = {
     title: string;
@@ -76,7 +77,7 @@ const SEO = ({
                                   <script
                                                 key={`jsonld-${index}`}
                                                 type="application/ld+json"
-                                                dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+                                                dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
                                               />
                                 ))}
           </Helmet>
