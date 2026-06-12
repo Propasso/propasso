@@ -4,6 +4,7 @@ import SEO from "@/components/SEO";
 import { ChevronRight, Shield, Briefcase, Users, Eye } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import QuickscanBanner from "@/components/QuickscanBanner";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
@@ -156,6 +157,8 @@ const OverPropasso = () => {
         ogImage={aboutOgImage}
         jsonLd={aboutSchemas}
       />
+
+      <PageBreadcrumb withContainer items={[{ label: "Over Propasso" }]} />
 
       {/* ─── 1. HERO ─── */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">

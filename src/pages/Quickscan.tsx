@@ -2,6 +2,7 @@ import { useState, useCallback } from "react";
 import SEO from "@/components/SEO";
 import { useSearchParams } from "react-router-dom";
 import PageLayout from "@/components/PageLayout";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import QuickscanIntro from "@/components/quickscan/QuickscanIntro";
 import QuickscanQuestionComponent from "@/components/quickscan/QuickscanQuestion";
 import QuickscanProgress from "@/components/quickscan/QuickscanProgress";
@@ -146,7 +147,12 @@ const Quickscan = () => {
         ogType="website"
       />
 
-      {phase === "intro" && <QuickscanIntro onStart={handleStart} />}
+      {phase === "intro" && (
+        <>
+          <PageBreadcrumb withContainer items={[{ label: "Quickscan" }]} />
+          <QuickscanIntro onStart={handleStart} />
+        </>
+      )}
 
       {phase === "questions" && (
         <section className="py-12 md:py-20 min-h-[60vh] flex flex-col items-center justify-center">

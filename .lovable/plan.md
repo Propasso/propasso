@@ -1,60 +1,74 @@
+## Plan: Wayfinding — "waar ben ik op de site?"
 
+Drie-laagse aanpak die gebruikers op elke pagina direct laat zien waar ze zijn.
 
-## Plan: Contactpagina Redesign
+---
 
-### Overzicht
-Volledige herschrijving van `src/pages/Contact.tsx` — van 6 rommelige secties naar 4 gestructureerde secties met conversiehiërarchie.
+### Fase 1 — Active state in de hoofdnavigatie
 
-### Sectie-indeling
+**Bestand:** `src/components/Header.tsx`
 
-**1. Hero** (`bg-background`)
-- Persoonlijke kop: "Laten we kennismaken"
-- Subtekst: verwachtingsmanagement (open gesprek, geen verplichtingen)
-- Eén primaire CTA (lime, rounded-full) die smooth-scrollt naar agenda-sectie
-- Karel-foto rechts met teal-tint overlay
-- Mobiel: foto verborgen, CTA full-width
+- Vervang plain `<Link>` voor nav-items door `NavLink` (react-router) of gebruik `useLocation` om actief te detecteren.
+- Actieve link styling: `text-foreground font-semibold` (donker + bold). Inactief blijft `text-foreground/70 font-medium`.
+- Voeg `aria-current="page"` toe op de actieve link (toegankelijkheid).
+- Match-logica:
+  - Exacte match voor `/werkwijze`, `/over-propasso`, `/veelgestelde-vragen`, `/contact`, `/quickscan`.
+  - `/kennisbank` is actief op `/kennisbank`, `/kennisbank/thema/*` én `/kennisbank/*` (prefix match).
+- Geldt voor:
+  - Desktop nav-items
+  - "Quickscan" en "Contact" buttons in header (subtieler accent omdat dit al gestylede CTA's zijn — bv. een extra lime ring of de bestaande styling laten staan met `aria-current`)
+  - Mobiel menu (zelfde donker+bold patroon)
 
-**2. Twee contactpaden** (`section-neutral-bg`)
-- `lg:grid-cols-5` layout (3/5 + 2/5)
-- **Pad A (primair, 3/5):** HubSpotMeetingsEmbed in kaart met korte intro
-- **Pad B (secundair, 2/5):** Drie compacte contactitems (Bellen, WhatsApp, E-mail) + bereikbaarheidstekst
-- WhatsApp via `wa.me/31610057566` link met vooringevuld bericht
-- WhatsApp-icoon: `MessageCircle` uit lucide-react (of inline SVG)
-- LinkedIn-tegels verwijderd
-- Mobiel: paden onder elkaar, agenda bovenaan
+### Fase 2 — H1-audit per top-level pagina
 
-**3. Contactformulier + vertrouwen** (`section-alt-bg`, mint)
-- `lg:grid-cols-5` (2/5 + 3/5), zelfde patroon als huidig
-- Links: kop, verwachtingstekst, 3 checkmarks, testimonial-citaat (placeholder)
-- Rechts: bestaand formulier (Zod, react-hook-form, Supabase edge function, ConsentCheckboxes)
-- **Navy button** (geen lime op mint achtergrond)
-- Bestaande `onSubmit`, succesbericht, en form state volledig behouden
+Controleer en corrigeer dat elke pagina direct onder de header **één duidelijke H1** toont die overeenkomt met het nav-label. Te checken pagina's:
 
-**4. Locatie + afsluitende CTA** (`bg-background` + `bg-primary`)
-- Compact adresblok (geen Google Maps embed, `GoogleMapsEmbed` component verwijderd)
-- Adres + "Bekijk op Google Maps" link
-- Navy CTA-balk met één kop + twee buttons: "Bel direct" (accent/lime) + "Plan een kennismaking" (outline wit, scrollt naar agenda)
+- `/werkwijze` → `src/pages/Werkwijze.tsx`
+- `/over-propasso` → `src/pages/OverPropasso.tsx`
+- `/contact` → `src/pages/Contact.tsx`
+- `/veelgestelde-vragen` → `src/pages/VeelgesteldeVragen.tsx`
+- `/kennisbank` → `src/pages/Kennisbank.tsx`
+- `/quickscan` → `src/pages/Quickscan.tsx`
+- Juridische pagina's via `LegalPage` component
 
-### Technische details
+Per pagina valideren: H1 aanwezig, semantisch correct (geen `<div className="text-4xl">`), tekstueel consistent met nav-label, en visueel prominent (binnen bestaande styleguide — geen nieuwe stijl uitvinden). Alleen aanpassen waar het ontbreekt of niet klopt.
 
-**Behouden:**
-- Alle imports: `PageLayout`, `SEO`, `Form`/`FormField` etc., `Input`, `Textarea`, `Button`, `ConsentCheckboxes`, `HubSpotMeetingsEmbed`, `useToast`, `pushEvent`
-- `contactSchema` (Zod), `onSubmit` handler, Supabase `send-contact-email` edge function
-- SEO component + JSON-LD structured data
-- Framer Motion `fadeUp` variant (spaarzaam gebruikt)
-- `karelImg` import
+### Fase 3 — Breadcrumbs uitrollen
 
-**Verwijderd:**
-- `GoogleMapsEmbed` component + `useCookieConsent` import (niet meer nodig)
-- LinkedIn contactopties
-- `MapPinned` import (niet meer nodig)
-- Dubbele telefoon/mail CTA's
+Op dit moment bestaat `KennisbankBreadcrumb` alleen voor de kennisbank-tak. Breid uit naar alle subpagina's.
 
-**Toegevoegd:**
-- WhatsApp contactoptie met `wa.me` link
-- Smooth scroll naar agenda-sectie via `id="agenda"` + `scrollIntoView`
-- Testimonial placeholder blok
-- WhatsApp in JSON-LD `sameAs` array
+**Aanpak:**
+1. Promote/generaliseer naar een herbruikbare `Breadcrumb`-wrapper: `src/components/PageBreadcrumb.tsx` op basis van het bestaande shadcn `breadcrumb`-component en het `KennisbankBreadcrumb`-patroon.
+2. Plaats breadcrumbs **direct onder de Header**, boven de H1/hero — subtiel (`text-sm text-muted-foreground`, dezelfde container als de pagina).
+3. Toevoegen aan:
+   - `/werkwijze` → Home › Werkwijze
+   - `/over-propasso` → Home › Over Propasso
+   - `/contact` → Home › Contact
+   - `/veelgestelde-vragen` → Home › Veelgestelde vragen
+   - `/quickscan` → Home › Quickscan
+   - Juridische pagina's → Home › [Disclaimer/Privacy/etc.]
+4. Kennisbank-tak blijft `KennisbankBreadcrumb` gebruiken (of migreert naar de nieuwe component met identieke output).
+5. Homepage krijgt **geen** breadcrumb (overbodig).
 
-**Bestand:** Alleen `src/pages/Contact.tsx` wordt herschreven. Geen andere bestanden wijzigen.
+**SEO-bonus:** voeg `BreadcrumbList` JSON-LD toe per pagina (via bestaande `SEO`-component of inline) voor rich results in Google. Optioneel maar past bij de authority-strategie.
 
+---
+
+### Visuele consistentie
+
+- Geen nieuwe kleuren of fonts. Active state = donkerder + bold met bestaande tokens. Breadcrumbs gebruiken bestaande `muted-foreground` + `foreground` op de actieve crumb.
+- Geen animaties of mouseover-tricks toevoegen — passief, statisch, premium.
+
+### Gewijzigde bestanden
+
+- `src/components/Header.tsx` — active state logica
+- `src/components/PageBreadcrumb.tsx` — **nieuw**, herbruikbaar
+- Eventueel `src/components/KennisbankBreadcrumb.tsx` — refactoren naar wrapper rond `PageBreadcrumb` (of laten staan)
+- `src/pages/Werkwijze.tsx`, `OverPropasso.tsx`, `Contact.tsx`, `VeelgesteldeVragen.tsx`, `Quickscan.tsx`, `Kennisbank.tsx` — breadcrumb toevoegen + H1 audit
+- `src/components/LegalPage.tsx` — breadcrumb toevoegen voor juridische pagina's
+
+### Niet in scope
+
+- Geen redesign van bestaande hero's.
+- Geen wijzigingen aan kleuren-tokens of typografie-schaal.
+- Geen footer-navigatie aanpassingen (huidige werkt prima).

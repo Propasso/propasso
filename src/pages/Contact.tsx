@@ -6,6 +6,7 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import PageLayout from "@/components/PageLayout";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -180,6 +181,8 @@ const Contact = () => {
         ogType="website"
         jsonLd={contactSchemas}
       />
+
+      <PageBreadcrumb withContainer items={[{ label: "Contact" }]} />
 
       {/* ── Sectie 1: Hero ── */}
       <section className="py-16 md:py-24 lg:py-28 relative overflow-hidden">

@@ -1,6 +1,7 @@
 import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
 import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
 import MethodologyFramework from "@/components/MethodologyFramework";
@@ -76,6 +77,8 @@ const Werkwijze = () => {
         ogType="website"
         jsonLd={pageSchemas}
       />
+
+      <PageBreadcrumb withContainer items={[{ label: "Werkwijze" }]} />
 
       {/* 1. Hero */}
       <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">

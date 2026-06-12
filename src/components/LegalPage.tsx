@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { PortableText } from "@portabletext/react";
 import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import { fetchLegalPageBySlug } from "@/lib/sanityQueries";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -71,6 +72,7 @@ const LegalPage = ({ slug, fallbackTitle, seoDescription, canonical }: LegalPage
         ogTitle={`${title} | Propasso`}
         ogDescription={seoDescription}
       />
+      <PageBreadcrumb withContainer items={[{ label: title }]} />
       <section className="py-20 bg-background">
         <div className="section-container max-w-3xl">
           {isLoading ? (
