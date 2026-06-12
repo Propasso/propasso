@@ -208,7 +208,7 @@ const Contact = () => {
                   src={karelImg}
                   alt="Karel Cremers, oprichter Propasso"
                   className="relative rounded-2xl w-full object-cover aspect-[3/4] shadow-xl"
-                  style={{ objectPosition: "65% 30%" }}
+                  style={{ objectPosition: "center 30%" }}
                   loading="eager"
                 />
               </div>
