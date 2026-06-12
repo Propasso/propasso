@@ -1,74 +1,50 @@
-## Plan: Wayfinding — "waar ben ik op de site?"
+## Doel
 
-Drie-laagse aanpak die gebruikers op elke pagina direct laat zien waar ze zijn.
+Twee nieuwe zwart-wit portretfoto's van Karel toevoegen aan de site, op plekken waar ze de pagina persoonlijker maken zonder de visuele hiërarchie te verstoren.
 
----
+## Foto 1 — IMG_5644 (lachend, polo, warm)
 
-### Fase 1 — Active state in de hoofdnavigatie
+**Plek: Homepage, nieuwe sectie "Maak kennis met Karel" tussen `WhyPropasso` en `TargetAudience`.**
 
-**Bestand:** `src/components/Header.tsx`
+Een nieuwe, ingetogen sectie die de bezoeker midden in de homepage een gezicht geeft bij Propasso. Dit is op de homepage nu de zwakke schakel: er staat veel "wat" en "waarom", maar geen "wie".
 
-- Vervang plain `<Link>` voor nav-items door `NavLink` (react-router) of gebruik `useLocation` om actief te detecteren.
-- Actieve link styling: `text-foreground font-semibold` (donker + bold). Inactief blijft `text-foreground/70 font-medium`.
-- Voeg `aria-current="page"` toe op de actieve link (toegankelijkheid).
-- Match-logica:
-  - Exacte match voor `/werkwijze`, `/over-propasso`, `/veelgestelde-vragen`, `/contact`, `/quickscan`.
-  - `/kennisbank` is actief op `/kennisbank`, `/kennisbank/thema/*` én `/kennisbank/*` (prefix match).
-- Geldt voor:
-  - Desktop nav-items
-  - "Quickscan" en "Contact" buttons in header (subtieler accent omdat dit al gestylede CTA's zijn — bv. een extra lime ring of de bestaande styling laten staan met `aria-current`)
-  - Mobiel menu (zelfde donker+bold patroon)
+Opbouw:
+- Volle sectie met `section-alt-bg` zodat hij ademruimte krijgt tussen de omliggende blokken.
+- Asymmetrische 5/7-grid (desktop): links de foto in 4:5 portrait, rounded-2xl met zachte shadow, lime accent-blok offset linksonder (zelfde patroon als Over Propasso). Rechts: eyebrow "Maak kennis", H2 ("Een gids die zelf de berg op is geweest" of vergelijkbaar), korte intro van 2-3 zinnen, en twee subtiele links: "Meer over Karel" (naar /over-propasso) en "Plan een kennismaking" (naar /contact).
+- Mobiel: foto boven, tekst onder, foto max ~75% breedte gecentreerd zodat hij niet domineert.
+- Tekst gebruikt jij/jouw, "subtiel & droog", geen em-dashes, zoals voorgeschreven in core memory.
 
-### Fase 2 — H1-audit per top-level pagina
+Nieuwe component: `src/components/MeetKarelSection.tsx`.
 
-Controleer en corrigeer dat elke pagina direct onder de header **één duidelijke H1** toont die overeenkomt met het nav-label. Te checken pagina's:
+## Foto 2 — IMG_5599 (neutraal, ingetogen, gezaghebbend)
 
-- `/werkwijze` → `src/pages/Werkwijze.tsx`
-- `/over-propasso` → `src/pages/OverPropasso.tsx`
-- `/contact` → `src/pages/Contact.tsx`
-- `/veelgestelde-vragen` → `src/pages/VeelgesteldeVragen.tsx`
-- `/kennisbank` → `src/pages/Kennisbank.tsx`
-- `/quickscan` → `src/pages/Quickscan.tsx`
-- Juridische pagina's via `LegalPage` component
+**Plek: /over-propasso, vervangt het bestaande `karelMetOndernemers` portret in de sectie "Ondernemer voor ondernemers" (regel 255-268).**
 
-Per pagina valideren: H1 aanwezig, semantisch correct (geen `<div className="text-4xl">`), tekstueel consistent met nav-label, en visueel prominent (binnen bestaande styleguide — geen nieuwe stijl uitvinden). Alleen aanpassen waar het ontbreekt of niet klopt.
+Deze foto past beter bij de toon van die sectie (kalm, professioneel, autoritair) dan de huidige groepsfoto. Het bestaande lime quote-blok ("Mijn kracht zit in het combineren van ondernemerschap, strategie en cijfers.") blijft staan en versterkt het portret.
 
-### Fase 3 — Breadcrumbs uitrollen
+Aanpassing:
+- Import en `<img src>` swappen naar het nieuwe bestand.
+- Aspect blijft `aspect-[4/5]`, `object-cover` met `object-position: center 30%` zodat het gezicht goed in frame staat.
+- Alt-tekst bijwerken naar "Karel Cremers, oprichter van Propasso".
 
-Op dit moment bestaat `KennisbankBreadcrumb` alleen voor de kennisbank-tak. Breid uit naar alle subpagina's.
+## Wat niet verandert
 
-**Aanpak:**
-1. Promote/generaliseer naar een herbruikbare `Breadcrumb`-wrapper: `src/components/PageBreadcrumb.tsx` op basis van het bestaande shadcn `breadcrumb`-component en het `KennisbankBreadcrumb`-patroon.
-2. Plaats breadcrumbs **direct onder de Header**, boven de H1/hero — subtiel (`text-sm text-muted-foreground`, dezelfde container als de pagina).
-3. Toevoegen aan:
-   - `/werkwijze` → Home › Werkwijze
-   - `/over-propasso` → Home › Over Propasso
-   - `/contact` → Home › Contact
-   - `/veelgestelde-vragen` → Home › Veelgestelde vragen
-   - `/quickscan` → Home › Quickscan
-   - Juridische pagina's → Home › [Disclaimer/Privacy/etc.]
-4. Kennisbank-tak blijft `KennisbankBreadcrumb` gebruiken (of migreert naar de nieuwe component met identieke output).
-5. Homepage krijgt **geen** breadcrumb (overbodig).
+- Bestaande contactpagina-foto blijft staan (die hebben we vorige beurt al ingericht).
+- Geen foto's in footer, cards, of werkwijze/kennisbank pagina's.
+- Geen wijzigingen aan SEO, schema's, of routing.
 
-**SEO-bonus:** voeg `BreadcrumbList` JSON-LD toe per pagina (via bestaande `SEO`-component of inline) voor rich results in Google. Optioneel maar past bij de authority-strategie.
+## Technische uitvoering
 
----
+```text
+src/assets/images/
+├── karel-portret-warm.jpg      (nieuw, uit IMG_5644)
+└── karel-portret-formeel.jpg   (nieuw, uit IMG_5599)
 
-### Visuele consistentie
+src/components/
+└── MeetKarelSection.tsx        (nieuw)
 
-- Geen nieuwe kleuren of fonts. Active state = donkerder + bold met bestaande tokens. Breadcrumbs gebruiken bestaande `muted-foreground` + `foreground` op de actieve crumb.
-- Geen animaties of mouseover-tricks toevoegen — passief, statisch, premium.
+src/pages/Index.tsx             (sectie tussen WhyPropasso en TargetAudience)
+src/pages/OverPropasso.tsx      (image swap regel 257-261)
+```
 
-### Gewijzigde bestanden
-
-- `src/components/Header.tsx` — active state logica
-- `src/components/PageBreadcrumb.tsx` — **nieuw**, herbruikbaar
-- Eventueel `src/components/KennisbankBreadcrumb.tsx` — refactoren naar wrapper rond `PageBreadcrumb` (of laten staan)
-- `src/pages/Werkwijze.tsx`, `OverPropasso.tsx`, `Contact.tsx`, `VeelgesteldeVragen.tsx`, `Quickscan.tsx`, `Kennisbank.tsx` — breadcrumb toevoegen + H1 audit
-- `src/components/LegalPage.tsx` — breadcrumb toevoegen voor juridische pagina's
-
-### Niet in scope
-
-- Geen redesign van bestaande hero's.
-- Geen wijzigingen aan kleuren-tokens of typografie-schaal.
-- Geen footer-navigatie aanpassingen (huidige werkt prima).
+Bestanden uploaden via `lovable-assets` is hier niet nodig — de andere Karel-foto's staan ook lokaal in `src/assets/images/`, dus we houden dezelfde conventie aan voor consistentie.
