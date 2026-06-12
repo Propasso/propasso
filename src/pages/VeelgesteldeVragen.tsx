@@ -374,6 +374,8 @@ const VeelgesteldeVragen = () => {
         jsonLd={faqSchemas}
       />
 
+      <PageBreadcrumb withContainer items={[{ label: "Veelgestelde vragen" }]} />
+
       {/* ═══════════ HERO ═══════════ */}
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
