@@ -23,7 +23,7 @@ import {
   ArrowRight,
   MessageCircle,
 } from "lucide-react";
-import karelImg from "@/assets/images/karel-met-ondernemers.png";
+import karelImg from "@/assets/images/karel-portrait-bw.jpg";
 import HubSpotMeetingsEmbed from "@/components/HubSpotMeetingsEmbed";
 
 const contactSchema = z.object({
@@ -215,7 +215,7 @@ const Contact = () => {
                 <img
                   src={karelImg}
                   alt="Karel Cremers in gesprek met ondernemers over exit planning"
-                  className="relative rounded-2xl w-full object-cover aspect-[3/4] shadow-xl"
+                  className="relative rounded-2xl w-full object-cover aspect-[3/4] shadow-xl grayscale"
                   loading="eager"
                 />
               </div>
@@ -377,24 +377,25 @@ const Contact = () => {
                 ))}
               </div>
 
-              {/* Testimonial */}
+              {/* Testimonial met portret (mobiel: compact avatar links naast quote) */}
               <div className="mt-10 rounded-xl bg-background/60 border border-border/30 p-5">
-                <p className="text-sm italic text-muted-foreground leading-[1.75]">
-                  "Karel denkt echt mee. Geen verkooppraatje, gewoon een eerlijk gesprek
-                  over wat er speelt en wat de opties zijn."
-                </p>
-                <p className="mt-3 text-xs font-semibold text-foreground">
-                  — MKB-ondernemer, maakindustrie
-                </p>
-              </div>
-
-              <div className="mt-8 lg:hidden">
-                <img
-                  src={karelImg}
-                  alt="Karel Cremers - Propasso oprichter en exit planning specialist"
-                  className="rounded-2xl w-full max-w-sm object-cover aspect-[4/3]"
-                  loading="lazy"
-                />
+                <div className="flex items-start gap-4 lg:block">
+                  <img
+                    src={karelImg}
+                    alt="Karel Cremers - Propasso"
+                    className="lg:hidden h-16 w-16 rounded-full object-cover object-top shrink-0 ring-1 ring-border/40"
+                    loading="lazy"
+                  />
+                  <div className="min-w-0">
+                    <p className="text-sm italic text-muted-foreground leading-[1.75]">
+                      "Karel denkt echt mee. Geen verkooppraatje, gewoon een eerlijk gesprek
+                      over wat er speelt en wat de opties zijn."
+                    </p>
+                    <p className="mt-3 text-xs font-semibold text-foreground">
+                      — MKB-ondernemer, maakindustrie
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
