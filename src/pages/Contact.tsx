@@ -23,7 +23,7 @@ import {
   ArrowRight,
   MessageCircle,
 } from "lucide-react";
-import karelImg from "@/assets/images/karel-portrait-bw.jpg";
+import karelImg from "@/assets/images/karel-met-ondernemers.png";
 import HubSpotMeetingsEmbed from "@/components/HubSpotMeetingsEmbed";
 
 const contactSchema = z.object({
