@@ -44,12 +44,12 @@ const MeetKarelSection = () => {
           >
             <p className="eyebrow">Maak kennis</p>
             <h2 className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance">
-              Een gids die zelf de berg op is geweest
+              Een ondernemer die het zelf heeft meegemaakt
             </h2>
             <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                Ik ben Karel Cremers, oprichter van Propasso. Na jaren in strategie en M&amp;A bij een
-                beursgenoteerde onderneming, koos ik voor het ondernemerschap. Ik bouwde een familiebedrijf uit,
+                Ik ben Karel Cremers, oprichter van Propasso. Na jaren in Strategy en Development (M&A) bij een
+                beursgenoteerde onderneming, koos ik voor het ondernemerschap. Ik bouwde het familiebedrijf uit,
                 droeg het over en verkocht het. Precies de route waar veel ondernemers nu voor staan.
               </p>
               <p>
