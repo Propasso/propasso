@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import QuickscanSideCallout from "@/components/QuickscanSideCallout";
 import { fetchAllPosts, fetchAllCategories } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
@@ -97,6 +97,8 @@ const Kennisbank = () => {
         jsonLd={knowledgeBaseSchemas}
       />
 
+      <PageBreadcrumb withContainer items={[{ label: "Kennisbank" }]} />
+
       <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
           <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
@@ -108,9 +110,7 @@ const Kennisbank = () => {
         </div>
 
         <div className="section-container relative z-10 py-16 md:py-24">
-          <KennisbankBreadcrumb items={[{ label: "Kennisbank" }]} />
-
-          <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="mt-8">
+          <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
             <p className="eyebrow">Kennisbank</p>
           </motion.div>
 
