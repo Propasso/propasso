@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { PortableText } from "@portabletext/react";
 import SEO from "@/components/SEO";
+import { safeJsonLd } from "@/lib/safeJsonLd";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
@@ -93,7 +94,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: safeJsonLd({
               "@context": "https://schema.org",
               "@type": "Article",
               headline: post.seoTitle || post.title,
@@ -115,7 +116,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: safeJsonLd({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
