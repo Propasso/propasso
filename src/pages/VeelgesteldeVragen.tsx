@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import QuickscanSideCallout from "@/components/QuickscanSideCallout";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import faqClimbersRopes from "@/assets/illustrations/faq-climbers-ropes.png";
