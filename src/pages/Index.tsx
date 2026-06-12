@@ -49,9 +49,9 @@ const Index = () => {
                 <ProblemSection />
                 <MethodologyFramework />
                 <WhyPropasso />
+                <MeetKarelSection />
                 <ClientLogos />
                 <TargetAudience />
-                <MeetKarelSection />
                 <TestimonialsSection />
                 <BlogSection />
                 <QuickscanBanner />
