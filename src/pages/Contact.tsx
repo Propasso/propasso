@@ -14,15 +14,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import ConsentCheckboxes from "@/components/ConsentCheckboxes";
 import { pushEvent } from "@/lib/tracking";
-import {
-  ChevronRight,
-  Phone,
-  Mail,
-  MapPin,
-  CheckCircle2,
-  ArrowRight,
-  MessageCircle,
-} from "lucide-react";
+import { ChevronRight, Phone, Mail, MapPin, CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
 import karelImg from "@/assets/images/karel-portrait.jpg";
 import HubSpotMeetingsEmbed from "@/components/HubSpotMeetingsEmbed";
 
@@ -196,8 +188,8 @@ const Contact = () => {
                 Laten we kennismaken
               </h1>
               <p className="mt-6 text-lg text-muted-foreground leading-[1.75] max-w-xl">
-                Een open gesprek over jouw situatie, zonder verplichtingen.
-                Ik denk graag mee — persoonlijk en vrijblijvend.
+                Een open gesprek over jouw situatie, zonder verplichtingen. Ik denk graag mee, persoonlijk en
+                vrijblijvend.
               </p>
               <button
                 onClick={scrollToAgenda}
@@ -237,9 +229,7 @@ const Contact = () => {
             className="mb-12"
           >
             <p className="eyebrow">Kennismaken</p>
-            <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-[-0.01em]">
-              Kies wat bij je past
-            </h2>
+            <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-[-0.01em]">Kies wat bij je past</h2>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-10">
@@ -256,9 +246,7 @@ const Contact = () => {
                   <div className="w-8 h-8 rounded-lg bg-accent/20 flex items-center justify-center">
                     <ChevronRight className="w-4 h-4 text-accent-foreground" />
                   </div>
-                  <h3 className="text-lg font-medium text-foreground">
-                    Plan een kennismaking
-                  </h3>
+                  <h3 className="text-lg font-medium text-foreground">Plan een kennismaking</h3>
                 </div>
                 <p className="text-sm text-muted-foreground mb-6 leading-[1.75]">
                   Kies een moment in mijn agenda. Vrijblijvend, 30 minuten, online of op locatie.
@@ -276,9 +264,7 @@ const Contact = () => {
               custom={2}
             >
               <div className="bg-background rounded-2xl border border-border/40 p-6 md:p-8 shadow-sm h-full flex flex-col">
-                <h3 className="text-lg font-medium text-foreground mb-6">
-                  Direct contact
-                </h3>
+                <h3 className="text-lg font-medium text-foreground mb-6">Direct contact</h3>
 
                 <div className="space-y-3">
                   {directContactItems.map((item) => (
@@ -288,7 +274,9 @@ const Contact = () => {
                       {...(item.label === "WhatsApp" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                       className="group flex items-center gap-4 p-4 rounded-xl border border-border/40 hover:border-primary/30 hover:shadow-md transition-all duration-300"
                     >
-                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${item.iconBg}`}>
+                      <div
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${item.iconBg}`}
+                      >
                         <item.icon className={`w-5 h-5 ${item.iconColor}`} />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -319,7 +307,9 @@ const Contact = () => {
                         Bezoekadres
                       </p>
                       <p className="text-sm font-medium text-foreground leading-relaxed">
-                        Nieuwe Linie 12<br />5264 PJ Vught
+                        Nieuwe Linie 12
+                        <br />
+                        5264 PJ Vught
                       </p>
                       <a
                         href="https://www.google.com/maps/search/?api=1&query=Nieuwe+Linie+12+5264+PJ+Vught"
@@ -355,12 +345,9 @@ const Contact = () => {
               className="lg:col-span-2"
             >
               <p className="eyebrow">Stuur een bericht</p>
-              <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-[-0.01em]">
-                Liever een bericht sturen?
-              </h2>
+              <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-[-0.01em]">Liever een bericht sturen?</h2>
               <p className="mt-4 text-muted-foreground leading-[1.75]">
-                Vul het formulier in en ik neem persoonlijk contact met je op.
-                Geen verplichtingen, geen verkooppraatje.
+                Vul het formulier in en ik neem persoonlijk contact met je op. Geen verplichtingen, geen verkooppraatje.
               </p>
 
               <div className="mt-8 space-y-4">
@@ -381,12 +368,10 @@ const Contact = () => {
               {/* Testimonial */}
               <div className="mt-10 rounded-xl bg-background/60 border border-border/30 p-5">
                 <p className="text-sm italic text-muted-foreground leading-[1.75]">
-                  "Karel denkt echt mee. Geen verkooppraatje, gewoon een eerlijk gesprek
-                  over wat er speelt en wat de opties zijn."
+                  "Karel denkt echt mee. Geen verkooppraatje, gewoon een eerlijk gesprek over wat er speelt en wat de
+                  opties zijn."
                 </p>
-                <p className="mt-3 text-xs font-semibold text-foreground">
-                  — MKB-ondernemer, maakindustrie
-                </p>
+                <p className="mt-3 text-xs font-semibold text-foreground">— MKB-ondernemer, maakindustrie</p>
               </div>
             </motion.div>
 
@@ -409,11 +394,7 @@ const Contact = () => {
                     <p className="mt-3 text-muted-foreground max-w-md mx-auto">
                       Ik neem zo spoedig mogelijk contact met je op.
                     </p>
-                    <Button
-                      variant="outline"
-                      className="mt-8 rounded-full"
-                      onClick={() => setIsSubmitted(false)}
-                    >
+                    <Button variant="outline" className="mt-8 rounded-full" onClick={() => setIsSubmitted(false)}>
                       Nieuw bericht sturen
                     </Button>
                   </div>
@@ -527,8 +508,8 @@ const Contact = () => {
               Elke succesvolle exit begint met een goed gesprek
             </h2>
             <p className="mt-6 text-lg text-primary-foreground/70 max-w-2xl mx-auto leading-[1.75]">
-              Geen verplichtingen. Geen verkooppraatje. Gewoon een eerlijk gesprek
-              over jouw situatie en wat de mogelijkheden zijn.
+              Geen verplichtingen. Geen verkooppraatje. Gewoon een eerlijk gesprek over jouw situatie en wat de
+              mogelijkheden zijn.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <button
