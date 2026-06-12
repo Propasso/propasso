@@ -23,7 +23,7 @@ import {
   ArrowRight,
   MessageCircle,
 } from "lucide-react";
-import karelImg from "@/assets/images/karel-met-ondernemers.png";
+import karelImg from "@/assets/images/karel-portrait.jpg";
 import HubSpotMeetingsEmbed from "@/components/HubSpotMeetingsEmbed";
 
 const contactSchema = z.object({
@@ -214,8 +214,9 @@ const Contact = () => {
                 <div className="absolute -inset-4 rounded-3xl border border-primary/5" />
                 <img
                   src={karelImg}
-                  alt="Karel Cremers in gesprek met ondernemers over exit planning"
+                  alt="Karel Cremers, oprichter Propasso"
                   className="relative rounded-2xl w-full object-cover aspect-[3/4] shadow-xl"
+                  style={{ objectPosition: "65% 30%" }}
                   loading="eager"
                 />
               </div>
