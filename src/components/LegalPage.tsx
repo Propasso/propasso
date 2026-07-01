@@ -53,13 +53,16 @@ interface LegalPageProps {
   fallbackTitle: string;
   seoDescription: string;
   canonical: string;
+  noIndex?: boolean;
 }
 
-const LegalPage = ({ slug, fallbackTitle, seoDescription, canonical }: LegalPageProps) => {
+
+const LegalPage = ({ slug, fallbackTitle, seoDescription, canonical, noIndex = false }: LegalPageProps) => {
   const { data: page, isLoading, isError } = useQuery({
     queryKey: ["legalPage", slug],
     queryFn: () => fetchLegalPageBySlug(slug),
   });
+
 
   const title = page?.title || fallbackTitle;
 
@@ -71,7 +74,9 @@ const LegalPage = ({ slug, fallbackTitle, seoDescription, canonical }: LegalPage
         canonical={canonical}
         ogTitle={`${title} | Propasso`}
         ogDescription={seoDescription}
+        noIndex={noIndex}
       />
+
       <PageBreadcrumb withContainer items={[{ label: title }]} />
       <section className="py-20 bg-background">
         <div className="section-container max-w-3xl">
