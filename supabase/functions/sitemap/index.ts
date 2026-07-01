@@ -14,11 +14,8 @@ const STATIC_PAGES = [
   { loc: "/contact", changefreq: "monthly", priority: "0.8" },
   { loc: "/quickscan", changefreq: "monthly", priority: "0.8" },
   { loc: "/veelgestelde-vragen", changefreq: "monthly", priority: "0.7" },
-  { loc: "/privacyverklaring", changefreq: "yearly", priority: "0.3" },
-  { loc: "/disclaimer", changefreq: "yearly", priority: "0.3" },
-  { loc: "/algemene-voorwaarden", changefreq: "yearly", priority: "0.3" },
-  { loc: "/cookieverklaring", changefreq: "yearly", priority: "0.3" },
 ];
+
 
 // Known pillar slugs
 const PILLAR_SLUGS = [
