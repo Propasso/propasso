@@ -6,7 +6,9 @@ const Disclaimer = () => (
     fallbackTitle="Disclaimer"
     seoDescription="Disclaimer van Propasso. Lees onze juridische voorwaarden, aansprakelijkheid en gebruiksvoorwaarden van de website."
     canonical="https://propasso.nl/disclaimer"
+    noIndex
   />
 );
+
 
 export default Disclaimer;

@@ -1,50 +1,25 @@
-## Doel
+Plan: juridische pagina's op noindex zetten
 
-Twee nieuwe zwart-wit portretfoto's van Karel toevoegen aan de site, op plekken waar ze de pagina persoonlijker maken zonder de visuele hiërarchie te verstoren.
+Doel: zorgen dat de algemene voorwaarden, disclaimer, privacyverklaring en cookieverklaring niet meer geïndexeerd worden door Google en andere zoekmachines.
 
-## Foto 1 — IMG_5644 (lachend, polo, warm)
+Technische aanpak:
 
-**Plek: Homepage, nieuwe sectie "Maak kennis met Karel" tussen `WhyPropasso` en `TargetAudience`.**
+- De `SEO`-component ondersteunt al een `noIndex`-boolean. Die zet `<meta name="robots" content="noindex, nofollow">` op de pagina wanneer `true`.
+- De `LegalPage`-component (gebruikt door algemene voorwaarden, disclaimer en privacyverklaring) krijgt een nieuw `noIndex`-prop dat doorgegeven wordt aan `SEO`.
+- De wrapperpagina's `AlgemeneVoorwaarden`, `Disclaimer` en `Privacyverklaring` passeren `noIndex={true}`.
+- `Cookieverklaring` gebruikt geen `LegalPage`-wrapper; daar voegen we `noIndex` rechtstreeks toe aan de `<SEO>`-component.
 
-Een nieuwe, ingetogen sectie die de bezoeker midden in de homepage een gezicht geeft bij Propasso. Dit is op de homepage nu de zwakke schakel: er staat veel "wat" en "waarom", maar geen "wie".
+Optionele uitbreiding:
 
-Opbouw:
-- Volle sectie met `section-alt-bg` zodat hij ademruimte krijgt tussen de omliggende blokken.
-- Asymmetrische 5/7-grid (desktop): links de foto in 4:5 portrait, rounded-2xl met zachte shadow, lime accent-blok offset linksonder (zelfde patroon als Over Propasso). Rechts: eyebrow "Maak kennis", H2 ("Een gids die zelf de berg op is geweest" of vergelijkbaar), korte intro van 2-3 zinnen, en twee subtiele links: "Meer over Karel" (naar /over-propasso) en "Plan een kennismaking" (naar /contact).
-- Mobiel: foto boven, tekst onder, foto max ~75% breedte gecentreerd zodat hij niet domineert.
-- Tekst gebruikt jij/jouw, "subtiel & droog", geen em-dashes, zoals voorgeschreven in core memory.
+- De statische sitemap-entries (`/algemene-voorwaarden`, `/disclaimer`, `/privacyverklaring`, `/cookieverklaring`) kunnen worden verwijderd uit `supabase/functions/sitemap/index.ts` en `netlify/edge-functions/sitemap.ts`, aangezien noindex-pagina's meestal ook niet in de sitemap thuishoren. Dit is aanbevolen maar vraag ik expliciet in de planvoorstelling mee te nemen.
 
-Nieuwe component: `src/components/MeetKarelSection.tsx`.
+Gewijzigde bestanden:
 
-## Foto 2 — IMG_5599 (neutraal, ingetogen, gezaghebbend)
+1. `src/components/LegalPage.tsx` — nieuw `noIndex`-prop doorgeven aan `SEO`.
+2. `src/pages/AlgemeneVoorwaarden.tsx` — `noIndex={true}` toevoegen.
+3. `src/pages/Disclaimer.tsx` — `noIndex={true}` toevoegen.
+4. `src/pages/Privacyverklaring.tsx` — `noIndex={true}` toevoegen.
+5. `src/pages/Cookieverklaring.tsx` — `noIndex={true}` toevoegen aan `<SEO>`.
+6. Optioneel: `supabase/functions/sitemap/index.ts` en `netlify/edge-functions/sitemap.ts` — legale pagina's uit statische entries verwijderen.
 
-**Plek: /over-propasso, vervangt het bestaande `karelMetOndernemers` portret in de sectie "Ondernemer voor ondernemers" (regel 255-268).**
-
-Deze foto past beter bij de toon van die sectie (kalm, professioneel, autoritair) dan de huidige groepsfoto. Het bestaande lime quote-blok ("Mijn kracht zit in het combineren van ondernemerschap, strategie en cijfers.") blijft staan en versterkt het portret.
-
-Aanpassing:
-- Import en `<img src>` swappen naar het nieuwe bestand.
-- Aspect blijft `aspect-[4/5]`, `object-cover` met `object-position: center 30%` zodat het gezicht goed in frame staat.
-- Alt-tekst bijwerken naar "Karel Cremers, oprichter van Propasso".
-
-## Wat niet verandert
-
-- Bestaande contactpagina-foto blijft staan (die hebben we vorige beurt al ingericht).
-- Geen foto's in footer, cards, of werkwijze/kennisbank pagina's.
-- Geen wijzigingen aan SEO, schema's, of routing.
-
-## Technische uitvoering
-
-```text
-src/assets/images/
-├── karel-portret-warm.jpg      (nieuw, uit IMG_5644)
-└── karel-portret-formeel.jpg   (nieuw, uit IMG_5599)
-
-src/components/
-└── MeetKarelSection.tsx        (nieuw)
-
-src/pages/Index.tsx             (sectie tussen WhyPropasso en TargetAudience)
-src/pages/OverPropasso.tsx      (image swap regel 257-261)
-```
-
-Bestanden uploaden via `lovable-assets` is hier niet nodig — de andere Karel-foto's staan ook lokaal in `src/assets/images/`, dus we houden dezelfde conventie aan voor consistentie.
+Geen backend-, schema- of migratiewijzigingen nodig.

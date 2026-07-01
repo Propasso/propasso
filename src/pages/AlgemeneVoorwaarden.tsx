@@ -6,7 +6,9 @@ const AlgemeneVoorwaarden = () => (
     fallbackTitle="Algemene Voorwaarden"
     seoDescription="Algemene voorwaarden van Propasso te Vught. Lees de volledige juridische voorwaarden voor onze dienstverlening."
     canonical="https://propasso.nl/algemene-voorwaarden"
+    noIndex
   />
 );
+
 
 export default AlgemeneVoorwaarden;
