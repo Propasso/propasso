@@ -1,25 +1,34 @@
-Plan: juridische pagina's op noindex zetten
 
-Doel: zorgen dat de algemene voorwaarden, disclaimer, privacyverklaring en cookieverklaring niet meer geïndexeerd worden door Google en andere zoekmachines.
+# HubSpot Tracking Code installeren
 
-Technische aanpak:
+Je hebt het HubSpot embed script gevonden met account ID `147744482`. Ik ga dit netjes inbouwen, maar **niet** rechtstreeks in `index.html`. Reden: HubSpot tracking valt onder de categorie "Statistieken" in jullie cookie consent (zie `SERVICE_CATEGORIES` in `use-cookie-consent.tsx`) en de AVG vereist dat we het script pas laden nadat de bezoeker daar toestemming voor geeft. Direct in `index.html` plakken zou die consent-logica omzeilen en een compliance-probleem worden.
 
-- De `SEO`-component ondersteunt al een `noIndex`-boolean. Die zet `<meta name="robots" content="noindex, nofollow">` op de pagina wanneer `true`.
-- De `LegalPage`-component (gebruikt door algemene voorwaarden, disclaimer en privacyverklaring) krijgt een nieuw `noIndex`-prop dat doorgegeven wordt aan `SEO`.
-- De wrapperpagina's `AlgemeneVoorwaarden`, `Disclaimer` en `Privacyverklaring` passeren `noIndex={true}`.
-- `Cookieverklaring` gebruikt geen `LegalPage`-wrapper; daar voegen we `noIndex` rechtstreeks toe aan de `<SEO>`-component.
+## Aanpak
 
-Optionele uitbreiding:
+### 1. Nieuwe component `src/components/HubSpotTracking.tsx`
+- Gebruikt `useCookieConsent()` en checkt `hasConsent("statistics")`
+- Injecteert dynamisch één keer:
+  ```html
+  <script type="text/javascript" id="hs-script-loader" async defer
+          src="//js-eu1.hs-scripts.com/147744482.js"></script>
+  ```
+- Guard tegen dubbel inladen (check op bestaand `#hs-script-loader`)
+- Bij intrekken consent: script blijft geladen tot pagina-refresh (HubSpot verwijdert zijn eigen cookies niet retroactief; dit is standaard gedrag)
 
-- De statische sitemap-entries (`/algemene-voorwaarden`, `/disclaimer`, `/privacyverklaring`, `/cookieverklaring`) kunnen worden verwijderd uit `supabase/functions/sitemap/index.ts` en `netlify/edge-functions/sitemap.ts`, aangezien noindex-pagina's meestal ook niet in de sitemap thuishoren. Dit is aanbevolen maar vraag ik expliciet in de planvoorstelling mee te nemen.
+### 2. `src/App.tsx`
+- `<HubSpotTracking />` toevoegen binnen `CookieConsentProvider`, naast `CookieConsent` en `CookieConsentTrigger`
 
-Gewijzigde bestanden:
+### 3. `src/pages/Cookieverklaring.tsx` (optioneel, alleen als je wilt)
+- Vermelding toevoegen dat HubSpot tracking cookies gebruikt onder categorie "Statistieken" — kan ik doen als je aangeeft dat dit gewenst is
 
-1. `src/components/LegalPage.tsx` — nieuw `noIndex`-prop doorgeven aan `SEO`.
-2. `src/pages/AlgemeneVoorwaarden.tsx` — `noIndex={true}` toevoegen.
-3. `src/pages/Disclaimer.tsx` — `noIndex={true}` toevoegen.
-4. `src/pages/Privacyverklaring.tsx` — `noIndex={true}` toevoegen.
-5. `src/pages/Cookieverklaring.tsx` — `noIndex={true}` toevoegen aan `<SEO>`.
-6. Optioneel: `supabase/functions/sitemap/index.ts` en `netlify/edge-functions/sitemap.ts` — legale pagina's uit statische entries verwijderen.
+## Wat we NIET doen
+- Script niet in `index.html` plaatsen (consent-omzeiling)
+- Geen wijzigingen aan de HubSpot Meetings embed of contactformulieren (die werken al)
+- Geen chatflow embed nu — dat is een aparte stap
 
-Geen backend-, schema- of migratiewijzigingen nodig.
+## Resultaat
+- Bezoekers die "Alles accepteren" of "Statistieken" aanvinken → HubSpot tracking laadt
+- Bezoekers die weigeren → geen HubSpot script, geen cookies
+- Werkt op alle pagina's automatisch via `App.tsx`
+
+Zeg maar of ik dit zo mag implementeren.
