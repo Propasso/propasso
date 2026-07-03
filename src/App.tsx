@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { CookieConsentProvider } from "@/hooks/use-cookie-consent";
 import CookieConsent from "@/components/CookieConsent";
 import CookieConsentTrigger from "@/components/CookieConsentTrigger";
+import HubSpotTracking from "@/components/HubSpotTracking";
 
 import Index from "./pages/Index";
 import Styleguide from "./pages/Styleguide";
@@ -67,7 +68,7 @@ const App = () => (
             <AppRoutes />
             <CookieConsent />
             <CookieConsentTrigger />
-            
+            <HubSpotTracking />
           </BrowserRouter>
         </CookieConsentProvider>
       </TooltipProvider>
