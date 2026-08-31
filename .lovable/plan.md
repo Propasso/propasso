@@ -20,27 +20,33 @@ De inhoud zelf hoeft niet te wijzigen. Het gaat om de vorm en de vindbaarheid.
 
 ## Best practice: wat we gaan inrichten
 
-### 1. Versienummer en ingangsdatum zichtbaar op de pagina
-Bovenaan een compacte versiebalk: "Versie 2026-08 - geldig vanaf 30 augustus 2026". Zo is elke verwijzing eenduidig.
+### 1. Versieregel scherper maken (bestaande regel uitbreiden)
+De huidige "Laatst bijgewerkt op ..." wordt: "Versie 2026-08-30 - laatst bijgewerkt op 30 augustus 2026". Dezelfde `lastUpdated`-datum, alleen ook als eenduidig versiekenmerk waar je in een opdrachtbevestiging naar kunt verwijzen. Jij hoeft niets extra bij te houden: je past in het CMS de tekst aan, zet `lastUpdated` op vandaag, en de versie loopt automatisch mee.
 
-### 2. Downloadbare, gedateerde PDF
-Een PDF met versie in de bestandsnaam, bijvoorbeeld `algemene-voorwaarden-propasso-2026-08.pdf`, opgeslagen in `public/voorwaarden/`. Op de pagina een duidelijke downloadknop ("Download als PDF") plus de bestandsgrootte. De PDF is de tekst die je in e-mails en opdrachtbevestigingen aanhaalt.
+### 2. PDF die zichzelf genereert (geen handwerk bij wijzigingen)
+Je hoeft nooit een PDF te uploaden of te vervangen. We bouwen een backend-functie die de voorwaarden live uit het CMS ophaalt en er ter plekke een nette PDF van maakt, in Propasso-huisstijl (navy koppen, logo, KvK-nummer, versiedatum in de voettekst).
 
-Twee opties voor het maken van die PDF:
-- **A. Jij levert de PDF aan** (uit Word, met huisstijl). Ik plaats hem en bouw de download-link.
-- **B. Ik genereer hem uit de Sanity-tekst** met een printvriendelijke lay-out. Dan blijft de tekst automatisch in sync, maar de opmaak is soberder dan een eigen briefpapier-versie.
+- Vaste link: `/algemene-voorwaarden.pdf`
+- Bestandsnaam die de gebruiker downloadt bevat automatisch de versie: `propasso-algemene-voorwaarden-2026-08-30.pdf`
+- Wijzig je de tekst in het CMS, dan is de PDF direct mee gewijzigd
+- Kort gecachet (bijvoorbeeld een uur) zodat crawlers en herhaalbezoek geen extra werk kosten
 
-### 3. Versie-archief
-Een sectie "Eerdere versies" onderaan de pagina met links naar oudere PDF's. Bij een wijziging blijft de oude PDF staan, zodat je bij een lopend dossier altijd de destijds geldende tekst kunt overleggen.
+Op de pagina komt naast de versieregel een duidelijke knop "Download als PDF".
+
+### 3. Versie-archief: hoe je oude versies bewaart zonder werk
+Voor je bewijspositie is niet de website leidend, maar wat de klant heeft ontvangen. De praktische route:
+
+- Stuur de PDF bij elke opdrachtbevestiging als bijlage mee. Dat is en blijft het sterkste bewijs, en kost geen onderhoud.
+- De vaste link toont altijd de actuele versie. Wil je later ook oude versies online bewaren, dan kan de functie een `?versie=2026-08-30` parameter krijgen die een eerdere CMS-revisie ophaalt. Dat is een uitbreiding voor later, geen onderdeel van deze stap.
 
 ### 4. Printvriendelijke weergave
-Een `@media print` stylesheet zodat de HTML-pagina netjes op papier komt: header, footer, cookiebanner en floating buttons weg, zwarte tekst op wit, URL's van links uitgeschreven.
+Een `@media print` stylesheet zodat de HTML-pagina ook netjes op papier komt: header, footer, cookiebanner en floating buttons weg, zwarte tekst op wit, URL's van links uitgeschreven.
 
 ### 5. Artikel 12 scherper formuleren
 De huidige tekst laat wijzigingen ingaan bij publicatie. Best practice bij doorlopende opdrachten: nieuwe versies gelden voor nieuwe opdrachten, en bij lopende opdrachten pas na schriftelijke kennisgeving. Ik lever een voorstelzin aan; jij bepaalt of je die door je jurist wilt laten toetsen voordat we hem in Sanity zetten.
 
 ### 6. Vindbaarheid
-De pagina blijft op `noIndex` (dat is een bewuste keuze en prima), maar de link staat al in de footer en dat is genoeg. Belangrijk voor de rechtsgeldigheid: in elke opdrachtbevestiging en e-mail de **volledige URL plus het versienummer** noemen, en de PDF als bijlage meesturen. Dat laatste is de sterkste bewijspositie en kost je niets.
+De pagina blijft op `noIndex` (bewuste keuze, prima) en staat in de footer. Belangrijk voor de rechtsgeldigheid: in elke opdrachtbevestiging de **volledige URL plus de versiedatum** noemen en de PDF meesturen.
 
 ## Buiten scope
 
