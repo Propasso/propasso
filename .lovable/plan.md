@@ -4,9 +4,9 @@
 
 - `/algemene-voorwaarden` haalt de tekst live uit Sanity (`legalPage`, slug `algemene-voorwaarden`) en rendert die als HTML via `LegalPage.tsx`.
 - De inhoud is compleet en inhoudelijk sterk: 13 artikelen, KvK 58115439, aansprakelijkheid, honorarium, opzegging, Nederlands recht / Rechtbank 's-Hertogenbosch.
-- Er staat een datum "laatst bijgewerkt" (nu 30 augustus 2026), afkomstig uit het veld `lastUpdated`.
+- Er staat al een versiedatum: "Laatst bijgewerkt op 30 augustus 2026", uit het Sanity-veld `lastUpdated` (`LegalPage.tsx`, regel 103-112). Die regel is de basis waar we op verder bouwen.
 - Er is **geen** downloadbare PDF: `public/` bevat geen voorwaardenbestand.
-- Er is **geen** versienummer in de tekst; artikel 12 zegt dat wijzigingen ingaan zodra ze op de site zijn gepubliceerd.
+- Er is **geen** expliciet versienummer; artikel 12 zegt dat wijzigingen ingaan zodra ze op de site zijn gepubliceerd.
 - De pagina staat op `noIndex`.
 
 ## Juridische beoordeling
