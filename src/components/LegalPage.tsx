@@ -105,12 +105,13 @@ const LegalPage = ({ slug, fallbackTitle, seoDescription, canonical, noIndex = f
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
                 {page.lastUpdated && (
                   <p className="text-sm text-muted-foreground">
-                    Laatst bijgewerkt op{" "}
+                    Versie{" "}
                     {new Date(page.lastUpdated).toLocaleDateString("nl-NL", {
                       day: "numeric",
                       month: "long",
                       year: "numeric",
                     })}
+                    , geldig vanaf deze datum
                   </p>
                 )}
                 <Button
