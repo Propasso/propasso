@@ -1,70 +1,32 @@
-# Algemene voorwaarden juridisch houdbaar aanbieden (art. 6:234 BW)
+# Knop "Opslaan als pdf" op de juridische pagina's
 
-## Wat er nu staat (gecontroleerd)
+## Doel
 
-- `/algemene-voorwaarden` haalt de tekst live uit Sanity (`legalPage`, slug `algemene-voorwaarden`) en rendert die als HTML via `LegalPage.tsx`.
-- De inhoud is compleet en inhoudelijk sterk: 13 artikelen, KvK 58115439, aansprakelijkheid, honorarium, opzegging, Nederlands recht / Rechtbank 's-Hertogenbosch.
-- Er staat al een versiedatum: "Laatst bijgewerkt op 30 augustus 2026", uit het Sanity-veld `lastUpdated` (`LegalPage.tsx`, regel 103-112). Die regel is de basis waar we op verder bouwen.
-- Er is **geen** downloadbare PDF: `public/` bevat geen voorwaardenbestand.
-- Er is **geen** expliciet versienummer; artikel 12 zegt dat wijzigingen ingaan zodra ze op de site zijn gepubliceerd.
-- De pagina staat op `noIndex`.
+Bezoekers kunnen de algemene voorwaarden zelf als PDF opslaan of printen, zonder dat jij ooit een PDF-bestand hoeft te uploaden of te vervangen. De knop gebruikt de printfunctie van de browser ("Opslaan als pdf" is daar een standaardoptie), dus de PDF bevat altijd automatisch de actuele tekst uit het CMS.
 
-## Juridische beoordeling
+## Wat er komt
 
-Voor elektronisch gesloten overeenkomsten mag je naar voorwaarden op je site verwijzen (art. 6:234 lid 2 BW), maar alleen als de wederpartij de tekst **kan opslaan en later kan raadplegen**. Twee risico's in de huidige opzet:
+### 1. Knop op een zichtbare plek
+Direct onder de titel, naast de bestaande regel "Laatst bijgewerkt op 30 augustus 2026": een compacte knop met printicoon en label "Opslaan als pdf". Outline-stijl in navy, passend bij de rest van de site. Zichtbaar zonder scrollen, ook op mobiel.
 
-1. **Geen vastlegging per versie.** De HTML-tekst kan wijzigen zonder dat vast te stellen is welke tekst gold op het moment van contracteren. Bij een geschil moet je kunnen bewijzen wat de klant destijds heeft ontvangen.
-2. **Opslaan/printen is niet expliciet geregeld.** Een HTML-pagina is verdedigbaar, maar een gedateerde PDF is de veilige route en het is wat rechters in de praktijk als "ter hand stellen" accepteren.
+### 2. Printvriendelijke weergave
+Zodat het opgeslagen bestand er professioneel uitziet:
 
-De inhoud zelf hoeft niet te wijzigen. Het gaat om de vorm en de vindbaarheid.
+- Header, footer, breadcrumb, cookiebanner en de knop zelf verdwijnen in print
+- Zwarte tekst op wit, compactere regelafstand, nette marges
+- Titel, versiedatum en KvK-regel blijven bovenaan staan
+- Artikelkoppen breken niet los van hun tekst over een paginagrens
 
-## Best practice: wat we gaan inrichten
-
-### 1. Versieregel scherper maken (bestaande regel uitbreiden)
-De huidige "Laatst bijgewerkt op ..." wordt: "Versie 2026-08-30 - laatst bijgewerkt op 30 augustus 2026". Dezelfde `lastUpdated`-datum, alleen ook als eenduidig versiekenmerk waar je in een opdrachtbevestiging naar kunt verwijzen. Jij hoeft niets extra bij te houden: je past in het CMS de tekst aan, zet `lastUpdated` op vandaag, en de versie loopt automatisch mee.
-
-### 2. PDF die zichzelf genereert (geen handwerk bij wijzigingen)
-Je hoeft nooit een PDF te uploaden of te vervangen. We bouwen een backend-functie die de voorwaarden live uit het CMS ophaalt en er ter plekke een nette PDF van maakt, in Propasso-huisstijl (navy koppen, logo, KvK-nummer, versiedatum in de voettekst).
-
-- Vaste link: `/algemene-voorwaarden.pdf`
-- Bestandsnaam die de gebruiker downloadt bevat automatisch de versie: `propasso-algemene-voorwaarden-2026-08-30.pdf`
-- Wijzig je de tekst in het CMS, dan is de PDF direct mee gewijzigd
-- Kort gecachet (bijvoorbeeld een uur) zodat crawlers en herhaalbezoek geen extra werk kosten
-
-Op de pagina komt naast de versieregel een duidelijke knop "Download als PDF".
-
-### 3. Versie-archief: hoe je oude versies bewaart zonder werk
-Voor je bewijspositie is niet de website leidend, maar wat de klant heeft ontvangen. De praktische route:
-
-- Stuur de PDF bij elke opdrachtbevestiging als bijlage mee. Dat is en blijft het sterkste bewijs, en kost geen onderhoud.
-- De vaste link toont altijd de actuele versie. Wil je later ook oude versies online bewaren, dan kan de functie een `?versie=2026-08-30` parameter krijgen die een eerdere CMS-revisie ophaalt. Dat is een uitbreiding voor later, geen onderdeel van deze stap.
-
-### 4. Printvriendelijke weergave
-Een `@media print` stylesheet zodat de HTML-pagina ook netjes op papier komt: header, footer, cookiebanner en floating buttons weg, zwarte tekst op wit, URL's van links uitgeschreven.
-
-### 5. Artikel 12 scherper formuleren
-De huidige tekst laat wijzigingen ingaan bij publicatie. Best practice bij doorlopende opdrachten: nieuwe versies gelden voor nieuwe opdrachten, en bij lopende opdrachten pas na schriftelijke kennisgeving. Ik lever een voorstelzin aan; jij bepaalt of je die door je jurist wilt laten toetsen voordat we hem in Sanity zetten.
-
-### 6. Vindbaarheid
-De pagina blijft op `noIndex` (bewuste keuze, prima) en staat in de footer. Belangrijk voor de rechtsgeldigheid: in elke opdrachtbevestiging de **volledige URL plus de versiedatum** noemen en de PDF meesturen.
+### 3. Zelfde knop op de andere juridische pagina's
+Disclaimer en privacyverklaring gebruiken hetzelfde `LegalPage`-component, dus die krijgen de knop er gratis bij. Dat is consistent en vereist geen extra werk.
 
 ## Buiten scope
 
-- Geen inhoudelijke herziening van de 13 artikelen.
-- Geen KvK-depot (niet verplicht, voegt weinig toe bij B2B-dienstverlening).
-- Geen wijziging aan disclaimer of privacyverklaring.
+- Geen PDF-bestand in de site, geen backend-functie, geen versiearchief.
+- Geen inhoudelijke wijziging aan de voorwaarden.
 
 ## Technische details
 
-- **Nieuw**: edge function `legal-pdf` — haalt `legalPage` (Portable Text + `lastUpdated`) uit Sanity, rendert met een PDF-library, zet `Content-Disposition: attachment; filename="propasso-algemene-voorwaarden-<datum>.pdf"` en `Cache-Control: public, max-age=3600`. Werkt generiek op slug, dus disclaimer en privacyverklaring kunnen er later op aansluiten.
-- **Edit**: `netlify.toml` — redirect `/algemene-voorwaarden.pdf` naar de function, zodat de publieke URL kort en stabiel blijft.
-- **Edit**: `src/components/LegalPage.tsx` — versieregel uitbreiden met versiekenmerk, optionele prop `pdfSlug` voor de downloadknop.
-- **Edit**: `src/pages/AlgemeneVoorwaarden.tsx` — `pdfSlug` doorgeven.
-- **Edit**: `src/index.css` — `@media print` regels voor legal pages.
-- Geen bestanden in `public/`, dus geen handmatig onderhoud.
-- Sanity-tekst van artikel 12: alleen aanpassen na jouw akkoord.
-
-## Wat ik van jou nodig heb
-
-1. Wil je een logo in de PDF-kop? Dan gebruik ik `public/propasso-logo-grey-yellow.png`.
-2. Wil je de voorgestelde herformulering van artikel 12 eerst zien voordat we die doorvoeren?
+- **Edit** `src/components/LegalPage.tsx`: knop naast de `lastUpdated`-regel die `window.print()` aanroept, met `Printer` icoon uit lucide-react en de bestaande shadcn `Button` (variant outline, size sm). Wrapper krijgt een `print-legal` class.
+- **Edit** `src/index.css`: `@media print` blok dat `header`, `footer`, `nav`, `[data-print-hide]` verbergt, kleuren forceert naar zwart-op-wit, en `break-inside`/`break-after` regels zet voor koppen.
+- Geen nieuwe dependencies.
