@@ -98,22 +98,34 @@ const LegalPage = ({ slug, fallbackTitle, seoDescription, canonical, noIndex = f
               </p>
             </div>
           ) : (
-            <>
+            <div className="print-legal">
               <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">{title}</h1>
-              {page.lastUpdated && (
-                <p className="text-sm text-muted-foreground mb-8">
-                  Laatst bijgewerkt op{" "}
-                  {new Date(page.lastUpdated).toLocaleDateString("nl-NL", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
-              )}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
+                {page.lastUpdated && (
+                  <p className="text-sm text-muted-foreground">
+                    Laatst bijgewerkt op{" "}
+                    {new Date(page.lastUpdated).toLocaleDateString("nl-NL", {
+                      day: "numeric",
+                      month: "long",
+                      year: "numeric",
+                    })}
+                  </p>
+                )}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => window.print()}
+                  data-print-hide
+                  className="gap-2"
+                >
+                  <Printer className="h-4 w-4" aria-hidden="true" />
+                  Opslaan als pdf
+                </Button>
+              </div>
               <div className="prose prose-lg text-muted-foreground space-y-8">
                 <PortableText value={page.content} components={portableTextComponents} />
               </div>
-            </>
+            </div>
           )}
         </div>
       </section>
