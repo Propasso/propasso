@@ -56,14 +56,15 @@ De pagina blijft op `noIndex` (bewuste keuze, prima) en staat in de footer. Bela
 
 ## Technische details
 
-- **Nieuw**: `public/voorwaarden/algemene-voorwaarden-propasso-2026-08.pdf`
-- **Edit**: `src/pages/AlgemeneVoorwaarden.tsx` - versiebalk, downloadknop, archiefsectie doorgeven aan `LegalPage`
-- **Edit**: `src/components/LegalPage.tsx` - optionele props `version`, `pdfUrl`, `previousVersions` zodat disclaimer en privacyverklaring later hetzelfde patroon kunnen gebruiken
-- **Edit**: `src/index.css` - `@media print` regels voor legal pages
-- Sanity-tekst van artikel 12: alleen aanpassen na jouw akkoord
+- **Nieuw**: edge function `legal-pdf` — haalt `legalPage` (Portable Text + `lastUpdated`) uit Sanity, rendert met een PDF-library, zet `Content-Disposition: attachment; filename="propasso-algemene-voorwaarden-<datum>.pdf"` en `Cache-Control: public, max-age=3600`. Werkt generiek op slug, dus disclaimer en privacyverklaring kunnen er later op aansluiten.
+- **Edit**: `netlify.toml` — redirect `/algemene-voorwaarden.pdf` naar de function, zodat de publieke URL kort en stabiel blijft.
+- **Edit**: `src/components/LegalPage.tsx` — versieregel uitbreiden met versiekenmerk, optionele prop `pdfSlug` voor de downloadknop.
+- **Edit**: `src/pages/AlgemeneVoorwaarden.tsx` — `pdfSlug` doorgeven.
+- **Edit**: `src/index.css` — `@media print` regels voor legal pages.
+- Geen bestanden in `public/`, dus geen handmatig onderhoud.
+- Sanity-tekst van artikel 12: alleen aanpassen na jouw akkoord.
 
 ## Wat ik van jou nodig heb
 
-1. Lever je de PDF zelf aan (optie A) of genereer ik hem (optie B)?
-2. Welk versienummer wil je aanhouden: datumnotatie ("2026-08") of oplopend ("v2.0")?
-3. Wil je de voorgestelde herformulering van artikel 12 zien voordat we die doorvoeren?
+1. Wil je een logo in de PDF-kop? Dan gebruik ik `public/propasso-logo-grey-yellow.png`.
+2. Wil je de voorgestelde herformulering van artikel 12 eerst zien voordat we die doorvoeren?
