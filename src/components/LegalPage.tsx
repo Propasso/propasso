@@ -5,6 +5,8 @@ import PageLayout from "@/components/PageLayout";
 import PageBreadcrumb from "@/components/PageBreadcrumb";
 import { fetchLegalPageBySlug } from "@/lib/sanityQueries";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Printer } from "lucide-react";
 
 const portableTextComponents = {
   block: {
