@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { PortableText } from "@portabletext/react";
 import SEO from "@/components/SEO";
@@ -12,6 +12,7 @@ import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
+import NotFound from "@/pages/NotFound";
 import type { SanityPost } from "@/types/sanity";
 
 const portableTextComponents = {
@@ -299,19 +300,7 @@ const KennisbankArticle = () => {
   }
 
   if (!post) {
-    return (
-      <PageLayout>
-        <section className="py-16 md:py-24">
-          <div className="section-container text-center">
-            <h1 className="text-4xl font-bold">Artikel niet gevonden</h1>
-            <p className="mt-4 text-muted-foreground">Dit artikel bestaat niet of is verplaatst.</p>
-            <Link to="/kennisbank" className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:underline">
-              <ArrowLeft size={16} /> Terug naar kennisbank
-            </Link>
-          </div>
-        </section>
-      </PageLayout>
-    );
+    return <NotFound />;
   }
 
   return <SanityArticlePage post={post} />;
