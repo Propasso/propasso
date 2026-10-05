@@ -91,6 +91,11 @@ Deno.serve(async (req) => {
     for (const article of articles) {
       // Skip noIndex articles or articles without slugs
       if (article.noIndex || !article.slug?.current) continue;
+      // Skip invalid slugs (must be lowercase alphanumeric with hyphens)
+      if (!/^[a-z0-9-]+$/.test(article.slug.current)) {
+        console.error(`Ongeldige slug overgeslagen in sitemap: "${article.slug.current}" (corrigeer in Sanity)`);
+        continue;
+      }
       entries.push(
         buildUrlEntry(
           `/kennisbank/${article.slug.current}`,

@@ -63,7 +63,14 @@ export default async function handler(req: Request, context: Context) {
     ...STATIC_PAGES.map((p) => urlEntry(p.loc, undefined, p.changefreq, p.priority)),
     ...PILLAR_SLUGS.map((slug) => urlEntry(`/kennisbank/thema/${slug}`, undefined, "weekly", "0.8")),
     ...articles
-      .filter((a) => !a.noIndex && a.slug?.current)
+      .filter((a) => {
+        if (a.noIndex || !a.slug?.current) return false;
+        if (!/^[a-z0-9-]+$/.test(a.slug.current)) {
+          console.error(`Ongeldige slug overgeslagen in sitemap: "${a.slug.current}" (corrigeer in Sanity)`);
+          return false;
+        }
+        return true;
+      })
       .map((a) => urlEntry(`/kennisbank/${a.slug.current}`, a.publishedAt, "monthly", "0.6")),
   ];
 

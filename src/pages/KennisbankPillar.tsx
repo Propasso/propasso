@@ -19,6 +19,7 @@ import {
 } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
+import NotFound from "@/pages/NotFound";
 import type { SanityPost } from "@/types/sanity";
 import { pillarContent } from "@/data/pillarContent";
 
@@ -110,22 +111,7 @@ const KennisbankPillar = () => {
   const isLoading = catLoading || postsLoading;
 
   if (!catLoading && !category) {
-    return (
-      <PageLayout>
-        <section className="py-16 md:py-24">
-          <div className="section-container text-center">
-            <h1 className="text-4xl font-bold">Thema niet gevonden</h1>
-            <p className="mt-4 text-muted-foreground">Deze categorie bestaat niet of is verplaatst.</p>
-            <Link
-              to="/kennisbank"
-              className="mt-8 inline-flex items-center gap-2 text-primary font-semibold hover:underline"
-            >
-              Terug naar kennisbank
-            </Link>
-          </div>
-        </section>
-      </PageLayout>
-    );
+    return <NotFound />;
   }
 
   const pillarCanonical = category
