@@ -47,7 +47,7 @@ const ProblemSection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance"
         >
-          De meeste bedrijven zijn niet te laat om te verkopen, maar te laat om zich goed voor te bereiden.
+          Bij de meeste bedrijven is het niet te laat voor de verkoop, maar wel te laat voor een goede voorbereiding.
         </motion.h2>
 
         <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
