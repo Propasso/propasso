@@ -6,7 +6,185 @@
   path = "/sitemap.xml"
   function = "sitemap"
 
+# ---- 301 redirects (oude URL's) ----
+
+[[redirects]]
+  from = "/over-mij"
+  to = "/over-propasso"
+  status = 301
+
+[[redirects]]
+  from = "/over-mij/"
+  to = "/over-propasso"
+  status = 301
+
+[[redirects]]
+  from = "/diensten"
+  to = "/werkwijze"
+  status = 301
+
+[[redirects]]
+  from = "/diensten/"
+  to = "/werkwijze"
+  status = 301
+
+[[redirects]]
+  from = "/partnernetwerk"
+  to = "/over-propasso"
+  status = 301
+
+[[redirects]]
+  from = "/onewebmedia/Algemene*"
+  to = "/algemene-voorwaarden"
+  status = 301
+
+[[redirects]]
+  from = "/onewebmedia/Privacyverklaring*"
+  to = "/privacyverklaring"
+  status = 301
+
+[[redirects]]
+  from = "/ben-je-klaar-om-te-verkopen-twee-vormen-van-exit-readiness-die-je-moet-begrijpen/"
+  to = "/kennisbank/wanneer-is-je-bedrijf-verkoopklaar-over-voorbereiding-van-bedrijf-en-ondernemer"
+  status = 301
+
+# ---- Oude WordPress-paden: 410 Gone ----
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/410"
+  status = 410
+
+[[redirects]]
+  from = "/wp-content/*"
+  to = "/410"
+  status = 410
+
+# ---- SPA rewrites: bestaande routes geven 200 ----
+
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/werkwijze"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/werkwijze/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/kennisbank"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/kennisbank/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/kennisbank/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/over-propasso"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/over-propasso/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/quickscan"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/quickscan/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/veelgestelde-vragen"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/veelgestelde-vragen/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/disclaimer"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/disclaimer/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacyverklaring"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/privacyverklaring/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/algemene-voorwaarden"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/algemene-voorwaarden/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/cookieverklaring"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/cookieverklaring/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/styleguide"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/styleguide/"
+  to = "/index.html"
+  status = 200
+
+# ---- Catch-all: onbekende URL's geven een echte 404 ----
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
+  status = 404
