@@ -112,7 +112,6 @@ interface ValidatedPayload {
   email: string;
   company: string;
   phone: string;
-  newsletter: boolean;
   scores: {
     business_attractiveness_score: string;
     business_readiness_score: string;
@@ -140,7 +139,6 @@ function validatePayload(raw: unknown): { valid: true; data: ValidatedPayload } 
 
   const company = validateString(obj.company, 200) ?? "";
   const phone = validateString(obj.phone, 30) ?? "";
-  const newsletter = obj.newsletter === true;
 
   // Validate scores (client sends percentage strings 0–100)
   const scores = obj.scores as Record<string, unknown> | undefined;
@@ -191,7 +189,6 @@ function validatePayload(raw: unknown): { valid: true; data: ValidatedPayload } 
       email,
       company,
       phone,
-      newsletter,
       scores: {
         business_attractiveness_score: attractPct,
         business_readiness_score: readyPct,
@@ -716,9 +713,7 @@ Deno.serve(async (req) => {
           consent: {
             consentToProcess: true,
             text: "Ik ga akkoord met de privacyverklaring",
-            communications: data.newsletter
-              ? [{ value: true, subscriptionTypeId: 999, text: "Ik wil graag relevante rapporten en de nieuwsbrief ontvangen." }]
-              : [],
+            communications: [],
           },
         },
       }),
