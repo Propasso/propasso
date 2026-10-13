@@ -26,7 +26,7 @@ const Cookieverklaring = () => {
 
           <div className="prose prose-lg text-muted-foreground space-y-8">
             <div>
-              <p className="text-sm text-muted-foreground/70">Versie: 14 maart 2026</p>
+              <p className="text-sm text-muted-foreground/70">Versie: 13 oktober 2026</p>
               <p className="text-sm text-muted-foreground/70">Van toepassing op: www.propasso.nl</p>
             </div>
 
@@ -68,9 +68,9 @@ const Cookieverklaring = () => {
                       <td className="p-3">Sessie</td>
                     </tr>
                     <tr className="border-t border-border">
-                      <td className="p-3">Cloudflare of vergelijkbaar</td>
+                      <td className="p-3 font-mono text-xs">__cf_bm (Cloudflare)</td>
                       <td className="p-3">Beveiliging, prestaties en bescherming tegen misbruik</td>
-                      <td className="p-3">Sessie / max. 30 dagen</td>
+                      <td className="p-3">30 minuten</td>
                     </tr>
                   </tbody>
                 </table>
@@ -85,26 +85,36 @@ const Cookieverklaring = () => {
                 <table className="w-full text-sm border border-border rounded-lg">
                   <thead>
                     <tr className="bg-muted">
-                      <th className="text-left p-3 font-semibold text-foreground">Dienst</th>
+                      <th className="text-left p-3 font-semibold text-foreground">Cookie / Dienst</th>
                       <th className="text-left p-3 font-semibold text-foreground">Doel</th>
                       <th className="text-left p-3 font-semibold text-foreground">Bewaartermijn</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="border-t border-border">
-                      <td className="p-3">Google Analytics</td>
+                      <td className="p-3">Google Analytics 4 (via Google Tag Manager), cookies <span className="font-mono text-xs">_ga</span> en <span className="font-mono text-xs">_gid</span></td>
                       <td className="p-3">Websitestatistieken en bezoekersgedrag</td>
-                      <td className="p-3">14 maanden</td>
+                      <td className="p-3">_ga: 2 jaar, _gid: 24 uur</td>
                     </tr>
                     <tr className="border-t border-border">
-                      <td className="p-3">Google Search Console</td>
-                      <td className="p-3">Inzicht in zoekprestaties en indexering</td>
-                      <td className="p-3">16 maanden</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">HubSpot</td>
-                      <td className="p-3">Bezoekersanalyse, formulieropvolging en klantrelatiebeheer</td>
+                      <td className="p-3">HubSpot, cookies <span className="font-mono text-xs">__hstc</span> en <span className="font-mono text-xs">hubspotutk</span></td>
+                      <td className="p-3">Bezoekersanalyse en formulieropvolging</td>
                       <td className="p-3">13 maanden</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">HubSpot, cookie <span className="font-mono text-xs">__hssc</span></td>
+                      <td className="p-3">Sessieregistratie voor bezoekersanalyse</td>
+                      <td className="p-3">30 minuten</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">HubSpot, cookie <span className="font-mono text-xs">__hssrc</span></td>
+                      <td className="p-3">Herkenning van browser-sessie</td>
+                      <td className="p-3">Sessie</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">HubSpot Meetings</td>
+                      <td className="p-3">Ingeplande afspraken via de agenda-module op de contactpagina</td>
+                      <td className="p-3">Sessie</td>
                     </tr>
                   </tbody>
                 </table>
