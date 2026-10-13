@@ -169,6 +169,7 @@ export type Database = {
         }
         Returns: number
       }
+      privacy_data_cleanup: { Args: never; Returns: undefined }
       read_email_batch: {
         Args: { batch_size: number; queue_name: string; vt: number }
         Returns: {
