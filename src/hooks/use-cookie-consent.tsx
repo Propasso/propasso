@@ -1,5 +1,11 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 export type ConsentCategory = "functional" | "statistics" | "marketing";
 
 export interface ConsentPreferences {
@@ -49,12 +55,32 @@ interface StoredConsent {
   timestamp: number;
 }
 
+/** Consent blijft 12 maanden geldig; daarna verschijnt de banner opnieuw. */
+const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000;
+
+/** Synchroniseert de opgeslagen keuze met Google Consent Mode v2. */
+function updateGtagConsent(prefs: ConsentPreferences) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  window.gtag("consent", "update", {
+    analytics_storage: prefs.statistics ? "granted" : "denied",
+    ad_storage: prefs.marketing ? "granted" : "denied",
+    ad_user_data: prefs.marketing ? "granted" : "denied",
+    ad_personalization: prefs.marketing ? "granted" : "denied",
+  });
+}
+
 function loadConsent(): { status: ConsentStatus; preferences: ConsentPreferences } {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed: StoredConsent = JSON.parse(raw);
       if (parsed.status && parsed.preferences) {
+        const isExpired =
+          typeof parsed.timestamp !== "number" || Date.now() - parsed.timestamp > CONSENT_TTL_MS;
+        if (isExpired) {
+          localStorage.removeItem(STORAGE_KEY);
+          return { status: "pending", preferences: DEFAULT_PREFERENCES };
+        }
         return { status: parsed.status, preferences: { ...parsed.preferences, functional: true } };
       }
     }
