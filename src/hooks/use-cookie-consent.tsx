@@ -102,14 +102,6 @@ export const SERVICE_CATEGORIES: Record<string, ConsentCategory> = {
   "Google Analytics": "statistics",
   "Google Search Console": "statistics",
   HubSpot: "statistics",
-  "Google Ads": "marketing",
-  "Facebook Pixel": "marketing",
-  "LinkedIn Insight Tag": "marketing",
-  "Hotjar": "marketing",
-  "Google Maps": "marketing",
-  YouTube: "marketing",
-  Instagram: "marketing",
-  Calendly: "marketing",
 };
 
 export const CATEGORY_LABELS: Record<ConsentCategory, { title: string; description: string }> = {
@@ -123,24 +115,31 @@ export const CATEGORY_LABELS: Record<ConsentCategory, { title: string; descripti
   },
   marketing: {
     title: "Marketing",
-    description:
-      "Voor gepersonaliseerde advertenties en social media integraties (Facebook Pixel, LinkedIn, Hotjar, YouTube/Instagram embeds).",
+    description: "Voor gepersonaliseerde advertenties. Momenteel plaatsen wij geen marketingcookies.",
   },
 };
 
 export const CookieConsentProvider = ({ children }: { children: ReactNode }) => {
   const [{ status, preferences }, setState] = useState(loadConsent);
 
+  // Bij laden van de pagina: geef een opgeslagen keuze door aan Google Consent Mode
+  useEffect(() => {
+    updateGtagConsent(preferences);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const acceptAll = useCallback(() => {
     const next = { status: "all_accepted" as const, preferences: ALL_ACCEPTED };
     setState(next);
     persistConsent(next.status, next.preferences);
+    updateGtagConsent(next.preferences);
   }, []);
 
   const rejectAll = useCallback(() => {
     const next = { status: "all_rejected" as const, preferences: ALL_REJECTED };
     setState(next);
     persistConsent(next.status, next.preferences);
+    updateGtagConsent(next.preferences);
   }, []);
 
   const savePreferences = useCallback((prefs: Partial<ConsentPreferences>) => {
@@ -152,6 +151,7 @@ export const CookieConsentProvider = ({ children }: { children: ReactNode }) => 
     const next = { status: "customized" as const, preferences: merged };
     setState(next);
     persistConsent(next.status, next.preferences);
+    updateGtagConsent(next.preferences);
   }, []);
 
   const reopenBanner = useCallback(() => {
