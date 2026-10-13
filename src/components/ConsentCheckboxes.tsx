@@ -4,23 +4,16 @@ import { Checkbox } from "@/components/ui/checkbox";
 interface ConsentCheckboxesProps {
   privacyChecked: boolean;
   onPrivacyChange: (checked: boolean) => void;
-  newsletterChecked?: boolean;
-  onNewsletterChange?: (checked: boolean) => void;
-  showNewsletter?: boolean;
   privacyError?: string;
 }
 
 /**
- * Reusable GDPR consent checkboxes for forms.
+ * Reusable GDPR consent checkbox for forms.
  * - Mandatory privacy policy acceptance
- * - Optional newsletter opt-in
  */
 const ConsentCheckboxes = ({
   privacyChecked,
   onPrivacyChange,
-  newsletterChecked = false,
-  onNewsletterChange,
-  showNewsletter = true,
   privacyError,
 }: ConsentCheckboxesProps) => {
   return (
@@ -53,24 +46,6 @@ const ConsentCheckboxes = ({
           )}
         </div>
       </div>
-
-      {/* Optional: Newsletter */}
-      {showNewsletter && (
-        <div className="flex items-start space-x-3">
-          <Checkbox
-            id="consent-newsletter"
-            checked={newsletterChecked}
-            onCheckedChange={(v) => onNewsletterChange?.(v === true)}
-            className="mt-0.5"
-          />
-          <label
-            htmlFor="consent-newsletter"
-            className="text-sm font-normal text-muted-foreground cursor-pointer leading-relaxed"
-          >
-            Ik wil graag relevante rapporten en de nieuwsbrief ontvangen.
-          </label>
-        </div>
-      )}
     </div>
   );
 };
