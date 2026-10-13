@@ -1,5 +1,11 @@
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 export type ConsentCategory = "functional" | "statistics" | "marketing";
 
 export interface ConsentPreferences {
@@ -49,12 +55,32 @@ interface StoredConsent {
   timestamp: number;
 }
 
+/** Consent blijft 12 maanden geldig; daarna verschijnt de banner opnieuw. */
+const CONSENT_TTL_MS = 365 * 24 * 60 * 60 * 1000;
+
+/** Synchroniseert de opgeslagen keuze met Google Consent Mode v2. */
+function updateGtagConsent(prefs: ConsentPreferences) {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  window.gtag("consent", "update", {
+    analytics_storage: prefs.statistics ? "granted" : "denied",
+    ad_storage: prefs.marketing ? "granted" : "denied",
+    ad_user_data: prefs.marketing ? "granted" : "denied",
+    ad_personalization: prefs.marketing ? "granted" : "denied",
+  });
+}
+
 function loadConsent(): { status: ConsentStatus; preferences: ConsentPreferences } {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed: StoredConsent = JSON.parse(raw);
       if (parsed.status && parsed.preferences) {
+        const isExpired =
+          typeof parsed.timestamp !== "number" || Date.now() - parsed.timestamp > CONSENT_TTL_MS;
+        if (isExpired) {
+          localStorage.removeItem(STORAGE_KEY);
+          return { status: "pending", preferences: DEFAULT_PREFERENCES };
+        }
         return { status: parsed.status, preferences: { ...parsed.preferences, functional: true } };
       }
     }
@@ -76,14 +102,6 @@ export const SERVICE_CATEGORIES: Record<string, ConsentCategory> = {
   "Google Analytics": "statistics",
   "Google Search Console": "statistics",
   HubSpot: "statistics",
-  "Google Ads": "marketing",
-  "Facebook Pixel": "marketing",
-  "LinkedIn Insight Tag": "marketing",
-  "Hotjar": "marketing",
-  "Google Maps": "marketing",
-  YouTube: "marketing",
-  Instagram: "marketing",
-  Calendly: "marketing",
 };
 
 export const CATEGORY_LABELS: Record<ConsentCategory, { title: string; description: string }> = {
@@ -97,24 +115,31 @@ export const CATEGORY_LABELS: Record<ConsentCategory, { title: string; descripti
   },
   marketing: {
     title: "Marketing",
-    description:
-      "Voor gepersonaliseerde advertenties en social media integraties (Facebook Pixel, LinkedIn, Hotjar, YouTube/Instagram embeds).",
+    description: "Voor gepersonaliseerde advertenties. Momenteel plaatsen wij geen marketingcookies.",
   },
 };
 
 export const CookieConsentProvider = ({ children }: { children: ReactNode }) => {
   const [{ status, preferences }, setState] = useState(loadConsent);
 
+  // Bij laden van de pagina: geef een opgeslagen keuze door aan Google Consent Mode
+  useEffect(() => {
+    updateGtagConsent(preferences);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const acceptAll = useCallback(() => {
     const next = { status: "all_accepted" as const, preferences: ALL_ACCEPTED };
     setState(next);
     persistConsent(next.status, next.preferences);
+    updateGtagConsent(next.preferences);
   }, []);
 
   const rejectAll = useCallback(() => {
     const next = { status: "all_rejected" as const, preferences: ALL_REJECTED };
     setState(next);
     persistConsent(next.status, next.preferences);
+    updateGtagConsent(next.preferences);
   }, []);
 
   const savePreferences = useCallback((prefs: Partial<ConsentPreferences>) => {
@@ -126,6 +151,7 @@ export const CookieConsentProvider = ({ children }: { children: ReactNode }) => 
     const next = { status: "customized" as const, preferences: merged };
     setState(next);
     persistConsent(next.status, next.preferences);
+    updateGtagConsent(next.preferences);
   }, []);
 
   const reopenBanner = useCallback(() => {

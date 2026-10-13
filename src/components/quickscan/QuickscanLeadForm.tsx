@@ -30,7 +30,6 @@ interface QuickscanLeadFormProps {
 
 const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLeadFormProps) => {
   const [privacyChecked, setPrivacyChecked] = useState(false);
-  const [newsletterChecked, setNewsletterChecked] = useState(false);
   const [privacyError, setPrivacyError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -54,7 +53,6 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
         email: values.email,
         company: values.company || undefined,
         phone: values.phone || undefined,
-        newsletter: newsletterChecked,
         scores: {
           business_attractiveness_score: scores.attractiveness.toString(),
           business_readiness_score: scores.readiness.toString(),
@@ -170,8 +168,6 @@ Direct zichtbaar en in uw inbox.
               setPrivacyChecked(v);
               if (v) setPrivacyError("");
             }}
-            newsletterChecked={newsletterChecked}
-            onNewsletterChange={setNewsletterChecked}
             privacyError={privacyError} />
           
 

@@ -26,7 +26,6 @@ const contactSchema = z.object({
   privacy: z.literal(true, {
     errorMap: () => ({ message: "Je dient akkoord te gaan met de privacyverklaring" }),
   }),
-  newsletter: z.boolean().optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -125,7 +124,6 @@ const Contact = () => {
       phone: "",
       message: "",
       privacy: undefined as unknown as true,
-      newsletter: false,
     },
   });
 
@@ -138,7 +136,6 @@ const Contact = () => {
           email: data.email,
           phone: data.phone || undefined,
           message: data.message,
-          newsletter: data.newsletter,
         },
       });
 
@@ -468,9 +465,6 @@ const Contact = () => {
                         onPrivacyChange={(checked) =>
                           form.setValue("privacy", checked as true, { shouldValidate: true })
                         }
-                        newsletterChecked={form.watch("newsletter") ?? false}
-                        onNewsletterChange={(checked) => form.setValue("newsletter", checked)}
-                        showNewsletter={true}
                         privacyError={form.formState.errors.privacy?.message}
                       />
 

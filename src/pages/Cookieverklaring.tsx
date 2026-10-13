@@ -26,7 +26,7 @@ const Cookieverklaring = () => {
 
           <div className="prose prose-lg text-muted-foreground space-y-8">
             <div>
-              <p className="text-sm text-muted-foreground/70">Versie: 14 maart 2026</p>
+              <p className="text-sm text-muted-foreground/70">Versie: 13 oktober 2026</p>
               <p className="text-sm text-muted-foreground/70">Van toepassing op: www.propasso.nl</p>
             </div>
 
@@ -68,9 +68,9 @@ const Cookieverklaring = () => {
                       <td className="p-3">Sessie</td>
                     </tr>
                     <tr className="border-t border-border">
-                      <td className="p-3">Cloudflare of vergelijkbaar</td>
+                      <td className="p-3 font-mono text-xs">__cf_bm (Cloudflare)</td>
                       <td className="p-3">Beveiliging, prestaties en bescherming tegen misbruik</td>
-                      <td className="p-3">Sessie / max. 30 dagen</td>
+                      <td className="p-3">30 minuten</td>
                     </tr>
                   </tbody>
                 </table>
@@ -85,88 +85,46 @@ const Cookieverklaring = () => {
                 <table className="w-full text-sm border border-border rounded-lg">
                   <thead>
                     <tr className="bg-muted">
-                      <th className="text-left p-3 font-semibold text-foreground">Dienst</th>
+                      <th className="text-left p-3 font-semibold text-foreground">Cookie / Dienst</th>
                       <th className="text-left p-3 font-semibold text-foreground">Doel</th>
                       <th className="text-left p-3 font-semibold text-foreground">Bewaartermijn</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="border-t border-border">
-                      <td className="p-3">Google Analytics</td>
+                      <td className="p-3">Google Analytics 4 (via Google Tag Manager), cookies <span className="font-mono text-xs">_ga</span> en <span className="font-mono text-xs">_gid</span></td>
                       <td className="p-3">Websitestatistieken en bezoekersgedrag</td>
-                      <td className="p-3">14 maanden</td>
+                      <td className="p-3">_ga: 2 jaar, _gid: 24 uur</td>
                     </tr>
                     <tr className="border-t border-border">
-                      <td className="p-3">Google Search Console</td>
-                      <td className="p-3">Inzicht in zoekprestaties en indexering</td>
-                      <td className="p-3">16 maanden</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">HubSpot</td>
-                      <td className="p-3">Bezoekersanalyse, formulieropvolging en klantrelatiebeheer</td>
+                      <td className="p-3">HubSpot, cookies <span className="font-mono text-xs">__hstc</span> en <span className="font-mono text-xs">hubspotutk</span></td>
+                      <td className="p-3">Bezoekersanalyse en formulieropvolging</td>
                       <td className="p-3">13 maanden</td>
                     </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">HubSpot, cookie <span className="font-mono text-xs">__hssc</span></td>
+                      <td className="p-3">Sessieregistratie voor bezoekersanalyse</td>
+                      <td className="p-3">30 minuten</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">HubSpot, cookie <span className="font-mono text-xs">__hssrc</span></td>
+                      <td className="p-3">Herkenning van browser-sessie</td>
+                      <td className="p-3">Sessie</td>
+                    </tr>
+                    <tr className="border-t border-border">
+                      <td className="p-3">HubSpot Meetings</td>
+                      <td className="p-3">Ingeplande afspraken via de agenda-module op de contactpagina</td>
+                      <td className="p-3">Sessie</td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
-              <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Marketing en social media</h3>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Marketing</h3>
               <p>
-                Deze cookies en diensten worden gebruikt voor gerichte communicatie, advertenties en het integreren
-                van externe content. Ze worden alleen geplaatst met jouw toestemming.
-              </p>
-              <div className="mt-3 overflow-x-auto">
-                <table className="w-full text-sm border border-border rounded-lg">
-                  <thead>
-                    <tr className="bg-muted">
-                      <th className="text-left p-3 font-semibold text-foreground">Dienst</th>
-                      <th className="text-left p-3 font-semibold text-foreground">Doel</th>
-                      <th className="text-left p-3 font-semibold text-foreground">Bewaartermijn</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Google Ads</td>
-                      <td className="p-3">Advertentiecampagnes en conversietracking</td>
-                      <td className="p-3">90 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Facebook Pixel (Meta)</td>
-                      <td className="p-3">Advertentie-tracking en remarketing</td>
-                      <td className="p-3">90 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">LinkedIn Insight Tag</td>
-                      <td className="p-3">Advertentie-tracking en doelgroepanalyse</td>
-                      <td className="p-3">90 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Hotjar of vergelijkbaar</td>
-                      <td className="p-3">Heatmaps en gebruikerservaring-analyse</td>
-                      <td className="p-3">365 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Google Maps</td>
-                      <td className="p-3">Interactieve kaart op de contactpagina</td>
-                      <td className="p-3">180 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">YouTube / Instagram embeds</td>
-                      <td className="p-3">Ingesloten video's en social media content</td>
-                      <td className="p-3">180 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Calendly of vergelijkbaar</td>
-                      <td className="p-3">Inplannen van afspraken</td>
-                      <td className="p-3">30 dagen</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <p className="mt-4 text-sm">
-                Wij kunnen in de toekomst vergelijkbare diensten inzetten voor dezelfde doeleinden. Bij wezenlijke
-                wijzigingen passen wij deze cookieverklaring en de{" "}
+                Op dit moment plaatsen wij geen marketingcookies en maken wij geen gebruik van advertentie-pixels
+                of social media embeds. Mocht dit in de toekomst veranderen, dan worden deze cookies alleen
+                geplaatst met jouw toestemming en passen wij vooraf deze cookieverklaring en de{" "}
                 <Link to="/privacyverklaring" className="text-primary hover:underline font-medium">
                   privacyverklaring
                 </Link>{" "}
@@ -183,8 +141,11 @@ const Cookieverklaring = () => {
               <ul className="list-disc pl-6 mt-2 space-y-1">
                 <li><strong>Functioneel</strong> — altijd actief (noodzakelijk voor de website)</li>
                 <li><strong>Statistieken</strong> — voor het meten van websitegebruik</li>
-                <li><strong>Marketing</strong> — voor gepersonaliseerde advertenties en social media</li>
+                <li><strong>Marketing</strong> — voor gepersonaliseerde advertenties (momenteel niet in gebruik)</li>
               </ul>
+              <p className="mt-2">
+                Je toestemming is 12 maanden geldig. Daarna vragen wij opnieuw om je voorkeuren.
+              </p>
               <p className="mt-4">
                 Je kunt je voorkeuren op elk moment wijzigen via de vingerafdruk-knop linksonder op de website,
                 of via onderstaande knop:
@@ -215,12 +176,8 @@ const Cookieverklaring = () => {
                 van de betreffende diensten:
               </p>
               <ul className="list-disc pl-6 mt-2 space-y-1 text-sm">
-                <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google (Analytics, Ads, Maps, Tag Manager, Search Console)</a></li>
-                <li><a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Meta (Facebook Pixel)</a></li>
-                <li><a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">LinkedIn</a></li>
-                <li><a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hotjar</a></li>
+                <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google (Analytics, Tag Manager)</a></li>
                 <li><a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">HubSpot</a></li>
-                <li><a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Calendly</a></li>
                 <li><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Cloudflare</a></li>
               </ul>
             </div>

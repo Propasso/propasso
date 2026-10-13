@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791885368070,
+      "tag": "0000_privacy_data_cleanup_cron",
+      "breakpoints": true
+    }
+  ]
+}
