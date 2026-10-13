@@ -59,7 +59,6 @@ Deno.serve(async (req) => {
     const email = typeof obj.email === "string" ? obj.email.trim() : "";
     const message = validateString(obj.message, 5000);
     const phone = validateString(obj.phone, 30) ?? "";
-    const newsletter = obj.newsletter === true;
 
     if (!name) return jsonResponse({ error: "Naam is verplicht (max 200 tekens)." }, 400);
     if (!isValidEmail(email)) return jsonResponse({ error: "Ongeldig e-mailadres." }, 400);
@@ -116,9 +115,7 @@ Deno.serve(async (req) => {
           consent: {
             consentToProcess: true,
             text: "Ik ga akkoord met de privacyverklaring",
-            communications: newsletter
-              ? [{ value: true, subscriptionTypeId: 999, text: "Ik wil graag relevante rapporten en de nieuwsbrief ontvangen." }]
-              : [],
+            communications: [],
           },
         },
       }),
