@@ -120,63 +120,11 @@ const Cookieverklaring = () => {
                 </table>
               </div>
 
-              <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Marketing en social media</h3>
+              <h3 className="text-lg font-semibold text-foreground mt-6 mb-2">Marketing</h3>
               <p>
-                Deze cookies en diensten worden gebruikt voor gerichte communicatie, advertenties en het integreren
-                van externe content. Ze worden alleen geplaatst met jouw toestemming.
-              </p>
-              <div className="mt-3 overflow-x-auto">
-                <table className="w-full text-sm border border-border rounded-lg">
-                  <thead>
-                    <tr className="bg-muted">
-                      <th className="text-left p-3 font-semibold text-foreground">Dienst</th>
-                      <th className="text-left p-3 font-semibold text-foreground">Doel</th>
-                      <th className="text-left p-3 font-semibold text-foreground">Bewaartermijn</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Google Ads</td>
-                      <td className="p-3">Advertentiecampagnes en conversietracking</td>
-                      <td className="p-3">90 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Facebook Pixel (Meta)</td>
-                      <td className="p-3">Advertentie-tracking en remarketing</td>
-                      <td className="p-3">90 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">LinkedIn Insight Tag</td>
-                      <td className="p-3">Advertentie-tracking en doelgroepanalyse</td>
-                      <td className="p-3">90 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Hotjar of vergelijkbaar</td>
-                      <td className="p-3">Heatmaps en gebruikerservaring-analyse</td>
-                      <td className="p-3">365 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Google Maps</td>
-                      <td className="p-3">Interactieve kaart op de contactpagina</td>
-                      <td className="p-3">180 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">YouTube / Instagram embeds</td>
-                      <td className="p-3">Ingesloten video's en social media content</td>
-                      <td className="p-3">180 dagen</td>
-                    </tr>
-                    <tr className="border-t border-border">
-                      <td className="p-3">Calendly of vergelijkbaar</td>
-                      <td className="p-3">Inplannen van afspraken</td>
-                      <td className="p-3">30 dagen</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <p className="mt-4 text-sm">
-                Wij kunnen in de toekomst vergelijkbare diensten inzetten voor dezelfde doeleinden. Bij wezenlijke
-                wijzigingen passen wij deze cookieverklaring en de{" "}
+                Op dit moment plaatsen wij geen marketingcookies en maken wij geen gebruik van advertentie-pixels
+                of social media embeds. Mocht dit in de toekomst veranderen, dan worden deze cookies alleen
+                geplaatst met jouw toestemming en passen wij vooraf deze cookieverklaring en de{" "}
                 <Link to="/privacyverklaring" className="text-primary hover:underline font-medium">
                   privacyverklaring
                 </Link>{" "}
@@ -193,8 +141,11 @@ const Cookieverklaring = () => {
               <ul className="list-disc pl-6 mt-2 space-y-1">
                 <li><strong>Functioneel</strong> — altijd actief (noodzakelijk voor de website)</li>
                 <li><strong>Statistieken</strong> — voor het meten van websitegebruik</li>
-                <li><strong>Marketing</strong> — voor gepersonaliseerde advertenties en social media</li>
+                <li><strong>Marketing</strong> — voor gepersonaliseerde advertenties (momenteel niet in gebruik)</li>
               </ul>
+              <p className="mt-2">
+                Je toestemming is 12 maanden geldig. Daarna vragen wij opnieuw om je voorkeuren.
+              </p>
               <p className="mt-4">
                 Je kunt je voorkeuren op elk moment wijzigen via de vingerafdruk-knop linksonder op de website,
                 of via onderstaande knop:
