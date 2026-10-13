@@ -177,7 +177,6 @@ const CallbackRequestModal = ({ open, onOpenChange }: CallbackRequestModalProps)
                     setPrivacyChecked(v);
                     if (v) setPrivacyError("");
                   }}
-                  showNewsletter={false}
                   privacyError={privacyError}
                 />
 
