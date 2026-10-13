@@ -176,12 +176,8 @@ const Cookieverklaring = () => {
                 van de betreffende diensten:
               </p>
               <ul className="list-disc pl-6 mt-2 space-y-1 text-sm">
-                <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google (Analytics, Ads, Maps, Tag Manager, Search Console)</a></li>
-                <li><a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Meta (Facebook Pixel)</a></li>
-                <li><a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">LinkedIn</a></li>
-                <li><a href="https://www.hotjar.com/legal/policies/privacy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Hotjar</a></li>
+                <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Google (Analytics, Tag Manager)</a></li>
                 <li><a href="https://legal.hubspot.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">HubSpot</a></li>
-                <li><a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Calendly</a></li>
                 <li><a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">Cloudflare</a></li>
               </ul>
             </div>
