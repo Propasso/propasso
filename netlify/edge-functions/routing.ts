@@ -1,6 +1,7 @@
 // Routing vóór de prerender-middleware.
 // 1. Oude adressen: echte 301, ook voor crawlers en AI-bots (hoofdlettergevoelig).
 // 2. Kennisbank-adressen die niet (of nog niet) gepubliceerd zijn: echte 404.
+// 3. Paden met een slash aan het eind: 301 naar het pad zonder slash.
 // Nieuwe doorverwijzingen ALLEEN hier toevoegen, niet in netlify.toml:
 // netlify.toml-redirects draaien pas na de prerender en bots zien ze dan niet.
 import type { Context } from "https://edge.netlify.com";
@@ -67,6 +68,10 @@ export default async function handler(req: Request, context: Context) {
   for (const [prefix, to] of PREFIX_REDIRECTS) {
     if (path.startsWith(prefix)) return redirect(url, to);
   }
+
+  // 3. Slash aan het eind (behalve /): 301 naar het pad zonder slash, met behoud van ?query.
+  //    Nodig voor prerendering: /werkwijze vindt werkwijze.html, /werkwijze/ niet.
+  if (url.pathname !== path) return redirect(url, path + url.search);
 
   const thema = path.match(/^\/kennisbank\/thema\/([^/]+)$/);
   const post = thema ? null : path.match(/^\/kennisbank\/([^/]+)$/);
