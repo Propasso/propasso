@@ -17,7 +17,7 @@ const STATIC_PAGES = [
 
 
 const PILLAR_SLUGS = [
-  "bedrijfswaarde-en-winstgevendheid-verbeteren",
+  "ondernemingswaarde-en-winstgevendheid-verbeteren",
   "bedrijf-overdraagbaar-maken",
   "afhankelijkheid-van-de-ondernemer-verminderen",
   "de-waardering-van-je-bedrijf",

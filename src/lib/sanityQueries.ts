@@ -22,6 +22,9 @@ const CATEGORY_SLUG_CANONICAL_MAP: Record<string, string> = {
   "het-persoonlijke-en-persoonlijke-financiele-plan-na-overdracht":
     "het-persoonlijke-en-financiele-plan-na-overdracht",
   "persoonlijk-en-financieel-plan": "het-persoonlijke-en-financiele-plan-na-overdracht",
+  "Ondernemingswaarde-en-winstgevendheid-verbeteren":
+    "ondernemingswaarde-en-winstgevendheid-verbeteren",
+  "bedrijfswaarde-en-winstgevendheid-verbeteren": "ondernemingswaarde-en-winstgevendheid-verbeteren",
 };
 
 export const canonicalizeCategorySlug = (slug: string) => CATEGORY_SLUG_CANONICAL_MAP[slug] ?? slug;
