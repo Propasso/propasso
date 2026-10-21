@@ -1,0 +1,43 @@
+name: Netlify rebuild (prerender verversen)
+
+# Start een nieuwe Netlify-build, zodat de geprerenderde pagina's de actuele Sanity-content tonen.
+# 1. workflow_dispatch: aangeroepen door de Sanity-webhook na publiceren (of handmatig).
+#    Wacht eerst 3 minuten, omdat de Sanity-CDN 1 à 2 minuten achterloopt.
+#    Meerdere publicaties kort na elkaar leveren één build op (oudere wachtende run wordt geannuleerd).
+# 2. schedule: elk uur kijken of er in het afgelopen anderhalf uur een ingepland artikel
+#    live is gegaan (publishedAt verstreken). Alleen dan bouwen.
+# Benodigd secret: NETLIFY_BUILD_HOOK (de URL van de Netlify build hook).
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '10 * * * *'
+
+concurrency:
+  group: netlify-rebuild-${{ github.event_name }}
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wachten tot de Sanity-cache bij is
+        if: github.event_name == 'workflow_dispatch'
+        run: sleep 180
+
+      - name: Ingeplande artikelen controleren
+        id: check
+        if: github.event_name == 'schedule'
+        run: |
+          Q='count(*[_type == "post" && !(_id in path("drafts.**")) && !(_id in path("versions.**")) && dateTime(publishedAt) > dateTime(now()) - 5400 && dateTime(publishedAt) <= dateTime(now()) - 300])'
+          N=$(curl -sf -G "https://h53ofne2.api.sanity.io/v2024-01-01/data/query/production" \
+            --data-urlencode "perspective=published" --data-urlencode "query=$Q" | jq -r '.result')
+          echo "Artikelen die in het afgelopen anderhalf uur live gingen: $N"
+          echo "count=$N" >> "$GITHUB_OUTPUT"
+
+      - name: Netlify-build starten
+        if: github.event_name != 'schedule' || steps.check.outputs.count != '0'
+        run: |
+          curl -sf -X POST -d '{}' "$HOOK" -o /dev/null -w "Netlify build hook: %{http_code}\n"
+        env:
+          HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
