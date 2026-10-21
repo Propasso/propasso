@@ -2,7 +2,8 @@
   # Build-time prerendering: na vite build rendert scripts/prerender.mjs elke pagina
   # naar statische HTML. puppeteer wordt los geïnstalleerd (niet in package.json),
   # zodat Lovable er niets van merkt. Zie roadmap.md, "Prerendering".
-  command = "npm run build && npm install --prefix scripts/.prerender-deps --no-save --no-package-lock --no-audit --no-fund puppeteer@25.12.0 && node scripts/prerender.mjs"
+  # De stappen staan in scripts/netlify-build.sh.
+  command = "bash scripts/netlify-build.sh"
   publish = "dist"
 
 # routing moet als eerste draaien (vóór prerender): 301's en echte 404's

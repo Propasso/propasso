@@ -13,9 +13,10 @@
 - Thema-slugs zijn definitief: ondernemingswaarde-en-winstgevendheid-verbeteren en het-persoonlijke-en-financiele-plan-na-overdracht. Oude varianten krijgen een 301.
 
 ## Prerendering (build-time, branch prerender-build, okt 2026)
-- NIET WIJZIGEN zonder overleg: het buildcommando in netlify.toml is
-  `npm run build && npm install --prefix scripts/.prerender-deps --no-save --no-package-lock --no-audit --no-fund puppeteer@25.12.0 && node scripts/prerender.mjs`.
-  Wordt dit teruggezet naar alleen `npm run build`, dan krijgen bots weer lege HTML.
+- NIET WIJZIGEN zonder overleg: het buildcommando in netlify.toml is `bash scripts/netlify-build.sh`.
+  Dat script draait `npm run build`, installeert puppeteer los en draait `node scripts/prerender.mjs`.
+  Wordt het buildcommando teruggezet naar alleen `npm run build`, dan krijgen bots weer lege HTML.
+- Op een deploy preview staat de volledige builduitvoer op /prerender-log.txt (het Netlify-buildlog laadt niet altijd).
 - puppeteer staat bewust NIET in package.json; het wordt alleen tijdens de Netlify-build los geïnstalleerd. De Lovable-preview draait geen prerender.
 - scripts/prerender.mjs rendert na vite build elke pagina naar statische HTML: dist/werkwijze.html, dist/kennisbank/<slug>.html, dist/kennisbank/thema/<slug>.html, / -> dist/index.html. De lege app staat in dist/app-shell.html.
 - Alle SPA-rewrites en de 404-catch-all in netlify.toml wijzen naar /app-shell.html, niet naar /index.html (index.html is de geprerenderde homepage). Alleen de regel voor / wijst naar /index.html.
