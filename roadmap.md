@@ -12,6 +12,21 @@
 - routing.ts geeft een echte 404 voor /kennisbank/<slug> en /kennisbank/thema/<slug> die niet gepubliceerd in Sanity staan (artikelen met publishedAt in de toekomst tellen als niet gepubliceerd).
 - Thema-slugs zijn definitief: ondernemingswaarde-en-winstgevendheid-verbeteren en het-persoonlijke-en-financiele-plan-na-overdracht. Oude varianten krijgen een 301.
 
+## Prerendering (build-time, branch prerender-build, okt 2026)
+- NIET WIJZIGEN zonder overleg: het buildcommando in netlify.toml is `bash scripts/netlify-build.sh`.
+  Dat script draait `npm run build`, installeert puppeteer los en draait `node scripts/prerender.mjs`.
+  Wordt het buildcommando teruggezet naar alleen `npm run build`, dan krijgen bots weer lege HTML.
+- Op een deploy preview staat de volledige builduitvoer op /prerender-log.txt (het Netlify-buildlog laadt niet altijd).
+- puppeteer staat bewust NIET in package.json; het wordt alleen tijdens de Netlify-build los geïnstalleerd. De Lovable-preview draait geen prerender.
+- scripts/prerender.mjs rendert na vite build elke pagina naar statische HTML: dist/werkwijze.html, dist/kennisbank/<slug>.html, dist/kennisbank/thema/<slug>.html, / -> dist/index.html. De lege app staat in dist/app-shell.html.
+- Alle SPA-rewrites en de 404-catch-all in netlify.toml wijzen naar /app-shell.html, niet naar /index.html (index.html is de geprerenderde homepage). Alleen de regel voor / wijst naar /index.html.
+- Routes: vaste routes uit src/App.tsx (zonder parameters en zonder *, behalve /styleguide en /exit-planning) plus uit Sanity: gepubliceerde posts (publishedAt <= now, noIndex != true), alle categories en documenten van type pagina (alleen als App.tsx een route voor die slug heeft). Nieuwe vaste pagina in App.tsx = vanzelf meegenomen.
+- Faalt één pagina (ook na een tweede poging), dan faalt de build en blijft de vorige versie live.
+- Het script draait op http://localhost:4173; die origin staat in Sanity CORS (zonder credentials).
+- Content verversen: .github/workflows/netlify-rebuild.yml. Sanity-webhook -> deze workflow (3 minuten wachten) -> Netlify build hook. Daarnaast elk uur een check op ingeplande artikelen die live gingen. Secret NETLIFY_BUILD_HOOK in GitHub. Workflowbestanden kan alleen Karel via GitHub toevoegen; de Claude-koppeling heeft daar geen rechten voor.
+- routing.ts geeft een 301 van elk pad met een slash aan het eind (behalve /) naar het pad zonder slash.
+- SEO.tsx: JSON-LD binnen Helmet moet als children (`{safeJsonLd(schema)}`), niet via dangerouslySetInnerHTML; dat laatste negeert react-helmet-async en dan verschijnt het JSON-LD nergens.
+
 ## Openstaand uit eerdere rondes
 - HubSpot floating chat: wacht op antwoorden (chatflow gepubliceerd? teasertekst? nudge-timing?)
 - Bing meta-description: keuze Optie A (edge function) of B (fallback) nog niet gemaakt

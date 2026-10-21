@@ -1,5 +1,9 @@
 [build]
-  command = "npm run build"
+  # Build-time prerendering: na vite build rendert scripts/prerender.mjs elke pagina
+  # naar statische HTML. puppeteer wordt los geïnstalleerd (niet in package.json),
+  # zodat Lovable er niets van merkt. Zie roadmap.md, "Prerendering".
+  # De stappen staan in scripts/netlify-build.sh.
+  command = "bash scripts/netlify-build.sh"
   publish = "dist"
 
 # routing moet als eerste draaien (vóór prerender): 301's en echte 404's
@@ -29,6 +33,8 @@
   status = 410
 
 # ---- SPA rewrites: bestaande routes geven 200 ----
+# Geprerenderde pagina's (bijv. dist/werkwijze.html) gaan vóór deze regels (shadowing).
+# Bestaat er (nog) geen statisch bestand, dan krijgt de bezoeker de lege app.
 
 [[redirects]]
   from = "/"
@@ -37,122 +43,122 @@
 
 [[redirects]]
   from = "/werkwijze"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/werkwijze/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/kennisbank"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/kennisbank/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/kennisbank/*"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/over-propasso"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/over-propasso/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/contact"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/contact/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/quickscan"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/quickscan/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/veelgestelde-vragen"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/veelgestelde-vragen/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/disclaimer"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/disclaimer/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/privacyverklaring"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/privacyverklaring/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/algemene-voorwaarden"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/algemene-voorwaarden/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/cookieverklaring"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/cookieverklaring/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/styleguide"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 [[redirects]]
   from = "/styleguide/"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 200
 
 # ---- Catch-all: onbekende URL's geven een echte 404 ----
 
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/app-shell.html"
   status = 404

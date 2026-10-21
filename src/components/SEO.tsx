@@ -74,11 +74,10 @@ const SEO = ({
           
             {jsonLd &&
                       (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).map((schema, index) => (
-                                  <script
-                                                key={`jsonld-${index}`}
-                                                type="application/ld+json"
-                                                dangerouslySetInnerHTML={{ __html: safeJsonLd(schema) }}
-                                              />
+                                  // react-helmet-async negeert dangerouslySetInnerHTML; de JSON moet als children mee.
+                                  <script key={`jsonld-${index}`} type="application/ld+json">
+                                                {safeJsonLd(schema)}
+                                              </script>
                                 ))}
           </Helmet>
         );
