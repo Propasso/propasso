@@ -110,7 +110,7 @@ export async function fetchPostsByCategory(categoryId: string): Promise<SanityPo
 
 export async function fetchPostBySlug(slug: string): Promise<SanityPost | null> {
   const post = await sanityClient.fetch<SanityPost | null>(
-    `*[_type == "post" && slug.current == $slug][0] {
+    `*[_type == "post" && slug.current == $slug && publishedAt <= now()][0] {
       ${postFields},
       body,
       "author": author->{ name, image },

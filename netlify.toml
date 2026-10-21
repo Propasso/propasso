@@ -2,111 +2,19 @@
   command = "npm run build"
   publish = "dist"
 
+# routing moet als eerste draaien (vóór prerender): 301's en echte 404's
+[[edge_functions]]
+  path = "/*"
+  excludedPath = ["/assets/*", "/og/*", "/favicon.*", "/*.png", "/*.svg", "/*.txt", "/sitemap.xml", "/netlify-prerender-function"]
+  function = "routing"
+
 [[edge_functions]]
   path = "/sitemap.xml"
   function = "sitemap"
 
-# ---- 301 redirects (oude URL's) ----
-
-[[redirects]]
-  from = "/exit-planning"
-  to = "/werkwijze"
-  status = 301
-
-[[redirects]]
-  from = "/exit-planning/"
-  to = "/werkwijze"
-  status = 301
-
-[[redirects]]
-  from = "/hoe-ik-werk"
-  to = "/werkwijze"
-  status = 301
-
-[[redirects]]
-  from = "/hoe-ik-werk/"
-  to = "/werkwijze"
-  status = 301
-
-[[redirects]]
-  from = "/van-cijfers-naar-inzicht-hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf"
-  to = "/kennisbank/hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf"
-  status = 301
-
-[[redirects]]
-  from = "/van-cijfers-naar-inzicht-hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf/"
-  to = "/kennisbank/hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf"
-  status = 301
-
-[[redirects]]
-  from = "/de-onmisbare-ondernemer"
-  to = "/kennisbank/de-onmisbare-ondernemer"
-  status = 301
-
-[[redirects]]
-  from = "/de-onmisbare-ondernemer/"
-  to = "/kennisbank/de-onmisbare-ondernemer"
-  status = 301
-
-[[redirects]]
-  from = "/over-mij"
-  to = "/over-propasso"
-  status = 301
-
-[[redirects]]
-  from = "/over-mij/"
-  to = "/over-propasso"
-  status = 301
-
-[[redirects]]
-  from = "/diensten"
-  to = "/werkwijze"
-  status = 301
-
-[[redirects]]
-  from = "/diensten/"
-  to = "/werkwijze"
-  status = 301
-
-[[redirects]]
-  from = "/partnernetwerk"
-  to = "/over-propasso"
-  status = 301
-
-[[redirects]]
-  from = "/onewebmedia/Algemene*"
-  to = "/algemene-voorwaarden"
-  status = 301
-
-[[redirects]]
-  from = "/onewebmedia/Privacyverklaring*"
-  to = "/privacyverklaring"
-  status = 301
-
-[[redirects]]
-  from = "/ben-je-klaar-om-te-verkopen-twee-vormen-van-exit-readiness-die-je-moet-begrijpen/"
-  to = "/kennisbank/wanneer-is-je-bedrijf-verkoopklaar-over-voorbereiding-van-bedrijf-en-ondernemer"
-  status = 301
-
-[[redirects]]
-  from = "/kennisbank/bedrijfswaarde-verhogen-waardedrijvers"
-  to = "/kennisbank/thema/de-waardering-van-je-bedrijf"
-  status = 301
-
-[[redirects]]
-  from = "/kennisbank/bedrijfswaarde-verhogen-waardedrijvers/"
-  to = "/kennisbank/thema/de-waardering-van-je-bedrijf"
-  status = 301
-
-[[redirects]]
-  from = "/kennisbank/thema/bedrijfswaardering-en-waardedrijvers"
-  to = "/kennisbank/thema/de-waardering-van-je-bedrijf"
-  status = 301
-
-[[redirects]]
-  from = "/kennisbank/thema/bedrijfswaardering-en-waardedrijvers/"
-  to = "/kennisbank/thema/de-waardering-van-je-bedrijf"
-  status = 301
+# ---- 301-doorverwijzingen ----
+# Staan in netlify/edge-functions/routing.ts, niet hier: redirects in dit
+# bestand draaien pas na de prerender-middleware en bots zien ze dan niet.
 
 # ---- Oude WordPress-paden: 410 Gone ----
 
