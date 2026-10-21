@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 .env
 .env.*
+
+# prerender (puppeteer wordt tijdens de Netlify-build los geïnstalleerd)
+scripts/.prerender-deps/
