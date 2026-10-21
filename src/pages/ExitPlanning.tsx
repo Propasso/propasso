@@ -1,4 +1,3 @@
-import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { PortableText } from "@portabletext/react";

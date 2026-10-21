@@ -25,6 +25,7 @@ import AlgemeneVoorwaarden from "./pages/AlgemeneVoorwaarden";
 import Cookieverklaring from "./pages/Cookieverklaring";
 import NotFound from "./pages/NotFound";
 import Quickscan from "./pages/Quickscan";
+import ExitPlanning from "./pages/ExitPlanning";
 
 const queryClient = new QueryClient();
 
