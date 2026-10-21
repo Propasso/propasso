@@ -152,6 +152,14 @@ async function renderRoute(browser, route) {
       () => (document.getElementById("root")?.innerText || "").trim().length > 200,
       { timeout: 15_000 },
     );
+    // react-helmet zet title, description en canonical asynchroon; daarop wachten.
+    await page.waitForFunction(
+      () =>
+        document.title.trim().length > 0 &&
+        document.querySelector('meta[name="description"][content]') &&
+        document.querySelector('link[rel="canonical"][href]'),
+      { timeout: 15_000 },
+    );
 
     const finalPath = await page.evaluate(() => location.pathname);
     if (finalPath !== route) throw new Error(`app stuurde door naar ${finalPath}`);
@@ -251,7 +259,15 @@ async function main() {
   const server = await startServer(shell);
   const browser = await puppeteer.launch({
     headless: true,
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+    // De throttling-vlaggen voorkomen dat tabs op de achtergrond (4 tegelijk) trager renderen.
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox",
+      "--disable-dev-shm-usage",
+      "--disable-background-timer-throttling",
+      "--disable-renderer-backgrounding",
+      "--disable-backgrounding-occluded-windows",
+    ],
   });
 
   const results = new Map();

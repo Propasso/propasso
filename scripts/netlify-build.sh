@@ -13,7 +13,7 @@ steps() {
   set -e
   echo "== omgeving: CONTEXT=${CONTEXT:-onbekend}, node $(node -v), npm $(npm -v)"
   npm run build
-  npm install --prefix scripts/.prerender-deps --no-save --no-package-lock --no-audit --no-fund puppeteer@25.12.0
+  npm install --prefix scripts/.prerender-deps --no-save --no-package-lock --no-audit --no-fund puppeteer@24.43.1
   node scripts/prerender.mjs
 }
 
