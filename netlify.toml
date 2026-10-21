@@ -9,6 +9,46 @@
 # ---- 301 redirects (oude URL's) ----
 
 [[redirects]]
+  from = "/exit-planning"
+  to = "/werkwijze"
+  status = 301
+
+[[redirects]]
+  from = "/exit-planning/"
+  to = "/werkwijze"
+  status = 301
+
+[[redirects]]
+  from = "/hoe-ik-werk"
+  to = "/werkwijze"
+  status = 301
+
+[[redirects]]
+  from = "/hoe-ik-werk/"
+  to = "/werkwijze"
+  status = 301
+
+[[redirects]]
+  from = "/van-cijfers-naar-inzicht-hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf"
+  to = "/kennisbank/hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf"
+  status = 301
+
+[[redirects]]
+  from = "/van-cijfers-naar-inzicht-hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf/"
+  to = "/kennisbank/hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf"
+  status = 301
+
+[[redirects]]
+  from = "/de-onmisbare-ondernemer"
+  to = "/kennisbank/de-onmisbare-ondernemer"
+  status = 301
+
+[[redirects]]
+  from = "/de-onmisbare-ondernemer/"
+  to = "/kennisbank/de-onmisbare-ondernemer"
+  status = 301
+
+[[redirects]]
   from = "/over-mij"
   to = "/over-propasso"
   status = 301
