@@ -5,7 +5,7 @@ export const pillarOgImages: Record<string, string> = {
     "https://propasso.nl/og/pillar-bedrijf-overdraagbaar-maken.png",
   "afhankelijkheid-van-de-ondernemer-verminderen":
     "https://propasso.nl/og/pillar-afhankelijkheid-van-de-ondernemer-verminderen.png",
-  "bedrijfswaardering-en-waardedrijvers":
+  "de-waardering-van-je-bedrijf":
     "https://propasso.nl/og/pillar-bedrijfswaardering-en-waardedrijvers.png",
   "voorbereiding-op-bedrijfsoverdracht":
     "https://propasso.nl/og/pillar-voorbereiding-op-bedrijfsoverdracht.png",

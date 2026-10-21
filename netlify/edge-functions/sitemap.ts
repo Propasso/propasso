@@ -20,7 +20,7 @@ const PILLAR_SLUGS = [
   "bedrijfswaarde-en-winstgevendheid-verbeteren",
   "bedrijf-overdraagbaar-maken",
   "afhankelijkheid-van-de-ondernemer-verminderen",
-  "bedrijfswaardering-en-waardedrijvers",
+  "de-waardering-van-je-bedrijf",
   "voorbereiding-op-bedrijfsoverdracht",
   "het-persoonlijke-en-financiele-plan-na-overdracht",
 ];

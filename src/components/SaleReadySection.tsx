@@ -22,7 +22,7 @@ const pillars = [
     image: moneyImg,
     title: "Waardedrijvers",
     description: "Inzicht in wat je bedrijf écht waardevol maakt",
-    slug: "bedrijfswaardering-en-waardedrijvers",
+    slug: "de-waardering-van-je-bedrijf",
   },
   {
     number: "03",

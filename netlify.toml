@@ -88,6 +88,26 @@
   to = "/kennisbank/wanneer-is-je-bedrijf-verkoopklaar-over-voorbereiding-van-bedrijf-en-ondernemer"
   status = 301
 
+[[redirects]]
+  from = "/kennisbank/bedrijfswaarde-verhogen-waardedrijvers"
+  to = "/kennisbank/thema/de-waardering-van-je-bedrijf"
+  status = 301
+
+[[redirects]]
+  from = "/kennisbank/bedrijfswaarde-verhogen-waardedrijvers/"
+  to = "/kennisbank/thema/de-waardering-van-je-bedrijf"
+  status = 301
+
+[[redirects]]
+  from = "/kennisbank/thema/bedrijfswaardering-en-waardedrijvers"
+  to = "/kennisbank/thema/de-waardering-van-je-bedrijf"
+  status = 301
+
+[[redirects]]
+  from = "/kennisbank/thema/bedrijfswaardering-en-waardedrijvers/"
+  to = "/kennisbank/thema/de-waardering-van-je-bedrijf"
+  status = 301
+
 # ---- Oude WordPress-paden: 410 Gone ----
 
 [[redirects]]
