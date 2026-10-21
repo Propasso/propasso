@@ -23,6 +23,8 @@ const SANITY_QUERY_URL = "https://h53ofne2.api.sanity.io/v2024-01-01/data/query/
 const EXCLUDED_STATIC = new Set(["/styleguide", "/exit-planning"]);
 const CONCURRENCY = 4;
 const NAV_TIMEOUT = 45_000;
+// Ruim: de eerste pagina's van een build laden de app nog koud (op Netlify soms >15 s).
+const WAIT_TIMEOUT = 30_000;
 const CONSENT_KEY = "propasso_cookie_consent";
 
 // puppeteer staat in een aparte map (scripts/.prerender-deps), zodat package.json,
@@ -150,7 +152,7 @@ async function renderRoute(browser, route) {
 
     await page.waitForFunction(
       () => (document.getElementById("root")?.innerText || "").trim().length > 200,
-      { timeout: 15_000 },
+      { timeout: WAIT_TIMEOUT },
     );
     // react-helmet zet title, description en canonical asynchroon; daarop wachten.
     await page.waitForFunction(
@@ -158,7 +160,7 @@ async function renderRoute(browser, route) {
         document.title.trim().length > 0 &&
         document.querySelector('meta[name="description"][content]') &&
         document.querySelector('link[rel="canonical"][href]'),
-      { timeout: 15_000 },
+      { timeout: WAIT_TIMEOUT },
     );
 
     const finalPath = await page.evaluate(() => location.pathname);
