@@ -130,3 +130,22 @@ export async function fetchLegalPageBySlug(slug: string): Promise<SanityLegalPag
   );
 }
 
+export interface SanityPagina {
+  _id: string;
+  title: string;
+  heroIntro?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  body?: any[];
+  metaTitle?: string;
+  metaDescription?: string;
+}
+
+export async function fetchPaginaBySlug(slug: string): Promise<SanityPagina | null> {
+  return sanityClient.fetch<SanityPagina | null>(
+    `*[_type == "pagina" && slug.current == $slug][0]{
+      _id, title, heroIntro, body, metaTitle, metaDescription
+    }`,
+    { slug }
+  );
+}
+

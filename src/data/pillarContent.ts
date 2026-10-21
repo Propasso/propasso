@@ -29,7 +29,7 @@ export const pillarContent: Record<string, PillarContent> = {
       "Voorbereiding op een bedrijfsoverdracht betekent in essentie dat ondernemers de regie nemen over hun toekomst. Door vroegtijdig na te denken over een exitstrategie en hun bedrijf daarop te ontwikkelen, vergroten zij hun strategische vrijheid. Dat maakt het mogelijk om een overdracht te realiseren op het juiste moment, onder de juiste voorwaarden en met maximale waarde voor zowel ondernemer als onderneming.",
     ],
   },
-  "bedrijfswaardering-en-waardedrijvers": {
+  "de-waardering-van-je-bedrijf": {
     heroIntro:
       "Veel ondernemers vragen zich vroeg of laat af: wat is de waarde van mijn bedrijf? Zeker wanneer er wordt nagedacht over een bedrijf verkopen of een toekomstige bedrijfsoverdracht, wordt bedrijfswaardering een belangrijk onderwerp. Toch blijkt in de praktijk dat de waarde van een onderneming vaak minder vanzelfsprekend is dan ondernemers verwachten.",
     bodyParagraphs: [

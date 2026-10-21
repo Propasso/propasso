@@ -25,6 +25,7 @@ import AlgemeneVoorwaarden from "./pages/AlgemeneVoorwaarden";
 import Cookieverklaring from "./pages/Cookieverklaring";
 import NotFound from "./pages/NotFound";
 import Quickscan from "./pages/Quickscan";
+import ExitPlanning from "./pages/ExitPlanning";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +41,7 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Index />} />
     <Route path="/werkwijze" element={<Werkwijze />} />
+    <Route path="/exit-planning" element={<ExitPlanning />} />
     <Route path="/over-propasso" element={<OverPropasso />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/veelgestelde-vragen" element={<VeelgesteldeVragen />} />
