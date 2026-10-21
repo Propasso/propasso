@@ -54,7 +54,7 @@ const contactSchemas = [
       "@type": "Organization",
       name: "Propasso",
       url: "https://propasso.nl/",
-      email: "hallo@propasso.nl",
+      email: "info@propasso.nl",
       telephone: "+31 6 1005 7566",
       address: {
         "@type": "PostalAddress",
@@ -100,8 +100,8 @@ const directContactItems = [
   {
     icon: Mail,
     label: "E-mail",
-    value: "hallo@propasso.nl",
-    href: "mailto:hallo@propasso.nl",
+    value: "info@propasso.nl",
+    href: "mailto:info@propasso.nl",
     iconColor: "text-primary",
     iconBg: "bg-primary/10",
   },
@@ -151,7 +151,7 @@ const Contact = () => {
     } catch {
       toast({
         title: "Er ging iets mis",
-        description: "Probeer het later opnieuw of mail direct naar hallo@propasso.nl.",
+        description: "Probeer het later opnieuw of mail direct naar info@propasso.nl.",
         variant: "destructive",
       });
     } finally {

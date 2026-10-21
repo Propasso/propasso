@@ -99,7 +99,7 @@ const aboutSchemas = [
     name: "Propasso",
     url: "https://propasso.nl/",
     logo: "https://propasso.nl/propasso-logo-grey-yellow.png",
-    email: "hallo@propasso.nl",
+    email: "info@propasso.nl",
     telephone: "+31 6 1005 7566",
     address: {
       "@type": "PostalAddress",
