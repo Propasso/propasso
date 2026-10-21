@@ -14,7 +14,7 @@ const pillars = [
     image: optimizeImg,
     title: "Winstgevendheid",
     description: "Structureel betere marges en omzetkwaliteit",
-    slug: "bedrijfswaarde-en-winstgevendheid-verbeteren",
+    slug: "ondernemingswaarde-en-winstgevendheid-verbeteren",
     isSvg: true,
   },
   {
@@ -50,7 +50,7 @@ const pillars = [
     image: teamImg,
     title: "Persoonlijke & financiële planning",
     description: "Jouw toekomst na de overdracht",
-    slug: "het-persoonlijke-en-persoonlijke-financiele-plan-na-overdracht",
+    slug: "het-persoonlijke-en-financiele-plan-na-overdracht",
   },
 ];
 
