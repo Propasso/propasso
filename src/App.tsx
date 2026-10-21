@@ -41,6 +41,7 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Index />} />
     <Route path="/werkwijze" element={<Werkwijze />} />
+    <Route path="/exit-planning" element={<ExitPlanning />} />
     <Route path="/over-propasso" element={<OverPropasso />} />
     <Route path="/contact" element={<Contact />} />
     <Route path="/veelgestelde-vragen" element={<VeelgesteldeVragen />} />
