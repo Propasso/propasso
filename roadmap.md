@@ -1,11 +1,11 @@
 # Roadmap
 
 ## Huidige taken (instructie 21 okt 2026)
-- [ ] 1. Redirects: /kennisbank/bedrijfswaarde-verhogen-waardedrijvers en /kennisbank/thema/bedrijfswaardering-en-waardedrijvers → 301 naar /kennisbank/thema/de-waardering-van-je-bedrijf; oude slug uit sitemaps; verifiëren dat alle redirects 301 zijn en onbekende URL's echte 404 geven
-- [ ] 2. Nieuwe pagina /exit-planning uit Sanity (type: pagina, slug: exit-planning), opmaak als themapagina's; redirect naar /werkwijze blijft actief tot publicatie; daarna opnemen in sitemap, llms.txt en navigatie
-- [ ] 3. llms.txt: drie tekstvervangingen, themalink corrigeren, twee artikelen onder Optional toevoegen
-- [ ] 4. Structured data: description vervangen, knowsAbout aanpassen, Rich Results Test
-- [ ] 5. E-mailadres hallo@propasso.nl → info@propasso.nl overal
+- [x] 1. Redirects 301 toegevoegd, oude thema-slug uit beide sitemaps, interne links bijgewerkt; alle redirects waren al 301; catch-all 404 bestaat al
+- [~] 2. /exit-planning-pagina gebouwd (route + Sanity-query op type "pagina"); BLOKKER: type "pagina" bestaat nog niet in Sanity Studio — Karel moet schema + document aanmaken; daarna redirect /exit-planning → /werkwijze uit netlify.toml halen en pagina opnemen in sitemap, llms.txt en navigatie
+- [x] 3. llms.txt: drie tekstvervangingen, themalink gecorrigeerd, twee artikelen toegevoegd
+- [x] 4. Structured data: description en knowsAbout aangepast, JSON-LD gevalideerd; Rich Results Test moet Karel na publicatie zelf draaien
+- [x] 5. E-mailadres overal info@propasso.nl
 
 ## Openstaand uit eerdere rondes
 - HubSpot floating chat: wacht op antwoorden (chatflow gepubliceerd? teasertekst? nudge-timing?)
