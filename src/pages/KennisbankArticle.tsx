@@ -57,6 +57,31 @@ const portableTextComponents = {
   },
 };
 
+const formatDate = (value: string) =>
+  new Date(value).toLocaleDateString("nl-NL", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const countBodyWords = (body?: any[]): number => {
+  if (!body?.length) return 0;
+  return body.reduce((total, block) => {
+    if (block?._type !== "block") return total;
+    const text = Array.isArray(block.children)
+      ? block.children.map((child: { text?: string }) => child?.text ?? "").join(" ")
+      : "";
+    return total + (text.match(/\S+/g)?.length ?? 0);
+  }, 0);
+};
+
+const getReadingTime = (body?: any[]): number | null => {
+  const words = countBodyWords(body);
+  if (words === 0) return null;
+  return Math.max(1, Math.ceil(words / 220));
+};
+
 const SanityArticlePage = ({ post }: { post: SanityPost }) => {
   const ctaLabel = post.ctaType === "quickscan" ? "Start de quickscan" : "Neem contact op";
   const parentCategory = post.categories?.[0];
@@ -73,6 +98,13 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
   const description = post.seoDescription || post.summary;
   const ogTitle = post.ogTitle || title;
   const ogDescription = post.ogDescription || description;
+  const updatedDate =
+    post.lastUpdated &&
+    (!post.publishedAt ||
+      new Date(post.lastUpdated).toDateString() !== new Date(post.publishedAt).toDateString())
+      ? post.lastUpdated
+      : undefined;
+  const readingMinutes = getReadingTime(post.body);
   const canonicalUrl = post.canonicalUrl || `https://propasso.nl/kennisbank/${post.slug.current}`;
   const ogImageUrl = post.mainImage
     ? urlFor(post.mainImage).width(1200).height(630).url()
@@ -180,15 +212,52 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             {post.title}
           </h1>
 
-          {post.publishedAt && (
-            <p className="mt-4 text-sm text-muted-foreground">
-              {new Date(post.publishedAt).toLocaleDateString("nl-NL", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </p>
-          )}
+          <div className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-muted-foreground">
+            {post.author?.name && (
+              <>
+                {post.author.image && (
+                  <img
+                    src={urlFor(post.author.image).width(80).height(80).url()}
+                    alt={post.author.imageAlt || post.author.name}
+                    className="h-10 w-10 shrink-0 rounded-full object-cover"
+                    width={40}
+                    height={40}
+                  />
+                )}
+                <div className="min-w-0">
+                  <Link
+                    to="/over-propasso"
+                    className="font-medium text-foreground hover:text-primary transition-colors"
+                  >
+                    {post.author.name}
+                  </Link>
+                  {post.author.role && (
+                    <p className="text-sm text-muted-foreground leading-snug">{post.author.role}</p>
+                  )}
+                </div>
+              </>
+            )}
+            {post.publishedAt && (
+              <>
+                {post.author?.name && <span aria-hidden="true">·</span>}
+                <time dateTime={post.publishedAt}>{formatDate(post.publishedAt)}</time>
+              </>
+            )}
+            {updatedDate && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>
+                  Bijgewerkt op <time dateTime={updatedDate}>{formatDate(updatedDate)}</time>
+                </span>
+              </>
+            )}
+            {readingMinutes && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>{readingMinutes} min lezen</span>
+              </>
+            )}
+          </div>
 
           {(() => {
             const answer = post.directAnswer?.trim();
