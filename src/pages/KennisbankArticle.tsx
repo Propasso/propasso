@@ -277,7 +277,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             {readingMinutes && (
               <>
                 <span aria-hidden="true">·</span>
-                <span>{readingMinutes} min lezen</span>
+                <span>{readingMinutes} min. leestijd</span>
               </>
             )}
           </div>
