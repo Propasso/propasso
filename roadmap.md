@@ -34,3 +34,4 @@
 - Bing meta-description: keuze Optie A (edge function) of B (fallback) nog niet gemaakt
 - Quickscan-plan (HubSpot-trigger + pushnotificatie) goedkeuren
 - GTM: GA4-tag Consent Mode laten respecteren
+- [x] Artikeltemplate stap 1: direct antwoord bovenaan (overige stappen 2-11 wachten op akkoord)
