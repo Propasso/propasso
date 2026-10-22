@@ -18,6 +18,22 @@ export interface SanityLegalPage {
   lastUpdated?: string;
 }
 
+export interface SanityAuthor {
+  name: string;
+  role?: string;
+  image?: { asset: { _ref: string } };
+  imageAlt?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  bio?: any[]; // Portable Text blocks
+  linkedinUrl?: string;
+}
+
+export interface SanityFaqItem {
+  _key: string;
+  question: string;
+  answer: string;
+}
+
 export interface SanityPost {
   _id: string;
   title: string;
@@ -31,10 +47,13 @@ export interface SanityPost {
   };
   altText?: string;
   categories?: SanityCategory[];
-  author?: {
-    name: string;
-    image?: { asset: { _ref: string } };
-  };
+  author?: SanityAuthor;
+  articleType?: "antwoord" | "inzicht";
+  directAnswer?: string;
+  keyInsight?: string;
+  lastUpdated?: string;
+  faq?: SanityFaqItem[];
+  pillarCta?: { ctaTitle?: string; ctaText?: string };
   seoTitle?: string;
   seoDescription?: string;
   ogTitle?: string;
