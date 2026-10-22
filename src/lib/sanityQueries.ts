@@ -116,6 +116,7 @@ export async function fetchPostBySlug(slug: string): Promise<SanityPost | null> 
       articleType,
       directAnswer,
       keyInsight,
+      closingNote,
       lastUpdated,
       "faq": faq[]{ _key, question, answer },
       "author": author->{ name, role, image, "imageAlt": image.alt, bio, linkedinUrl },
