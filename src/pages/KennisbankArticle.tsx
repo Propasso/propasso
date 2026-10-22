@@ -338,6 +338,25 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             );
           })()}
 
+          {(() => {
+            if (post.articleType !== "antwoord") return null;
+            const faqItems = (post.faq ?? []).filter(
+              (item) => item?.question?.trim() && item?.answer?.trim()
+            );
+            if (faqItems.length === 0) return null;
+            return (
+              <section className="max-w-[68ch]">
+                <h2 className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold">Veelgestelde vragen</h2>
+                {faqItems.map((item) => (
+                  <div key={item._key}>
+                    <h3 className="mt-8 mb-3 scroll-mt-28 text-xl font-medium">{item.question}</h3>
+                    <p className="mb-5 text-[17px] md:text-lg leading-[1.75] text-foreground/85">{item.answer}</p>
+                  </div>
+                ))}
+              </section>
+            );
+          })()}
+
           {post.author?.name && (
             <section className="mt-16 max-w-[68ch] rounded-2xl border border-border/40 bg-card p-6 md:p-8">
               <h2 className="text-2xl font-bold">Over de auteur</h2>
