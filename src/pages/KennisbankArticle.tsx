@@ -7,7 +7,6 @@ import { safeJsonLd } from "@/lib/safeJsonLd";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
@@ -107,7 +106,6 @@ const getReadingTime = (body?: any[]): number | null => {
 };
 
 const SanityArticlePage = ({ post }: { post: SanityPost }) => {
-  const ctaLabel = post.ctaType === "quickscan" ? "Start de quickscan" : "Neem contact op";
   const parentCategory = post.categories?.[0];
 
   const breadcrumbItems = [
@@ -421,14 +419,13 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         </section>
       )}
 
-      <div className="section-container">
-        <QuickscanCalloutBlock contextLine="Wil je weten hoe dit bij jouw bedrijf speelt? Ontdek het in 4 minuten." />
-      </div>
-
       <PageCTA
-        title="Wil je weten waar jouw bedrijf staat?"
-        primaryLabel={ctaLabel}
-        primaryHref="/contact"
+        title={post.pillarCta?.ctaTitle || "Wil je weten waar jouw bedrijf staat?"}
+        description={post.pillarCta?.ctaText}
+        primaryLabel="Start de quickscan"
+        primaryHref="/quickscan"
+        secondaryLabel="Neem contact op"
+        secondaryHref="/contact"
       />
     </PageLayout>
   );
