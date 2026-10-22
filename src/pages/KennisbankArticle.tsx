@@ -72,6 +72,15 @@ const portableTextComponents = {
   },
 };
 
+const bioComponents = {
+  ...portableTextComponents,
+  block: {
+    normal: ({ children }: { children?: React.ReactNode }) => (
+      <p className="mb-4 text-[15px] md:text-base leading-[1.7] text-foreground/80">{children}</p>
+    ),
+  },
+};
+
 const formatDate = (value: string) =>
   new Date(value).toLocaleDateString("nl-NL", {
     year: "numeric",
@@ -120,6 +129,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
       ? post.lastUpdated
       : undefined;
   const readingMinutes = getReadingTime(post.body);
+  const authorFirstName = post.author?.name?.trim().split(/\s+/)[0] ?? "";
   const canonicalUrl = post.canonicalUrl || `https://propasso.nl/kennisbank/${post.slug.current}`;
   const ogImageUrl = post.mainImage
     ? urlFor(post.mainImage).width(1200).height(630).url()
@@ -302,6 +312,53 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             <div className="mt-12 max-w-[68ch]">
               <PortableText value={post.body} components={portableTextComponents} />
             </div>
+          )}
+
+          {post.author?.name && (
+            <section className="mt-16 max-w-[68ch] rounded-2xl border border-border/40 bg-card p-6 md:p-8">
+              <h2 className="text-2xl font-bold">Over de auteur</h2>
+              <div className="mt-5 flex flex-col items-start gap-5 sm:flex-row sm:gap-6">
+                {post.author.image && (
+                  <img
+                    src={urlFor(post.author.image).width(160).height(160).url()}
+                    alt={post.author.imageAlt || post.author.name}
+                    className="h-20 w-20 shrink-0 rounded-full object-cover"
+                    width={80}
+                    height={80}
+                    loading="lazy"
+                  />
+                )}
+                <div className="min-w-0">
+                  <p className="font-semibold text-foreground">{post.author.name}</p>
+                  {post.author.role && (
+                    <p className="mt-0.5 text-sm text-muted-foreground">{post.author.role}</p>
+                  )}
+                  {post.author.bio && post.author.bio.length > 0 && (
+                    <div className="mt-4">
+                      <PortableText value={post.author.bio} components={bioComponents} />
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
+                {post.author.linkedinUrl && (
+                  <a
+                    href={post.author.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm font-semibold text-primary underline underline-offset-4 hover:no-underline rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  >
+                    Volg {authorFirstName} op LinkedIn
+                  </a>
+                )}
+                <Link
+                  to="/over-propasso"
+                  className="text-sm font-semibold text-primary underline underline-offset-4 hover:no-underline rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  Meer over {authorFirstName}
+                </Link>
+              </div>
+            </section>
           )}
         </div>
       </article>
