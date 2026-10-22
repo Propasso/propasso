@@ -363,7 +363,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
               ...portableTextComponents,
               block: {
                 ...portableTextComponents.block,
-                h2: ({ children, value }: { children?: React.ReactNode; value?: BodyBlock }) => (
+                h2: ({ children, value }: { children?: React.ReactNode; value?: { _key?: string } }) => (
                   <h2
                     id={value?._key ? ids[value._key] : undefined}
                     className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold"
