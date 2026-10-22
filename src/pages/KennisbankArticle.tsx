@@ -14,10 +14,43 @@ import { Skeleton } from "@/components/ui/skeleton";
 import NotFound from "@/pages/NotFound";
 import type { SanityPost } from "@/types/sanity";
 
+type BodyBlock = { _key?: string; _type?: string; style?: string; children?: Array<{ text?: string }> };
+
+const slugifyHeading = (text: string) =>
+  text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "sectie";
+
+/** H2-koppen uit de body met unieke ankers (dubbele koppen krijgen een volgnummer). */
+const getH2Headings = (body: unknown): Array<{ key: string; text: string; id: string }> => {
+  if (!Array.isArray(body)) return [];
+  const used = new Map<string, number>();
+  return (body as BodyBlock[])
+    .filter((b) => b?._type === "block" && b?.style === "h2")
+    .map((b, i) => {
+      const text = (b.children ?? []).map((c) => c?.text ?? "").join("").trim();
+      const base = slugifyHeading(text);
+      const n = (used.get(base) ?? 0) + 1;
+      used.set(base, n);
+      return { key: b._key ?? `h2-${i}`, text, id: n > 1 ? `${base}-${n}` : base };
+    })
+    .filter((h) => h.text);
+};
+
+let currentHeadingIds: Record<string, string> = {};
+
 const portableTextComponents = {
   block: {
-    h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold">{children}</h2>
+    h2: ({ children, value }: { children?: React.ReactNode; value?: BodyBlock }) => (
+      <h2
+        id={value?._key ? currentHeadingIds[value._key] : undefined}
+        className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold"
+      >
+        {children}
+      </h2>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
       <h3 className="mt-8 mb-3 scroll-mt-28 text-xl font-medium">{children}</h3>
