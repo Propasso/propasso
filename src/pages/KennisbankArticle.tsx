@@ -18,39 +18,54 @@ import type { SanityPost } from "@/types/sanity";
 const portableTextComponents = {
   block: {
     h2: ({ children }: { children?: React.ReactNode }) => (
-      <h2 className="text-2xl font-bold mt-10 mb-4">{children}</h2>
+      <h2 className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold">{children}</h2>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
-      <h3 className="text-xl font-bold mt-8 mb-3">{children}</h3>
+      <h3 className="mt-8 mb-3 scroll-mt-28 text-xl font-medium">{children}</h3>
     ),
     normal: ({ children }: { children?: React.ReactNode }) => (
-      <p className="text-muted-foreground leading-relaxed mb-4">{children}</p>
+      <p className="mb-5 text-[17px] md:text-lg leading-[1.75] text-foreground/85">{children}</p>
     ),
     blockquote: ({ children }: { children?: React.ReactNode }) => (
-      <blockquote className="border-l-4 border-primary pl-4 my-6 italic text-muted-foreground">
+      <blockquote className="border-l-4 border-primary pl-4 my-6 italic text-foreground/85">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }: { children?: React.ReactNode }) => (
-      <ul className="list-disc pl-6 mb-4 space-y-1 text-muted-foreground">{children}</ul>
+      <ul className="mb-5 list-disc pl-6 space-y-2 text-[17px] md:text-lg leading-[1.75] text-foreground/85">{children}</ul>
     ),
     number: ({ children }: { children?: React.ReactNode }) => (
-      <ol className="list-decimal pl-6 mb-4 space-y-1 text-muted-foreground">{children}</ol>
+      <ol className="mb-5 list-decimal pl-6 space-y-2 text-[17px] md:text-lg leading-[1.75] text-foreground/85">{children}</ol>
     ),
   },
   marks: {
-    link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => (
-      <a
-        href={value?.href}
-        className="text-primary underline hover:no-underline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    ),
+    link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => {
+      const href = value?.href;
+      if (!href) return <>{children}</>;
+      const linkClasses =
+        "text-primary underline hover:no-underline rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary";
+      if (href.startsWith("#")) {
+        return <a href={href} className={linkClasses}>{children}</a>;
+      }
+      const isInternal = href.startsWith("/") || /^https?:\/\/(www\.)?propasso\.nl/.test(href);
+      if (isInternal) {
+        const internalPath = href.startsWith("http")
+          ? href.replace(/^https?:\/\/(www\.)?propasso\.nl/, "") || "/"
+          : href;
+        return (
+          <Link to={internalPath} className={linkClasses}>
+            {children}
+          </Link>
+        );
+      }
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={linkClasses}>
+          {children}
+        </a>
+      );
+    },
     strong: ({ children }: { children?: React.ReactNode }) => (
       <strong className="font-semibold text-foreground">{children}</strong>
     ),
@@ -284,7 +299,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
           )}
 
           {post.body && (
-            <div className="mt-12 max-w-none">
+            <div className="mt-12 max-w-[68ch]">
               <PortableText value={post.body} components={portableTextComponents} />
             </div>
           )}
