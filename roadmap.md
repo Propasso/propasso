@@ -41,4 +41,5 @@
 - [x] Artikeltemplate stap 10: eind-CTA (PageCTA onderaan: titel uit pillarCta.ctaTitle anders "Wil je weten waar jouw bedrijf staat?", tekst uit pillarCta.ctaText anders de quickscan-tekst; primary "Start de quickscan" → /quickscan, secondary "Neem contact op" → /contact). ctaType en ctaLabel worden niet meer gelezen (type blijft in types/sanity.ts), losse QuickscanCalloutBlock is weg. Volgorde: body, Over de auteur, Verder lezen, PageCTA. PageCTA.tsx niet aangepast. Getest met en zonder pijlerteksten op 1280 en 375px, geen horizontaal scrollen
 - [x] Artikeltemplate stap 6: compacte quickscan-oproep vóór de tweede H2 (alleen bij ≥2 H2's), knop data-cta="kennisbank-midden"
 - [x] Artikeltemplate stap 8: veelgestelde vragen (alleen articleType "antwoord" met gevulde vraag+antwoord, altijd open, geen JSON-LD)
-- [ ] Artikeltemplate stap 5, 7 en 11: wachten op akkoord (stap 5 en 7 hebben lege velden nodig — vulling pas bij artikel van 17 december)
+- [x] Artikeltemplate stap 7: inhoudsopgave "In dit artikel" bij ≥4 H2's, altijd open, unieke ankers
+- [ ] Artikeltemplate stap 5 en 11: wachten op akkoord (stap 5 heeft lege velden nodig — vulling pas bij artikel van 17 december)
