@@ -190,6 +190,20 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             </p>
           )}
 
+          {(() => {
+            const answer = post.directAnswer?.trim();
+            const text = answer || post.summary?.trim();
+            if (!text) return null;
+            return (
+              <div className="mt-8 rounded-r-2xl border-l-4 border-accent bg-secondary p-5 md:p-6 break-words">
+                <p className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-2">
+                  {answer ? "In het kort" : "Samenvatting"}
+                </p>
+                <p className="text-lg text-foreground leading-relaxed">{text}</p>
+              </div>
+            );
+          })()}
+
           {post.mainImage && (
             <div className="mt-8 aspect-[16/9] rounded-2xl overflow-hidden bg-secondary">
               <img
@@ -199,13 +213,6 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
               />
             </div>
           )}
-
-          <div className="mt-8 p-6 rounded-2xl bg-secondary">
-            <h2 className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-2">
-              Samenvatting
-            </h2>
-            <p className="text-foreground leading-relaxed">{post.summary}</p>
-          </div>
 
           {post.body && (
             <div className="mt-12 max-w-none">
