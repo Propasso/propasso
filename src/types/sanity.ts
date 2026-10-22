@@ -51,6 +51,7 @@ export interface SanityPost {
   articleType?: "antwoord" | "inzicht";
   directAnswer?: string;
   keyInsight?: string;
+  closingNote?: string;
   lastUpdated?: string;
   faq?: SanityFaqItem[];
   pillarCta?: { ctaTitle?: string; ctaText?: string };
