@@ -247,17 +247,17 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         }}
       />
 
-      <article className="py-16 md:py-24">
+      <article className="py-16 md:py-24 overflow-x-clip [&_a:focus-visible]:outline [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-2 [&_a:focus-visible]:outline-primary [&_a:focus-visible]:rounded-sm [&_button:focus-visible]:outline [&_button:focus-visible]:outline-2 [&_button:focus-visible]:outline-offset-2 [&_button:focus-visible]:outline-primary">
         <div className="section-container max-w-3xl">
           <KennisbankBreadcrumb items={breadcrumbItems} />
 
           {post.categories && post.categories.length > 0 && (
-            <div className="mt-8 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap gap-x-4">
               {post.categories.map((c) => (
                 <Link
                   key={c._id}
                   to={c.slug ? `/kennisbank/thema/${c.slug.current}` : "/kennisbank"}
-                  className="text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
+                  className="inline-flex min-h-11 items-center text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors"
                 >
                   {c.title}
                 </Link>
@@ -277,6 +277,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                     src={urlFor(post.author.image).width(80).height(80).url()}
                     alt={post.author.imageAlt || post.author.name}
                     className="h-10 w-10 shrink-0 rounded-full object-cover"
+                    loading="lazy"
                     width={40}
                     height={40}
                   />
@@ -284,7 +285,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                 <div className="min-w-0">
                   <Link
                     to="/over-propasso"
-                    className="font-medium text-foreground hover:text-primary transition-colors"
+                    className="inline-block py-2 font-medium text-foreground hover:text-primary transition-colors"
                   >
                     {post.author.name}
                   </Link>
@@ -344,7 +345,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                     <li key={h.key}>
                       <a
                         href={`#${h.id}`}
-                        className="text-foreground/85 underline-offset-4 hover:underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        className="inline-block py-1.5 text-foreground/85 underline-offset-4 hover:underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                       >
                         {h.text}
                       </a>
@@ -354,7 +355,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                     <li>
                       <a
                         href="#veelgestelde-vragen"
-                        className="text-foreground/85 underline-offset-4 hover:underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                        className="inline-block py-1.5 text-foreground/85 underline-offset-4 hover:underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                       >
                         Veelgestelde vragen
                       </a>
@@ -371,6 +372,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                 src={urlFor(post.mainImage).width(900).height(506).url()}
                 alt={post.altText || post.title}
                 className="h-full w-full object-cover"
+                {...{ fetchpriority: "high" }}
               />
             </div>
           )}
@@ -412,7 +414,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                   <Link
                     to="/quickscan"
                     data-cta="kennisbank-midden"
-                    className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:brightness-110 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:brightness-110 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
                     Start de quickscan <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -470,14 +472,14 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                     href={post.author.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm font-semibold text-primary underline underline-offset-4 hover:no-underline rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                    className="inline-flex min-h-11 items-center text-sm font-semibold text-primary underline underline-offset-4 hover:no-underline rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
                     Volg {authorFirstName} op LinkedIn
                   </a>
                 )}
                 <Link
                   to="/over-propasso"
-                  className="text-sm font-semibold text-primary underline underline-offset-4 hover:no-underline rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  className="inline-flex min-h-11 items-center text-sm font-semibold text-primary underline underline-offset-4 hover:no-underline rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                 >
                   Meer over {authorFirstName}
                 </Link>
@@ -489,7 +491,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
 
       {/* Verder lezen: related posts + parent pillar */}
       {((post.relatedPosts && post.relatedPosts.length > 0) || parentCategory?.slug) && (
-        <section className="py-16 section-neutral-bg">
+        <section className="py-16 section-neutral-bg [&_a:focus-visible]:outline [&_a:focus-visible]:outline-2 [&_a:focus-visible]:outline-offset-2 [&_a:focus-visible]:outline-primary [&_a:focus-visible]:rounded-sm [&_button:focus-visible]:outline [&_button:focus-visible]:outline-2 [&_button:focus-visible]:outline-offset-2 [&_button:focus-visible]:outline-primary">
           <div className="section-container">
             <h2 className="text-2xl font-bold mb-8">Verder lezen</h2>
 
@@ -516,7 +518,8 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                   <Link
                     key={related._id}
                     to={`/kennisbank/${related.slug.current}`}
-                    className="group flex gap-5 items-start"
+                    aria-label={`Lees verder: ${related.title}`}
+                    className="group flex gap-5 items-start rounded-xl"
                   >
                     <div className="shrink-0 w-24 h-24 rounded-xl overflow-hidden bg-secondary">
                       {related.mainImage ? (
@@ -524,6 +527,9 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                           src={urlFor(related.mainImage).width(96).height(96).url()}
                           alt={related.altText || related.title}
                           className="h-full w-full object-cover group-hover:scale-105 transition-transform"
+                          loading="lazy"
+                          width={96}
+                          height={96}
                         />
                       ) : (
                         <div className="h-full w-full bg-muted" />
@@ -534,7 +540,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                         {related.title}
                       </h3>
                       <span className="mt-2 inline-flex items-center gap-1 text-sm text-primary font-semibold">
-                        Lees het artikel: {related.title} <ArrowRight size={14} />
+                        Lees verder <ArrowRight size={14} aria-hidden="true" />
                       </span>
                     </div>
                   </Link>
