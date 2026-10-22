@@ -8,11 +8,11 @@
 - [x] 5. E-mailadres overal info@propasso.nl
 
 ## Routing en statuscodes (21 okt 2026)
-- Alle 301-doorverwijzingen staan in netlify/edge-functions/routing.ts. Nieuwe doorverwijzingen ALLEEN daar toevoegen: redirects in netlify.toml draaien na de prerender-middleware, waardoor bots een 200 kregen in plaats van een 301.
+- Alle 301-doorverwijzingen staan in netlify/edge-functions/routing.ts. Nieuwe doorverwijzingen ALLEEN daar toevoegen, niet in netlify.toml: routing.ts draait als eerste, geldt voor mens en bot en is getest. netlify.toml bevat alleen rewrites naar /app-shell.html, de 410's en de 404-catch-all.
 - routing.ts geeft een echte 404 voor /kennisbank/<slug> en /kennisbank/thema/<slug> die niet gepubliceerd in Sanity staan (artikelen met publishedAt in de toekomst tellen als niet gepubliceerd).
 - Thema-slugs zijn definitief: ondernemingswaarde-en-winstgevendheid-verbeteren en het-persoonlijke-en-financiele-plan-na-overdracht. Oude varianten krijgen een 301.
 
-## Prerendering (build-time, branch prerender-build, okt 2026)
+## Prerendering (build-time, live sinds 21 okt 2026)
 - NIET WIJZIGEN zonder overleg: het buildcommando in netlify.toml is `bash scripts/netlify-build.sh`.
   Dat script draait `npm run build`, installeert puppeteer los en draait `node scripts/prerender.mjs`.
   Wordt het buildcommando teruggezet naar alleen `npm run build`, dan krijgen bots weer lege HTML.
@@ -25,12 +25,12 @@
 - Het script draait op http://localhost:4173; die origin staat in Sanity CORS (zonder credentials).
 - Content verversen: .github/workflows/netlify-rebuild.yml. Sanity-webhook -> deze workflow (3 minuten wachten) -> Netlify build hook. Daarnaast elk uur een check op ingeplande artikelen die live gingen. Secret NETLIFY_BUILD_HOOK in GitHub. Workflowbestanden kan alleen Karel via GitHub toevoegen; de Claude-koppeling heeft daar geen rechten voor.
 - routing.ts geeft een 301 van elk pad met een slash aan het eind (behalve /) naar het pad zonder slash.
+- De Netlify Prerender-extensie staat uit (21 okt 2026). Niet opnieuw aanzetten: die draait vóór routing.ts en geeft bots dan weer 200 in plaats van 301.
+- Wie wat wijzigt: technische en SEO-code (routing.ts, sitemap.ts, netlify.toml, scripts/, SEO.tsx, index.html-head, structured data) wijzigt Claude via GitHub (branch, deploy preview, merge na akkoord Karel). Lovable doet pagina's, componenten en vormgeving en houdt zich aan de regels in dit bestand.
 - SEO.tsx: JSON-LD binnen Helmet moet als children (`{safeJsonLd(schema)}`), niet via dangerouslySetInnerHTML; dat laatste negeert react-helmet-async en dan verschijnt het JSON-LD nergens.
 
 ## Openstaand uit eerdere rondes
 - HubSpot floating chat: wacht op antwoorden (chatflow gepubliceerd? teasertekst? nudge-timing?)
 - Bing meta-description: keuze Optie A (edge function) of B (fallback) nog niet gemaakt
-- Sanity: slug artikel "Steeds meer ondernemers denken aan stoppen" corrigeren; artikel "Onder de loop" publishedAt 2027→2026
 - Quickscan-plan (HubSpot-trigger + pushnotificatie) goedkeuren
-- Na deploy: curl -I verificatie van 404/301's
 - GTM: GA4-tag Consent Mode laten respecteren

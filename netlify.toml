@@ -6,10 +6,10 @@
   command = "bash scripts/netlify-build.sh"
   publish = "dist"
 
-# routing moet als eerste draaien (vóór prerender): 301's en echte 404's
+# routing draait als eerste: 301's en echte 404's, voor mens en bot
 [[edge_functions]]
   path = "/*"
-  excludedPath = ["/assets/*", "/og/*", "/favicon.*", "/*.png", "/*.svg", "/*.txt", "/sitemap.xml", "/netlify-prerender-function"]
+  excludedPath = ["/assets/*", "/og/*", "/favicon.*", "/*.png", "/*.svg", "/*.txt", "/sitemap.xml"]
   function = "routing"
 
 [[edge_functions]]
@@ -17,8 +17,7 @@
   function = "sitemap"
 
 # ---- 301-doorverwijzingen ----
-# Staan in netlify/edge-functions/routing.ts, niet hier: redirects in dit
-# bestand draaien pas na de prerender-middleware en bots zien ze dan niet.
+# Staan in netlify/edge-functions/routing.ts, niet hier (zie roadmap.md).
 
 # ---- Oude WordPress-paden: 410 Gone ----
 
