@@ -334,7 +334,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
           {(() => {
             const headings = getH2Headings(post.body);
             const showFaq = getFaqItems(post).length > 0;
-            if (headings.length < 4) return null;
+            if (post.articleType !== "antwoord" || headings.length < 4) return null;
             return (
               <nav aria-labelledby="toc-title" className="mt-8 max-w-[68ch] rounded-2xl border border-border/40 bg-card p-5 md:p-6 break-words">
                 <p id="toc-title" className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-3">
