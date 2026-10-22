@@ -131,6 +131,14 @@ const getReadingTime = (body?: any[]): number | null => {
   return Math.max(1, Math.ceil(words / 220));
 };
 
+/** Vragen die in het FAQ-blok verschijnen: alleen bij antwoordpagina's met gevulde vraag én antwoord. */
+const getFaqItems = (post: SanityPost) =>
+  post.articleType !== "antwoord"
+    ? []
+    : (post.faq ?? []).filter((item) => item?.question?.trim() && item?.answer?.trim());
+
+
+
 const SanityArticlePage = ({ post }: { post: SanityPost }) => {
   const parentCategory = post.categories?.[0];
 
@@ -324,6 +332,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
 
           {(() => {
             const headings = getH2Headings(post.body);
+            const showFaq = getFaqItems(post).length > 0;
             if (headings.length < 4) return null;
             return (
               <nav aria-labelledby="toc-title" className="mt-8 max-w-[68ch] rounded-2xl border border-border/40 bg-card p-5 md:p-6 break-words">
@@ -341,6 +350,16 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                       </a>
                     </li>
                   ))}
+                  {showFaq && (
+                    <li>
+                      <a
+                        href="#veelgestelde-vragen"
+                        className="text-foreground/85 underline-offset-4 hover:underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      >
+                        Veelgestelde vragen
+                      </a>
+                    </li>
+                  )}
                 </ol>
               </nav>
             );
@@ -404,14 +423,11 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
           })()}
 
           {(() => {
-            if (post.articleType !== "antwoord") return null;
-            const faqItems = (post.faq ?? []).filter(
-              (item) => item?.question?.trim() && item?.answer?.trim()
-            );
+            const faqItems = getFaqItems(post);
             if (faqItems.length === 0) return null;
             return (
               <section className="max-w-[68ch]">
-                <h2 className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold">Veelgestelde vragen</h2>
+                <h2 id="veelgestelde-vragen" className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold">Veelgestelde vragen</h2>
                 {faqItems.map((item) => (
                   <div key={item._key}>
                     <h3 className="mt-8 mb-3 scroll-mt-28 text-xl font-medium">{item.question}</h3>
