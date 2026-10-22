@@ -57,6 +57,31 @@ const portableTextComponents = {
   },
 };
 
+const formatDate = (value: string) =>
+  new Date(value).toLocaleDateString("nl-NL", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const countBodyWords = (body?: any[]): number => {
+  if (!body?.length) return 0;
+  return body.reduce((total, block) => {
+    if (block?._type !== "block") return total;
+    const text = Array.isArray(block.children)
+      ? block.children.map((child: { text?: string }) => child?.text ?? "").join(" ")
+      : "";
+    return total + (text.match(/\S+/g)?.length ?? 0);
+  }, 0);
+};
+
+const getReadingTime = (body?: any[]): number | null => {
+  const words = countBodyWords(body);
+  if (words === 0) return null;
+  return Math.max(1, Math.ceil(words / 220));
+};
+
 const SanityArticlePage = ({ post }: { post: SanityPost }) => {
   const ctaLabel = post.ctaType === "quickscan" ? "Start de quickscan" : "Neem contact op";
   const parentCategory = post.categories?.[0];
