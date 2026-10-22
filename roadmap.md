@@ -36,4 +36,5 @@
 - GTM: GA4-tag Consent Mode laten respecteren
 - [x] Artikeltemplate stap 1: direct antwoord bovenaan
 - [x] Artikeltemplate stap 2-3: byline (foto 40px, naam als link naar /over-propasso, rol zonder reservetekst, datums in <time>, "Bijgewerkt op" alleen bij andere dag) + leestijd (woorden in body / 220 wpm, minimaal 1); getest op 375px zonder horizontaal scrollen
-- [ ] Artikeltemplate stap 4-11: wachten op akkoord
+- [x] Artikeltemplate stap 4: typografie (17px/grit naar text-lg, foreground/85, leading 1,75, kolom 68ch, H2 mt-14 met scroll-mt-28, H3 medium); interne links (propasso.nl en /) same-tab via Link, externe links nieuw tabblad, focusring; getest op 375px
+- [ ] Artikeltemplate stap 5-11: wachten op akkoord
