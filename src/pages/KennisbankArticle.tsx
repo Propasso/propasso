@@ -101,8 +101,24 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
               headline: post.seoTitle || post.title,
               description: post.seoDescription || post.summary,
               datePublished: post.publishedAt,
+              dateModified: post.lastUpdated || post.publishedAt,
+              mainEntityOfPage: canonicalUrl,
+              ...(post.author?.name && {
+                author: {
+                  "@type": "Person",
+                  "@id": "https://propasso.nl/#person-karel-cremers",
+                  name: post.author.name,
+                  url: "https://propasso.nl/over-propasso",
+                  ...(post.author.role && { jobTitle: post.author.role }),
+                  ...(post.author.linkedinUrl && { sameAs: [post.author.linkedinUrl] }),
+                  ...(post.author.image && {
+                    image: urlFor(post.author.image).width(400).height(400).url(),
+                  }),
+                },
+              }),
               publisher: {
                 "@type": "Organization",
+                "@id": "https://propasso.nl/#organization",
                 name: "Propasso",
               },
               ...(post.mainImage && {
