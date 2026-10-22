@@ -34,4 +34,6 @@
 - Bing meta-description: keuze Optie A (edge function) of B (fallback) nog niet gemaakt
 - Quickscan-plan (HubSpot-trigger + pushnotificatie) goedkeuren
 - GTM: GA4-tag Consent Mode laten respecteren
-- [x] Artikeltemplate stap 1: direct antwoord bovenaan (overige stappen 2-11 wachten op akkoord)
+- [x] Artikeltemplate stap 1: direct antwoord bovenaan
+- [x] Artikeltemplate stap 2-3: byline (foto 40px, naam als link naar /over-propasso, rol zonder reservetekst, datums in <time>, "Bijgewerkt op" alleen bij andere dag) + leestijd (woorden in body / 220 wpm, minimaal 1); getest op 375px zonder horizontaal scrollen
+- [ ] Artikeltemplate stap 4-11: wachten op akkoord
