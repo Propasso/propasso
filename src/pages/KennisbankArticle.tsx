@@ -421,7 +421,10 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
 
       <PageCTA
         title={post.pillarCta?.ctaTitle || "Wil je weten waar jouw bedrijf staat?"}
-        description={post.pillarCta?.ctaText}
+        description={
+          post.pillarCta?.ctaText ||
+          "Doe de quickscan: twintig vragen, ongeveer vier minuten, en je ziet waar je bedrijf en jijzelf staan."
+        }
         primaryLabel="Start de quickscan"
         primaryHref="/quickscan"
         secondaryLabel="Neem contact op"
