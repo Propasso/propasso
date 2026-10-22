@@ -40,17 +40,10 @@ const getH2Headings = (body: unknown): Array<{ key: string; text: string; id: st
     .filter((h) => h.text);
 };
 
-let currentHeadingIds: Record<string, string> = {};
-
 const portableTextComponents = {
   block: {
-    h2: ({ children, value }: { children?: React.ReactNode; value?: BodyBlock }) => (
-      <h2
-        id={value?._key ? currentHeadingIds[value._key] : undefined}
-        className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold"
-      >
-        {children}
-      </h2>
+    h2: ({ children }: { children?: React.ReactNode }) => (
+      <h2 className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold">{children}</h2>
     ),
     h3: ({ children }: { children?: React.ReactNode }) => (
       <h3 className="mt-8 mb-3 scroll-mt-28 text-xl font-medium">{children}</h3>
@@ -329,6 +322,30 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             );
           })()}
 
+          {(() => {
+            const headings = getH2Headings(post.body);
+            if (headings.length < 4) return null;
+            return (
+              <nav aria-labelledby="toc-title" className="mt-8 max-w-[68ch] rounded-2xl border border-border/40 bg-card p-5 md:p-6 break-words">
+                <p id="toc-title" className="text-sm font-bold uppercase tracking-wider text-muted-foreground mb-3">
+                  In dit artikel
+                </p>
+                <ol className="space-y-2 list-decimal pl-5 marker:text-muted-foreground">
+                  {headings.map((h) => (
+                    <li key={h.key}>
+                      <a
+                        href={`#${h.id}`}
+                        className="text-foreground/85 underline-offset-4 hover:underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      >
+                        {h.text}
+                      </a>
+                    </li>
+                  ))}
+                </ol>
+              </nav>
+            );
+          })()}
+
           {post.mainImage && (
             <div className="mt-8 aspect-[16/9] rounded-2xl overflow-hidden bg-secondary">
               <img
@@ -341,20 +358,35 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
 
           {post.body && (() => {
             const body = post.body as Array<{ _type?: string; style?: string }>;
+            const ids = Object.fromEntries(getH2Headings(post.body).map((h) => [h.key, h.id]));
+            const bodyComponents = {
+              ...portableTextComponents,
+              block: {
+                ...portableTextComponents.block,
+                h2: ({ children, value }: { children?: React.ReactNode; value?: BodyBlock }) => (
+                  <h2
+                    id={value?._key ? ids[value._key] : undefined}
+                    className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold"
+                  >
+                    {children}
+                  </h2>
+                ),
+              },
+            };
             const h2Indexes = body
               .map((b, i) => (b?._type === "block" && b?.style === "h2" ? i : -1))
               .filter((i) => i >= 0);
             if (h2Indexes.length < 2) {
               return (
                 <div className="mt-12 max-w-[68ch]">
-                  <PortableText value={post.body} components={portableTextComponents} />
+                  <PortableText value={post.body} components={bodyComponents} />
                 </div>
               );
             }
             const split = h2Indexes[1];
             return (
               <div className="mt-12 max-w-[68ch]">
-                <PortableText value={post.body.slice(0, split)} components={portableTextComponents} />
+                <PortableText value={post.body.slice(0, split)} components={bodyComponents} />
                 <aside className="my-10 rounded-r-2xl border-l-4 border-accent bg-secondary p-5 md:p-6 break-words">
                   <p className="font-bold text-foreground">Hoe staat jouw bedrijf hier vandaag voor?</p>
                   <p className="mt-1 text-foreground/85">De quickscan geeft je in vier minuten een eerste beeld.</p>
@@ -366,7 +398,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                     Start de quickscan <ArrowRight className="h-4 w-4" />
                   </Link>
                 </aside>
-                <PortableText value={post.body.slice(split)} components={portableTextComponents} />
+                <PortableText value={post.body.slice(split)} components={bodyComponents} />
               </div>
             );
           })()}
