@@ -4,7 +4,7 @@ import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import PageBreadcrumb from "@/components/PageBreadcrumb";
 import QuickscanSideCallout from "@/components/QuickscanSideCallout";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { ChevronDown } from "lucide-react";
 import faqClimbersRopes from "@/assets/illustrations/faq-climbers-ropes.png";
 
 const fadeInUp = {
@@ -424,22 +424,23 @@ const VeelgesteldeVragen = () => {
                   <h2 className="text-2xl md:text-3xl font-bold tracking-tight">{section.title}</h2>
                 </div>
 
-                <Accordion type="single" collapsible className="space-y-1">
+                {/* Native <details>: de antwoordtekst staat altijd in de HTML (voor zoekmachines en AI) en klapt alleen visueel in. */}
+                <div className="space-y-1">
                   {section.items.map((faq, faqIndex) => (
-                    <AccordionItem
+                    <details
                       key={`${sectionIndex}-${faqIndex}`}
-                      value={`faq-${sectionIndex}-${faqIndex}`}
-                      className="border-b border-border/30 last:border-b-0"
+                      className="group border-b border-border/30 last:border-b-0"
                     >
-                      <AccordionTrigger className="text-left text-base md:text-lg font-semibold py-5 hover:text-primary transition-colors duration-300">
-                        {faq.question}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-muted-foreground leading-relaxed whitespace-pre-line pb-6 text-[0.95rem]">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-base md:text-lg font-semibold hover:text-primary transition-colors duration-300 [&::-webkit-details-marker]:hidden">
+                        <h3 className="text-base md:text-lg font-semibold leading-snug">{faq.question}</h3>
+                        <ChevronDown className="h-4 w-4 shrink-0 transition-transform duration-200 group-open:rotate-180" />
+                      </summary>
+                      <div className="text-muted-foreground leading-relaxed whitespace-pre-line pb-6 text-[0.95rem]">
                         {faq.answer}
-                      </AccordionContent>
-                    </AccordionItem>
+                      </div>
+                    </details>
                   ))}
-                </Accordion>
+                </div>
               </motion.div>
             ))}
           </div>
