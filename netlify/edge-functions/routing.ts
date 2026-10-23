@@ -20,6 +20,8 @@ const REDIRECTS: Record<string, string> = {
   "/ben-je-klaar-om-te-verkopen-twee-vormen-van-exit-readiness-die-je-moet-begrijpen":
     "/kennisbank/wanneer-is-je-bedrijf-verkoopklaar-over-voorbereiding-van-bedrijf-en-ondernemer",
   "/kennisbank/bedrijfswaarde-verhogen-waardedrijvers": "/kennisbank/thema/de-waardering-van-je-bedrijf",
+  "/kennisbank/successieplanning-voor-het-familiebedrijf-zo-ontwikkel-je-een-exitstrategie":
+    "/kennisbank/overdracht-familiebedrijf-voorbereiden",
   "/kennisbank/thema/bedrijfswaardering-en-waardedrijvers": "/kennisbank/thema/de-waardering-van-je-bedrijf",
   "/kennisbank/thema/het-persoonlijke-en-persoonlijke-financiele-plan-na-overdracht":
     "/kennisbank/thema/het-persoonlijke-en-financiele-plan-na-overdracht",
