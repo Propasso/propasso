@@ -424,8 +424,17 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
             );
           })()}
 
+          {post.closingNote && (
+            <div className="mt-12 max-w-[68ch] border-t border-border/40 pt-8">
+              <p className="text-[17px] md:text-lg leading-[1.75] text-foreground/85 italic break-words">
+                {post.closingNote}
+              </p>
+            </div>
+          )}
+
           {(() => {
             const faqItems = getFaqItems(post);
+
             if (faqItems.length === 0) return null;
             return (
               <section className="max-w-[68ch]">

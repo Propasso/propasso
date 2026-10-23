@@ -43,3 +43,5 @@
 - [x] Artikeltemplate stap 8: veelgestelde vragen (alleen articleType "antwoord" met gevulde vraag+antwoord, altijd open, geen JSON-LD)
 - [x] Artikeltemplate stap 7: inhoudsopgave "In dit artikel" ALLEEN bij articleType "antwoord" én ≥4 H2's (bij inzichtartikelen geen inhoudsopgave), altijd open, unieke ankers; ids op de h2's blijven bij alle artikelen staan; laatste regel "Veelgestelde vragen" → #veelgestelde-vragen, alleen als het FAQ-blok ook getoond wordt (dezelfde helper getFaqItems als stap 8); FAQ-h2 heeft die id; getest op 1280 en 375px
 - [ ] Artikeltemplate stap 5 en 11: wachten op akkoord (stap 5 heeft lege velden nodig — vulling pas bij artikel van 17 december)
+- [x] Artikeltemplate afsluiter: post.closingNote als één cursieve alinea na de body en vóór "Veelgestelde vragen" (dunne lijn erboven, max-w-[68ch], geen kop of knop; leeg = niets). sanityQueries.ts en types/sanity.ts niet aangeraakt
+
