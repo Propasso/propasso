@@ -25,6 +25,9 @@ const PILLAR_SLUGS = [
   "het-persoonlijke-en-financiele-plan-na-overdracht",
 ];
 
+// Oude artikeladressen met een 301 in routing.ts: niet in de sitemap.
+const REDIRECTED_SLUGS = new Set(["successieplanning-voor-het-familiebedrijf-zo-ontwikkel-je-een-exitstrategie"]);
+
 function escapeXml(str: string): string {
   return str
     .replace(/&/g, "&amp;")
@@ -65,6 +68,7 @@ export default async function handler(req: Request, context: Context) {
     ...articles
       .filter((a) => {
         if (a.noIndex || !a.slug?.current) return false;
+        if (REDIRECTED_SLUGS.has(a.slug.current)) return false;
         if (!/^[a-z0-9-]+$/.test(a.slug.current)) {
           console.error(`Ongeldige slug overgeslagen in sitemap: "${a.slug.current}" (corrigeer in Sanity)`);
           return false;

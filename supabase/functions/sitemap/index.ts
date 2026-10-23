@@ -92,6 +92,7 @@ Deno.serve(async (req) => {
       // Skip noIndex articles or articles without slugs
       if (article.noIndex || !article.slug?.current) continue;
       // Skip invalid slugs (must be lowercase alphanumeric with hyphens)
+      if (article.slug.current === "successieplanning-voor-het-familiebedrijf-zo-ontwikkel-je-een-exitstrategie") continue;
       if (!/^[a-z0-9-]+$/.test(article.slug.current)) {
         console.error(`Ongeldige slug overgeslagen in sitemap: "${article.slug.current}" (corrigeer in Sanity)`);
         continue;
