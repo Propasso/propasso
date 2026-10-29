@@ -1,9 +1,9 @@
 # Roadmap
 
 ## SEO en AI-vindbaarheid (29 okt 2026)
-- [ ] Actuele scan en live pagina's controleren; oude meldingen niet als actuele fouten behandelen.
-- [ ] Bevestigde fouten herstellen binnen de afgesproken verantwoordelijkheden; technische SEO-wijzigingen via Claude/GitHub laten lopen.
-- [ ] Realistische Nederlandse zoekkansen onderbouwen met Semrush; Google-indexering en AI-vermeldingen alleen rapporteren met meetbewijs.
+- [x] Actuele foundations-scan en live pagina's gecontroleerd: beide openbare hosts serveren sitemap en llms.txt (200); alle 35 sitemap-pagina's hebben één titel, beschrijving en canonical. Scanmelding ontbrekende sitemap spreekt live verificatie tegen; niet als fixed gemarkeerd zonder correctie. Metadata-basisscanner onbekend/onbeschikbaar.
+- [ ] Familiebedrijf-themapagina toevoegen aan bestaande sitemaps; BLOKKER: technische SEO valt volgens deze roadmap onder Claude/GitHub. Live /kennisbank/thema/bedrijfsoverdracht-in-het-familiebedrijf is 200 en zelf-canonical, maar ontbreekt in sitemap. Ook artikel-lastmod bij echte updates op lastUpdated baseren, niet uitsluitend publishedAt; geen generatiedatum toevoegen.
+- [x] Nederlandse zoekkansen onderbouwd met Semrush: bedrijf verkoopklaar maken (260/mnd, KD13), familiebedrijf overdragen (90, KD14), bedrijfsoverdracht mkb (50, KD8), exit planning (40, KD23). Schattingen, geen garanties; bestaande pagina's eerst verbeteren. Google-indexering/verkeer onbekend zonder toegankelijke Search Console; AI-vermeldingen niet gemeten.
 
 ## Huidige taken (instructie 21 okt 2026)
 - [x] 1. Redirects 301 toegevoegd, oude thema-slug uit beide sitemaps, interne links bijgewerkt; alle redirects waren al 301; catch-all 404 bestaat al
