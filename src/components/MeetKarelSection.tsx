@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import karelPortretWarm from "@/assets/images/karel-portret-warm.jpg";
+import karelPortret from "@/assets/images/karel-portret-2026.jpg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -22,7 +22,7 @@ const MeetKarelSection = () => {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src={karelPortretWarm}
+                  src={karelPortret}
                   alt="Karel Cremers, oprichter van Propasso"
                   className="w-full h-auto object-cover aspect-[4/5]"
                   style={{ objectPosition: "center 25%" }}

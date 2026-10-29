@@ -9,7 +9,7 @@ import QuickscanBanner from "@/components/QuickscanBanner";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
 import karelKantoor from "@/assets/images/karel-kantoor.jpeg";
-import karelPortretFormeel from "@/assets/images/karel-portret-formeel.jpg";
+import karelPortret from "@/assets/images/karel-portret-2026.jpg";
 import kantoor from "@/assets/images/kantoor.jpeg";
 import viaFerrata from "@/assets/images/via-ferrata.png";
 import mountainClimberSvg from "@/assets/images/mountain-climber-line-drawing.svg";
@@ -255,7 +255,7 @@ const OverPropasso = () => {
             <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.2 }} className="relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src={karelPortretFormeel}
+                  src={karelPortret}
                   alt="Karel Cremers, oprichter van Propasso"
                   className="w-full h-auto object-cover aspect-[4/5]"
                   style={{ objectPosition: "center 25%" }}
