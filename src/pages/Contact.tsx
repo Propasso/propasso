@@ -15,7 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import ConsentCheckboxes from "@/components/ConsentCheckboxes";
 import { pushEvent } from "@/lib/tracking";
 import { ChevronRight, Phone, Mail, MapPin, CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
-import karelImg from "@/assets/images/karel-portrait.jpg";
+import karelImg from "@/assets/images/karel-portret-2026.jpg";
 import HubSpotMeetingsEmbed from "@/components/HubSpotMeetingsEmbed";
 
 const contactSchema = z.object({

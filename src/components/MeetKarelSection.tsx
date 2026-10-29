@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
-import karelPortretWarm from "@/assets/images/karel-portret-warm.jpg";
+import karelPortret from "@/assets/images/karel-portret-2026.jpg";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
