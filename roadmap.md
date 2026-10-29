@@ -45,3 +45,7 @@
 - [ ] Artikeltemplate stap 5 en 11: wachten op akkoord (stap 5 heeft lege velden nodig — vulling pas bij artikel van 17 december)
 - [x] Artikeltemplate afsluiter: post.closingNote als één cursieve alinea na de body en vóór "Veelgestelde vragen" (dunne lijn erboven, max-w-[68ch], geen kop of knop; leeg = niets). sanityQueries.ts en types/sanity.ts niet aangeraakt
 
+## Portretfoto (29 okt 2026)
+- [x] Nieuw portret van Karel gecropt naar 4:5 (1240x1550) als src/assets/images/karel-portret-2026.jpg; vervangt karel-portrait.jpg (contact), karel-portret-warm.jpg (homepage) en karel-portret-formeel.jpg (over-propasso); die drie oude bestanden zijn verwijderd. Foto getoond en bekeken op home, contact en over-propasso op 1280 en 375px.
+- [ ] Portret in kennisbankartikelen (byline en "Over de auteur") komt uit Sanity (author.image) en is hier NIET aangepast: Karel moet daar in Studio hetzelfde beeld uploaden, Lovable heeft geen schrijfrechten op Sanity.
+
