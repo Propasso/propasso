@@ -255,7 +255,7 @@ const OverPropasso = () => {
             <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.2 }} className="relative">
               <div className="rounded-2xl overflow-hidden shadow-xl">
                 <img
-                  src={karelPortretFormeel}
+                  src={karelPortret}
                   alt="Karel Cremers, oprichter van Propasso"
                   className="w-full h-auto object-cover aspect-[4/5]"
                   style={{ objectPosition: "center 25%" }}
