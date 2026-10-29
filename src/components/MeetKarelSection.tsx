@@ -31,7 +31,7 @@ const MeetKarelSection = () => {
               </div>
               <div className="hidden md:block absolute -bottom-5 -left-5 lg:-left-8 bg-accent rounded-xl px-5 py-3 shadow-lg max-w-[220px]">
                 <p className="text-sm font-bold text-accent-foreground leading-snug">
-                  Ondernemer geweest. Nu jouw gids.
+                  Ik help ondernemers naar een verkoopklaar en overdraagbaar bedrijf.
                 </p>
               </div>
             </div>
@@ -48,8 +48,8 @@ const MeetKarelSection = () => {
             </h2>
             <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                Ik ben Karel Cremers, oprichter van Propasso. Na jaren in Strategy en Development (M&A) bij een
-                beursgenoteerde onderneming, koos ik voor het ondernemerschap. Ik bouwde het familiebedrijf uit,
+                Ik ben Karel Cremers, oprichter van Propasso. Na jaren in Strategy en Development (M&A) bij het
+                beursgenoteerde bouwmaterialenconcern CRH plc., koos ik in 2013 voor het ondernemerschap. Ik bouwde het familiebedrijf uit,
                 droeg het over en verkocht het. Precies de route waar veel ondernemers nu voor staan.
               </p>
               <p>
