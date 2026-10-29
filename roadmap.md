@@ -1,5 +1,10 @@
 # Roadmap
 
+## SEO en AI-vindbaarheid (29 okt 2026)
+- [ ] Actuele scan en live pagina's controleren; oude meldingen niet als actuele fouten behandelen.
+- [ ] Bevestigde fouten herstellen binnen de afgesproken verantwoordelijkheden; technische SEO-wijzigingen via Claude/GitHub laten lopen.
+- [ ] Realistische Nederlandse zoekkansen onderbouwen met Semrush; Google-indexering en AI-vermeldingen alleen rapporteren met meetbewijs.
+
 ## Huidige taken (instructie 21 okt 2026)
 - [x] 1. Redirects 301 toegevoegd, oude thema-slug uit beide sitemaps, interne links bijgewerkt; alle redirects waren al 301; catch-all 404 bestaat al
 - [~] 2. /exit-planning-pagina gebouwd (route + Sanity-query op type "pagina"); BLOKKER: type "pagina" bestaat nog niet in Sanity Studio — Karel moet schema + document aanmaken; daarna redirect /exit-planning → /werkwijze uit netlify/edge-functions/routing.ts halen en pagina opnemen in sitemap, llms.txt en navigatie
