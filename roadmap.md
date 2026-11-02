@@ -60,3 +60,11 @@
 - [ ] 1.3b Pijler 7 op homepage; BLOKKER: akkoord pijlertitels Karel/Claude
 - [ ] 1.5 Eén bio Karel; BLOKKER: Karel levert feitelijke versie
 - [ ] 1.6 Familiebedrijf in sitemap; BLOKKER: Claude via GitHub
+
+## Claude-audit masterplan v2 (2 nov 2026)
+- [ ] Masterplan v3: apparaat = wens Karel; 4.1 = keyInsight (20/22 leeg); 1.3a = code klaar, live-controle open (builds stil tot 9-11); 1.3b ontkoppeld van titels
+- [ ] H10 opnieuw op metaTitle van alle 7 categorieën, met ruwe Semrush-export
+- [ ] Ruwe GSC-export query x pagina x positie x vertoningen met exacte periode; totalen laten sluiten
+- [ ] H11 opnieuw tellen: alleen queries met >=2 URL's met vertoningen in top 30
+- [ ] ClientLogos: Bodi, Worxx, CRH staan onterecht als klant; BLOKKER: Karel beslist wat er moet staan
+- [ ] Zichtbare toetsenbordfocus op pijlerlinks (bij 1.3b)
