@@ -39,7 +39,7 @@ const values = [
     icon: Users,
     title: "Ervaringsdeskundige",
     description:
-      "Geen lange rapporten maar begeleiding door iemand die zelf ondernemer is geweest en weet hoe het is om 100+ medewerkers te hebben, in goede én in slechte tijden.",
+      "Geen lange rapporten maar begeleiding door iemand die zelf ondernemer is geweest en weet hoe het is om 130 medewerkers te hebben, in goede én in slechte tijden.",
   },
   {
     icon: Eye,
@@ -51,16 +51,16 @@ const values = [
 
 const timeline = [
   {
-    year: "Corporate",
-    title: "Strategy, M&A & Business Development",
+    year: "2007–2013",
+    title: "Strategy & Development bij CRH plc",
     description:
-      "Jarenlange ervaring in strategie, fusies & overnames en business development binnen het corporate bedrijfsleven.",
+      "Zeven jaar strategie en fusies en overnames bij CRH plc.",
   },
   {
     year: "2013",
     title: "Van corporate naar ondernemerschap",
     description:
-      "Midden in de recessie het familiebedrijf begeleid door een faillissement en doorstart, en uitgebouwd tot een winstgevende, professionele organisatie.",
+      "Midden in de recessie het familiebedrijf Worxx door een faillissement en doorstart geleid en uitgebouwd tot 130 medewerkers.",
   },
   {
     year: "2023",
@@ -236,18 +236,31 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Na een loopbaan in Strategy & Development bij CRH Plc., met focus op fusies, overnames en business
-                  development, koos ik in 2013 voor ondernemerschap. Niet in een opwaartse markt, maar midden in de
-                  recessie.
+                  Karel Cremers is oprichter van Propasso. Hij begeleidt DGA's van MKB-bedrijven met 10 tot 150
+                  medewerkers en €3 miljoen tot €50 miljoen omzet bij het verkoopklaar maken van hun bedrijf.
                 </p>
                 <p>
-                  Ik begeleidde het familiebedrijf door een faillissement en doorstart, en bouwde het uit tot een
-                  winstgevende organisatie. In 2023 stelde ik een directie aan, droeg de leiding over en verkocht eind
-                  2024 een groot deel van het bedrijf. Achteraf gezien was ik mijn eigen Exit Planning adviseur.
+                  Tot medio 2013 werkte hij zeven jaar bij CRH plc in Strategy & Development, met fusies en overnames
+                  als zwaartepunt. Hij vertrok om in het familiebedrijf Worxx te stappen, een uitzendbureau voor
+                  vakmensen in de bouw. Het bedrijf stond er slecht voor, en zijn eerste taak was het door een
+                  faillissement te begeleiden. Hij was nog geen eigenaar en stond voor de keuze om het midden in de
+                  recessie door te starten. Zo nam hij samen met zijn broer eerder dan gepland het bedrijf over uit de
+                  doorstart.
                 </p>
                 <p>
-                  Die ervaring, de groei, de resultaatverbeteringen, de uitdagingen en de overdracht, is precies wat ik
-                  nu inzet voor MKB-ondernemers via Propasso.
+                  De beginjaren waren zwaar: er was een recessie en de markt stond stil. Het draaide om liquiditeit en
+                  relatiebeheer, en het belangrijkste was dat klanten voor Worxx kozen.
+                </p>
+                <p>
+                  Daarna volgde een periode van sterke groei, waarin cashplanning en werkkapitaal bepaalden of die groei
+                  te bekostigen was. Hij startte nieuwe bedrijfsonderdelen en stootte activiteiten af die onvoldoende
+                  presteerden, zoals de afdeling afbouw, die niet bij Worxx paste. Het bedrijf haalde een nieuw
+                  omzetrecord en groeide tot 130 medewerkers. In de jaren voor de verkoop maakte hij het bedrijf
+                  verkoopklaar, en eind 2024 verkocht hij een groot deel via een management-buy-out.
+                </p>
+                <p>
+                  Denk je na over je eigen overdracht, dan kijkt hij mee vanuit zijn ervaring als ondernemer, koper en
+                  verkoper.
                 </p>
               </div>
             </motion.div>
