@@ -248,14 +248,14 @@ const OverPropasso = () => {
                   doorstart.
                 </p>
                 <p>
-                  De beginjaren waren zwaar: er was een recessie en de markt stond stil. Het draaide om liquiditeit en
-                  relatiebeheer, en het belangrijkste was dat klanten voor Worxx kozen.
+                  De beginjaren waren zwaar: de economische recessie zorgde dat de markt stil stond. Daarom draaide
+                  alles om liquiditeit en relatiebeheer, maar het belangrijkste was: onze klanten kozen voor Worxx.
                 </p>
                 <p>
                   Daarna volgde een periode van sterke groei, waarin cashplanning en werkkapitaal bepaalden of die groei
-                  te bekostigen was. Hij startte nieuwe bedrijfsonderdelen en stootte activiteiten af die onvoldoende
-                  presteerden, zoals de afdeling afbouw, die niet bij Worxx paste. Het bedrijf haalde een nieuw
-                  omzetrecord en groeide tot 130 medewerkers. In de jaren voor de verkoop maakte hij het bedrijf
+                  te bekostigen was. Hij startte nieuwe bedrijfsonderdelen, maar stootte ook activiteiten af die
+                  onvoldoende presteerden. Zoals de afdeling afbouw, die simpelweg niet bij het Worxx-DNA pastte. Het
+                  bedrijf haalde een nieuw omzetrecord en groeide tot 130 medewerkers. In de jaren voor de verkoop maakte hij het bedrijf
                   verkoopklaar, en eind 2024 verkocht hij een groot deel via een management-buy-out.
                 </p>
                 <p>
