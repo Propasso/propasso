@@ -15,18 +15,16 @@ const STATIC_PAGES = [
   { loc: "/veelgestelde-vragen", changefreq: "monthly", priority: "0.7" },
 ];
 
-
-const PILLAR_SLUGS = [
-  "ondernemingswaarde-en-winstgevendheid-verbeteren",
-  "bedrijf-overdraagbaar-maken",
-  "afhankelijkheid-van-de-ondernemer-verminderen",
-  "de-waardering-van-je-bedrijf",
-  "voorbereiding-op-bedrijfsoverdracht",
-  "het-persoonlijke-en-financiele-plan-na-overdracht",
-];
+// Thema's (categorieën) en artikelen komen uit Sanity. Geen vaste themalijst meer:
+// een nieuw of hernoemd thema staat zo vanzelf goed in de sitemap.
 
 // Oude artikeladressen met een 301 in routing.ts: niet in de sitemap.
 const REDIRECTED_SLUGS = new Set(["successieplanning-voor-het-familiebedrijf-zo-ontwikkel-je-een-exitstrategie"]);
+
+const SLUG_OK = /^[a-z0-9-]+$/;
+
+type Theme = { slug: string };
+type Article = { slug?: string; publishedAt: string; lastUpdated?: string; noIndex?: boolean };
 
 function escapeXml(str: string): string {
   return str
@@ -46,36 +44,57 @@ function urlEntry(loc: string, lastmod?: string, changefreq?: string, priority?:
 }
 
 export default async function handler(req: Request, context: Context) {
+  const notDraft = `!(_id in path("drafts.**")) && !(_id in path("versions.**"))`;
   const query = encodeURIComponent(
-    `*[_type == "post" && publishedAt <= now() && !(_id in path("drafts.**"))] | order(publishedAt desc) { slug, publishedAt, noIndex }`
+    `{
+      "themes": *[_type == "category" && ${notDraft} && defined(slug.current)]
+        | order(coalesce(order, 99) asc, title asc) { "slug": slug.current },
+      "articles": *[_type == "post" && ${notDraft} && publishedAt <= now()]
+        | order(publishedAt desc) { "slug": slug.current, publishedAt, lastUpdated, noIndex }
+    }`,
   );
   const sanityUrl = `https://${SANITY_PROJECT_ID}.api.sanity.io/v${SANITY_API_VERSION}/data/query/${SANITY_DATASET}?query=${query}`;
 
-  let articles: Array<{ slug: { current: string }; publishedAt: string; noIndex?: boolean }> = [];
+  let themes: Theme[] = [];
+  let articles: Article[] = [];
   try {
     const res = await fetch(sanityUrl);
-    if (res.ok) {
-      const data = await res.json();
-      articles = data.result || [];
-    }
+    if (!res.ok) throw new Error(`Sanity ${res.status}`);
+    const { result } = await res.json();
+    themes = result?.themes || [];
+    articles = result?.articles || [];
+    if (themes.length === 0) throw new Error("geen thema's ontvangen");
   } catch (e) {
-    console.error("Sanity fetch error:", e);
+    // Liever even geen sitemap dan een onvolledige: crawlers proberen het later opnieuw.
+    console.error("Sitemap: Sanity-fout", e);
+    return new Response("Sitemap tijdelijk niet beschikbaar", {
+      status: 503,
+      headers: { "Retry-After": "600", "Cache-Control": "no-store" },
+    });
   }
 
   const entries: string[] = [
     ...STATIC_PAGES.map((p) => urlEntry(p.loc, undefined, p.changefreq, p.priority)),
-    ...PILLAR_SLUGS.map((slug) => urlEntry(`/kennisbank/thema/${slug}`, undefined, "weekly", "0.8")),
-    ...articles
-      .filter((a) => {
-        if (a.noIndex || !a.slug?.current) return false;
-        if (REDIRECTED_SLUGS.has(a.slug.current)) return false;
-        if (!/^[a-z0-9-]+$/.test(a.slug.current)) {
-          console.error(`Ongeldige slug overgeslagen in sitemap: "${a.slug.current}" (corrigeer in Sanity)`);
+    ...themes
+      .filter((t) => {
+        if (!SLUG_OK.test(t.slug)) {
+          console.error(`Ongeldige thema-slug overgeslagen in sitemap: "${t.slug}" (corrigeer in Sanity)`);
           return false;
         }
         return true;
       })
-      .map((a) => urlEntry(`/kennisbank/${a.slug.current}`, a.publishedAt, "monthly", "0.6")),
+      .map((t) => urlEntry(`/kennisbank/thema/${t.slug}`, undefined, "weekly", "0.8")),
+    ...articles
+      .filter((a) => {
+        if (a.noIndex || !a.slug) return false;
+        if (REDIRECTED_SLUGS.has(a.slug)) return false;
+        if (!SLUG_OK.test(a.slug)) {
+          console.error(`Ongeldige slug overgeslagen in sitemap: "${a.slug}" (corrigeer in Sanity)`);
+          return false;
+        }
+        return true;
+      })
+      .map((a) => urlEntry(`/kennisbank/${a.slug}`, a.lastUpdated || a.publishedAt, "monthly", "0.6")),
   ];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
