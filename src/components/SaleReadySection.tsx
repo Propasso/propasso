@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+const MotionLink = motion.create(Link);
 import { ArrowRight } from "lucide-react";
 import optimizeImg from "@/assets/illustrations/propasso-optimize.svg";
 import moneyImg from "@/assets/illustrations/propasso-money.png";
@@ -77,17 +79,15 @@ const PillarNode = ({
   pillar,
   style,
   delay,
-  onNav,
   index,
 }: {
   pillar: (typeof pillars)[0];
   style: React.CSSProperties;
   delay: number;
-  onNav: () => void;
   index: number;
 }) => (
-  <motion.button
-    onClick={onNav}
+  <MotionLink
+    to={`/kennisbank/thema/${pillar.slug}`}
     initial={{ opacity: 0, scale: 0.85 }}
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
@@ -123,11 +123,10 @@ const PillarNode = ({
       {/* Arrow */}
       <ArrowRight className="w-3.5 h-3.5 text-primary mt-2 opacity-0 translate-x-[-4px] group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-400 ease-out" />
     </div>
-  </motion.button>
+  </MotionLink>
 );
 
 const SaleReadySection = () => {
-  const navigate = useNavigate();
 
   return (
     <section id="aanpak" className="relative py-16 md:py-24 lg:py-36 overflow-hidden">
@@ -248,8 +247,7 @@ const SaleReadySection = () => {
                   pillar={pillar}
                   index={i}
                   delay={0.5 + i * 0.08}
-                  onNav={() => navigate(`/kennisbank/thema/${pillar.slug}`)}
-                  style={{
+                                    style={{
                     left: 380 + pos.x - nodeW / 2,
                     top: 340 + pos.y - nodeH / 2,
                     width: nodeW,
@@ -342,8 +340,7 @@ const SaleReadySection = () => {
                     pillar={pillar}
                     index={i}
                     delay={0.4 + i * 0.08}
-                    onNav={() => navigate(`/kennisbank/thema/${pillar.slug}`)}
-                    style={{
+                                        style={{
                       left: 300 + pos.x - nW / 2,
                       top: 290 + pos.y - nH / 2,
                       width: nW,
@@ -387,9 +384,9 @@ const SaleReadySection = () => {
 
             <div className="space-y-1">
               {pillars.map((pillar, i) => (
-                <motion.button
+                <MotionLink
                   key={pillar.number}
-                  onClick={() => navigate(`/kennisbank/thema/${pillar.slug}`)}
+                  to={`/kennisbank/thema/${pillar.slug}`}
                   {...fadeInUp}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
                   className="group relative flex items-center gap-4 w-full text-left pl-3 pr-4 py-3.5 rounded-xl hover:bg-muted/30 transition-all duration-400 focus:outline-none"
@@ -417,7 +414,7 @@ const SaleReadySection = () => {
                   </div>
 
                   <ArrowRight className="w-4 h-4 text-primary opacity-0 translate-x-[-4px] group-hover:opacity-60 group-hover:translate-x-0 transition-all duration-400 flex-shrink-0" />
-                </motion.button>
+                </MotionLink>
               ))}
             </div>
           </div>
