@@ -1,4 +1,5 @@
 import { sanityClient } from "./sanity";
+import type { SanityHomepageTheme } from "@/types/sanity";
 import type { SanityPost, SanityLegalPage } from "@/types/sanity";
 
 const postFields = `
@@ -159,3 +160,14 @@ export async function fetchPaginaBySlug(slug: string): Promise<SanityPagina | nu
   );
 }
 
+
+export async function fetchHomepageThemes(): Promise<SanityHomepageTheme[]> {
+  return sanityClient.fetch<SanityHomepageTheme[]>(
+    `*[_type == "category" && defined(slug.current)]
+      | order(coalesce(order, 99) asc, title asc) {
+        _id, title, "slug": slug.current, description,
+        "articleCount": count(*[_type == "post" && references(^._id)
+                                 && publishedAt <= now() && noIndex != true])
+      }`
+  );
+}

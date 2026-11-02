@@ -56,7 +56,7 @@
 
 
 ## Masterplan v2 (2 nov 2026) - zie Files: Propasso_Masterplan_Autoriteit_v2.md
-- [ ] 1.3a Pijlerlinks op home: SaleReadySection is wel link-proof maar staat niet op de homepage (0 links lokaal en live). BLOKKER: keuze Karel waar de pijlers op home komen
+- [x] 1.3a SaleReadySection werd niet geladen; vervangen door ThemesSection (2-11-2026). Live-controle door Claude na eerstvolgende build.
 - [ ] 1.3b Pijler 7 op homepage; BLOKKER: akkoord pijlertitels Karel/Claude
 - [ ] 1.5 Eén bio Karel; BLOKKER: Karel levert feitelijke versie
 - [ ] 1.6 Familiebedrijf in sitemap; BLOKKER: Claude via GitHub

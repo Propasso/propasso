@@ -64,3 +64,11 @@ export interface SanityPost {
   relatedPosts?: SanityPost[];
   ctaType?: "contact" | "quickscan";
 }
+
+export interface SanityHomepageTheme {
+  _id: string;
+  title: string;
+  slug: string;
+  description?: string;
+  articleCount: number;
+}

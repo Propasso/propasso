@@ -12,6 +12,7 @@ import StatsBar from "@/components/StatsBar";
 import ClientLogos from "@/components/ClientLogos";
 import QuickscanBanner from "@/components/QuickscanBanner";
 import MeetKarelSection from "@/components/MeetKarelSection";
+import ThemesSection from "@/components/ThemesSection";
 
 const homepageJsonLd = [
   {
@@ -48,6 +49,7 @@ const Index = () => {
                 <StatsBar />
                 <ProblemSection />
                 <MethodologyFramework />
+                <ThemesSection />
                 <WhyPropasso />
                 <MeetKarelSection />
                 <ClientLogos />
