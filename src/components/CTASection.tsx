@@ -29,7 +29,7 @@ const CTASection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl mx-auto leading-tight text-primary-foreground text-balance"
         >
-          Over 3 jaar wil je vrij zijn. Laten we vandaag beginnen.
+          Over 3 jaar wil je je bedrijf overdragen. Laten we vandaag beginnen.
         </motion.h2>
 
         <motion.p
