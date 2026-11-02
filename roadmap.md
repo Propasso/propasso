@@ -56,13 +56,13 @@
 
 
 ## Masterplan v2 (2 nov 2026) - zie Files: Propasso_Masterplan_Autoriteit_v2.md
-- [x] 1.3a Homepage-pijlers zijn echte links (SaleReadySection, alle drie layouts)
+- [ ] 1.3a Pijlerlinks op home: SaleReadySection is wel link-proof maar staat niet op de homepage (0 links lokaal en live). BLOKKER: keuze Karel waar de pijlers op home komen
 - [ ] 1.3b Pijler 7 op homepage; BLOKKER: akkoord pijlertitels Karel/Claude
 - [ ] 1.5 Eén bio Karel; BLOKKER: Karel levert feitelijke versie
 - [ ] 1.6 Familiebedrijf in sitemap; BLOKKER: Claude via GitHub
 
 ## Claude-audit masterplan v2 (2 nov 2026)
-- [x] Masterplan v3: apparaat = wens Karel; 4.1 = keyInsight (20/22 leeg); 1.3a = code klaar, live-controle open (builds stil tot 9-11); 1.3b ontkoppeld van titels
+- [x] Masterplan (één bestand, bijwerken, geen nieuwe versies): apparaat = wens Karel; 4.1 = keyInsight (20/22 leeg); 1.3a = code klaar, live-controle open (builds stil tot 9-11); 1.3b ontkoppeld van titels
 - [x] H10 opnieuw op metaTitle van alle 7 categorieën, met ruwe Semrush-export
 - [x] Ruwe GSC-export query x pagina x positie x vertoningen met exacte periode; totalen laten sluiten
 - [x] H11 opnieuw tellen: alleen queries met >=2 URL's met vertoningen in top 30
