@@ -5,6 +5,11 @@
   # De stappen staan in scripts/netlify-build.sh.
   command = "bash scripts/netlify-build.sh"
   publish = "dist"
+  # Buildtegoed sparen: alleen bouwen bij een build hook (dagelijkse of ad-hoc
+  # GitHub-workflow netlify-rebuild.yml) of een deploy preview (kost geen credits).
+  # Gewone pushes naar main (Lovable, Claude) worden overgeslagen.
+  # Zie scripts/netlify-ignore.sh en roadmap.md. Niet wijzigen zonder overleg.
+  ignore = "bash scripts/netlify-ignore.sh"
 
 # routing draait als eerste: 301's en echte 404's, voor mens en bot
 [[edge_functions]]
