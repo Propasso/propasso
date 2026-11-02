@@ -70,7 +70,7 @@ const ThemesSection = () => {
                       aria-hidden="true"
                       className="absolute left-0 top-3 bottom-3 w-[2px] bg-primary origin-top scale-y-0 transition-transform duration-300 group-hover:scale-y-100 group-focus-visible:scale-y-100"
                     />
-                    <span className="tabular-nums text-sm font-semibold text-primary/60 pt-0.5 transition-colors group-hover:text-primary group-focus-visible:text-primary">
+                    <span className="w-6 flex-shrink-0 tabular-nums text-sm font-semibold text-primary/60 pt-0.5 transition-colors group-hover:text-primary group-focus-visible:text-primary">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <span className="flex-1 min-w-0">
