@@ -1,42 +1,64 @@
-name: Netlify rebuild (prerender verversen)
+name: Netlify build (dagelijks en ad hoc)
 
-# Start een nieuwe Netlify-build, zodat de geprerenderde pagina's de actuele Sanity-content tonen.
-# 1. workflow_dispatch: aangeroepen door de Sanity-webhook na publiceren (of handmatig).
-#    Wacht eerst 3 minuten, omdat de Sanity-CDN 1 à 2 minuten achterloopt.
-#    Meerdere publicaties kort na elkaar leveren één build op (oudere wachtende run wordt geannuleerd).
-# 2. schedule: elk uur kijken of er in het afgelopen anderhalf uur een ingepland artikel
-#    live is gegaan (publishedAt verstreken). Alleen dan bouwen.
+# Buildtegoed sparen: hooguit één productiebuild per dag, alleen als er iets veranderd is.
+# 1. schedule: elke dag om 05:00 UTC (06:00 wintertijd, 07:00 zomertijd).
+#    Bouwt alleen als er in de afgelopen 25 uur:
+#    - iets is gepubliceerd in Sanity (post, category, author, legalPage, pagina), of
+#    - een ingepland artikel live is gegaan (publishedAt verstreken), of
+#    - een commit op main is gedaan (Lovable, Claude).
+# 2. workflow_dispatch: ad hoc bouwen via Actions > deze workflow > "Run workflow". Bouwt altijd.
+# Netlify slaat alle andere builds over (zie scripts/netlify-ignore.sh), behalve deploy previews.
+# Niet gedetecteerd: een document dat alleen is gedepubliceerd of verwijderd. Gebruik dan de ad-hocknop.
 # Benodigd secret: NETLIFY_BUILD_HOOK (de URL van de Netlify build hook).
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 * * * *'
+    - cron: '0 5 * * *'
 
 concurrency:
-  group: netlify-rebuild-${{ github.event_name }}
-  cancel-in-progress: true
+  group: netlify-build
+  cancel-in-progress: false
 
 jobs:
-  rebuild:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Wachten tot de Sanity-cache bij is
-        if: github.event_name == 'workflow_dispatch'
-        run: sleep 180
+      - name: Code ophalen
+        if: github.event_name == 'schedule'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 100
 
-      - name: Ingeplande artikelen controleren
+      - name: Controleren of er iets veranderd is
         id: check
         if: github.event_name == 'schedule'
         run: |
-          Q='count(*[_type == "post" && !(_id in path("drafts.**")) && !(_id in path("versions.**")) && dateTime(publishedAt) > dateTime(now()) - 5400 && dateTime(publishedAt) <= dateTime(now()) - 300])'
-          N=$(curl -sf -G "https://h53ofne2.api.sanity.io/v2024-01-01/data/query/production" \
-            --data-urlencode "perspective=published" --data-urlencode "query=$Q" | jq -r '.result')
-          echo "Artikelen die in het afgelopen anderhalf uur live gingen: $N"
-          echo "count=$N" >> "$GITHUB_OUTPUT"
+          SINCE=$(date -u -d '25 hours ago' +%Y-%m-%dT%H:%M:%SZ)
+          echo "Controle vanaf $SINCE (UTC)"
+
+          CODE=$(git log --since="$SINCE" --oneline | wc -l | tr -d ' ')
+          echo "Commits op main: $CODE"
+
+          Q='count(*[_type in ["post","category","author","legalPage","pagina"] && !(_id in path("drafts.**")) && !(_id in path("versions.**")) && (dateTime(_updatedAt) > dateTime($since) || (_type == "post" && dateTime(publishedAt) > dateTime($since) && dateTime(publishedAt) <= dateTime(now())))])'
+          CONTENT=$(curl -sf -G "https://h53ofne2.api.sanity.io/v2024-01-01/data/query/production" \
+            --data-urlencode "perspective=published" \
+            --data-urlencode "query=$Q" \
+            --data-urlencode "\$since=\"$SINCE\"" | jq -r '.result')
+          echo "Gewijzigde of live gegane Sanity-documenten: $CONTENT"
+
+          if [ -z "$CONTENT" ] || [ "$CONTENT" = "null" ]; then
+            echo "Sanity-controle mislukt: voor de zekerheid bouwen."
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          elif [ "$CODE" != "0" ] || [ "$CONTENT" != "0" ]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "Niets veranderd: geen build."
+            echo "build=false" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Netlify-build starten
-        if: github.event_name != 'schedule' || steps.check.outputs.count != '0'
+        if: github.event_name == 'workflow_dispatch' || steps.check.outputs.build == 'true'
         run: |
           curl -sf -X POST -d '{}' "$HOOK" -o /dev/null -w "Netlify build hook: %{http_code}\n"
         env:
