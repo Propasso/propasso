@@ -38,9 +38,19 @@ const ThemesSection = () => {
         <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
           <p className="eyebrow">Exit Planning</p>
           <h2 id="themas-heading" className="mt-5 text-3xl md:text-4xl font-bold leading-tight text-balance">
-            De {countWord(count)} thema&apos;s van verkoopklaar maken
+            Wat komt er kijken bij het verkoopklaar maken van je bedrijf?
           </h2>
-          <p className="mt-4 text-muted-foreground leading-relaxed">[introtekst volgt van Karel]</p>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            Je bedrijf verkoopklaar maken is het werk dat je doet in de drie tot vijf jaar vóór een overdracht. Je
+            maakt je bedrijf minder afhankelijk van jou, je richt het zo in dat iemand anders het kan overnemen en je
+            verbetert de winstgevendheid, zodat de ondernemingswaarde stijgt. Daarnaast zorg je dat je zelf klaar bent
+            voor de tijd na de verkoop. Binnen exit planning valt dat werk uiteen in {countWord(count)} thema&apos;s.
+          </p>
+          <p className="mt-4 text-muted-foreground leading-relaxed">
+            De thema&apos;s hangen met elkaar samen: een bedrijf dat op de eigenaar draait, is moeilijk over te dragen
+            en levert bij verkoop minder op. Per thema vind je hieronder artikelen over waar MKB-ondernemers in de
+            praktijk vastlopen en waar jij zelf staat.
+          </p>
           <Link
             to="/kennisbank"
             data-cta="home-kennisbank"
