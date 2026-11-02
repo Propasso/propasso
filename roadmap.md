@@ -56,7 +56,7 @@
 
 
 ## Masterplan v2 (2 nov 2026) - zie Files: Propasso_Masterplan_Autoriteit_v2.md
-- [x] 1.3a SaleReadySection werd niet geladen; vervangen door ThemesSection (2-11-2026). Live-controle door Claude na eerstvolgende build.
+- [x] 1.3a SaleReadySection werd niet geladen; vervangen door ThemesSection (2-11-2026). Live-controle door Claude na eerstvolgende build. Introtekst Karel geplaatst en verifieerd op 375 en 1280px (2-11-2026): kop "Wat komt er kijken bij het verkoopklaar maken van je bedrijf?", twee alinea's, dynamisch aantal thema's, geen placeholder meer, geen horizontale overflow.
 - [ ] 1.3b Pijler 7 op homepage; BLOKKER: akkoord pijlertitels Karel/Claude
 - [ ] 1.5 Eén bio Karel; BLOKKER: Karel levert feitelijke versie
 - [ ] 1.6 Familiebedrijf in sitemap; BLOKKER: Claude via GitHub
