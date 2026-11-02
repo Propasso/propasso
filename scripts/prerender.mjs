@@ -9,6 +9,7 @@
 // 4. Rendert elke route in headless Chrome, schoont de HTML op en schrijft
 //    dist/<pad>.html (/ -> dist/index.html).
 // Eén route die na een tweede poging nog faalt = build faalt; de vorige versie blijft live.
+// 5. Controleert dat de homepage naar elk thema linkt; zo niet, dan faalt de build.
 
 import http from "node:http";
 import fs from "node:fs/promises";
@@ -229,6 +230,16 @@ function outFile(route) {
   return route === "/" ? path.join(DIST, "index.html") : path.join(DIST, `${route}.html`);
 }
 
+// ---------- 5. homepage-controle ----------
+// De homepage moet met een echte <a href> naar elk gepubliceerd thema linken
+// (masterplan 1.3a). Ontbreekt er een, dan stopt de build.
+function checkHomepageThemeLinks(homeHtml, themes) {
+  const linked = new Set(
+    [...homeHtml.matchAll(/href="\/kennisbank\/thema\/([^"#?]+)"/g)].map((m) => m[1]),
+  );
+  return themes.filter((slug) => !linked.has(slug));
+}
+
 async function main() {
   const started = Date.now();
   const shell = await writeAppShell();
@@ -306,6 +317,17 @@ async function main() {
   if (failures.length) {
     console.error(`[prerender] ${failures.length} route(s) mislukt, build stopt:\n  ${failures.join("\n  ")}`);
     process.exit(1);
+  }
+
+  if (!testRoutes && results.has("/")) {
+    const missing = checkHomepageThemeLinks(results.get("/"), sanity.themes);
+    if (missing.length) {
+      console.error(
+        `[prerender] homepage linkt niet naar ${missing.length} thema('s), build stopt:\n  ${missing.join("\n  ")}`,
+      );
+      process.exit(1);
+    }
+    log(`homepage linkt naar alle ${sanity.themes.length} thema's`);
   }
 
   // Pas schrijven als alles gelukt is.
