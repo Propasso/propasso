@@ -54,3 +54,9 @@
 - [x] Nieuw portret van Karel gecropt naar 4:5 (1240x1550) als src/assets/images/karel-portret-2026.jpg; vervangt karel-portrait.jpg (contact), karel-portret-warm.jpg (homepage) en karel-portret-formeel.jpg (over-propasso); die drie oude bestanden zijn verwijderd. Foto getoond en bekeken op home, contact en over-propasso op 1280 en 375px.
 - [ ] Portret in kennisbankartikelen (byline en "Over de auteur") komt uit Sanity (author.image) en is hier NIET aangepast: Karel moet daar in Studio hetzelfde beeld uploaden, Lovable heeft geen schrijfrechten op Sanity.
 
+
+## Masterplan v2 (2 nov 2026) - zie Files: Propasso_Masterplan_Autoriteit_v2.md
+- [x] 1.3a Homepage-pijlers zijn echte links (SaleReadySection, alle drie layouts)
+- [ ] 1.3b Pijler 7 op homepage; BLOKKER: akkoord pijlertitels Karel/Claude
+- [ ] 1.5 Eén bio Karel; BLOKKER: Karel levert feitelijke versie
+- [ ] 1.6 Familiebedrijf in sitemap; BLOKKER: Claude via GitHub
