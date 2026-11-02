@@ -130,7 +130,7 @@ const Kennisbank = () => {
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
             Praktische artikelen over waardecreatie, verkoopklaarheid en de voorbereiding op een succesvolle
-            bedrijfsoverdracht, gestructureerd rondom de {categories?.length ? countWord(categories.length) : "zes"} pijlers van Exit Planning.
+            bedrijfsoverdracht, gestructureerd rondom de {categories?.length ? `${countWord(categories.length)} ` : ""}thema&apos;s van Exit Planning.
           </motion.p>
 
           <div className="mt-10">
@@ -143,7 +143,7 @@ const Kennisbank = () => {
         <div className="section-container">
           <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
             <p className="eyebrow">Thema&apos;s</p>
-            <h2 className="mt-5 text-3xl md:text-4xl font-bold">De {categories?.length ? countWord(categories.length) : "zes"} pijlers van Exit Planning</h2>
+            <h2 className="mt-5 text-3xl md:text-4xl font-bold">De {categories?.length ? `${countWord(categories.length)} ` : ""}thema&apos;s van Exit Planning</h2>
             <p className="mt-4 text-muted-foreground max-w-2xl leading-relaxed">
               Elk thema vertegenwoordigt een strategisch onderdeel van het Exit Planning-traject.
             </p>

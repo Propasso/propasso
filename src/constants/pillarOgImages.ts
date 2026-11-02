@@ -11,4 +11,6 @@ export const pillarOgImages: Record<string, string> = {
     "https://propasso.nl/og/pillar-voorbereiding-op-bedrijfsoverdracht.png",
   "het-persoonlijke-en-financiele-plan-na-overdracht":
     "https://propasso.nl/og/pillar-het-persoonlijke-en-financiele-plan-na-overdracht.png",
+  "bedrijfsoverdracht-in-het-familiebedrijf":
+    "https://propasso.nl/og/pillar-bedrijfsoverdracht-in-het-familiebedrijf.png",
 };

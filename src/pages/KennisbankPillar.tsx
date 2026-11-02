@@ -213,7 +213,7 @@ const KennisbankPillar = () => {
             </div>
           ) : (
             <div className="mt-8 max-w-4xl">
-              <p className="eyebrow">Exit Planning Thema</p>
+              <p className="eyebrow">Thema</p>
               <h1 className="mt-5 text-4xl md:text-5xl lg:text-[3.4rem] font-bold leading-[1.15] text-balance">
                 {category?.title}
               </h1>
