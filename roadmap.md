@@ -56,13 +56,13 @@
 
 
 ## Actueel masterplan (2 nov 2026) - Files: Propasso_Masterplan_Autoriteit.md
-- [x] 1.3a SaleReadySection werd niet geladen; vervangen door ThemesSection (2-11-2026). Live-controle door Claude na eerstvolgende build. Introtekst Karel geplaatst en verifieerd op 375 en 1280px (2-11-2026): kop "Wat komt er kijken bij het verkoopklaar maken van je bedrijf?", twee alinea's, dynamisch aantal thema's, geen placeholder meer, geen horizontale overflow.
+- [x] 1.3a ThemesSection vervangt de verwijderde SaleReadySection. Live-controle afgerond door Claude (deploy 6ae8e5b4) en zeven themalinks bevestigd in eigen openbare HTML-controle. Introtekst Karel akkoord en ongewijzigd.
 - [x] 1.3b Familiebedrijf op homepage; live zeven themalinks, volgorde Sanity volgens Claude (deploy 6ae8e5b4). Eigen HTML-controle bevestigt zeven unieke links.
 - [~] 1.5 Feitelijke bio ontvangen van Karel en geborgd in masterplan; publicatie nog open, geparkeerd tot 1.7.
 - [~] 1.6 Code gereed via Claude PR #6 (c828b1c); live-verificatie na build 3 november open.
 
-## Claude-audit masterplan v2 (2 nov 2026)
-- [x] Masterplan (één bestand, bijwerken, geen nieuwe versies): apparaat = wens Karel; 4.1 = keyInsight (20/22 leeg); 1.3a = code klaar, live-controle open (builds stil tot 9-11); 1.3b ontkoppeld van titels
+## Claude-audit masterplan (2 nov 2026)
+- [x] Masterplan (één bestand, bijwerken, geen nieuwe versies): mobile-first = wens Karel; 4.1 = keyInsight (20/22 leeg volgens eerdere inventaris); 1.3a/1.3b inmiddels live gecontroleerd. Eerdere melding van buildstilstand tot 9-11 vervallen op basis van nieuwe live-controle.
 - [x] H10 opnieuw op metaTitle van alle 7 categorieën, met ruwe Semrush-export
 - [x] Ruwe GSC-export query x pagina x positie x vertoningen met exacte periode; totalen laten sluiten
 - [x] H11 opnieuw tellen: alleen queries met >=2 URL's met vertoningen in top 30
