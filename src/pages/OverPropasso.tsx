@@ -255,7 +255,7 @@ const OverPropasso = () => {
                   Daarna volgde een periode van sterke groei, waarin cashplanning en werkkapitaal bepaalden of die groei
                   te bekostigen was. Hij startte nieuwe bedrijfsonderdelen, maar stootte ook activiteiten af die
                   onvoldoende presteerden. Zoals de afdeling afbouw, die simpelweg niet bij het Worxx-DNA pastte. Het
-                  bedrijf haalde een nieuw omzetrecord en groeide tot 130 medewerkers. In de jaren voor de verkoop maakte hij het bedrijf
+                  bedrijf haalde hierdoor een nieuw omzetrecord en groeide tot 130 medewerkers. In de jaren voor de verkoop maakte hij het bedrijf
                   verkoopklaar, en eind 2024 verkocht hij een groot deel via een management-buy-out.
                 </p>
                 <p>
