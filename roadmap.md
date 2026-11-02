@@ -2,7 +2,7 @@
 
 ## SEO en AI-vindbaarheid (29 okt 2026)
 - [x] Actuele foundations-scan en live pagina's gecontroleerd: beide openbare hosts serveren sitemap en llms.txt (200); alle 35 sitemap-pagina's hebben één titel, beschrijving en canonical. Scanmelding ontbrekende sitemap spreekt live verificatie tegen; niet als fixed gemarkeerd zonder correctie. Metadata-basisscanner onbekend/onbeschikbaar.
-- [ ] Familiebedrijf-themapagina toevoegen aan bestaande sitemaps; BLOKKER: technische SEO valt volgens deze roadmap onder Claude/GitHub. Live /kennisbank/thema/bedrijfsoverdracht-in-het-familiebedrijf is 200 en zelf-canonical, maar ontbreekt in sitemap. Ook artikel-lastmod bij echte updates op lastUpdated baseren, niet uitsluitend publishedAt; geen generatiedatum toevoegen.
+- [~] Familiebedrijf in sitemap: code gereed via Claude PR #6 (c828b1c), thema’s dynamisch uit Sanity. Live nog afwezig bij controle 2 november; na gemelde dagelijkse build van 3 november verifiëren. Artikel-lastmod blijft een afzonderlijk, geparkeerd punt onder Claude.
 - [x] Nederlandse zoekkansen onderbouwd met Semrush: bedrijf verkoopklaar maken (260/mnd, KD13), familiebedrijf overdragen (90, KD14), bedrijfsoverdracht mkb (50, KD8), exit planning (40, KD23). Schattingen, geen garanties; bestaande pagina's eerst verbeteren. Google-indexering/verkeer onbekend zonder toegankelijke Search Console; AI-vermeldingen niet gemeten.
 
 ## Huidige taken (instructie 21 okt 2026)
@@ -55,16 +55,26 @@
 - [ ] Portret in kennisbankartikelen (byline en "Over de auteur") komt uit Sanity (author.image) en is hier NIET aangepast: Karel moet daar in Studio hetzelfde beeld uploaden, Lovable heeft geen schrijfrechten op Sanity.
 
 
-## Masterplan v2 (2 nov 2026) - zie Files: Propasso_Masterplan_Autoriteit_v2.md
+## Actueel masterplan (2 nov 2026) - Files: Propasso_Masterplan_Autoriteit.md
 - [x] 1.3a SaleReadySection werd niet geladen; vervangen door ThemesSection (2-11-2026). Live-controle door Claude na eerstvolgende build. Introtekst Karel geplaatst en verifieerd op 375 en 1280px (2-11-2026): kop "Wat komt er kijken bij het verkoopklaar maken van je bedrijf?", twee alinea's, dynamisch aantal thema's, geen placeholder meer, geen horizontale overflow.
-- [ ] 1.3b Pijler 7 op homepage; BLOKKER: akkoord pijlertitels Karel/Claude
-- [ ] 1.5 Eén bio Karel; BLOKKER: Karel levert feitelijke versie
-- [ ] 1.6 Familiebedrijf in sitemap; BLOKKER: Claude via GitHub
+- [x] 1.3b Familiebedrijf op homepage; live zeven themalinks, volgorde Sanity volgens Claude (deploy 6ae8e5b4). Eigen HTML-controle bevestigt zeven unieke links.
+- [~] 1.5 Feitelijke bio ontvangen van Karel en geborgd in masterplan; publicatie nog open, geparkeerd tot 1.7.
+- [~] 1.6 Code gereed via Claude PR #6 (c828b1c); live-verificatie na build 3 november open.
 
 ## Claude-audit masterplan v2 (2 nov 2026)
 - [x] Masterplan (één bestand, bijwerken, geen nieuwe versies): apparaat = wens Karel; 4.1 = keyInsight (20/22 leeg); 1.3a = code klaar, live-controle open (builds stil tot 9-11); 1.3b ontkoppeld van titels
 - [x] H10 opnieuw op metaTitle van alle 7 categorieën, met ruwe Semrush-export
 - [x] Ruwe GSC-export query x pagina x positie x vertoningen met exacte periode; totalen laten sluiten
 - [x] H11 opnieuw tellen: alleen queries met >=2 URL's met vertoningen in top 30
-- [ ] ClientLogos: Bodi, Worxx, CRH staan onterecht als klant; BLOKKER: Karel beslist wat er moet staan
+- [x] 1.8 Bodi, Worxx en CRH verwijderd; vier klantlogo’s live volgens Claude en bevestigd in code.
 - [ ] Zichtbare toetsenbordfocus op pijlerlinks (bij 1.3b)
+
+
+## Aangeleverde live-controle 2 november, 20:45
+- [x] 1.3a live: ThemesSection, zeven echte themalinks in statische HTML (Claude deploy 6ae8e5b4; eigen openbare controle). SaleReadySection bestaat niet meer. Intro geschreven door KC en akkoord, niet herschrijven.
+- [x] Familiebedrijf-OG en pillarOgImages-mapping al aanwezig; lokaal en live afbeelding HTTP 200, visueel gecontroleerd. Geen nieuwe afbeelding nodig.
+- [x] Lokale supabase/functions/sitemap/ bestaat niet meer; niets te verwijderen. Geen live functieverwijdering uitgevoerd.
+- [ ] 1.7 AI-nulmeting: eerst meetprotocol met tien vaste prompts ter audit en akkoord, daarna echte antwoorden met bronnen bewaren. Nog niet uitgevoerd.
+- STOP: niets nieuws starten tot nulmeting 1.7 vastligt. Bio-uitrol, Sanity-pipeline en nieuwe content blijven geparkeerd.
+- Bij wijzigingen aan ThemesSection: behoud alle Sanity-themalinks. scripts/prerender.mjs laat de build falen als een link ontbreekt; beschermde scripts niet wijzigen.
+- Gebruik “thema’s” consequent in zichtbare tekst.
