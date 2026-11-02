@@ -1,18 +1,12 @@
-import bodi from "@/assets/clients/bodi.png";
 import widemex from "@/assets/clients/widemex.png";
 import beJames from "@/assets/clients/bejames.png";
 import fiberDowels from "@/assets/clients/fiber-dowels.png";
-import crh from "@/assets/clients/crh.png";
-import worxx from "@/assets/clients/worxx.png";
 import railcolor from "@/assets/clients/railcolor.png";
 
 const logos = [
-{ src: bodi, alt: "Bodi - klant van Propasso bedrijfsoverdracht" },
 { src: widemex, alt: "Widemex - klant van Propasso waardecreatie" },
 { src: beJames, alt: "BeJames - klant van Propasso bedrijfsoptimalisatie" },
 { src: fiberDowels, alt: "Fiber Dowels - klant van Propasso exit readiness" },
-{ src: crh, alt: "CRH - klant van Propasso bedrijfsoverdracht" },
-{ src: worxx, alt: "Worxx - klant van Propasso exit planning" },
 { src: railcolor, alt: "RailColor Design - klant van Propasso bedrijfsoverdracht" }];
 
 
