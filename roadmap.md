@@ -78,3 +78,5 @@
 - STOP: niets nieuws starten tot nulmeting 1.7 vastligt. Bio-uitrol, Sanity-pipeline en nieuwe content blijven geparkeerd.
 - Bij wijzigingen aan ThemesSection: behoud alle Sanity-themalinks. scripts/prerender.mjs laat de build falen als een link ontbreekt; beschermde scripts niet wijzigen.
 - Gebruik “thema’s” consequent in zichtbare tekst.
+
+- [~] 1.7 AI-nulmeting: Gemini gemeten (3 nov); ChatGPT, Perplexity, Copilot wachten op handmatige meting door Karel. Deelstappen in masterplan 4b.
