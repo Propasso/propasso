@@ -18,3 +18,13 @@
    - wat er via GitHub moet gebeuren, zoals de sitemap voor familiebedrijf
 
 Het werk zelf raakt de website niet. Alleen als een volgende taak een kleine aanpassing vraagt, noem ik die apart.
+
+7. **Taak: "Quickscan" wordt overal "Verkoopklaar scan".** Ik pas alle zichtbare teksten aan:
+   - knoppen
+   - menu en footer
+   - koppen
+   - paginatitels en beschrijvingen voor Google
+   - e-mails
+   - artikelen in Sanity
+
+   Ik laat het webadres van de scan staan, of ik stuur het oude adres netjes door naar een nieuw adres. Zo blijven bestaande links werken. Ook het masterplan en het logboek werk ik bij.
