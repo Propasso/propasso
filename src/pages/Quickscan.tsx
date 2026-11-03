@@ -140,7 +140,7 @@ const Quickscan = () => {
     <PageLayout>
       <SEO
         title="Verkoopklaar scan"
-        description="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis, direct resultaten en tips."
+        description="Gratis bedrijfsscan en ondernemersscan: ontdek in 4 minuten hoe verkoopklaar jouw bedrijf is en hoe goed jij voorbereid bent op een overdracht."
         canonical="https://propasso.nl/quickscan"
         ogTitle="Verkoopklaar scan | Propasso"
         ogDescription="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis, direct resultaten en tips."

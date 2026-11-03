@@ -30,8 +30,12 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
             <span className="block text-muted-foreground">scan</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
-            Ontdek in 4 minuten hoe jouw bedrijf en jezelf persoonlijk voorbereid zijn op een toekomstige overdracht. U
+            Ontdek in 4 minuten hoe jouw bedrijf en jezelf persoonlijk voorbereid zijn op een toekomstige overdracht. Je
             ontvangt direct een score op drie dimensies, plus concrete tips en verbeterpunten.
+          </p>
+          <p className="text-sm text-muted-foreground -mt-8 mb-12 max-w-xl mx-auto leading-relaxed">
+            Een bedrijfsscan en ondernemersscan in één: je kijkt naar de verkoopbaarheid van je bedrijf én naar je eigen
+            voorbereiding als ondernemer.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-14 max-w-3xl mx-auto">
@@ -65,7 +69,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
             <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" />
           </Button>
           <p className="text-xs text-muted-foreground mt-5">
-            Geen registratie vereist · Uw antwoorden blijven vertrouwelijk
+            Geen registratie vereist · Jouw antwoorden blijven vertrouwelijk
           </p>
         </div>
       </div>
