@@ -62,10 +62,16 @@ const timeline = [
       "Midden in de recessie het familiebedrijf Worxx door een faillissement en doorstart geleid en uitgebouwd tot 130 medewerkers.",
   },
   {
-    year: "2023",
-    title: "Overdracht & start Propasso",
+    year: "2022",
+    title: "Dagelijkse leiding overgedragen",
     description:
-      "De dagelijkse leiding overgedragen en Propasso gestart om ondernemers te helpen met groei, turnarounds en het verkoopklaar maken van hun bedrijf.",
+      "Een directie aangesteld en de dagelijkse leiding van Worxx overgedragen.",
+  },
+  {
+    year: "2024",
+    title: "Verkoop & start Propasso",
+    description:
+      "Eind 2024 een groot deel van Worxx verkocht via een management-buy-out en Propasso gestart om ondernemers te helpen met groei, turnarounds en het verkoopklaar maken van hun bedrijf.",
   },
   {
     year: "Nu",
