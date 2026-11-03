@@ -139,17 +139,17 @@ const Quickscan = () => {
   return (
     <PageLayout>
       <SEO
-        title="Exit Readiness Quickscan"
+        title="Verkoopklaar scan"
         description="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis, direct resultaten en tips."
         canonical="https://propasso.nl/quickscan"
-        ogTitle="Exit Readiness Quickscan | Propasso"
+        ogTitle="Verkoopklaar scan | Propasso"
         ogDescription="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis, direct resultaten en tips."
         ogType="website"
       />
 
       {phase === "intro" && (
         <>
-          <PageBreadcrumb withContainer items={[{ label: "Quickscan" }]} />
+          <PageBreadcrumb withContainer items={[{ label: "Verkoopklaar scan" }]} />
           <QuickscanIntro onStart={handleStart} />
         </>
       )}

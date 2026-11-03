@@ -4,7 +4,7 @@ import logo from "@/assets/logos/propasso-logo.png";
 const footerNav = [
 { label: "Home", href: "/" },
 { label: "Werkwijze", href: "/werkwijze" },
-{ label: "Quickscan", href: "/quickscan" },
+{ label: "Verkoopklaar scan", href: "/quickscan" },
 { label: "Over Propasso", href: "/over-propasso" },
 { label: "Kennisbank", href: "/kennisbank" },
 { label: "Veelgestelde vragen", href: "/veelgestelde-vragen" },

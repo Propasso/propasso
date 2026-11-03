@@ -59,7 +59,7 @@ const QuickscanBanner = ({ contextLine }: QuickscanBannerProps) => {
             {/* Text block */}
             <div className="flex-1 min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary/60 mb-1.5">
-                Exit Readiness Quickscan voor MKB-ondernemers
+                Verkoopklaar scan voor mkb-ondernemers
               </p>
               <p className="text-lg md:text-xl font-bold leading-snug text-foreground">
                 Hoe aantrekkelijk is jouw bedrijf voor <span className="text-primary">kopers</span>?

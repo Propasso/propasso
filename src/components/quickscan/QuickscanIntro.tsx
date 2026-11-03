@@ -22,12 +22,12 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
 
       <div className="section-container relative z-10 py-16 md:py-24 px-4">
         {/* Eyebrow — left-aligned with light border */}
-        <p className="eyebrow">Gratis quickscan</p>
+        <p className="eyebrow">Gratis Verkoopklaar scan</p>
 
         <div className="text-center mt-8">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground tracking-tight mb-3">
-            Exit Readiness
-            <span className="block text-muted-foreground">Quickscan</span>
+            Verkoopklaar
+            <span className="block text-muted-foreground">scan</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-12 max-w-xl mx-auto leading-relaxed">
             Ontdek in 4 minuten hoe jouw bedrijf en jezelf persoonlijk voorbereid zijn op een toekomstige overdracht. U
@@ -44,7 +44,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
               {
                 icon: Clock,
                 title: "4 minuten",
-                desc: "Korte, krachtige quickscan zonder omwegen",
+                desc: "Korte, krachtige scan zonder omwegen",
               },
               {
                 icon: BarChart3,
@@ -61,7 +61,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
           </div>
 
           <Button size="lg" onClick={onStart} className="w-full sm:w-auto text-base px-10 py-6 group">
-            Start de quickscan
+            Start de Verkoopklaar scan
             <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" />
           </Button>
           <p className="text-xs text-muted-foreground mt-5">
