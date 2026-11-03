@@ -51,7 +51,7 @@ const values = [
 
 const timeline = [
   {
-    year: "2007–2013",
+    year: "2007",
     title: "Strategy & Development bij CRH plc",
     description:
       "Zeven jaar strategie en fusies en overnames bij CRH plc.",
