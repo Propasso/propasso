@@ -8,7 +8,6 @@ import PageBreadcrumb from "@/components/PageBreadcrumb";
 import QuickscanBanner from "@/components/QuickscanBanner";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
-import karelKantoor from "@/assets/images/karel-kantoor.jpeg";
 import karelPortret from "@/assets/images/karel-portret-2026.jpg";
 import kantoor from "@/assets/images/kantoor.jpeg";
 import viaFerrata from "@/assets/images/via-ferrata.png";
@@ -369,22 +368,36 @@ const OverPropasso = () => {
       </section>
 
       <section className="py-16 md:py-20 tint-teal-bg">
-        <div className="section-container text-center">
-          <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-            <h2 className="text-2xl md:text-3xl font-bold text-balance">Herken je dit? Laten we kennismaken.</h2>
-            <p className="mt-4 text-muted-foreground max-w-xl mx-auto leading-relaxed">
-              Geen verkooppraatje, gewoon een goed gesprek over jouw situatie en ambities.
-            </p>
-            <div className="mt-8">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition"
-              >
-                Plan een kennismaking
-                <ChevronRight size={18} />
-              </Link>
-            </div>
-          </motion.div>
+        <div className="section-container">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            <motion.div {...fadeInUp} transition={{ duration: 0.6 }} className="text-center lg:text-left">
+              <h2 className="text-2xl md:text-3xl font-bold text-balance">Herken je dit? Laten we kennismaken.</h2>
+              <p className="mt-4 text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                Geen verkooppraatje, gewoon een goed gesprek over jouw situatie en ambities.
+              </p>
+              <div className="mt-8">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-primary/90 transition"
+                >
+                  Plan een kennismaking
+                  <ChevronRight size={18} />
+                </Link>
+              </div>
+            </motion.div>
+
+            <motion.div
+              {...fadeInUp}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="rounded-2xl overflow-hidden shadow-xl"
+            >
+              <img
+                src={kantoor}
+                alt="Het kantoor van Propasso"
+                className="w-full h-auto object-cover aspect-[4/3]"
+              />
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -422,31 +435,6 @@ const OverPropasso = () => {
                 </div>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-16 md:py-24 lg:py-36">
-        <div className="section-container">
-          <div className="grid md:grid-cols-3 gap-6">
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.5 }}
-              className="rounded-2xl overflow-hidden shadow-lg md:col-span-2"
-            >
-              <img src={kantoor} alt="Propasso kantoor" className="w-full h-full object-cover aspect-[16/9]" />
-            </motion.div>
-            <motion.div
-              {...fadeInUp}
-              transition={{ duration: 0.5, delay: 0.15 }}
-              className="rounded-2xl overflow-hidden shadow-lg"
-            >
-              <img
-                src={karelKantoor}
-                alt="Karel Cremers"
-                className="w-full h-full object-cover aspect-[3/4] md:aspect-auto"
-              />
-            </motion.div>
           </div>
         </div>
       </section>
