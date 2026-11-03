@@ -93,7 +93,7 @@ Deno.serve(async (req) => {
 
     // Build message for HubSpot
     const hubspotMessage = [
-      `[Terugbelverzoek via Quickscan]`,
+      `[Terugbelverzoek via Verkoopklaarscan]`,
       `Telefoonnummer: ${escHtml(phone)}`,
       message ? `Toelichting: ${escHtml(message)}` : "",
     ]

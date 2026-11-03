@@ -55,7 +55,7 @@ const CTASection = () => {
             }}
             className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition"
           >
-            Doe de gratis Verkoopklaar scan
+            Doe de gratis Verkoopklaarscan
             <ChevronRight size={18} />
           </Link>
           <Link

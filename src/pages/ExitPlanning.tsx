@@ -145,7 +145,7 @@ const ExitPlanning = () => {
             <div className="max-w-3xl prose-pillar">
               <PortableText value={pagina.body} components={portableTextComponents} />
             </div>
-            <QuickscanCalloutBlock contextLine="Benieuwd hoe ver jouw bedrijf is met de voorbereiding op een overdracht? Doe de gratis Verkoopklaar scan." />
+            <QuickscanCalloutBlock contextLine="Benieuwd hoe ver jouw bedrijf is met de voorbereiding op een overdracht? Doe de gratis Verkoopklaarscan." />
           </div>
         </section>
       )}

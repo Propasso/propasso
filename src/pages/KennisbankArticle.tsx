@@ -410,13 +410,13 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
                 <PortableText value={post.body.slice(0, split)} components={bodyComponents} />
                 <aside className="my-10 rounded-r-2xl border-l-4 border-accent bg-secondary p-5 md:p-6 break-words">
                   <p className="font-bold text-foreground">Hoe staat jouw bedrijf hier vandaag voor?</p>
-                  <p className="mt-1 text-foreground/85">De Verkoopklaar scan geeft je in vier minuten een eerste beeld.</p>
+                  <p className="mt-1 text-foreground/85">De Verkoopklaarscan geeft je in vier minuten een eerste beeld.</p>
                   <Link
                     to="/quickscan"
                     data-cta="kennisbank-midden"
                     className="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-accent-foreground hover:brightness-110 transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
                   >
-                    Start de Verkoopklaar scan <ArrowRight className="h-4 w-4" />
+                    Start de Verkoopklaarscan <ArrowRight className="h-4 w-4" />
                   </Link>
                 </aside>
                 <PortableText value={post.body.slice(split)} components={bodyComponents} />
@@ -564,9 +564,9 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
         title={post.pillarCta?.ctaTitle || "Wil je weten waar jouw bedrijf staat?"}
         description={
           post.pillarCta?.ctaText ||
-          "Doe de Verkoopklaar scan: twintig vragen, ongeveer vier minuten, en je ziet waar je bedrijf en jijzelf staan."
+          "Doe de Verkoopklaarscan: twintig vragen, ongeveer vier minuten, en je ziet waar je bedrijf en jijzelf staan."
         }
-        primaryLabel="Start de Verkoopklaar scan"
+        primaryLabel="Start de Verkoopklaarscan"
         primaryHref="/quickscan"
         secondaryLabel="Neem contact op"
         secondaryHref="/contact"

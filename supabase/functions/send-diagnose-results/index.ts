@@ -463,7 +463,7 @@ function buildEmailHtml(
   return `<!DOCTYPE html>
 <html lang="nl">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Uw Propasso Exit Readiness Quickscan — Persoonlijk Rapport</title></head>
+<title>Jouw Propasso Verkoopklaarscan: persoonlijk rapport</title></head>
 <body style="margin:0;padding:0;background-color:#f4f6f7;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;">
 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#f4f6f7;">
 <tr><td align="center" style="padding:32px 16px;">
@@ -480,7 +480,7 @@ function buildEmailHtml(
             <td>
               <p style="margin:0;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.7);">Persoonlijk Rapport</p>
               <h1 style="margin:8px 0 0;font-size:26px;font-weight:700;color:#ffffff;line-height:1.3;">
-                Exit Readiness Quickscan
+                Verkoopklaarscan
               </h1>
             </td>
             <td align="right" valign="top">
@@ -503,7 +503,7 @@ function buildEmailHtml(
         <!-- Greeting -->
         <p style="margin:0 0 8px;font-size:16px;color:#1a3a4a;">Beste ${firstName},</p>
         <p style="margin:0 0 24px;font-size:15px;line-height:1.6;color:#3a5a6a;">
-          Bedankt voor het invullen van de Exit Readiness Quickscan. Hieronder vindt u uw persoonlijke rapport.
+          Bedankt voor het invullen van de Verkoopklaarscan. Hieronder vind je jouw persoonlijke rapport.
         </p>
 
         <!-- Overall score -->
@@ -534,7 +534,7 @@ function buildEmailHtml(
         <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
           style="margin:24px 0;background:#f8fafa;border-radius:8px;border:1px solid #e0e8eb;">
           <tr><td style="padding:16px 20px;">
-            <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:#1a3a4a;">Uw bedrijfsprofiel</p>
+            <p style="margin:0 0 8px;font-size:13px;font-weight:600;color:#1a3a4a;">Jouw bedrijfsprofiel</p>
             <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="font-size:13px;color:#3a5a6a;">
               <tr><td style="padding:3px 0;" width="45%">Jaaromzet</td><td style="padding:3px 0;">${snap.revenue_band}</td></tr>
               <tr><td style="padding:3px 0;">Winstgevendheid</td><td style="padding:3px 0;">${snap.profitability}</td></tr>
@@ -544,9 +544,9 @@ function buildEmailHtml(
         </table>
 
         <!-- Top priorities -->
-        <p style="margin:24px 0 8px;font-size:18px;font-weight:700;color:#1a3a4a;">Uw top prioriteiten</p>
+        <p style="margin:24px 0 8px;font-size:18px;font-weight:700;color:#1a3a4a;">Jouw topprioriteiten</p>
         <p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:#3a5a6a;">
-          Op basis van uw scores zijn dit de onderdelen waar de meeste winst te behalen is.
+          Op basis van jouw scores zijn dit de onderdelen waar de meeste winst te behalen is.
         </p>
 
         <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
@@ -559,8 +559,7 @@ function buildEmailHtml(
           <tr><td style="padding:16px 20px;">
             <p style="margin:0;font-size:13px;line-height:1.6;color:#3a5a6a;">
               <strong style="color:#1a3a4a;">Over de methodiek</strong><br>
-              Deze quickscan is gebaseerd op de internationaal erkende Value Acceleration Methodology,
-              vertaald naar de praktijk van het Nederlandse MKB.
+              De Verkoopklaarscan is afgestemd op de praktijk van het Nederlandse mkb.
             </p>
           </td></tr>
         </table>
@@ -569,7 +568,7 @@ function buildEmailHtml(
         <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin:8px 0 0;">
           <tr><td>
             <p style="margin:0 0 16px;font-size:15px;line-height:1.6;color:#3a5a6a;">
-              Heeft u vragen over uw resultaten, of wilt u bespreken wat de volgende stap kan zijn?
+              Heb je vragen over je resultaten, of wil je bespreken wat de volgende stap kan zijn?
             </p>
             <a href="https://propasso.nl/contact"
               style="display:inline-block;background:#0b3d5c;color:#ffffff;font-size:15px;font-weight:600;
@@ -748,9 +747,9 @@ Deno.serve(async (req) => {
       to: data.email,
       from: "Propasso <info@propasso.nl>",
       sender_domain: "notify.propasso.nl",
-      subject: `Uw Propasso Exit Readiness Quickscan — Persoonlijk Rapport`,
+      subject: `Jouw Propasso Verkoopklaarscan: persoonlijk rapport`,
       html,
-      text: `Beste ${data.firstName}, bedankt voor het invullen van de Quickscan. Uw totaalscore is ${overall}%. Bekijk uw volledige rapport door deze e-mail in HTML-weergave te openen.`,
+      text: `Beste ${data.firstName}, bedankt voor het invullen van de Verkoopklaarscan. Je totaalscore is ${overall}%. Bekijk je volledige rapport door deze e-mail in HTML-weergave te openen.`,
       purpose: "transactional",
       label: "quickscan-rapport",
       message_id: messageId,

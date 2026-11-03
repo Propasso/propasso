@@ -223,7 +223,7 @@ const OverPropasso = () => {
         </div>
       </section>
 
-      <QuickscanBanner contextLine="Benieuwd hoe jouw bedrijf ervoor staat? Doe de gratis Verkoopklaar scan en ontvang direct inzicht." />
+      <QuickscanBanner contextLine="Benieuwd hoe jouw bedrijf ervoor staat? Doe de gratis Verkoopklaarscan en ontvang direct inzicht." />
 
       <section className="py-16 md:py-24 lg:py-36">
         <div className="section-container">
