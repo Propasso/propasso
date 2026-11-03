@@ -2,7 +2,7 @@
 
 ## SEO en AI-vindbaarheid (29 okt 2026)
 - [x] Actuele foundations-scan en live pagina's gecontroleerd: beide openbare hosts serveren sitemap en llms.txt (200); alle 35 sitemap-pagina's hebben één titel, beschrijving en canonical. Scanmelding ontbrekende sitemap spreekt live verificatie tegen; niet als fixed gemarkeerd zonder correctie. Metadata-basisscanner onbekend/onbeschikbaar.
-- [~] Familiebedrijf in sitemap: code gereed via Claude PR #6 (c828b1c), thema’s dynamisch uit Sanity. Live nog afwezig bij controle 2 november; na gemelde dagelijkse build van 3 november verifiëren. Artikel-lastmod blijft een afzonderlijk, geparkeerd punt onder Claude.
+- [x] Familiebedrijf in sitemap: live bevestigd 3 nov 2026 (taak 1.6). Artikel-lastmod blijft een afzonderlijk, geparkeerd punt onder Claude.
 - [x] Nederlandse zoekkansen onderbouwd met Semrush: bedrijf verkoopklaar maken (260/mnd, KD13), familiebedrijf overdragen (90, KD14), bedrijfsoverdracht mkb (50, KD8), exit planning (40, KD23). Schattingen, geen garanties; bestaande pagina's eerst verbeteren. Google-indexering/verkeer onbekend zonder toegankelijke Search Console; AI-vermeldingen niet gemeten.
 
 ## Huidige taken (instructie 21 okt 2026)
@@ -58,8 +58,8 @@
 ## Actueel masterplan (2 nov 2026) - Files: Propasso_Masterplan_Autoriteit.md
 - [x] 1.3a ThemesSection vervangt de verwijderde SaleReadySection. Live-controle afgerond door Claude (deploy 6ae8e5b4) en zeven themalinks bevestigd in eigen openbare HTML-controle. Introtekst Karel akkoord en ongewijzigd.
 - [x] 1.3b Familiebedrijf op homepage; live zeven themalinks, volgorde Sanity volgens Claude (deploy 6ae8e5b4). Eigen HTML-controle bevestigt zeven unieke links.
-- [~] 1.5 Feitelijke bio ontvangen van Karel en geborgd in masterplan; publicatie nog open, geparkeerd tot 1.7.
-- [~] 1.6 Code gereed via Claude PR #6 (c828b1c); live-verificatie na build 3 november open.
+- [~] 1.5 Feitelijke bio: actief. Stap 1 = inventaris van alle plekken (huidig vs nieuw) ter audit; daarna uitrol na akkoord Karel. llms.txt via Claude.
+- [x] 1.6 Thema familiebedrijf staat live in de sitemap (bevestigd 3 nov 2026).
 
 ## Claude-audit masterplan (2 nov 2026)
 - [x] Masterplan (één bestand, bijwerken, geen nieuwe versies): mobile-first = wens Karel; 4.1 = keyInsight (20/22 leeg volgens eerdere inventaris); 1.3a/1.3b inmiddels live gecontroleerd. Eerdere melding van buildstilstand tot 9-11 vervallen op basis van nieuwe live-controle.
@@ -74,8 +74,8 @@
 - [x] 1.3a live: ThemesSection, zeven echte themalinks in statische HTML (Claude deploy 6ae8e5b4; eigen openbare controle). SaleReadySection bestaat niet meer. Intro geschreven door KC en akkoord, niet herschrijven.
 - [x] Familiebedrijf-OG en pillarOgImages-mapping al aanwezig; lokaal en live afbeelding HTTP 200, visueel gecontroleerd. Geen nieuwe afbeelding nodig.
 - [x] Lokale supabase/functions/sitemap/ bestaat niet meer; niets te verwijderen. Geen live functieverwijdering uitgevoerd.
-- STOP: niets nieuws starten tot nulmeting 1.7 vastligt. Bio-uitrol, Sanity-pipeline en nieuwe content blijven geparkeerd.
+- STOP opgeheven (3 nov 2026): nulmeting 1.7 ligt vast. Volgende taak: 1.5 bio-uitrol.
 - Bij wijzigingen aan ThemesSection: behoud alle Sanity-themalinks. scripts/prerender.mjs laat de build falen als een link ontbreekt; beschermde scripts niet wijzigen.
 - Gebruik “thema’s” consequent in zichtbare tekst.
 
-- [~] 1.7 AI-nulmeting: alle 4 diensten gemeten (3 nov), concurrentenlijst vastgelegd. Open: herhaalruns P1/P2, bio-feiten toetsen, Semrush-concurrentieonderzoek (Claude), audit Claude.
+- [x] 1.7 AI-nulmeting afgerond en goedgekeurd door Claude (3 nov 2026); nulpunt vastgelegd.
