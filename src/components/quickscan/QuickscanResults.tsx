@@ -292,7 +292,7 @@ function DimensionSection({
                 <div className="flex-1">
                   <p className="text-sm font-medium text-foreground leading-snug">{q.question}</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Uw antwoord: {getAnswerLabel(id, answers[id])} ({rawScore}/6)
+                    Jouw antwoord: {getAnswerLabel(id, answers[id])} ({rawScore}/6)
                   </p>
                   {tip && <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{tip}</p>}
                 </div>
@@ -329,7 +329,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="inline-block w-2 h-2 rounded-full bg-accent" />
             <span className="text-xs uppercase tracking-[0.15em] font-semibold text-muted-foreground">
-              Uw resultaat
+              Jouw resultaat
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground tracking-tight mb-3">
@@ -415,7 +415,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
             {/* 2d. Radar chart */}
             <div className="rounded-xl border border-border/15 bg-card p-6 md:p-8 mb-8">
               <h3 className="text-lg font-bold text-foreground tracking-tight mb-4 text-center">
-                Uw profiel
+                Jouw profiel
               </h3>
               <RadarChart scores={scores} />
             </div>
@@ -424,7 +424,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
             <div className="rounded-xl border border-border/15 bg-card p-6 md:p-8 mb-8">
               <h3 className="text-lg font-bold text-foreground tracking-tight mb-5 flex items-center gap-2">
                 <AlertCircle className="w-5 h-5 text-primary" />
-                Uw top prioriteiten
+                Jouw topprioriteiten
               </h3>
               <div className="space-y-5">
                 {lowestQuestions.map(({ id, score: rawScore }) => {
@@ -439,7 +439,7 @@ const QuickscanResults = ({ scores, snapshot, answers }: QuickscanResultsProps) 
                       <div className="flex-1">
                         <p className="text-sm font-medium text-foreground leading-snug">{q.question}</p>
                         <p className="text-xs text-muted-foreground mt-1">
-                          Uw antwoord: {getAnswerLabel(id, answers[id])} ({rawScore}/6)
+                          Jouw antwoord: {getAnswerLabel(id, answers[id])} ({rawScore}/6)
                         </p>
                         {tip && <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{tip}</p>}
                       </div>

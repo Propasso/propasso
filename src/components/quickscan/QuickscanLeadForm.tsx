@@ -13,7 +13,7 @@ import { Loader2, FileText } from "lucide-react";
 import { pushEvent } from "@/lib/tracking";
 
 const formSchema = z.object({
-  name: z.string().trim().min(2, "Vul uw naam in").max(100),
+  name: z.string().trim().min(2, "Vul je naam in").max(100),
   email: z.string().trim().email("Vul een geldig e-mailadres in").max(255),
   company: z.string().trim().max(100).optional(),
   phone: z.string().trim().max(20).optional()
@@ -41,7 +41,7 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
 
   const onSubmit = async (values: FormValues) => {
     if (!privacyChecked) {
-      setPrivacyError("U dient akkoord te gaan met de privacyverklaring.");
+      setPrivacyError("Ga akkoord met de privacyverklaring om verder te gaan.");
       return;
     }
     setPrivacyError("");
@@ -75,7 +75,7 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
       pushEvent("quickscan_lead_submit", { event_source: "quickscan" });
       toast({
         title: "Rapport verzonden",
-        description: `Uw persoonlijk rapport is verstuurd naar ${values.email}.`
+        description: `Je persoonlijke rapport is verstuurd naar ${values.email}.`
       });
       onSuccess();
     } catch {
@@ -100,8 +100,8 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
           Ontvang gratis 2–3 concrete adviezen per onderdeel
         </h3>
         <p className="text-muted-foreground mt-2 max-w-md mx-auto leading-relaxed">
-          Op basis van uw scores stellen wij een persoonlijk rapport samen met praktische verbeterpunten per dimensie; de Aantrekkelijkheid van uw bedrijf voor een koper en uw Persoonlijke en Bedrijfsmatige Verkoopklaarheid.
-Direct zichtbaar en in uw inbox.
+          Op basis van jouw scores stellen wij een persoonlijk rapport samen met praktische verbeterpunten per dimensie; de Aantrekkelijkheid van jouw bedrijf voor een koper en jouw Persoonlijke en Bedrijfsmatige Verkoopklaarheid.
+Direct zichtbaar en in je inbox.
         
         </p>
       </div>
@@ -115,7 +115,7 @@ Direct zichtbaar en in uw inbox.
             <FormItem>
                   <FormLabel>Naam *</FormLabel>
                   <FormControl>
-                    <Input placeholder="Uw naam" {...field} />
+                    <Input placeholder="Je naam" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,7 +128,7 @@ Direct zichtbaar en in uw inbox.
               <FormItem>
                   <FormLabel>E-mail *</FormLabel>
                   <FormControl>
-                    <Input type="email" placeholder="uw@email.nl" {...field} />
+                    <Input type="email" placeholder="jij@bedrijf.nl" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,7 +141,7 @@ Direct zichtbaar en in uw inbox.
               <FormItem>
                   <FormLabel>Bedrijfsnaam</FormLabel>
                   <FormControl>
-                    <Input placeholder="Uw bedrijf" {...field} />
+                    <Input placeholder="Je bedrijf" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -178,7 +178,7 @@ Direct zichtbaar en in uw inbox.
                 Verzenden…
               </> :
 
-            "Ontvang uw persoonlijk rapport"
+            "Ontvang je persoonlijke rapport"
             }
           </Button>
         </form>

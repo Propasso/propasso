@@ -437,19 +437,19 @@ export const tipsByDimension: Record<Exclude<QuestionCategory, "snapshot">, Reco
 export const sectionIntros: Record<string, { title: string; intro: string }> = {
   attractiveness: {
     title: "Bedrijfsaantrekkelijkheid",
-    intro: "De volgende stellingen gaan over hoe aantrekkelijk uw bedrijf is vanuit het perspectief van een potentiële koper.",
+    intro: "De volgende stellingen gaan over hoe aantrekkelijk jouw bedrijf is vanuit het perspectief van een potentiële koper.",
   },
   readiness: {
     title: "Verkoopklaarheid Bedrijf",
-    intro: "Nu kijken we naar de operationele kant: is uw bedrijf klaar om overgedragen te worden?",
+    intro: "Nu kijken we naar de operationele kant: is jouw bedrijf klaar om overgedragen te worden?",
   },
   owner: {
     title: "Verkoopklaarheid Ondernemer",
-    intro: "Tot slot: uw persoonlijke gereedheid. Dit is het onderdeel dat ondernemers het vaakst onderschatten — en dat het vaakst tot een afgeblazen deal leidt.",
+    intro: "Tot slot: jouw persoonlijke gereedheid. Dit is het onderdeel dat ondernemers het vaakst onderschatten, en dat het vaakst tot een afgeblazen deal leidt.",
   },
   snapshot: {
     title: "Achtergrondvragen",
-    intro: "Om uw rapport zo relevant mogelijk te maken, nog een paar korte achtergrondvragen.",
+    intro: "Om jouw rapport zo relevant mogelijk te maken, nog een paar korte achtergrondvragen.",
   },
 };
 

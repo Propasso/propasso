@@ -12,10 +12,10 @@ const Cookieverklaring = () => {
     <PageLayout>
       <SEO
         title="Cookieverklaring | Propasso"
-        description="Cookieverklaring van Propasso. Lees welke cookies wij gebruiken, waarom en hoe u uw voorkeuren kunt beheren."
+        description="Cookieverklaring van Propasso. Lees welke cookies wij gebruiken, waarom en hoe je jouw voorkeuren kunt beheren."
         canonical="https://propasso.nl/cookieverklaring"
         ogTitle="Cookieverklaring | Propasso"
-        ogDescription="Cookieverklaring van Propasso. Lees welke cookies wij gebruiken, waarom en hoe u uw voorkeuren kunt beheren."
+        ogDescription="Cookieverklaring van Propasso. Lees welke cookies wij gebruiken, waarom en hoe je jouw voorkeuren kunt beheren."
         noIndex
       />
 
