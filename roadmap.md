@@ -74,9 +74,8 @@
 - [x] 1.3a live: ThemesSection, zeven echte themalinks in statische HTML (Claude deploy 6ae8e5b4; eigen openbare controle). SaleReadySection bestaat niet meer. Intro geschreven door KC en akkoord, niet herschrijven.
 - [x] Familiebedrijf-OG en pillarOgImages-mapping al aanwezig; lokaal en live afbeelding HTTP 200, visueel gecontroleerd. Geen nieuwe afbeelding nodig.
 - [x] Lokale supabase/functions/sitemap/ bestaat niet meer; niets te verwijderen. Geen live functieverwijdering uitgevoerd.
-- [ ] 1.7 AI-nulmeting: eerst meetprotocol met tien vaste prompts ter audit en akkoord, daarna echte antwoorden met bronnen bewaren. Nog niet uitgevoerd.
 - STOP: niets nieuws starten tot nulmeting 1.7 vastligt. Bio-uitrol, Sanity-pipeline en nieuwe content blijven geparkeerd.
 - Bij wijzigingen aan ThemesSection: behoud alle Sanity-themalinks. scripts/prerender.mjs laat de build falen als een link ontbreekt; beschermde scripts niet wijzigen.
 - Gebruik “thema’s” consequent in zichtbare tekst.
 
-- [~] 1.7 AI-nulmeting: Gemini gemeten (3 nov); ChatGPT, Perplexity, Copilot wachten op handmatige meting door Karel. Deelstappen in masterplan 4b.
+- [~] 1.7 AI-nulmeting: alle 4 diensten gemeten (3 nov), concurrentenlijst vastgelegd. Open: herhaalruns P1/P2, bio-feiten toetsen, Semrush-concurrentieonderzoek (Claude), audit Claude.
