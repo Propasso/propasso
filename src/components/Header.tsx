@@ -105,7 +105,7 @@ const Header = () => {
                 overflow-hidden"
               style={{ borderLeft: '2px solid hsl(var(--primary))' }}
             >
-              Quickscan
+              Verkoopklaar scan
             </NavLink>
             <NavLink
               to="/contact"
@@ -166,7 +166,7 @@ const Header = () => {
                 className={mobileNavLinkClass}
                 aria-current={location.pathname === "/quickscan" ? "page" : undefined}
               >
-                Quickscan
+                Verkoopklaar scan
               </NavLink>
               <NavLink
                 to="/contact"

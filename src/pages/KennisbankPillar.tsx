@@ -320,7 +320,7 @@ const KennisbankPillar = () => {
             </div>
           )}
 
-          <QuickscanCalloutBlock contextLine="Benieuwd hoe jouw bedrijf scoort op dit onderwerp? Doe de gratis quickscan." />
+          <QuickscanCalloutBlock contextLine="Benieuwd hoe jouw bedrijf scoort op dit onderwerp? Doe de gratis Verkoopklaar scan." />
         </div>
       </section>
 

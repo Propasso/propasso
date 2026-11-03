@@ -38,7 +38,7 @@ const QuickscanSideCallout = () => {
           <div className="relative z-10 flex flex-col items-start justify-between gap-4">
             <div className="flex-1 min-w-0">
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-primary/60 mb-1.5">
-                Gratis quickscan
+                Gratis Verkoopklaar scan
               </p>
               <p className="text-[15px] font-bold leading-snug text-foreground">
                 Hoe <span className="text-primary">verkoopklaar</span> is jouw bedrijf?
@@ -84,7 +84,7 @@ const QuickscanSideCallout = () => {
               <p className="text-[13px] font-bold text-foreground leading-snug">
                 Hoe <span className="text-primary">verkoopklaar</span> is jouw bedrijf?
               </p>
-              <p className="mt-0.5 text-[11px] text-muted-foreground">Gratis quickscan, 4 minuten</p>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">Gratis Verkoopklaar scan, 4 minuten</p>
             </div>
             <Button
               asChild
