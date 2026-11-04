@@ -58,7 +58,7 @@
 ## Actueel masterplan (2 nov 2026) - Files: Propasso_Masterplan_Autoriteit.md
 - [x] 1.3a ThemesSection vervangt de verwijderde SaleReadySection. Live-controle afgerond door Claude (deploy 6ae8e5b4) en zeven themalinks bevestigd in eigen openbare HTML-controle. Introtekst Karel akkoord en ongewijzigd.
 - [x] 1.3b Familiebedrijf op homepage; live zeven themalinks, volgorde Sanity volgens Claude (deploy 6ae8e5b4). Eigen HTML-controle bevestigt zeven unieke links.
-- [~] 1.5 Feitelijke bio: actief. Stap 1 = inventaris van alle plekken (huidig vs nieuw) ter audit; daarna uitrol na akkoord Karel. llms.txt via Claude.
+- [x] 1.5 Feitelijke bio: canonieke bio uitgerold over llms.txt (kort), OverPropasso (lang) en MeetKarelSection (eerste persoon homepage) op 4 nov 2026. Alle drie bevatten dezelfde feiten: CRH plc Strategy & Development (M&A), Worxx 130 medewerkers, eind 2024 management-buy-out van het grootste deel.
 - [x] 1.6 Thema familiebedrijf staat live in de sitemap (bevestigd 3 nov 2026).
 
 ## Claude-audit masterplan (2 nov 2026)
@@ -79,3 +79,4 @@
 - Gebruik “thema’s” consequent in zichtbare tekst.
 
 - [x] 1.7 AI-nulmeting afgerond en goedgekeurd door Claude (3 nov 2026); nulpunt vastgelegd.
+- [x] Bio-implementatie afgerond (4 nov 2026): korte canonieke bio in public/llms.txt, lange canonieke bio in src/pages/OverPropasso.tsx, eerste-persoonsversie in src/components/MeetKarelSection.tsx. Feiten sluiten op elkaar aan.

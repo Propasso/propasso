@@ -49,8 +49,7 @@ const MeetKarelSection = () => {
             <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
                 Ik ben Karel Cremers, oprichter van Propasso. Na jaren in Strategy en Development (M&A) bij het
-                beursgenoteerde bouwmaterialenconcern CRH plc., koos ik in 2013 voor het ondernemerschap. Ik bouwde het familiebedrijf uit,
-                droeg het over en verkocht het. Precies de route waar veel ondernemers nu voor staan.
+                beursgenoteerde bouwmaterialenconcern CRH plc., koos ik in 2013 voor het ondernemerschap. Ik bouwde het familiebedrijf uit tot 130 medewerkers, droeg de leiding over en verkocht eind 2024 het grootste deel via een management-buy-out. Precies de route waar veel ondernemers nu voor staan.
               </p>
               <p>
                 Die ervaring zet ik in voor jou: nuchter, scherp op de cijfers en altijd náást de ondernemer.

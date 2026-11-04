@@ -241,31 +241,19 @@ const OverPropasso = () => {
               </h2>
               <div className="mt-8 space-y-5 text-muted-foreground leading-relaxed">
                 <p>
-                  Karel Cremers is oprichter van Propasso. Hij begeleidt DGA's van MKB-bedrijven met 10 tot 150
-                  medewerkers en €3 miljoen tot €50 miljoen omzet bij het verkoopklaar maken van hun bedrijf.
+                  Karel Cremers is oprichter van Propasso. Hij begeleidt DGA's van mkb-bedrijven met 10 tot 150 medewerkers en €3 miljoen tot €50 miljoen omzet bij het verkoopklaar maken van hun bedrijf.
                 </p>
                 <p>
-                  Tot medio 2013 werkte hij zeven jaar bij CRH plc in Strategy & Development, met fusies en overnames
-                  als zwaartepunt. Hij vertrok om in het familiebedrijf Worxx te stappen, een uitzendbureau voor
-                  vakmensen in de bouw. Het bedrijf stond er slecht voor, en zijn eerste taak was het door een
-                  faillissement te begeleiden. Hij was nog geen eigenaar en stond voor de keuze om het midden in de
-                  recessie door te starten. Zo nam hij samen met zijn broer eerder dan gepland het bedrijf over uit de
-                  doorstart.
+                  Tot medio 2013 werkte hij zeven jaar bij CRH plc in Strategy & Development, met fusies en overnames als zwaartepunt. Ook was hij betrokken bij het verbeteren van de winstgevendheid van portefeuillebedrijven. Hij vertrok om in het familiebedrijf Worxx te stappen, een uitzendbureau voor vakmensen in de bouw. Het bedrijf stond er slecht voor, en zijn eerste taak was het door een faillissement te begeleiden. Hij was nog geen eigenaar en stond voor de keuze om het midden in de recessie door te starten. Zo nam hij samen met zijn broer eerder dan gepland het bedrijf over uit het faillissement.
                 </p>
                 <p>
-                  De beginjaren waren zwaar: de economische recessie zorgde dat de markt stil stond. Daarom draaide
-                  alles om liquiditeit en relatiebeheer, maar het belangrijkste was: onze klanten kozen voor Worxx.
+                  De beginjaren waren zwaar, want door de recessie stond de markt stil, waardoor alles draaide om liquiditeit en relatiebeheer. Met succes, want de klanten kozen voor Worxx.
                 </p>
                 <p>
-                  Daarna volgde een periode van sterke groei, waarin cashplanning en werkkapitaal bepaalden of die groei
-                  te bekostigen was. Hij startte nieuwe bedrijfsonderdelen, maar stootte ook activiteiten af die
-                  onvoldoende presteerden. Zoals de afdeling afbouw, die simpelweg niet bij het Worxx-DNA pastte. Het
-                  bedrijf haalde hierdoor een nieuw omzetrecord en groeide tot 130 medewerkers. In de jaren voor de verkoop maakte hij het bedrijf
-                  verkoopklaar, en eind 2024 verkocht hij een groot deel via een management-buy-out.
+                  Daarna volgde een periode van sterke groei, waarin cashplanning en werkkapitaal bepaalden of die groei te bekostigen was. Hij startte nieuwe bedrijfsonderdelen en stootte activiteiten af die onvoldoende presteerden, zoals de afdeling afbouw, die simpelweg niet bij het Worxx-DNA paste. Daarna haalde het bedrijf een nieuw omzetrecord, en het groeide tot 130 medewerkers. In de jaren voor de verkoop maakte hij het bedrijf verkoopklaar, en eind 2024 verkocht hij een groot deel via een management-buy-out.
                 </p>
                 <p>
-                  Denk je na over je eigen overdracht, dan kijkt hij mee vanuit zijn ervaring als ondernemer, koper en
-                  verkoper.
+                  Denk je na over je eigen overdracht, dan kijkt hij mee vanuit zijn ervaring als ondernemer, koper en verkoper.
                 </p>
               </div>
             </motion.div>
