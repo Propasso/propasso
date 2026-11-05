@@ -11,6 +11,51 @@ export interface PillarContent {
 }
 
 export const pillarContent: Record<string, PillarContent> = {
+  "bedrijf-verkoopklaar-maken": {
+    heroIntro:
+      "Je bedrijf verkoopklaar maken begint lang voordat er een koper aan tafel zit. Het gaat om een bedrijf dat ook zonder jou goed draait, met voorspelbare resultaten en een organisatie die een koper vertrouwen geeft.",
+    bodyParagraphs: [
+      "Een verkoopklaar bedrijf is overdraagbaar. Processen zijn vastgelegd, het managementteam neemt beslissingen, de cijfers zijn op orde en klanten zijn niet afhankelijk van één persoon. Kopers betalen voor zekerheid. Hoe minder risico zij zien, hoe beter de voorwaarden.",
+      "In de artikelen binnen dit thema lees je wanneer je bedrijf verkoopklaar is, welke stappen je in welke volgorde zet en welke vormen van overdracht er zijn, zoals verkoop aan een strategische koper, een investeerder of een management-buy-out.",
+      "Verkoopklaar maken vraagt meestal drie tot vijf jaar. Wie op tijd begint, houdt de regie over het moment, de koper en de prijs.",
+    ],
+  },
+  "bedrijfswaardering-en-verkoopopbrengst": {
+    heroIntro:
+      "Wat is mijn bedrijf waard? En wat houd ik er na de verkoop werkelijk aan over? De waardering en de uiteindelijke verkoopopbrengst liggen vaak verder uit elkaar dan ondernemers verwachten.",
+    bodyParagraphs: [
+      "Een koper kijkt niet alleen naar winst, maar naar de kwaliteit en voorspelbaarheid ervan. Marges, terugkerende omzet, spreiding van klanten, managementdiepte en afhankelijkheid van de ondernemer bepalen samen welke waarde een koper bereid is te betalen.",
+      "In de artikelen binnen dit thema lees je hoe een bedrijfswaardering tot stand komt, welke waardedrijvers het grootste effect hebben en hoe je winstgevendheid en waarde stap voor stap verbetert voordat je een verkoopproces start.",
+      "Waarde verhogen is geen trucje vlak voor de verkoop. Het is beter ondernemen, met een bedrijf dat ook vandaag al meer oplevert.",
+    ],
+  },
+  "overdracht-familiebedrijf": {
+    heroIntro:
+      "Een familiebedrijf overdragen aan de volgende generatie raakt meer dan het bedrijf alleen. Het gaat ook over verwachtingen, gelijkheid tussen kinderen en de relatie binnen de familie.",
+    bodyParagraphs: [
+      "Bij een overdracht binnen de familie lopen zakelijke en persoonlijke vragen door elkaar. Is de opvolger geschikt en gemotiveerd? Hoe regel je de financiering en een redelijke prijs? En hoe houd je rekening met kinderen die niet in het bedrijf werken?",
+      "In de artikelen binnen dit thema lees je hoe je een familieoverdracht tijdig voorbereidt, welke rol governance en heldere afspraken spelen en hoe je de opvolger stap voor stap verantwoordelijkheid geeft.",
+      "Een goede overdracht binnen de familie bewaart zowel de waarde van het bedrijf als de verhoudingen in de familie.",
+    ],
+  },
+  "afhankelijkheid-ondernemer-zelfstandig-bedrijf": {
+    heroIntro:
+      "Draait je bedrijf ook als jij er een maand niet bent? In veel bedrijven loopt alles via de ondernemer. Dat voelt vertrouwd, maar het verlaagt de waarde en maakt een overdracht lastig.",
+    bodyParagraphs: [
+      "Kopers zien afhankelijkheid van de ondernemer als risico. Als klantrelaties, kennis en beslissingen bij één persoon liggen, is de toekomst van het bedrijf onzeker zodra die persoon vertrekt.",
+      "In de artikelen binnen dit thema lees je hoe je managementdiepte opbouwt, verantwoordelijkheden overdraagt, processen vastlegt en stuurt op cijfers in plaats van op gevoel.",
+      "Een bedrijf dat zelfstandig draait, is meer waard en geeft jou als ondernemer meer vrijheid, ook als je nog lang niet wilt verkopen.",
+    ],
+  },
+  "bedrijf-verkocht-en-dan": {
+    heroIntro:
+      "Je bedrijf is verkocht. En dan? Veel ondernemers bereiden de verkoop grondig voor, maar niet het leven daarna. Juist daar zit voor velen de grootste onzekerheid.",
+    bodyParagraphs: [
+      "Na een overdracht verandert er veel tegelijk: je rol, je dagritme, je identiteit en je financiële situatie. Een persoonlijk plan helpt om bewust te kiezen wat je daarna wilt doen.",
+      "In de artikelen binnen dit thema lees je hoe je een persoonlijk en financieel plan opstelt, hoeveel vermogen je na de verkoop werkelijk nodig hebt en hoe je je voorbereidt op de periode na de overdracht.",
+      "Wie weet waar hij naartoe gaat, neemt betere beslissingen in het verkoopproces zelf.",
+    ],
+  },
   "bedrijfswaarde-en-winstgevendheid-verbeteren": {
     heroIntro:
       "Veel ondernemers bouwen jarenlang aan hun bedrijf met één duidelijke focus: groei. Meer klanten, meer omzet, een sterkere positie in de markt. Maar wanneer ondernemers later nadenken over hun bedrijf verkopen of een toekomstige bedrijfsoverdracht, ontstaat vaak een andere vraag: wat is het bedrijf eigenlijk echt waard? En belangrijker nog: hoe kun je die waarde structureel verhogen voordat je ooit een verkoopproces start?",
