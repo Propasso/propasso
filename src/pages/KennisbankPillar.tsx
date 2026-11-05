@@ -49,16 +49,30 @@ const portableTextComponents = {
     ),
   },
   marks: {
-    link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => (
-      <a
-        href={value?.href}
-        className="text-primary underline hover:no-underline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    ),
+    link: ({ children, value }: { children?: React.ReactNode; value?: { href?: string } }) => {
+      const href = value?.href;
+      if (!href) return <>{children}</>;
+      const linkClasses = "text-primary underline hover:no-underline";
+      if (href.startsWith("#")) {
+        return <a href={href} className={linkClasses}>{children}</a>;
+      }
+      const isInternal = href.startsWith("/") || /^https?:\/\/(www\.)?propasso\.nl/.test(href);
+      if (isInternal) {
+        const internalPath = href.startsWith("http")
+          ? href.replace(/^https?:\/\/(www\.)?propasso\.nl/, "") || "/"
+          : href;
+        return (
+          <Link to={internalPath} className={linkClasses}>
+            {children}
+          </Link>
+        );
+      }
+      return (
+        <a href={href} target="_blank" rel="noopener noreferrer" className={linkClasses}>
+          {children}
+        </a>
+      );
+    },
   },
 };
 
