@@ -19,18 +19,28 @@ const REDIRECTS: Record<string, string> = {
     "/kennisbank/hoe-bepaal-je-de-waarde-van-je-mkb-bedrijf",
   "/ben-je-klaar-om-te-verkopen-twee-vormen-van-exit-readiness-die-je-moet-begrijpen":
     "/kennisbank/wanneer-is-je-bedrijf-verkoopklaar-over-voorbereiding-van-bedrijf-en-ondernemer",
-  "/kennisbank/bedrijfswaarde-verhogen-waardedrijvers": "/kennisbank/thema/de-waardering-van-je-bedrijf",
   "/kennisbank/successieplanning-voor-het-familiebedrijf-zo-ontwikkel-je-een-exitstrategie":
     "/kennisbank/overdracht-familiebedrijf-voorbereiden",
-  "/kennisbank/thema/bedrijfswaardering-en-waardedrijvers": "/kennisbank/thema/de-waardering-van-je-bedrijf",
+  // Fase C (nov 2026): 7 oude thema's samengevoegd tot 5 hubs. Elke oude URL in één stap naar de eindbestemming.
+  "/kennisbank/thema/voorbereiding-op-bedrijfsoverdracht": "/kennisbank/thema/bedrijf-verkoopklaar-maken",
+  "/kennisbank/thema/bedrijf-overdraagbaar-maken": "/kennisbank/thema/bedrijf-verkoopklaar-maken",
+  "/kennisbank/thema/de-waardering-van-je-bedrijf": "/kennisbank/thema/bedrijfswaardering-en-verkoopopbrengst",
+  "/kennisbank/thema/ondernemingswaarde-en-winstgevendheid-verbeteren":
+    "/kennisbank/thema/bedrijfswaardering-en-verkoopopbrengst",
+  "/kennisbank/thema/bedrijfsoverdracht-in-het-familiebedrijf": "/kennisbank/thema/overdracht-familiebedrijf",
+  "/kennisbank/thema/afhankelijkheid-van-de-ondernemer-verminderen":
+    "/kennisbank/thema/afhankelijkheid-ondernemer-zelfstandig-bedrijf",
+  "/kennisbank/thema/het-persoonlijke-en-financiele-plan-na-overdracht": "/kennisbank/thema/bedrijf-verkocht-en-dan",
+  // Oudere aliassen, rechtstreeks naar de nieuwe hub (geen ketens).
+  "/kennisbank/bedrijfswaarde-verhogen-waardedrijvers": "/kennisbank/thema/bedrijfswaardering-en-verkoopopbrengst",
+  "/kennisbank/thema/bedrijfswaardering-en-waardedrijvers": "/kennisbank/thema/bedrijfswaardering-en-verkoopopbrengst",
   "/kennisbank/thema/het-persoonlijke-en-persoonlijke-financiele-plan-na-overdracht":
-    "/kennisbank/thema/het-persoonlijke-en-financiele-plan-na-overdracht",
-  "/kennisbank/thema/persoonlijk-en-financieel-plan":
-    "/kennisbank/thema/het-persoonlijke-en-financiele-plan-na-overdracht",
+    "/kennisbank/thema/bedrijf-verkocht-en-dan",
+  "/kennisbank/thema/persoonlijk-en-financieel-plan": "/kennisbank/thema/bedrijf-verkocht-en-dan",
   "/kennisbank/thema/Ondernemingswaarde-en-winstgevendheid-verbeteren":
-    "/kennisbank/thema/ondernemingswaarde-en-winstgevendheid-verbeteren",
+    "/kennisbank/thema/bedrijfswaardering-en-verkoopopbrengst",
   "/kennisbank/thema/bedrijfswaarde-en-winstgevendheid-verbeteren":
-    "/kennisbank/thema/ondernemingswaarde-en-winstgevendheid-verbeteren",
+    "/kennisbank/thema/bedrijfswaardering-en-verkoopopbrengst",
 };
 
 const PREFIX_REDIRECTS: Array<[string, string]> = [
