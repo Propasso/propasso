@@ -20,12 +20,18 @@ const postFields = `
 `;
 
 const CATEGORY_SLUG_CANONICAL_MAP: Record<string, string> = {
-  "het-persoonlijke-en-persoonlijke-financiele-plan-na-overdracht":
-    "het-persoonlijke-en-financiele-plan-na-overdracht",
-  "persoonlijk-en-financieel-plan": "het-persoonlijke-en-financiele-plan-na-overdracht",
-  "Ondernemingswaarde-en-winstgevendheid-verbeteren":
-    "ondernemingswaarde-en-winstgevendheid-verbeteren",
-  "bedrijfswaarde-en-winstgevendheid-verbeteren": "ondernemingswaarde-en-winstgevendheid-verbeteren",
+  "voorbereiding-op-bedrijfsoverdracht": "bedrijf-verkoopklaar-maken",
+  "bedrijf-overdraagbaar-maken": "bedrijf-verkoopklaar-maken",
+  "de-waardering-van-je-bedrijf": "bedrijfswaardering-en-verkoopopbrengst",
+  "ondernemingswaarde-en-winstgevendheid-verbeteren": "bedrijfswaardering-en-verkoopopbrengst",
+  "bedrijfsoverdracht-in-het-familiebedrijf": "overdracht-familiebedrijf",
+  "afhankelijkheid-van-de-ondernemer-verminderen": "afhankelijkheid-ondernemer-zelfstandig-bedrijf",
+  "het-persoonlijke-en-financiele-plan-na-overdracht": "bedrijf-verkocht-en-dan",
+  "het-persoonlijke-en-persoonlijke-financiele-plan-na-overdracht": "bedrijf-verkocht-en-dan",
+  "persoonlijk-en-financieel-plan": "bedrijf-verkocht-en-dan",
+  "Ondernemingswaarde-en-winstgevendheid-verbeteren": "bedrijfswaardering-en-verkoopopbrengst",
+  "bedrijfswaarde-en-winstgevendheid-verbeteren": "bedrijfswaardering-en-verkoopopbrengst",
+  "bedrijfswaardering-en-waardedrijvers": "bedrijfswaardering-en-verkoopopbrengst",
 };
 
 export const canonicalizeCategorySlug = (slug: string) => CATEGORY_SLUG_CANONICAL_MAP[slug] ?? slug;
