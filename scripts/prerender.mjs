@@ -100,6 +100,13 @@ async function staticRoutes() {
   return { literal, kept: literal.filter((p) => !EXCLUDED_STATIC.has(p)) };
 }
 
+// Thema-slugs met een 301 in routing.ts (bijv. oude thema's na Fase C). Die pagina's
+// bestaan voor bezoekers en bots niet meer; de app stuurt er ook zelf van weg.
+async function redirectedThemeSlugs() {
+  const src = await fs.readFile(path.join(ROOT, "netlify/edge-functions/routing.ts"), "utf8");
+  return new Set([...src.matchAll(/"\/kennisbank\/thema\/([^"/]+)"\s*:/g)].map((m) => m[1]));
+}
+
 async function sanityRoutes() {
   const notDraft = `!(_id in path("drafts.**")) && !(_id in path("versions.**")) && defined(slug.current)`;
   const query = `{
@@ -247,6 +254,12 @@ async function main() {
   // Alleen voor lokaal testen zonder Sanity: PRERENDER_TEST_ROUTES="/werkwijze,/contact"
   const testRoutes = process.env.PRERENDER_TEST_ROUTES?.split(",").filter(Boolean);
   const sanity = testRoutes ? { posts: [], themes: [], paginas: [] } : await sanityRoutes();
+  const redirected = await redirectedThemeSlugs();
+  const skippedThemes = sanity.themes.filter((s) => redirected.has(s));
+  if (skippedThemes.length) {
+    log(`${skippedThemes.length} thema('s) met 301 in routing.ts overgeslagen: ${skippedThemes.join(", ")}`);
+    sanity.themes = sanity.themes.filter((s) => !redirected.has(s));
+  }
 
   const paginaRoutes = [];
   for (const slug of sanity.paginas) {
