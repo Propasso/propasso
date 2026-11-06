@@ -90,7 +90,7 @@ export interface SanityCategorySummary {
 
 export async function fetchAllCategories(): Promise<SanityCategorySummary[]> {
   const categories = await sanityClient.fetch<SanityCategorySummary[]>(
-    `*[_type == "category"] | order(title asc) { _id, title, slug, description }`
+    `*[_type == "category"] | order(coalesce(order, 99) asc, title asc) { _id, title, slug, description }`
   );
 
   return categories.map((category) => normalizeCategorySlug(category));
