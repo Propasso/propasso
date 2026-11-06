@@ -21,6 +21,18 @@ const STATIC_PAGES = [
 // Oude artikeladressen met een 301 in routing.ts: niet in de sitemap.
 const REDIRECTED_SLUGS = new Set(["successieplanning-voor-het-familiebedrijf-zo-ontwikkel-je-een-exitstrategie"]);
 
+// Oude thema's met een 301 in routing.ts (Fase C, nov 2026): niet in de sitemap,
+// ook niet zolang de categorie nog in Sanity staat. Houd gelijk met routing.ts.
+const REDIRECTED_THEMES = new Set([
+  "voorbereiding-op-bedrijfsoverdracht",
+  "bedrijf-overdraagbaar-maken",
+  "de-waardering-van-je-bedrijf",
+  "ondernemingswaarde-en-winstgevendheid-verbeteren",
+  "bedrijfsoverdracht-in-het-familiebedrijf",
+  "afhankelijkheid-van-de-ondernemer-verminderen",
+  "het-persoonlijke-en-financiele-plan-na-overdracht",
+]);
+
 const SLUG_OK = /^[a-z0-9-]+$/;
 
 type Theme = { slug: string };
@@ -77,6 +89,7 @@ export default async function handler(req: Request, context: Context) {
     ...STATIC_PAGES.map((p) => urlEntry(p.loc, undefined, p.changefreq, p.priority)),
     ...themes
       .filter((t) => {
+        if (REDIRECTED_THEMES.has(t.slug)) return false;
         if (!SLUG_OK.test(t.slug)) {
           console.error(`Ongeldige thema-slug overgeslagen in sitemap: "${t.slug}" (corrigeer in Sanity)`);
           return false;
