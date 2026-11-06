@@ -19,6 +19,7 @@ const postFields = `
   noIndex
 `;
 
+// Oude categorie-slugs -> canonieke hub (Fase C, nov 2026). Elke alias wijst direct naar een eindbestemming.
 const CATEGORY_SLUG_CANONICAL_MAP: Record<string, string> = {
   "voorbereiding-op-bedrijfsoverdracht": "bedrijf-verkoopklaar-maken",
   "bedrijf-overdraagbaar-maken": "bedrijf-verkoopklaar-maken",
@@ -96,11 +97,17 @@ export async function fetchAllCategories(): Promise<SanityCategorySummary[]> {
 }
 
 export async function fetchCategoryBySlug(slug: string): Promise<SanityCategorySummary | null> {
-  const slugs = getCategorySlugAliases(canonicalizeCategorySlug(slug));
+  const canonical = canonicalizeCategorySlug(slug);
+  const slugs = getCategorySlugAliases(canonical);
 
+  // Eerst de exacte canonieke slug; pas als die niet bestaat een alias.
+  // Zolang oude en nieuwe categorie naast elkaar bestaan, toont de hub zo altijd de nieuwe.
   const category = await sanityClient.fetch<SanityCategorySummary | null>(
-    `*[_type == "category" && slug.current in $slugs][0] { _id, title, slug, description, heroIntro, body, metaTitle, metaDescription }`,
-    { slugs }
+    `coalesce(
+      *[_type == "category" && slug.current == $canonical][0],
+      *[_type == "category" && slug.current in $slugs][0]
+    ) { _id, title, slug, description, heroIntro, body, metaTitle, metaDescription }`,
+    { canonical, slugs }
   );
 
   return category ? normalizeCategorySlug(category) : null;
