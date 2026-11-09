@@ -1,6 +1,8 @@
 /**
  * Tabel uit Sanity (blocktype "dataTable", plugin @sanity/table) als semantische HTML-tabel.
  * Gebruikt in de PortableText-body van KennisbankArticle en KennisbankPillar.
+ * Huisstijl: kopregel donkerblauw (primary, #052940) met limoen accentlijn (accent, #DEF249),
+ * om-en-om rijen lichtgrijs (secondary, #F2F2F2), witte achtergrond.
  * Alleen de tabel scrollt horizontaal op smalle schermen, de pagina niet.
  */
 
@@ -27,21 +29,21 @@ const PortableTable = ({ value }: { value: DataTableValue }) => {
     Array.from({ length: columnCount }, (_, i) => cells[i] ?? "");
 
   return (
-    <div className="my-8 max-w-full overflow-x-auto rounded-2xl border border-border/40">
+    <div className="my-8 max-w-full overflow-x-auto rounded-2xl border border-border/40 bg-white">
       <table className="w-full border-collapse text-left text-[15px] md:text-base text-foreground/85">
         {caption && (
-          <caption className="caption-top px-4 pt-4 pb-3 text-left text-sm text-muted-foreground">
+          <caption className="caption-top px-4 pt-4 pb-3 text-left text-sm font-semibold text-primary">
             {caption}
           </caption>
         )}
         {headerRow && (
-          <thead className="bg-secondary">
+          <thead className="bg-primary text-primary-foreground border-b-4 border-accent">
             <tr>
               {padCells(headerRow.cells).map((cell, i) => (
                 <th
                   key={i}
                   scope="col"
-                  className="px-4 py-3 align-top font-semibold text-foreground"
+                  className="px-4 py-3 align-top font-semibold"
                 >
                   {cell}
                 </th>
@@ -51,7 +53,7 @@ const PortableTable = ({ value }: { value: DataTableValue }) => {
         )}
         <tbody>
           {bodyRows.map((row, rowIndex) => (
-            <tr key={row._key ?? rowIndex} className="border-t border-border/40">
+            <tr key={row._key ?? rowIndex} className="border-t border-border/40 first:border-t-0 even:bg-secondary">
               {padCells(row.cells).map((cell, i) => (
                 <td key={i} className="px-4 py-3 align-top">
                   {cell}
