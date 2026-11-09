@@ -11,6 +11,7 @@ import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
+import PortableTable from "@/components/PortableTable";
 import {
   canonicalizeCategorySlug,
   fetchCategoryBySlug,
@@ -24,6 +25,9 @@ import type { SanityPost } from "@/types/sanity";
 import { pillarContent } from "@/data/pillarContent";
 
 const portableTextComponents = {
+  types: {
+    dataTable: PortableTable,
+  },
   block: {
     h2: ({ children }: { children?: React.ReactNode }) => (
       <h2 className="text-2xl font-bold mt-10 mb-4">{children}</h2>
