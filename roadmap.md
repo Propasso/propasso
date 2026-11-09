@@ -32,6 +32,7 @@
 - routing.ts geeft een 301 van elk pad met een slash aan het eind (behalve /) naar het pad zonder slash.
 - De Netlify Prerender-extensie staat uit (21 okt 2026). Niet opnieuw aanzetten: die draait vóór routing.ts en geeft bots dan weer 200 in plaats van 301.
 - Wie wat wijzigt: technische en SEO-code (routing.ts, sitemap.ts, netlify.toml, scripts/, SEO.tsx, index.html-head, structured data) wijzigt Claude via GitHub (branch, deploy preview, merge na akkoord Karel). Lovable doet pagina's, componenten en vormgeving en houdt zich aan de regels in dit bestand.
+- Tabellen (9 nov 2026): Sanity-blok `dataTable` (plugin @sanity/table in de Studio) wordt gerenderd door src/components/PortableTable.tsx, gekoppeld via `types: { dataTable: PortableTable }` in portableTextComponents van KennisbankArticle.tsx en KennisbankPillar.tsx. Niet vervangen of verwijderen; bij nieuwe PortableText-renderers van blockContent dezelfde koppeling toevoegen.
 - SEO.tsx: JSON-LD binnen Helmet moet als children (`{safeJsonLd(schema)}`), niet via dangerouslySetInnerHTML; dat laatste negeert react-helmet-async en dan verschijnt het JSON-LD nergens.
 
 ## Openstaand uit eerdere rondes

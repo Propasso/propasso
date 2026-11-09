@@ -8,6 +8,7 @@ import { safeJsonLd } from "@/lib/safeJsonLd";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
+import PortableTable from "@/components/PortableTable";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -20,7 +21,7 @@ const slugifyHeading = (text: string) =>
   text
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[̀-ͯ]/g, "")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "") || "sectie";
 
@@ -41,6 +42,9 @@ const getH2Headings = (body: unknown): Array<{ key: string; text: string; id: st
 };
 
 const portableTextComponents = {
+  types: {
+    dataTable: PortableTable,
+  },
   block: {
     h2: ({ children }: { children?: React.ReactNode }) => (
       <h2 className="mt-14 mb-4 scroll-mt-28 text-2xl font-bold">{children}</h2>
