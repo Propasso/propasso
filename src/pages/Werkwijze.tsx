@@ -32,9 +32,7 @@ const pageSchemas = [
       url: "https://propasso.nl/",
     },
     about: {
-      "@type": "ProfessionalService",
-      name: "Propasso",
-      url: "https://propasso.nl/",
+      "@id": "https://propasso.nl/#organization",
     },
     inLanguage: "nl-NL",
   },
@@ -52,6 +50,7 @@ const pageSchemas = [
     name: "Exit Planning begeleiding voor MKB-ondernemers",
     provider: {
       "@type": "Organization",
+      "@id": "https://propasso.nl/#organization",
       name: "Propasso",
       url: "https://propasso.nl/",
     },
