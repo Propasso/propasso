@@ -109,6 +109,7 @@ const contactSchemas = [
     inLanguage: "nl-NL",
     mainEntity: {
       "@type": "Organization",
+      "@id": "https://propasso.nl/#organization",
       name: "Propasso",
       url: "https://propasso.nl/",
       email: "info@propasso.nl",
@@ -122,11 +123,16 @@ const contactSchemas = [
       },
       sameAs: [
         "https://www.linkedin.com/company/propasso",
-        "https://www.linkedin.com/in/karelcremers",
-        "https://wa.me/31610057566",
+        "https://www.google.com/maps?cid=16868413070003178139",
       ],
       areaServed: { "@type": "Country", name: "Nederland" },
-      founder: { "@type": "Person", name: "Karel Cremers", url: "https://www.linkedin.com/in/karelcremers" },
+      founder: {
+        "@type": "Person",
+        "@id": "https://propasso.nl/#person-karel-cremers",
+        name: "Karel Cremers",
+        url: "https://propasso.nl/over-propasso",
+        sameAs: ["https://www.linkedin.com/in/karelcremers"],
+      },
       identifier: { "@type": "PropertyValue", propertyID: "KvK", value: "58115439" },
     },
   },
