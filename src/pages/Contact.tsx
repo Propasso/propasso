@@ -17,6 +17,63 @@ import { pushEvent } from "@/lib/tracking";
 import { ChevronRight, Phone, Mail, MapPin, CheckCircle2, ArrowRight, MessageCircle } from "lucide-react";
 import karelImg from "@/assets/images/karel-portret-2026.jpg";
 import HubSpotMeetingsEmbed from "@/components/HubSpotMeetingsEmbed";
+import { Link } from "react-router-dom";
+
+type FaqPart = string | { text: string; to: string };
+type FaqItem = { question: string; answer: FaqPart[] };
+
+const faqItems: FaqItem[] = [
+  {
+    question: "Wat gebeurt er als je contact opneemt?",
+    answer: [
+      "Je bericht komt bij mij binnen, niet bij een secretariaat of salesafdeling, en binnen een werkdag hoor je van me. In de kennismaking, die een tot twee uur duurt, wil ik vooral horen hoe het met jou gaat, hoe je het bedrijf draait, waar je trots op bent en waar je mee zit. Het belangrijkste is dat we samen boven water krijgen wat de echte reden is dat je over verkoop nadenkt. Ik vertel je wat ik zie en of ik denk dat ik je verder kan helpen, en daarna beslis jij of er een vervolg komt. Wil je eerst zelf een beeld krijgen, doe dan de ",
+      { text: "Verkoopklaarscan", to: "/quickscan" },
+      ": die kost je vier minuten.",
+    ],
+  },
+  {
+    question: "Voor wie is zo'n gesprek zinvol?",
+    answer: [
+      "Het levert het meest op als je eigenaar bent van een bedrijf met tien tot honderdvijftig mensen en je de komende drie tot vijf jaar naar een overdracht wilt toewerken, of als er iets speelt waardoor je al hebt besloten dat je over een aantal jaar wilt verkopen. Wil je binnen een half jaar tot een jaar verkopen, dan heb je meer aan een M&A-adviseur die het verkooptraject begeleidt. Wil je daarvoor een paar tips of suggesties, bel me dan gerust een keer.",
+    ],
+  },
+  {
+    question: "Moet ik al besloten hebben dat ik ga verkopen?",
+    answer: [
+      "Nee. De meeste ondernemers met wie ik praat weten het nog niet, en dat hoeft ook niet. Je bedrijf verkoopklaar maken loont ook als je het uiteindelijk houdt, omdat het winstgevender wordt en minder op jou leunt. Waarom dat iets anders is dan verkopen, lees je in ",
+      {
+        text: "Exit planning is iets anders dan je bedrijf verkopen",
+        to: "/kennisbank/exit-planning-is-iets-anders-dan-je-bedrijf-verkopen",
+      },
+      ".",
+    ],
+  },
+  {
+    question: "Blijft alles tussen ons?",
+    answer: [
+      "Ja. Ik heb als ondernemer zelf mijn aandelen verkocht en weet wat vertrouwelijkheid betekent. Dat geldt voor de kennismaking en voor het hele traject daarna: je mensen betrek ik alleen waar dat nodig is, en altijd in overleg met jou. Ik werk niet met succesfees, zodat mijn oordeel los staat van de vraag of en aan wie je verkoopt.",
+    ],
+  },
+  {
+    question: "Werk je samen met de accountant van mijn bedrijf?",
+    answer: [
+      "Ja, absoluut. Je accountant levert de cijfers aan waar het eerste onderzoek op rust. In het begin moeten we vaak nog een paar dingen doorspreken om het juiste inzicht te krijgen en je bedrijf goed in kaart te brengen. Voor fiscale en financiële vragen blijft je accountant jouw specialist.",
+    ],
+  },
+];
+
+const faqPlainText = (parts: FaqPart[]) => parts.map((p) => (typeof p === "string" ? p : p.text)).join("");
+
+const renderFaqAnswer = (parts: FaqPart[]) =>
+  parts.map((p, i) =>
+    typeof p === "string" ? (
+      <span key={i}>{p}</span>
+    ) : (
+      <Link key={i} to={p.to} className="text-primary underline-offset-4 hover:underline font-medium">
+        {p.text}
+      </Link>
+    ),
+  );
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Naam is verplicht").max(100),
@@ -68,6 +125,9 @@ const contactSchemas = [
         "https://www.linkedin.com/in/karelcremers",
         "https://wa.me/31610057566",
       ],
+      areaServed: { "@type": "Country", name: "Nederland" },
+      founder: { "@type": "Person", name: "Karel Cremers", url: "https://www.linkedin.com/in/karelcremers" },
+      identifier: { "@type": "PropertyValue", propertyID: "KvK", value: "58115439" },
     },
   },
   {
@@ -77,6 +137,15 @@ const contactSchemas = [
       { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
       { "@type": "ListItem", position: 2, name: "Contact", item: "https://propasso.nl/contact" },
     ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: faqPlainText(item.answer) },
+    })),
   },
 ];
 
@@ -180,9 +249,9 @@ const Contact = () => {
         <div className="section-container relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
-              <p className="eyebrow">Contact</p>
+              <p className="eyebrow">Laten we kennismaken</p>
               <h1 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-[-0.02em] text-balance">
-                Laten we kennismaken
+                Zullen we praten over je bedrijf en wat je ermee wilt?
               </h1>
               <p className="mt-6 text-lg text-muted-foreground leading-[1.75] max-w-xl">
                 Een open gesprek over jouw situatie, zonder verplichtingen. Ik denk graag mee, persoonlijk en
@@ -290,7 +359,7 @@ const Contact = () => {
                 </div>
 
                 <p className="mt-5 text-sm text-muted-foreground leading-[1.75]">
-                  Bereikbaar op werkdagen. Reactie binnen 24 uur.
+                  Bereikbaar op werkdagen. Reactie binnen een werkdag.
                 </p>
 
                 {/* Bezoekadres */}
@@ -308,6 +377,9 @@ const Contact = () => {
                         <br />
                         5264 PJ Vught
                       </p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        KvK 58115439 · Ik werk door heel Nederland, bij jou op locatie of online.
+                      </p>
                       <a
                         href="https://www.google.com/maps/search/?api=1&query=Nieuwe+Linie+12+5264+PJ+Vught"
                         target="_blank"
@@ -322,6 +394,44 @@ const Contact = () => {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Sectie: Wat je kunt verwachten ── */}
+      <section className="py-16 md:py-24 lg:py-36 bg-background">
+        <div className="section-container">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            custom={0}
+            className="mb-12"
+          >
+            <p className="eyebrow">Goed om te weten</p>
+            <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-[-0.01em]">Wat je kunt verwachten</h2>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
+            {[faqItems.slice(0, 2), faqItems.slice(2)].map((column, colIdx) => (
+              <motion.div
+                key={colIdx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={fadeUp}
+                custom={colIdx + 1}
+                className="space-y-10"
+              >
+                {column.map((item) => (
+                  <div key={item.question}>
+                    <h3 className="text-lg font-semibold">{item.question}</h3>
+                    <p className="mt-3 text-muted-foreground leading-[1.75]">{renderFaqAnswer(item.answer)}</p>
+                  </div>
+                ))}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -349,7 +459,7 @@ const Contact = () => {
 
               <div className="mt-8 space-y-4">
                 {[
-                  "Persoonlijke reactie binnen 24 uur",
+                  "Persoonlijke reactie binnen een werkdag",
                   "Vrijblijvend en vertrouwelijk",
                   "20+ jaar ervaring met ondernemers",
                 ].map((item) => (
