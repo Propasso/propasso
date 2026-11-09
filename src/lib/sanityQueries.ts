@@ -135,7 +135,7 @@ export async function fetchPostBySlug(slug: string): Promise<SanityPost | null> 
       "faq": faq[]{ _key, question, answer },
       "author": author->{ name, role, image, "imageAlt": image.alt, bio, linkedinUrl },
       "pillarCta": categories[0]->{ ctaTitle, ctaText },
-      "relatedPosts": *[_type == "post" && slug.current != $slug && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc) [0..2] {
+      "relatedPosts": *[_type == "post" && slug.current != $slug && publishedAt <= now() && noIndex != true && !(_id in path("drafts.**")) && count(categories[@._ref in ^.^.categories[]._ref]) > 0] | order(publishedAt desc) [0..2] {
         ${postFields}
       }
     }`,
