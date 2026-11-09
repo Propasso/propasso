@@ -53,7 +53,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
             ].map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-card/80 backdrop-blur-sm rounded-xl p-6 border border-border/15">
                 <Icon className="w-7 h-7 text-primary mx-auto mb-3" strokeWidth={1.5} />
-                <h3 className="font-bold text-foreground text-sm mb-1 tracking-tight">{title}</h3>
+                <p className="font-bold text-foreground text-sm mb-1 tracking-tight">{title}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
               </div>
             ))}
