@@ -109,6 +109,7 @@ const contactSchemas = [
     inLanguage: "nl-NL",
     mainEntity: {
       "@type": "Organization",
+      "@id": "https://propasso.nl/#organization",
       name: "Propasso",
       url: "https://propasso.nl/",
       email: "info@propasso.nl",
@@ -122,11 +123,16 @@ const contactSchemas = [
       },
       sameAs: [
         "https://www.linkedin.com/company/propasso",
-        "https://www.linkedin.com/in/karelcremers",
-        "https://wa.me/31610057566",
+        "https://www.google.com/maps?cid=16868413070003178139",
       ],
       areaServed: { "@type": "Country", name: "Nederland" },
-      founder: { "@type": "Person", name: "Karel Cremers", url: "https://www.linkedin.com/in/karelcremers" },
+      founder: {
+        "@type": "Person",
+        "@id": "https://propasso.nl/#person-karel-cremers",
+        name: "Karel Cremers",
+        url: "https://propasso.nl/over-propasso",
+        sameAs: ["https://www.linkedin.com/in/karelcremers"],
+      },
       identifier: { "@type": "PropertyValue", propertyID: "KvK", value: "58115439" },
     },
   },
@@ -249,7 +255,20 @@ const Contact = () => {
         <div className="section-container relative">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <motion.div initial="hidden" animate="visible" variants={fadeUp} custom={0}>
-              <p className="eyebrow">Laten we kennismaken</p>
+              <div className="lg:hidden mb-6 flex items-center gap-4">
+                <img
+                  src={karelImg}
+                  alt="Karel Cremers, oprichter Propasso"
+                  className="w-[72px] h-[72px] rounded-full object-cover shadow-md ring-2 ring-accent/40 ring-offset-2 ring-offset-background"
+                  style={{ objectPosition: "center 25%" }}
+                  loading="eager"
+                />
+                <div>
+                  <p className="text-sm font-semibold text-foreground">Je spreekt met Karel</p>
+                  <p className="text-xs text-muted-foreground">Reactie binnen een werkdag</p>
+                </div>
+              </div>
+              <p className="eyebrow">Contact</p>
               <h1 className="mt-5 text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-[1.1] tracking-[-0.02em] text-balance">
                 Zullen we praten over je bedrijf en wat je ermee wilt?
               </h1>
@@ -294,7 +313,7 @@ const Contact = () => {
             custom={0}
             className="mb-12"
           >
-            <p className="eyebrow">Kennismaken</p>
+            <p className="eyebrow">Afspraak maken</p>
             <h2 className="mt-4 text-2xl md:text-3xl font-bold tracking-[-0.01em]">Kies wat bij je past</h2>
           </motion.div>
 
@@ -470,15 +489,6 @@ const Contact = () => {
                     <span className="text-sm font-medium text-foreground">{item}</span>
                   </div>
                 ))}
-              </div>
-
-              {/* Testimonial */}
-              <div className="mt-10 rounded-xl bg-background/60 border border-border/30 p-5">
-                <p className="text-sm italic text-muted-foreground leading-[1.75]">
-                  "Karel denkt echt mee. Geen verkooppraatje, gewoon een eerlijk gesprek over wat er speelt en wat de
-                  opties zijn."
-                </p>
-                <p className="mt-3 text-xs font-semibold text-foreground">— MKB-ondernemer, maakindustrie</p>
               </div>
             </motion.div>
 
