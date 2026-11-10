@@ -12,6 +12,7 @@ import PageCTA from "@/components/PageCTA";
 import QuickscanCalloutBlock from "@/components/QuickscanCalloutBlock";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
 import PortableTable from "@/components/PortableTable";
+import PortableImage from "@/components/PortableImage";
 import {
   canonicalizeCategorySlug,
   fetchCategoryBySlug,
@@ -27,6 +28,7 @@ import { pillarContent } from "@/data/pillarContent";
 const portableTextComponents = {
   types: {
     dataTable: PortableTable,
+    image: PortableImage,
   },
   block: {
     h2: ({ children }: { children?: React.ReactNode }) => (
