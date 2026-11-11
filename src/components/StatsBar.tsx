@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useLayoutEffect } from "react";
 
 interface StatItem {
   value: string;
@@ -30,11 +30,20 @@ const stats: StatItem[] = [
   },
 ];
 
+// De teller begint op de eindwaarde, zodat de statische HTML (prerender) en
+// crawlers het echte getal lezen in plaats van 0. Zodra het blok in beeld komt,
+// zet useLayoutEffect de waarde vóór de eerstvolgende paint op 0 en telt op naar
+// de eindwaarde. Voor de bezoeker verandert er niets.
+// In headless Chrome (prerender, navigator.webdriver) blijft de eindwaarde staan,
+// zodat de snapshot nooit een tussenstand bevat.
 function useCountUp(target: number, duration: number, active: boolean) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(target);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!active) return;
+    if (typeof navigator !== "undefined" && navigator.webdriver) return;
+
+    setValue(0);
     const start = performance.now();
     let raf: number;
 
