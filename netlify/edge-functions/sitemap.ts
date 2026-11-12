@@ -35,7 +35,7 @@ const REDIRECTED_THEMES = new Set([
 
 const SLUG_OK = /^[a-z0-9-]+$/;
 
-type Theme = { slug: string };
+type Theme = { slug: string; updatedAt?: string; latestArticle?: string };
 type Article = { slug?: string; publishedAt: string; lastUpdated?: string; noIndex?: boolean };
 
 function escapeXml(str: string): string {
@@ -46,6 +46,16 @@ function escapeXml(str: string): string {
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&apos;");
 }
+
+// Recentste van een aantal datums (ISO-strings), of undefined als er geen is.
+function latest(...dates: (string | undefined)[]): string | undefined {
+  const valid = dates.filter((d): d is string => !!d && !Number.isNaN(Date.parse(d)));
+  if (valid.length === 0) return undefined;
+  return valid.reduce((a, b) => (Date.parse(a) >= Date.parse(b) ? a : b));
+}
+
+// Pagina's die een overzicht van recente artikelen tonen: lastmod = recentste artikel.
+const LISTS_RECENT_ARTICLES = new Set(["/", "/kennisbank"]);
 
 function urlEntry(loc: string, lastmod?: string, changefreq?: string, priority?: string): string {
   let e = `  <url>\n    <loc>${escapeXml(BASE_URL + loc)}</loc>`;
@@ -60,7 +70,12 @@ export default async function handler(req: Request, context: Context) {
   const query = encodeURIComponent(
     `{
       "themes": *[_type == "category" && ${notDraft} && defined(slug.current)]
-        | order(coalesce(order, 99) asc, title asc) { "slug": slug.current },
+        | order(coalesce(order, 99) asc, title asc) {
+          "slug": slug.current,
+          "updatedAt": _updatedAt,
+          "latestArticle": *[_type == "post" && ${notDraft} && ^._id in categories[]._ref && publishedAt <= now() && noIndex != true]
+            | order(coalesce(lastUpdated, publishedAt) desc)[0]{ "d": coalesce(lastUpdated, publishedAt) }.d
+        },
       "articles": *[_type == "post" && ${notDraft} && publishedAt <= now()]
         | order(publishedAt desc) { "slug": slug.current, publishedAt, lastUpdated, noIndex }
     }`,
@@ -85,8 +100,16 @@ export default async function handler(req: Request, context: Context) {
     });
   }
 
+  // Overige vaste pagina's (werkwijze, contact, enz.) staan niet in Sanity en krijgen bewust geen lastmod:
+  // geen datum is beter dan een verkeerde.
+  const newestArticle = latest(
+    ...articles.filter((a) => !a.noIndex).map((a) => a.lastUpdated || a.publishedAt),
+  );
+
   const entries: string[] = [
-    ...STATIC_PAGES.map((p) => urlEntry(p.loc, undefined, p.changefreq, p.priority)),
+    ...STATIC_PAGES.map((p) =>
+      urlEntry(p.loc, LISTS_RECENT_ARTICLES.has(p.loc) ? newestArticle : undefined, p.changefreq, p.priority),
+    ),
     ...themes
       .filter((t) => {
         if (REDIRECTED_THEMES.has(t.slug)) return false;
@@ -96,7 +119,7 @@ export default async function handler(req: Request, context: Context) {
         }
         return true;
       })
-      .map((t) => urlEntry(`/kennisbank/thema/${t.slug}`, undefined, "weekly", "0.8")),
+      .map((t) => urlEntry(`/kennisbank/thema/${t.slug}`, latest(t.latestArticle, t.updatedAt), "weekly", "0.8")),
     ...articles
       .filter((a) => {
         if (a.noIndex || !a.slug) return false;
