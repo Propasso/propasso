@@ -66,6 +66,15 @@ function useCountUp(target: number, duration: number, active: boolean) {
 const StatsBar = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  // Na het laden van JavaScript (niet in de prerender) worden de tellers
+  // onzichtbaar tot het blok in beeld komt, zodat de bezoeker nooit eerst de
+  // eindwaarde en daarna 0 ziet. De statische HTML toont de eindwaarde.
+  const [armed, setArmed] = useState(false);
+
+  useLayoutEffect(() => {
+    if (typeof navigator !== "undefined" && navigator.webdriver) return;
+    setArmed(true);
+  }, []);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -119,10 +128,10 @@ const StatsBar = () => {
                   }}
                 >
                   {stat.countTo != null ? (
-                    <>
+                    <span style={{ opacity: armed && !isVisible ? 0 : 1 }}>
                       {i === 0 ? count78 : count40}
                       {stat.suffix}
-                    </>
+                    </span>
                   ) : (
                     <span
                       style={{
@@ -175,10 +184,10 @@ const StatsBar = () => {
                   }}
                 >
                   {stat.countTo != null ? (
-                    <>
+                    <span style={{ opacity: armed && !isVisible ? 0 : 1 }}>
                       {i === 0 ? count78 : count40}
                       {stat.suffix}
-                    </>
+                    </span>
                   ) : (
                     <span
                       style={{
