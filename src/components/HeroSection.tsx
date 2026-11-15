@@ -35,7 +35,7 @@ const HeroSection = () => {
             transition={{ duration: 0.7 }}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold leading-[1.05] text-foreground text-balance"
           >
-            Een succesvolle bedrijfsoverdracht <span className="text-muted-foreground">begint jaren vóór de deal.</span>
+            Je bedrijf verkoopklaar maken <span className="text-muted-foreground">begint jaren vóór de deal.</span>
           </motion.h1>
 
           <motion.div
@@ -65,8 +65,9 @@ const HeroSection = () => {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="mt-6 text-lg md:text-xl leading-relaxed text-muted-foreground max-w-2xl"
           >
-            Wij begeleiden MKB-ondernemers in de 3-5 jaar vóór de bedrijfsoverdracht naar maximale waarde en
-            verkoopbaarheid, met een helder plan en regie voor de ondernemer.
+            Wij begeleiden DGA's bij het verkoopklaar maken van hun bedrijf, in de 3 tot 5 jaar vóór de overdracht,
+            naar maximale bedrijfswaarde. Met een helder plan, zodat jij de regie houdt en je bedrijf leert draaien
+            zonder jou.
           </motion.p>
 
           <motion.div
