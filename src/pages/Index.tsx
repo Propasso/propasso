@@ -20,7 +20,7 @@ const homepageJsonLd = [
         "@type": "Service",
         "@id": "https://propasso.nl/#service",
         "name": "Exit Planning voor MKB-ondernemers",
-        "description": "Propasso begeleidt MKB-ondernemers in Nederland bij het strategisch verkoopklaar maken van hun bedrijf, zodat zij de maximale verkoopwaarde realiseren.",
+        "description": "Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf in de 3 tot 5 jaar vóór de verkoop, gericht op maximale bedrijfswaarde.",
         "provider": {
                 "@type": "Organization",
                 "@id": "https://propasso.nl/#organization",
@@ -32,17 +32,29 @@ const homepageJsonLd = [
         },
         "serviceType": "Exit Planning",
   },
+  {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://propasso.nl/#person-karel-cremers",
+        "name": "Karel Cremers",
+        "url": "https://propasso.nl/over-propasso",
+        "jobTitle": "Exit Planning Adviseur",
+        "worksFor": {
+                "@id": "https://propasso.nl/#organization",
+        },
+        "sameAs": ["https://www.linkedin.com/in/karelcremers"],
+  },
   ];
 
 const Index = () => {
     return (
           <PageLayout>
                 <SEO
-                          title="Exit Planning voor MKB-ondernemers | Propasso"
-                          description="Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf. Start op tijd en realiseer de maximale verkoopwaarde."
+                          title="Bedrijf verkoopklaar maken | Exit planning | Propasso"
+                          description="Bedrijf verkoopklaar maken met een ondernemer die het zelf deed. Propasso begeleidt DGA's in de 3 tot 5 jaar vóór de verkoop, naar maximale bedrijfswaarde."
                           canonical="https://propasso.nl/"
-                          ogTitle="Exit Planning voor MKB-ondernemers | Propasso"
-                          ogDescription="Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf. Start op tijd en realiseer de maximale verkoopwaarde."
+                          ogTitle="Bedrijf verkoopklaar maken | Exit planning | Propasso"
+                          ogDescription="Bedrijf verkoopklaar maken met een ondernemer die het zelf deed. Propasso begeleidt DGA's in de 3 tot 5 jaar vóór de verkoop, naar maximale bedrijfswaarde."
                           jsonLd={homepageJsonLd}
                         />
                 <HeroSection />
