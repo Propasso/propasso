@@ -142,6 +142,7 @@ const Quickscan = () => {
         title="Verkoopklaarscan"
         description="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis, direct resultaten en tips."
         canonical="https://propasso.nl/quickscan"
+        ogImage="https://propasso.nl/og/og-verkoopklaarscan.jpg"
         ogTitle="Verkoopklaarscan | Propasso"
         ogDescription="Ontdek in 4 minuten hoe goed jouw bedrijf en jij persoonlijk voorbereid zijn op een bedrijfsoverdracht. Gratis, direct resultaten en tips."
         ogType="website"
