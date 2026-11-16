@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
 import { PortableText } from "@portabletext/react";
 import SEO from "@/components/SEO";
-import { pillarOgImages } from "@/constants/pillarOgImages";
+import { getThemaOgImage } from "@/constants/themaOgImages";
 
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
@@ -149,7 +149,7 @@ const KennisbankPillar = () => {
       : "Lees artikelen en inzichten uit de kennisbank van Propasso over exit planning, waardecreatie en bedrijfsoverdracht.");
   
   const pillarOgImage =
-    category?.slug?.current ? pillarOgImages[category.slug.current] : undefined;
+    getThemaOgImage(category?.slug?.current);
   
   const itemListSchema =
     category && posts && posts.length > 0

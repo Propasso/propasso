@@ -12,6 +12,7 @@ import PortableTable from "@/components/PortableTable";
 import PortableImage from "@/components/PortableImage";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
+import { getThemaOgImage } from "@/constants/themaOgImages";
 import { Skeleton } from "@/components/ui/skeleton";
 import NotFound from "@/pages/NotFound";
 import type { SanityPost } from "@/types/sanity";
@@ -171,7 +172,7 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
   const canonicalUrl = post.canonicalUrl || `https://propasso.nl/kennisbank/${post.slug.current}`;
   const ogImageUrl = post.mainImage
     ? urlFor(post.mainImage).width(1200).height(630).url()
-    : undefined;
+    : getThemaOgImage(parentCategory?.slug?.current);
 
   return (
     <PageLayout>

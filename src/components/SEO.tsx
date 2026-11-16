@@ -14,7 +14,8 @@ type SEOProps = {
     jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 };
 
-const DEFAULT_OG_IMAGE = "https://propasso.nl/og-default.png";
+// Zonder eigen deelafbeelding: compacte vierkante thumbnail (summary-kaart) i.p.v. grote banner.
+const DEFAULT_OG_IMAGE = "https://propasso.nl/og/og-default-compact.jpg";
 const DEFAULT_ROBOTS =
     "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1";
 
@@ -25,11 +26,13 @@ const SEO = ({
     ogTitle,
     ogDescription,
     ogType = "website",
-    ogImage = DEFAULT_OG_IMAGE,
+    ogImage,
     noIndex = false,
     robots,
     jsonLd,
 }: SEOProps) => {
+    const hasOwnImage = Boolean(ogImage);
+    const shareImage = ogImage || DEFAULT_OG_IMAGE;
     const fullTitle = title.includes("Propasso") ? title : `${title} | Propasso`;
     const robotsContent = noIndex ? "noindex, nofollow" : robots || DEFAULT_ROBOTS;
 
@@ -63,14 +66,14 @@ const SEO = ({
                 <meta property="og:description" content={ogDescription || description} />
                 <meta property="og:url" content={canonical} />
                 <meta property="og:type" content={ogType} />
-                <meta property="og:image" content={ogImage} />
-                <meta property="og:image:width" content="1200" />
-                <meta property="og:image:height" content="630" />
+                <meta property="og:image" content={shareImage} />
+                <meta property="og:image:width" content={hasOwnImage ? "1200" : "600"} />
+                <meta property="og:image:height" content={hasOwnImage ? "630" : "600"} />
           
-                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:card" content={hasOwnImage ? "summary_large_image" : "summary"} />
                 <meta name="twitter:title" content={ogTitle || fullTitle} />
                 <meta name="twitter:description" content={ogDescription || description} />
-                <meta name="twitter:image" content={ogImage} />
+                <meta name="twitter:image" content={shareImage} />
           
             {jsonLd &&
                       (Array.isArray(jsonLd) ? jsonLd : [jsonLd]).map((schema, index) => (
