@@ -8,7 +8,7 @@ const heroSubtitles = [
   "Met een overdraagbaar bedrijf.",
   "Met onafhankelijkheid.",
   "Met inzicht in je bedrijfswaarde.",
-  "Met verkoopklaarheid.",
+  "Met verkoopklaar maken.",
   "Met een helder plan voor daarna.",
 ];
 
@@ -83,7 +83,7 @@ const HeroSection = () => {
               }}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-teal-medium transition-colors"
             >
-              Krijg inzicht in je verkoopklaarheid
+              Krijg inzicht in hoe verkoopklaar jij en je bedrijf zijn.
               <ChevronRight size={18} />
             </Link>
             <Link
