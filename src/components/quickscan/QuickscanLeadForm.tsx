@@ -100,7 +100,7 @@ const QuickscanLeadForm = ({ scores, snapshot, answers, onSuccess }: QuickscanLe
           Ontvang gratis 2–3 concrete adviezen per onderdeel
         </h3>
         <p className="text-muted-foreground mt-2 max-w-md mx-auto leading-relaxed">
-          Op basis van jouw scores stellen wij een persoonlijk rapport samen met praktische verbeterpunten per dimensie; de Aantrekkelijkheid van jouw bedrijf voor een koper en jouw Persoonlijke en Bedrijfsmatige Verkoopklaarheid.
+          Op basis van jouw scores stellen wij een persoonlijk rapport samen met praktische verbeterpunten per dimensie: de aantrekkelijkheid van jouw bedrijf voor een koper, de overdraagbaarheid van jouw bedrijf en jouw persoonlijke voorbereiding.
 Direct zichtbaar en in je inbox.
         
         </p>

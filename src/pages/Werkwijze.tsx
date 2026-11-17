@@ -60,7 +60,7 @@ const pageSchemas = [
     },
     serviceType: "Exit Planning",
     description:
-      "Gestructureerde begeleiding voor MKB-ondernemers gericht op waardecreatie, verkoopklaarheid en overdraagbaarheid van het bedrijf.",
+      "Gestructureerde begeleiding voor MKB-ondernemers gericht op waardecreatie, overdraagbaarheid en het verkoopklaar maken van het bedrijf.",
   },
 ];
 

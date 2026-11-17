@@ -44,7 +44,7 @@ const QuickscanSideCallout = () => {
                 Hoe <span className="text-primary">verkoopklaar</span> is jouw bedrijf?
               </p>
               <p className="mt-1 text-[12px] text-muted-foreground leading-relaxed">
-                Ontdek in 4 min jouw score op aantrekkelijkheid, verkoopklaarheid en overdraagbaarheid.
+                Ontdek in 4 min jouw score op aantrekkelijkheid, overdraagbaarheid en persoonlijke voorbereiding.
               </p>
             </div>
 
