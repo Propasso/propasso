@@ -97,7 +97,7 @@ const fadeUp = {
 };
 
 const pageDescription =
-  "Neem vrijblijvend contact op voor een persoonlijke kennismaking over exit planning, bedrijfsoverdracht en verkoopklaarheid in het MKB.";
+  "Neem vrijblijvend contact op voor een persoonlijke kennismaking over exit planning, bedrijfsoverdracht en je bedrijf verkoopklaar maken in het MKB.";
 
 const contactSchemas = [
   {

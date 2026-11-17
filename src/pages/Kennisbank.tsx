@@ -47,7 +47,7 @@ const Kennisbank = () => {
   const hasMore = visibleCount < totalPosts;
 
   const knowledgeBaseDescription =
-    "De kennisbank van Propasso met praktische artikelen over exit planning, bedrijfswaarde, verkoopklaarheid en bedrijfsoverdracht voor MKB-ondernemers.";
+    "De kennisbank van Propasso met praktische artikelen over exit planning, bedrijfswaarde, je bedrijf verkoopklaar maken en bedrijfsoverdracht voor MKB-ondernemers.";
 
   const knowledgeBaseSchemas = [
     {
@@ -93,7 +93,7 @@ const Kennisbank = () => {
         description={knowledgeBaseDescription}
         canonical="https://propasso.nl/kennisbank"
         ogTitle="Kennisbank Exit Planning | Propasso"
-        ogDescription="Praktische artikelen over exit planning, bedrijfswaarde, verkoopklaarheid en bedrijfsoverdracht voor MKB-ondernemers."
+        ogDescription="Praktische artikelen over exit planning, bedrijfswaarde, je bedrijf verkoopklaar maken en bedrijfsoverdracht voor MKB-ondernemers."
         ogType="website"
         jsonLd={knowledgeBaseSchemas}
       />
@@ -129,7 +129,7 @@ const Kennisbank = () => {
             transition={{ duration: 0.7, delay: 0.25 }}
             className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Praktische artikelen over waardecreatie, verkoopklaarheid en de voorbereiding op een succesvolle
+            Praktische artikelen over waardecreatie, je bedrijf verkoopklaar maken en de voorbereiding op een succesvolle
             bedrijfsoverdracht, gestructureerd rondom de {categories?.length ? `${countWord(categories.length)} ` : ""}thema&apos;s van Exit Planning.
           </motion.p>
 

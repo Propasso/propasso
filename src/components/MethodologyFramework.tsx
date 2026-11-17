@@ -109,7 +109,7 @@ const MethodologyFramework = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
         >
-          Een gestructureerd traject dat begint bij inzicht en eindigt bij verkoopklaarheid. Elke fase bouwt voort op de
+          Een gestructureerd traject dat begint bij inzicht en eindigt bij een verkoopklaar bedrijf. Elke fase bouwt voort op de
           vorige.
         </motion.p>
 

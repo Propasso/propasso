@@ -526,8 +526,8 @@ function buildEmailHtml(
         <!-- Dimension scores -->
         <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
           ${buildScoreBar("Aantrekkelijkheid van het Bedrijf", numericScores.attractiveness)}
-          ${buildScoreBar("Verkoopklaarheid van het Bedrijf", numericScores.readiness)}
-          ${buildScoreBar("Verkoopklaarheid van de Ondernemer", numericScores.owner)}
+          ${buildScoreBar("Overdraagbaarheid van het Bedrijf", numericScores.readiness)}
+          ${buildScoreBar("Persoonlijke voorbereiding", numericScores.owner)}
         </table>
 
         <!-- Context -->

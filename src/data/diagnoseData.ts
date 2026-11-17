@@ -125,7 +125,7 @@ const attractivenessQuestions: DiagnoseQuestion[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Dimensie 2: Verkoopklaarheid van het Bedrijf (Q11–Q15)
+// Dimensie 2: Overdraagbaarheid van het Bedrijf (Q11–Q15)
 // ---------------------------------------------------------------------------
 
 const readinessQuestions: DiagnoseQuestion[] = [
@@ -177,7 +177,7 @@ const readinessQuestions: DiagnoseQuestion[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Dimensie 3: Verkoopklaarheid van de Ondernemer (Q16–Q20)
+// Dimensie 3: Persoonlijke voorbereiding van de Ondernemer (Q16–Q20)
 // ---------------------------------------------------------------------------
 
 const ownerQuestions: DiagnoseQuestion[] = [
@@ -282,8 +282,8 @@ export const scoreLevelConfig: Record<ScoreLevel, { label: string; color: string
 
 export const dimensionLabels: Record<Exclude<QuestionCategory, "snapshot">, string> = {
   attractiveness: "Aantrekkelijkheid van het Bedrijf",
-  readiness: "Verkoopklaarheid van het Bedrijf",
-  owner: "Verkoopklaarheid van de Ondernemer",
+  readiness: "Overdraagbaarheid van het Bedrijf",
+  owner: "Persoonlijke voorbereiding",
 };
 
 // ---------------------------------------------------------------------------
@@ -349,7 +349,7 @@ export function getLowestDimensionInsight(scores: DiagnoseScores): string {
     attractiveness:
       "Een lage score op aantrekkelijkheid betekent dat kopers waarschijnlijk een risico-opslag hanteren — of afhaken. De grootste hefbomen zijn omzetpredictabiliteit, klantspreiding en het verminderen van jouw persoonlijke rol in het bedrijf.",
     readiness:
-      "Verkoopklaarheid bepaalt hoe soepel een due diligence verloopt. Een laag scorende ondernemer loopt het risico op prijsdruk of een afgebroken deal. Prioriteit: financiële transparantie, contractbeheer en procesvastlegging.",
+      "Overdraagbaarheid bepaalt hoe soepel een due diligence verloopt. Een laag scorende ondernemer loopt het risico op prijsdruk of een afgebroken deal. Prioriteit: financiële transparantie, contractbeheer en procesvastlegging.",
     owner:
       "De grootste dealkillers zitten niet altijd in het bedrijf — maar in de ondernemer zelf. Zonder helder persoonlijk plan, financieel doelbeeld en emotionele gereedheid vergroot je de kans op een suboptimale beslissing op het verkeerde moment.",
   };
@@ -440,11 +440,11 @@ export const sectionIntros: Record<string, { title: string; intro: string }> = {
     intro: "De volgende stellingen gaan over hoe aantrekkelijk jouw bedrijf is vanuit het perspectief van een potentiële koper.",
   },
   readiness: {
-    title: "Verkoopklaarheid Bedrijf",
+    title: "Overdraagbaarheid",
     intro: "Nu kijken we naar de operationele kant: is jouw bedrijf klaar om overgedragen te worden?",
   },
   owner: {
-    title: "Verkoopklaarheid Ondernemer",
+    title: "Persoonlijke voorbereiding",
     intro: "Tot slot: jouw persoonlijke gereedheid. Dit is het onderdeel dat ondernemers het vaakst onderschatten, en dat het vaakst tot een afgeblazen deal leidt.",
   },
   snapshot: {

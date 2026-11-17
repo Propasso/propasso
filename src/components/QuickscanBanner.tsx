@@ -65,7 +65,7 @@ const QuickscanBanner = ({ contextLine }: QuickscanBannerProps) => {
                 Hoe aantrekkelijk is jouw bedrijf voor <span className="text-primary">kopers</span>?
               </p>
               <p className="mt-1 text-sm text-muted-foreground leading-relaxed max-w-lg">
-                Ontdek in 4 minuten jouw score op aantrekkelijkheid, verkoopklaarheid en overdraagbaarheid.
+                Ontdek in 4 minuten jouw score op aantrekkelijkheid, overdraagbaarheid en persoonlijke voorbereiding.
               </p>
             </div>
 

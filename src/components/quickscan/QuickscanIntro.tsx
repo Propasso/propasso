@@ -38,7 +38,7 @@ const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
               {
                 icon: ClipboardCheck,
                 title: "20 gerichte vragen",
-                desc: "Op verkoopklaarheid van ondernemer en bedrijf",
+                desc: "Op overdraagbaarheid van je bedrijf en je persoonlijke voorbereiding",
               },
               {
                 icon: Clock,

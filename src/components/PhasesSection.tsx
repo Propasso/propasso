@@ -15,7 +15,7 @@ const phases = [
 },
 {
   number: "03",
-  title: "Regie & verkoopklaarheid",
+  title: "Grip op het proces",
   description:
   "In de laatste fase ligt de focus op regie. De ondernemer weet waar hij staat, welke keuzes mogelijk zijn en wanneer het juiste moment daar is. Met controle over timing, voorwaarden en rol na overdracht."
 }];
