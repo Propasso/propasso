@@ -158,7 +158,7 @@ function RadarChart({
     cy = 150,
     r = 110;
   const angles = [-90, 150, 30]; // top, bottom-left, bottom-right
-  const labels = ["Aantrekkelijkheid", "Verkoopklaarheid\nBedrijf", "Verkoopklaarheid\nOndernemer"];
+  const labels = ["Aantrekkelijkheid", "Overdraagbaarheid", "Persoonlijke\nvoorbereiding"];
   const values = [scores.attractiveness / 100, scores.readiness / 100, scores.owner / 100];
 
   const point = (angle: number, ratio: number) => {
