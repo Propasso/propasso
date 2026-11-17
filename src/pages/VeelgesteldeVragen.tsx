@@ -46,7 +46,7 @@ De beste timing: neem vrijblijvend contact op zodra je merkt dat een verkoop een
         question: "Moet Exit Planning altijd leiden tot 100% verkoop?",
         answer: `Nee, Exit Planning hoeft niet te leiden tot verkoop. Integendeel: het doel is een helder toekomstplan schetsen, opties creëren en eventuele Quick Wins door te voeren.
 
-Veel MKB-ondernemers gaan het Exit Planning-proces (ook wel Exit Readiness ('verkoopklaarheid' (?) genoemd) in om hun afwegingen, persoonlijke situatie en verbeterpotentieel van het bedrijf scherp te krijgen. Dit helpt in de vervolgkeuze wanneer of in welke situatie zij wél een exit overwegen en in welke vorm:
+Veel MKB-ondernemers starten een exit planning-traject om hun afwegingen, persoonlijke situatie en het verbeterpotentieel van hun bedrijf scherp te krijgen. Dit helpt in de vervolgkeuze wanneer of in welke situatie zij wél een exit overwegen en in welke vorm:
 (a) eigendom behouden maar operationeel minder aanwezig zijn,
 (b) een management buy-in of buy-out met jou als aandeelhouder op afstand, of
 (c) een gedeeltelijke verkoop (pre-exit) waarbij je nog meedraait om groei te versnellen.
