@@ -79,7 +79,7 @@ const TargetAudience = () => {
           <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.3 }} className="flex justify-center">
             <img
               src={exitSteps}
-              alt="Propasso Exit Planning - 5 stappen naar verkoopklaarheid en succesvolle bedrijfsoverdracht"
+              alt="Propasso Exit Planning - 5 stappen naar een verkoopklaar bedrijf en succesvolle bedrijfsoverdracht"
               loading="lazy"
               className="max-w-sm w-full rounded-2xl shadow-lg"
             />
