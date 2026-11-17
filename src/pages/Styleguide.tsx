@@ -148,7 +148,7 @@ const Styleguide = () => {
               <p className="text-xs text-muted-foreground uppercase tracking-wider mb-4">Primary CTA — rounded-full, bg-primary</p>
               <div className="flex flex-wrap gap-4">
                 <a className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground hover:bg-teal-medium transition-colors cursor-pointer">
-                  Krijg inzicht in je verkoopklaarheid
+                  Krijg inzicht in hoe verkoopklaar je bent
                 </a>
                 <a className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-4 text-base font-semibold text-accent-foreground hover:brightness-110 transition cursor-pointer">
                   Accent CTA
