@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import PageBreadcrumb from "@/components/PageBreadcrumb";
-import QuickscanSideCallout from "@/components/QuickscanSideCallout";
+import PageHero from "@/components/PageHero";
 import { ChevronDown } from "lucide-react";
 import faqClimbersRopes from "@/assets/illustrations/faq-climbers-ropes.png";
 
@@ -374,44 +373,22 @@ const VeelgesteldeVragen = () => {
         jsonLd={faqSchemas}
       />
 
-      <PageBreadcrumb withContainer items={[{ label: "Veelgestelde vragen" }]} />
-
-      {/* ═══════════ HERO ═══════════ */}
-      <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
-          <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
-          <img
-            src={faqClimbersRopes}
-            alt=""
-            className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.06] pointer-events-none select-none"
-          />
-        </div>
-
-        <div className="section-container relative z-10 py-16 md:py-24 max-w-4xl">
-          <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-            <p className="eyebrow">Veelgestelde vragen</p>
-          </motion.div>
-          <motion.h1
-            {...fadeInUp}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-5 text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] text-balance"
-          >
+      <PageHero
+        breadcrumb={[{ label: "Veelgestelde vragen" }]}
+        eyebrow="Veelgestelde vragen"
+        illustration={faqClimbersRopes}
+        title={
+          <>
             Antwoorden op veelgestelde vragen <span className="text-muted-foreground">over exit planning</span>
-          </motion.h1>
-          <motion.p
-            {...fadeInUp}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
-          >
+          </>
+        }
+        intro={
+          <>
             Hieronder vind je antwoorden op veelgestelde vragen van ondernemers over exit planning, bedrijfswaarde,
             overdraagbaarheid en bedrijfsoverdracht.
-          </motion.p>
-
-          <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.35 }} className="mt-10">
-            <QuickscanSideCallout />
-          </motion.div>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       {/* ═══════════ FAQ SECTIONS ═══════════ */}
       <section className="py-16 md:py-24 lg:py-36">
