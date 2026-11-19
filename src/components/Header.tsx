@@ -56,7 +56,7 @@ const Header = () => {
         scrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="section-container flex items-center justify-between h-20">
+      <div className="section-container flex items-center justify-between h-20 lg:h-24">
         <Link to="/" className="block">
           <motion.img
             key={compactLogo ? "compact" : "full"}

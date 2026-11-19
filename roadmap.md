@@ -36,6 +36,16 @@
 - Afbeeldingen in de body (10 nov 2026): Sanity-blok `image` (met alt en caption) wordt gerenderd door src/components/PortableImage.tsx, gekoppeld via `types: { image: PortableImage }` op dezelfde plekken als PortableTable. Niet vervangen of verwijderen.
 - SEO.tsx: JSON-LD binnen Helmet moet als children (`{safeJsonLd(schema)}`), niet via dangerouslySetInnerHTML; dat laatste negeert react-helmet-async en dan verschijnt het JSON-LD nergens.
 
+## Hero's van subpagina's (19 nov 2026, Claude via GitHub)
+- Subpagina's gebruiken altijd `src/components/PageHero.tsx` (broodkruimel, eyebrow, H1, intro, knoppenrij, scrollpijl). Geen eigen hero-sectie meer bouwen per pagina.
+- De hero vult precies het scherm onder de header (`min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-6rem)]`), zodat de volgende sectie op de vouw begint. Inhoud staat bovenaan: geen `flex items-center` en geen verticale centrering (dat verschoof de tekst van de logolijn). Geen extra `pt-20`: PageLayout geeft al `pt-20 lg:pt-24`.
+- Tekst links op de section-container-lijn. Eén kopmaat: `text-4xl sm:text-5xl lg:text-6xl`.
+- Knoppenrij: "Plan een kennismaking" (primair, /contact, event `cta_click_contact`) en "Ontdek jouw score" (secundair, /quickscan, event `cta_click_quickscan`), beide met `event_source: "page_hero"`.
+- Geen illustraties of lijntekeningen in hero's (besluit Karel 19 nov 2026).
+- Gele stip: `src/components/PageAccentDot.tsx`, automatisch via PageLayout op alle pagina's behalve de homepage (de homepage houdt de eigen grote stip in HeroSection). Geen eigen gele cirkels of gloed meer toevoegen in hero's.
+- Header: `h-20 lg:h-24`. De linkerrand (`borderLeft`) van de Verkoopklaarscan-knop is bewust ontwerp, niet verwijderen.
+- QuickscanSideCallout staat niet meer in hero's; het component blijft bestaan voor gebruik elders.
+
 ## Openstaand uit eerdere rondes
 - HubSpot floating chat: wacht op antwoorden (chatflow gepubliceerd? teasertekst? nudge-timing?)
 - Bing meta-description: keuze Optie A (edge function) of B (fallback) nog niet gemaakt
