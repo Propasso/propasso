@@ -16,6 +16,7 @@ import PageBreadcrumb, { type BreadcrumbEntry } from "@/components/PageBreadcrum
  * - Geen extra top-padding voor de header: PageLayout (<main pt-20 lg:pt-24>) regelt dat al.
  * - Tekst links uitgelijnd op de section-container-lijn (zelfde lijn als logo en broodkruimel).
  * - Eén kopmaat voor alle subpagina's.
+ * - Geen eigen decoratie: de gele stip rechtsboven komt uit PageLayout (PageAccentDot).
  */
 
 interface PageHeroProps {
@@ -23,7 +24,7 @@ interface PageHeroProps {
   eyebrow: string;
   title: ReactNode;
   intro?: ReactNode;
-  /** Verouderd: illustraties worden niet meer getoond. Prop wordt in een volgende stap uit de pagina's gehaald. */
+  /** Verouderd en genegeerd: hero's tonen geen illustraties meer (zie roadmap.md). Mag bij een volgende wijziging uit de pagina's. */
   illustration?: string;
   /** Toon de standaard knoppenrij (kennismaking + Verkoopklaarscan). Default: true. */
   showActions?: boolean;
@@ -45,14 +46,6 @@ const PageHero = ({ breadcrumb, eyebrow, title, intro, showActions = true }: Pag
     <>
       <section className="relative overflow-x-clip min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-6rem)] pb-16">
         <PageBreadcrumb withContainer items={breadcrumb} />
-
-        {/* Zachte gele gloed rechts (alleen md+). Wordt vervangen door de definitieve "punch"-stip. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none select-none absolute top-1/2 right-0 hidden md:block -translate-y-1/2 translate-x-1/4 w-[420px] h-[420px] lg:w-[520px] lg:h-[520px]"
-        >
-          <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
-        </div>
 
         <div className="section-container relative z-10 pt-8 pb-14 md:pt-14 md:pb-20 lg:pt-16 lg:pb-24">
           <div className="max-w-3xl">
