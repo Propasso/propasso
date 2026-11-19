@@ -4,7 +4,7 @@ import SEO from "@/components/SEO";
 import { ChevronRight, Shield, Briefcase, Users, Eye } from "lucide-react";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import PageBreadcrumb from "@/components/PageBreadcrumb";
+import PageHero from "@/components/PageHero";
 import QuickscanBanner from "@/components/QuickscanBanner";
 import TestimonialsSection from "@/components/TestimonialsSection";
 
@@ -163,39 +163,23 @@ const OverPropasso = () => {
         jsonLd={aboutSchemas}
       />
 
-      <PageBreadcrumb withContainer items={[{ label: "Over Propasso" }]} />
-
-      {/* ─── 1. HERO ─── */}
-      <section className="relative min-h-[70vh] flex items-center pt-20 overflow-hidden">
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
-          <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
-          <img
-            src={mountainClimberSvg}
-            alt=""
-            className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.08] pointer-events-none select-none"
-          />
-        </div>
-
-        <div className="section-container relative z-10 py-16 md:py-24">
-          <motion.h1
-            {...fadeInUp}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-foreground max-w-4xl text-balance"
-          >
+      <PageHero
+        breadcrumb={[{ label: "Over Propasso" }]}
+        eyebrow="Over Propasso"
+        illustration={mountainClimberSvg}
+        title={
+          <>
             Je bedrijf is je levenswerk.{" "}
             <span className="text-muted-foreground">De juiste begeleiding maakt het verschil.</span>
-          </motion.h1>
-
-          <motion.p
-            {...fadeInUp}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
-          >
+          </>
+        }
+        intro={
+          <>
             Propasso staat naast ondernemers die hun bedrijf willen laten groeien, herstructureren of verkoopklaar
             maken. Met ervaring uit het bedrijfsleven én het ondernemerschap.
-          </motion.p>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section className="py-16 md:py-24 lg:py-36 section-alt-bg">
         <div className="section-container">
