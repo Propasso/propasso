@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import PageCTA from "@/components/PageCTA";
-import PageBreadcrumb from "@/components/PageBreadcrumb";
-import QuickscanSideCallout from "@/components/QuickscanSideCallout";
+import PageHero from "@/components/PageHero";
 import { fetchAllPosts, fetchAllCategories } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import type { SanityPost } from "@/types/sanity";
@@ -98,46 +97,23 @@ const Kennisbank = () => {
         jsonLd={knowledgeBaseSchemas}
       />
 
-      <PageBreadcrumb withContainer items={[{ label: "Kennisbank" }]} />
-
-      <section className="relative min-h-[60vh] flex items-center pt-20 overflow-hidden">
-        <div className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/4 md:translate-x-1/6 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px]">
-          <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
-          <img
-            src={kennisbankBasecamp}
-            alt=""
-            className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.06] pointer-events-none select-none"
-          />
-        </div>
-
-        <div className="section-container relative z-10 py-16 md:py-24">
-          <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
-            <p className="eyebrow">Kennisbank</p>
-          </motion.div>
-
-          <motion.h1
-            {...fadeInUp}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="mt-5 text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] max-w-3xl text-balance"
-          >
+      <PageHero
+        breadcrumb={[{ label: "Kennisbank" }]}
+        eyebrow="Kennisbank"
+        illustration={kennisbankBasecamp}
+        title={
+          <>
             Inzichten over exit planning{" "}
             <span className="text-muted-foreground">en bedrijfsoverdracht</span>
-          </motion.h1>
-
-          <motion.p
-            {...fadeInUp}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
-          >
+          </>
+        }
+        intro={
+          <>
             Praktische artikelen over waardecreatie, je bedrijf verkoopklaar maken en de voorbereiding op een succesvolle
             bedrijfsoverdracht, gestructureerd rondom de {categories?.length ? `${countWord(categories.length)} ` : ""}thema&apos;s van Exit Planning.
-          </motion.p>
-
-          <div className="mt-10">
-            <QuickscanSideCallout />
-          </div>
-        </div>
-      </section>
+          </>
+        }
+      />
 
       <section className="py-16 md:py-24 lg:py-36">
         <div className="section-container">
