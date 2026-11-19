@@ -100,10 +100,9 @@ const Header = () => {
               }}
               aria-current={location.pathname === "/quickscan" ? "page" : undefined}
               className="relative inline-flex items-center justify-center rounded-full h-10 px-5 text-sm font-semibold text-foreground
-                bg-gradient-to-r from-accent/10 to-primary/[0.06] border border-border/40
+                bg-gradient-to-r from-accent/10 to-primary/[0.06] border border-primary/25
                 hover:border-primary/30 hover:shadow-[0_0_16px_-4px_hsl(var(--primary)/0.2)] transition-all duration-300
                 overflow-hidden"
-              style={{ borderLeft: '2px solid hsl(var(--primary))' }}
             >
               Verkoopklaarscan
             </NavLink>

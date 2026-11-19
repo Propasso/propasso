@@ -25,7 +25,7 @@ const HeroSection = () => {
   return (
     <section className="relative min-h-[calc(100svh-5rem)] flex items-center pt-16 overflow-hidden">
       {/* Yellow accent circle */}
-      <div className="absolute top-20 right-0 w-[320px] h-[320px] md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 translate-x-1/4 md:translate-x-1/6" />
+      <div className="absolute top-2 -right-10 w-[120px] h-[120px] md:top-20 md:right-0 md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 md:translate-x-1/6" />
 
       <div className="section-container relative z-10 py-6 md:py-16">
         <div className="max-w-3xl">
