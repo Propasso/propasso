@@ -9,7 +9,7 @@ const PageLayout = ({ children }: PageLayoutProps) => {
   return (
     <>
       <Header />
-      <main className="pt-20">{children}</main>
+      <main className="pt-20 lg:pt-24">{children}</main>
       <Footer />
     </>
   );

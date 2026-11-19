@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ClipboardCheck, Clock, BarChart3, ArrowRight } from "lucide-react";
-import quickscanIllustration from "@/assets/images/quickscan-hiker-line-drawing.png";
 
 interface QuickscanIntroProps {
   onStart: () => void;
@@ -9,15 +8,9 @@ interface QuickscanIntroProps {
 const QuickscanIntro = ({ onStart }: QuickscanIntroProps) => {
   return (
     <section className="relative overflow-x-hidden">
-      {/* Faded accent circle with illustration — zelfde patroon als PageHero (alleen md+) */}
+      {/* Faded accent circle — zelfde patroon als PageHero (alleen md+) */}
       <div aria-hidden="true" className="pointer-events-none absolute top-1/2 right-0 hidden md:block -translate-y-1/2 translate-x-1/4 w-[420px] h-[420px] lg:w-[520px] lg:h-[520px]">
         <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
-        <img
-          src={quickscanIllustration}
-          alt=""
-          className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.06] pointer-events-none select-none"
-          aria-hidden="true"
-        />
       </div>
 
       <div className="section-container relative z-10 pt-8 pb-14 md:pt-14 md:pb-20">

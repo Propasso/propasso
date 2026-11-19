@@ -23,7 +23,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100svh-5rem)] flex items-center pt-16 overflow-hidden">
+    <section className="relative min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-6rem)] flex items-center pt-16 overflow-hidden">
       {/* Yellow accent circle */}
       <div className="absolute top-2 -right-10 w-[120px] h-[120px] md:top-20 md:right-0 md:w-[480px] md:h-[480px] lg:w-[560px] lg:h-[560px] rounded-full bg-accent opacity-90 md:translate-x-1/6" />
 

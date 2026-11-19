@@ -1,19 +1,19 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowDown } from "lucide-react";
 import PageBreadcrumb, { type BreadcrumbEntry } from "@/components/PageBreadcrumb";
 
 /**
  * Standaard hero voor alle subpagina's (Werkwijze, Over Propasso, Kennisbank,
  * Veelgestelde vragen, ...). Eén vaste opbouw:
- * broodkruimel → eyebrow → H1 → intro → knoppenrij, met optionele
- * decoratieve illustratie rechts (alleen vanaf md, nooit achter de tekst).
+ * broodkruimel → eyebrow → H1 → intro → knoppenrij → scrollpijl.
  *
  * Regels (zie roadmap.md, "Hero's"):
- * - Geen min-h of verticale centrering: de hoogte volgt de inhoud, zodat de
- *   volgende sectie boven de vouw zichtbaar begint.
- * - Geen extra top-padding voor de header: PageLayout (<main pt-20>) regelt dat al.
+ * - De hero (incl. broodkruimel) vult precies het scherm onder de header, zodat de
+ *   volgende sectie op de vouw begint. Inhoud staat bovenaan (geen verticale
+ *   centrering, geen flex: dat verschoof de tekst eerder van de logolijn).
+ * - Geen extra top-padding voor de header: PageLayout (<main pt-20 lg:pt-24>) regelt dat al.
  * - Tekst links uitgelijnd op de section-container-lijn (zelfde lijn als logo en broodkruimel).
  * - Eén kopmaat voor alle subpagina's.
  */
@@ -23,7 +23,7 @@ interface PageHeroProps {
   eyebrow: string;
   title: ReactNode;
   intro?: ReactNode;
-  /** Decoratieve lijntekening rechts (alleen md+). */
+  /** Verouderd: illustraties worden niet meer getoond. Prop wordt in een volgende stap uit de pagina's gehaald. */
   illustration?: string;
   /** Toon de standaard knoppenrij (kennismaking + Verkoopklaarscan). Default: true. */
   showActions?: boolean;
@@ -40,21 +40,19 @@ const pushEvent = (event: string) => {
   window.dataLayer.push({ event, page_path: window.location.pathname, event_source: "page_hero" });
 };
 
-const PageHero = ({ breadcrumb, eyebrow, title, intro, illustration, showActions = true }: PageHeroProps) => {
+const PageHero = ({ breadcrumb, eyebrow, title, intro, showActions = true }: PageHeroProps) => {
   return (
     <>
-      <PageBreadcrumb withContainer items={breadcrumb} />
+      <section className="relative overflow-x-clip min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-6rem)] pb-16">
+        <PageBreadcrumb withContainer items={breadcrumb} />
 
-      <section className="relative overflow-hidden">
-        {illustration && (
-          <div
-            aria-hidden="true"
-            className="pointer-events-none select-none absolute top-1/2 right-0 hidden md:block -translate-y-1/2 translate-x-1/4 w-[420px] h-[420px] lg:w-[520px] lg:h-[520px]"
-          >
-            <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
-            <img src={illustration} alt="" className="absolute inset-0 m-auto h-[65%] w-[65%] object-contain opacity-[0.08]" />
-          </div>
-        )}
+        {/* Zachte gele gloed rechts (alleen md+). Wordt vervangen door de definitieve "punch"-stip. */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none select-none absolute top-1/2 right-0 hidden md:block -translate-y-1/2 translate-x-1/4 w-[420px] h-[420px] lg:w-[520px] lg:h-[520px]"
+        >
+          <div className="absolute inset-0 rounded-full bg-accent/30 blur-3xl" />
+        </div>
 
         <div className="section-container relative z-10 pt-8 pb-14 md:pt-14 md:pb-20 lg:pt-16 lg:pb-24">
           <div className="max-w-3xl">
@@ -96,6 +94,17 @@ const PageHero = ({ breadcrumb, eyebrow, title, intro, illustration, showActions
             )}
           </div>
         </div>
+
+        {/* Scrollpijl, zelfde als homepage: hero vult het scherm, pijl laat zien dat er meer komt */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1 }}
+          aria-hidden="true"
+          className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex"
+        >
+          <ArrowDown size={20} className="text-muted-foreground animate-scroll-bounce" />
+        </motion.div>
       </section>
     </>
   );

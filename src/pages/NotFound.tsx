@@ -21,7 +21,7 @@ const NotFound = () => {
         noIndex={true}
       />
       <Header />
-      <main className="pt-20">
+      <main className="pt-20 lg:pt-24">
         <section className="flex min-h-[60vh] items-center justify-center">
           <div className="section-container text-center max-w-xl">
             <p className="text-8xl font-bold text-primary/20 mb-6">404</p>
