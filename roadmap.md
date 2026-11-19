@@ -36,6 +36,13 @@
 - Afbeeldingen in de body (10 nov 2026): Sanity-blok `image` (met alt en caption) wordt gerenderd door src/components/PortableImage.tsx, gekoppeld via `types: { image: PortableImage }` op dezelfde plekken als PortableTable. Niet vervangen of verwijderen.
 - SEO.tsx: JSON-LD binnen Helmet moet als children (`{safeJsonLd(schema)}`), niet via dangerouslySetInnerHTML; dat laatste negeert react-helmet-async en dan verschijnt het JSON-LD nergens.
 
+## Hero's van subpagina's (19 nov 2026, Claude via GitHub)
+- Subpagina's gebruiken altijd `src/components/PageHero.tsx` (broodkruimel, eyebrow, H1, intro, knoppenrij, optionele illustratie). Geen eigen hero-sectie meer bouwen per pagina.
+- Regels: geen `min-h-[..vh]`, geen `flex items-center` en geen extra `pt-20` op de hero (PageLayout geeft al `pt-20`). Tekst links op de section-container-lijn. Eén kopmaat: `text-4xl sm:text-5xl lg:text-6xl`.
+- Knoppenrij: "Plan een kennismaking" (primair, /contact, event `cta_click_contact`) en "Ontdek jouw score" (secundair, /quickscan, event `cta_click_quickscan`), beide met `event_source: "page_hero"`.
+- Illustratie alleen vanaf md, nooit achter de tekst op mobiel.
+- QuickscanSideCallout staat niet meer in hero's; het component blijft bestaan voor gebruik elders.
+
 ## Openstaand uit eerdere rondes
 - HubSpot floating chat: wacht op antwoorden (chatflow gepubliceerd? teasertekst? nudge-timing?)
 - Bing meta-description: keuze Optie A (edge function) of B (fallback) nog niet gemaakt
