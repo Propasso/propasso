@@ -62,8 +62,8 @@ export const loss = {
 
 /** Blok 3: Karel. Ervaring uit eerste hand en de brug van verlies naar plan. */
 export const karel = {
-  eyebrow: "Het proces en het zwarte gat",
-  title: "Toen ik zelf middenin de overdracht zat",
+  eyebrow: "Uit eigen ervaring",
+  title: "Toen ik er zelf middenin zat",
   caption:
     "Ik verkocht eind 2024 een groot deel van het bedrijf Worxx, een uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
   paragraphs: [
@@ -140,8 +140,8 @@ export const approach = {
     endTitle: "De verkoop",
     endText: "Tijd om de juiste verkooppartij te kiezen.",
   },
-  /** Voor je bedrijf is er een vierwekelijks ritme voor de kwartaaldoelen, en elke twee weken is er een check-in met de kartrekkers van deelprojecten. De sessie omtrent je persoonlijke plan lopen parallel, maar in een lagere frequentie; om de twee à drie maanden. Het traject begint met een persoonlijke vragenlijst, wat de basis vormt van het plan? Een plan voor daarna heb je niet na één week, dat groeit per sessie. Elke keer ga je naar huis met een kleine stap: een persoonlijk doel, een taak die je overdraagt, wat meer afstand van de zaak, of je privésituatie op papier. */
-  practical: "",
+  /** Ritme en wat je na de eerste fase op papier hebt (tekst Karel, 20 nov). */
+  practical: "Voor je bedrijf is er een vierwekelijks ritme voor de kwartaaldoelen, en elke twee weken is er een check-in met de kartrekkers van deelprojecten. De sessie omtrent je persoonlijke plan lopen parallel, maar in een lagere frequentie; om de twee à drie maanden. Het traject begint met een persoonlijke vragenlijst, wat de basis vormt van het plan? Een plan voor daarna heb je niet na één week, dat groeit per sessie. Elke keer ga je naar huis met een kleine stap: een persoonlijk doel, een taak die je overdraagt, wat meer afstand van de zaak, of je privésituatie op papier.",
   timeline: {
     question: "In welk jaar wil je je bedrijf verkopen?",
     laterLabel: "Later",
@@ -190,8 +190,8 @@ export const approach = {
     title: "De specialisten op het juiste moment aan tafel",
     text: "In deze jaren zet ik ook de gesprekken in gang met je notaris en met een financieel planner, vermogensbeheerder of family office. Je zit daar met de goede vragen. Ik verdien niets aan de deal, je vermogen of de notaris, dus ik heb geen belang bij wie je kiest.",
   },
-  /** Een ondernemer zei in de kennismaking volmondig ja op mijn vaste vraag: 'als we jouw situatie oplossen, wil je dan nog steeds verkopen?' Hij was elke dag als eerste op de zaak en als laatste naar huis. Zijn loyaliteit aan de zaak won het steeds van thuis, en hij had het al zo vaak geprobeerd, maar zag geen andere oplossing dan verkoop. In zijn persoonlijke plan hebben we duidelijke doelen gesteld voor nadat het bedrijf verkocht werd. Daardoor zag hij in dat bepaalde onderdelen nu al effect konden hebben. We hebben zijn management geherstructureerd, hij is gaan sporten (bewust onder kantoortijd) en dichter bij zijn persoonlijke ambities gekomen. Uiteindelijk leidde het ertoe dat de wens om te verkopen van tafel ging. */
-  example: "",
+  /** Anoniem klantvoorbeeld (tekst Karel, 20 nov). */
+  example: "Een ondernemer zei in de kennismaking volmondig ja op mijn vaste vraag: 'als we jouw situatie oplossen, wil je dan nog steeds verkopen?' Hij was elke dag als eerste op de zaak en als laatste naar huis. Zijn loyaliteit aan de zaak won het steeds van thuis, en hij had het al zo vaak geprobeerd, maar zag geen andere oplossing dan verkoop. In zijn persoonlijke plan hebben we duidelijke doelen gesteld voor nadat het bedrijf verkocht werd. Daardoor zag hij in dat bepaalde onderdelen nu al effect konden hebben. We hebben zijn management geherstructureerd, hij is gaan sporten (bewust onder kantoortijd) en dichter bij zijn persoonlijke ambities gekomen. Uiteindelijk leidde het ertoe dat de wens om te verkopen van tafel ging.",
 };
 
 /** Blok 6: slot. */
