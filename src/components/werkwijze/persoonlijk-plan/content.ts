@@ -28,7 +28,7 @@ export const hero = {
   eyebrow: "Jouw persoonlijke plan voor na de bedrijfsverkoop",
   title: "Bedrijf verkocht, en dan?",
   intro:
-    "Je bedrijf maak je verkoopklaar in de jaren voor de verkoop. Met een persoonlijk plan maak je ook jezelf klaar voor de fase daarna.",
+    "Het persoonlijke plan met jouw visie en doelen voor de fase na de verkoop is een van de belangrijkste onderdelen in het verkoopklaar maken van bedrijf en ondernemer."
   note: "Een kennismaking duurt een uur, een richtinggevend gesprek zonder verplichtingen.",
 };
 
