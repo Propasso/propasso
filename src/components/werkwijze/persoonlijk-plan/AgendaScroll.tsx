@@ -30,6 +30,7 @@ const LOSS_COLOR: Record<LossId, string> = {
 const TOTAL = losses.length + 1; // vijf verliezen + lege week
 const DESKTOP_EXTRA_SVH = 130; // extra scrollafstand terwijl het beeld vaststaat
 const MOBILE_EXTRA_SVH = 160;
+const MIN_BLOCK_MINUTES = 60;
 const DAY_START = 7;
 const DAY_END = 18;
 const HOURS = DAY_END - DAY_START;
@@ -127,7 +128,8 @@ const WeekGrid = ({ step, live, fit }: { step: number; live: boolean; fit: boole
             .filter((a) => a.day === d.id)
             .map((a) => {
               const top = ((toHours(a.start) - DAY_START) / HOURS) * 100;
-              const height = (a.minutes / 60 / HOURS) * 100;
+              // Minimale hoogte, zodat korte afspraken (30 min) hun titel kunnen tonen; de tijd zelf blijft zoals ingevuld.
+              const height = (Math.max(a.minutes, MIN_BLOCK_MINUTES) / 60 / HOURS) * 100;
               return (
                 <div
                   key={a.title}

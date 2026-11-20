@@ -1,6 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import { plan, route, approach } from "./content";
 import RouteStep from "./RouteStep";
+import KarelQuote from "./KarelQuote";
 import RhythmContent from "./ApproachSection";
 
 /**
@@ -44,45 +45,53 @@ const PlanSection = () => (
               </p>
               <p className="mt-1 text-sm text-muted-foreground">{plan.questions.microcopy}</p>
             </div>
-            <blockquote className="border-l-4 border-accent pl-5 text-lg text-foreground leading-relaxed">
-              “{plan.questions.quote}”
-              <footer className="mt-3 text-sm text-muted-foreground">Karel Cremers</footer>
-            </blockquote>
+            <KarelQuote text={plan.questions.quote} />
           </div>
         </RouteStep>
 
         {/* B. Plan */}
         <RouteStep letter="B" label={route.b} title={plan.parts.title}>
           <div className="mt-8 grid gap-5 lg:grid-cols-2 lg:items-stretch">
-            {plan.parts.main.map((c) =>
-              c.together ? (
-                <div key={c.title} className="rounded-2xl bg-primary text-primary-foreground p-6 md:p-8 flex flex-col">
-                  <span className="self-start rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">
-                    {plan.parts.highlightLabel}
-                  </span>
-                  <p className="mt-4 text-xl font-semibold leading-snug">{c.title}</p>
-                  <p className="mt-3 text-base leading-relaxed text-primary-foreground/80">{c.text}</p>
-                  <p className="mt-auto pt-6 text-sm font-semibold">{c.who}</p>
-                </div>
-              ) : (
-                <div key={c.title} className="rounded-2xl bg-white border border-border p-6 md:p-8">
-                  <p className="text-xl font-semibold leading-snug text-foreground">{c.title}</p>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">{c.text}</p>
-                  <p className="mt-4 inline-block rounded-full border border-primary/25 px-3 py-1 text-sm font-semibold text-primary">{c.who}</p>
+            {plan.parts.main.map((c) => {
+              const dark = Boolean(c.together);
+              return (
+                <div
+                  key={c.title}
+                  className={`rounded-2xl p-6 md:p-8 flex flex-col ${dark ? "bg-primary text-primary-foreground" : "bg-white border border-border"}`}
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    {dark && (
+                      <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-accent-foreground">{plan.parts.highlightLabel}</span>
+                    )}
+                    <span
+                      className={`rounded-full px-3 py-1 text-xs font-semibold ${dark ? "border border-primary-foreground/30 text-primary-foreground" : "border border-primary/25 text-primary"}`}
+                    >
+                      {c.who}
+                    </span>
+                  </div>
+                  <p className={`mt-5 text-xl font-semibold leading-snug ${dark ? "" : "text-foreground"}`}>{c.title}</p>
+                  <p className={`mt-3 text-base leading-relaxed ${dark ? "text-primary-foreground/80" : "text-muted-foreground"}`}>{c.text}</p>
                   {c.sub && (
-                    <ul className="mt-6 space-y-4 border-l-2 border-primary/15 pl-5">
-                      {c.sub.map((s) => (
-                        <li key={s.title}>
-                          <p className="text-base font-semibold text-foreground">{s.title}</p>
-                          <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
-                          <p className="mt-2 inline-block rounded-full border border-primary/25 px-3 py-0.5 text-xs font-semibold text-primary">{s.who}</p>
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="mt-6 border-t border-border pt-5">
+                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">{plan.parts.subLabel}</p>
+                      <ul className="mt-3 divide-y divide-border">
+                        {c.sub.map((s) => (
+                          <li key={s.title} className="py-3 first:pt-0 last:pb-0 sm:flex sm:items-start sm:justify-between sm:gap-6">
+                            <div>
+                              <p className="text-base font-semibold text-foreground">{s.title}</p>
+                              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{s.text}</p>
+                            </div>
+                            <span className="mt-2 sm:mt-0 inline-block shrink-0 rounded-full border border-primary/25 px-3 py-1 text-xs font-semibold text-primary sm:max-w-[11rem] sm:text-right">
+                              {s.who}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   )}
                 </div>
-              ),
-            )}
+              );
+            })}
           </div>
           <p className="mt-6 text-lg text-foreground leading-relaxed max-w-2xl">{plan.parts.after}</p>
         </RouteStep>

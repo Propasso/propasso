@@ -55,8 +55,8 @@ export const loss = {
   emptyWeek: "Maandag, de week na de overdracht.",
   secondLayer: {
     title: "Die agenda vormde jouw ondernemersidentiteit",
-    text: "Ondernemers die hun bedrijf hebben verkocht, ervaren een verlies van de impliciete beloningsstructuur; Jij was de leider en degene naar wie opgekeken werd. Niemand zegt hardop dat hij dat gaat missen.",
-    labels: "Aanzien", "Status", "Verantwoordelijkheid", "Erkenning", "Invloed en Macht",
+    text: "Ondernemers die hun bedrijf hebben verkocht, ervaren een verlies van de impliciete beloningsstructuur: jij was de leider en degene naar wie opgekeken werd. Niemand zegt hardop dat hij dat gaat missen.",
+    labels: ["Aanzien", "Status", "Verantwoordelijkheid", "Erkenning", "Invloed en Macht"],
   },
 };
 
@@ -64,15 +64,13 @@ export const loss = {
 export const karel = {
   eyebrow: "Uit eigen ervaring",
   title: "Ik heb het zelf meegemaakt",
-  /** [ERVARING KAREL] Welk verlies kwam na Worxx het hardst binnen? Max 280 tekens. Leeg = placeholder. */
-  quote: "",
   caption:
     "Ik verkocht eind 2024 een groot deel van het bedrijf Worxx, een uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
   paragraphs: [
     "Een veelvoorkomende reden dat de verkoop niet doorgaat, is omdat de ondernemer zich terugtrekt: omdat hij de reden om te verkopen onvoldoende duidelijk heeft, of omdat hij geen plan voorzichzelf heeft en koudwatervrees krijgt. Hoe dichterbij het komt, hoe zwaarder dat weegt.",
     "Een verkoper die niet weet wat hij daarna gaat doen, of zijn persoonlijke en financiële zaken niet op orde heeft, vormt een risico voor het proces.",
   ],
-  /** Karels eigen twijfel in de aanloop naar de verkoop (tekst Karel, 20 nov). */
+  /** Citaat Karel bovenaan blok 3: eigen twijfel in de aanloop naar de verkoop (tekst Karel, 20 nov). */
   own: "Zelf heb ik in het proces en de aanloop er naartoe getwijfeld of de stap die ik aan het nemen was, de juiste was. Ook of de dealstructuur wel de juiste was. Toen ik herhaalde en opschreef wat mijn positie, drijfveren, professionele doelen en mijn persoonlijke visie op de toekomst waren, had ik mijn 'eureka'-moment.",
   pullQuote: "Het persoonlijke plan en de invulling van het leven na de verkoop bepaalt of je straks met vertrouwen de toekomst tegemoet gaat.",
 };
@@ -104,6 +102,7 @@ export const plan = {
   parts: {
     title: "Twee onderdelen, en wie ze maakt",
     highlightLabel: "Samen",
+    subLabel: "Hieronder valt ook",
     /** Twee hoofdonderdelen; onder het financiële plan vallen vermogens- en estate planning en testament. */
     main: [
       { title: "Persoonlijke visie & plan", text: "Hoe beeld je het leven na de verkoop in? Je wensen en behoeften, op papier.", who: "Ondernemer & Propasso", together: true },
@@ -128,10 +127,19 @@ export const approach = {
   intro:
     "Bij een verkoop moeten drie verhalen kloppen: dat van de ondernemer, de onderneming en de cijfers. Je persoonlijke plan is het verhaal van de ondernemer. We werken eraan op dezelfde manier als aan je bedrijf.",
   steps: [
-    { number: "1", title: "Waar sta je, wat wil je?", text: "Een persoonlijke nulmeting en een risicocheck. Daarna je visie en doelen voor de fase na de verkoop, besproken met je partner." },
+    { number: "1", title: "Waar sta je, wat wil je?", text: "Een persoonlijke nulmeting en risicocheck. Daaruit volgen je persoonlijke plan en je persoonlijke financiële plan, besproken met je partner." },
     { number: "2", title: "Aan de slag met kwartaaldoelen", text: "Je acties staan in je kwartaaldoelen, naast die voor je bedrijf. Regelmatig kijken we waar je staat en stellen we bij." },
-    { number: "3", title: "Klaar voor de exit?", text: "Bij elke check-in toetsen we kort dezelfde vraag: ben je persoonlijk klaar om voor de exit? Zo weet je het als het moment er is." },
+    { number: "3", title: "Klaar voor de exit?", text: "Bij elke check-in toetsen we kort dezelfde vraag: ben je persoonlijk klaar voor de exit? Zo weet je het als het moment er is." },
   ],
+  /** Labels van de cyclus: stap 1 eenmalig, stap 2 en 3 als lus per kwartaal, daarna de verkoop. */
+  cycle: {
+    once: "Eenmalig · A en B",
+    loop: "Elk kwartaal",
+    notYet: "Nog niet: terug naar stap 2",
+    yes: "Ja",
+    endTitle: "De verkoop",
+    endText: "Tijd om de juiste verkooppartij te kiezen.",
+  },
   /** [KAREL VULT AAN] Hoe vaak jullie elkaar zien en wat de ondernemer na de eerste fase op papier heeft. */
   practical: "",
   timeline: {

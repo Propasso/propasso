@@ -1,10 +1,10 @@
 import karelPortret from "@/assets/images/karel-portret-2026.jpg";
 import { karel, meta } from "./content";
-import Placeholder from "./Placeholder";
+import KarelQuote from "./KarelQuote";
 
 /**
  * Blok 3: "Ik heb het zelf meegemaakt". Foto en citaat van Karel, wat een koper merkt als de verkoper twijfelt,
- * Karels eigen twijfel in de aanloop, en de brug naar het plan. Het citaat is [ERVARING KAREL]; leeg = placeholder in de preview.
+ * en de brug naar het plan. Bovenaan Karels eigen woorden (KarelQuote), onderaan de stelling met gele balk.
  * Volgorde mobiel: kop, foto, tekst. Desktop: foto links over de volle hoogte, kop en tekst rechts.
  */
 const KarelMoment = () => (
@@ -30,16 +30,7 @@ const KarelMoment = () => (
         </figure>
 
         <div className="md:col-start-2 md:row-start-2">
-          {karel.quote ? (
-            <blockquote className="text-2xl md:text-3xl font-medium leading-snug text-foreground text-balance">
-              “{karel.quote}”
-            </blockquote>
-          ) : (
-            <Placeholder>
-              [ERVARING KAREL] Citaat over de tijd na Worxx: welk verlies kwam het hardst binnen? Twee tot vier zinnen
-              (max 280 tekens).
-            </Placeholder>
-          )}
+          <KarelQuote text={karel.own} photo={false} large />
 
           <div className="mt-10 space-y-5 max-w-2xl">
             {karel.paragraphs.map((p) => (
@@ -47,7 +38,6 @@ const KarelMoment = () => (
                 {p}
               </p>
             ))}
-            <p className="text-lg text-foreground leading-relaxed">{karel.own}</p>
           </div>
 
           <p className="mt-10 border-l-4 border-accent pl-5 text-xl md:text-2xl font-semibold text-primary leading-snug max-w-2xl text-balance">
