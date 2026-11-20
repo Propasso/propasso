@@ -63,7 +63,7 @@ export const loss = {
 /** Blok 3: Karel. Ervaring uit eerste hand en de brug van verlies naar plan. */
 export const karel = {
   eyebrow: "Uit eigen ervaring",
-  title: "Ik heb het zelf meegemaakt",
+  title: "Toen ik er zelf middenin zat",
   caption:
     "Ik verkocht eind 2024 een groot deel van het bedrijf Worxx, een uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
   paragraphs: [
@@ -71,7 +71,7 @@ export const karel = {
     "Een verkoper die niet weet wat hij daarna gaat doen, of zijn persoonlijke en financiële zaken niet op orde heeft, vormt een risico voor het proces.",
   ],
   /** Citaat Karel bovenaan blok 3: eigen twijfel in de aanloop naar de verkoop (tekst Karel, 20 nov). */
-  own: "Zelf heb ik in het proces en de aanloop er naartoe getwijfeld of de stap die ik aan het nemen was, de juiste was. Ook of de dealstructuur wel de juiste was. Toen ik herhaalde en opschreef wat mijn positie, drijfveren, professionele doelen en mijn persoonlijke visie op de toekomst waren, had ik mijn 'eureka'-moment.",
+  own: "Zelf heb ik in het proces en de aanloop er naartoe getwijfeld of de stap die ik aan het nemen was, de juiste was. Ook of de dealstructuur wel de juiste was. Toen ik herhaalde en opschreef wat mijn positie, drijfveren, professionele doelen en mijn persoonlijke visie op de toekomst waren, had ik mijn 'eureka'-moment. Maar eerlijkheidshalve heb ik de tijd na de verkoop en de mate waarin ik me identificeerde met het bedrijf onderschat. ",
   pullQuote: "Het persoonlijke plan en de invulling van het leven na de verkoop bepaalt of je straks met vertrouwen de toekomst tegemoet gaat.",
 };
 
