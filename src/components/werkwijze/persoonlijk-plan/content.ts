@@ -67,14 +67,13 @@ export const karel = {
   /** [ERVARING KAREL] Welk verlies kwam na Worxx het hardst binnen? Max 280 tekens. Leeg = placeholder. */
   quote: "",
   caption:
-    "Karel Cremers verkocht eind 2024 een groot deel van Worxx, uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
+    "Ik verkocht eind 2024 een groot deel van het bedrijf Worxx, een uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
   paragraphs: [
-    "Een overname gaat niet altijd mis bij de koper of de bank. Soms trekt de ondernemer zich terug: hij heeft geen duidelijke reden om te verkopen, of hij weet niet wat hij gaat doen op de maandag na de overdracht. Hoe dichter die maandag komt, hoe zwaarder dat weegt.",
-    "Een koper merkt die twijfel. Een verkoper die niet weet wat hij daarna gaat doen, of zijn persoonlijke en financiële zaken niet op orde heeft, is voor hem een risico. Dat risico legt hij terug bij jou, bijvoorbeeld door een deel van de koopsom pas later te betalen.",
+    "Een veelvoorkomende reden dat de verkoop niet doorgaat, is omdat de ondernemer zich terugtrekt: omdat hij de reden om te verkopen onvoldoende duidelijk heeft, of omdat hij geen plan voorzichzelf heeft en koudwatervrees krijgt. Hoe dichterbij het komt, hoe zwaarder dat weegt.",
+    "Een verkoper die niet weet wat hij daarna gaat doen, of zijn persoonlijke en financiële zaken niet op orde heeft, vormt een risico voor het proces.",
   ],
-  /** [ERVARING KAREL] CRH: een deal die stuitte of veranderde omdat de verkoper twijfelde. Eén of twee zinnen, zonder namen. Max 320 tekens. */
-  crh: "",
-  pullQuote: "Het persoonlijke plan is geen zacht onderwerp voor later. Het bepaalt of je straks durft te tekenen.",
+  /** Zelf heb ik in het proces en de aanloop er naartoe getwijfeld of de stap die ik aan het nemen was, de juiste was. Ook of de dealstructuur wel de juiste was. Toen ik herhaalde en opschreef wat mijn positie, drijfveren, professionele doelen en mijn persoonlijke visie op de toekomst waren, had ik mijn 'eureka'-moment.*/,
+  pullQuote: "Het persoonlijke plan en de invulling van het leven na de verkoop bepaalt of je straks met vertrouwen de toekomst tegemoet gaat.",
 };
 
 /** Blok 4: wat een persoonlijk plan is. */
@@ -82,32 +81,32 @@ export const plan = {
   eyebrow: "Het persoonlijke plan",
   title: "Wat is een persoonlijk plan?",
   paragraphs: [
-    "Een persoonlijk plan is een visie en een actieplan voor je leven buiten je bedrijf: hoe je wilt dat je leven er na de verkoop uitziet, wat je dan gaat doen en wat je daar nu al voor regelt.",
-    "Een bucketlist is dat niet. Die sportauto en meer tijd op de golfbaan zijn mooi, maar het blijven losse wensen. Een plan geeft je richting en een nieuwe invulling voor het gevoel dat je ertoe doet, en het helpt je spanning thuis, isolement en verveling te voorkomen.",
+    "Een persoonlijk plan is een visie en een actieplan voor je leven buiten je bedrijf: hoe je wilt dat je leven er na de verkoop uitziet, wat je wilt gaan doen, wat je daar nu al voor regelt en of het financieel haalbaar is.",
+    "Een bucketlist is dat niet. Die sportauto en meer tijd op de golfbaan ook niet. Een plan geeft je richting, een nieuwe invulling en zingeving. Ook helpt het om thuis isolement en verveling te voorkomen.",
   ],
   questions: {
-    title: "Begin aan de keukentafel, met vier vragen",
+    title: "Begin thuis, aan de keukentafel met je partner, met vier vragen",
     cards: [
       { label: "Zingeving", text: "Waar haal ik mijn inspiratie vandaan? Wie ben ik, los van mijn bedrijf?" },
-      { label: "Bezittingen", text: "Wat wil ik nog hebben, en wat heb ik niet nodig? Hoeveel heb ik echt nodig om rond te komen?" },
+      { label: "Bezittingen", text: "Wat wil ik nog hebben, en wat heb ik niet meer nodig? Hoeveel heb ik echt nodig om rond te komen?" },
       { label: "Belevingen", text: "Welke ervaringen in mijn leven koester ik het meest? Wat wil ik nog meemaken?", highlight: true },
       { label: "Mensen", text: "Met wie wil ik meer tijd doorbrengen? En met wie eigenlijk minder?" },
     ],
     note: "Van die vier vind ik belevingen het belangrijkste.",
-    /** [ERVARING KAREL] Waarom belevingen? Eén zin in eigen woorden. */
+    /** Belevingen zaten voor mij veel meer in de kleine dingen, zoals ontbijten met de kinderen. Mijn voornaamste motivatie zat bij zingegeving: ik had nog andere professionele ambities buiten het bedrijf. */
     noteWhy: "",
     microcopy: "Bespreek ze met je partner.",
   },
   parts: {
     title: "Vier onderdelen, en wie ze maakt",
-    highlightLabel: "Dit maken we samen",
+    highlightLabel: "Samen",
     cards: [
-      { title: "Levensplan", text: "Hoe wil je na de verkoop leven? Je wensen en behoeften, op papier.", who: "Jij, met mij als sparringpartner", highlight: true },
-      { title: "Persoonlijk financieel plan", text: "Zijn de opbrengst en je overige vermogen genoeg om te leven zoals je wilt?", who: "Financieel planner" },
+      { title: "Persoonlijke visie & plan", text: "Hoe beeld je het leven na de verkoop in? Je wensen en behoeften, op papier.", who: "Ondernemer & Propasso", highlight: true },
+      { title: "Persoonlijk financieel plan", text: "Scan van de benodigde inkomsten uit verkoopopbrengst en andere inkomstenstromen om je levensstijl te voldoen?", who: "Financieel planner", highlight: true },
       { title: "Vermogens- en estate planning", text: "Hoe is je vermogen ondergebracht, en wat gebeurt ermee na je overlijden?", who: "Estate planner, fiscalist en notaris" },
       { title: "Testament", text: "Wie krijgt wat, en wie beslist als jij het zelf niet meer kunt?", who: "Notaris" },
     ],
-    after: "Het levensplan komt eerst: zonder levensplan weet je financieel planner of notaris niet waarvoor hij plant.",
+    after: "Het persoonlijke en persoonlijke financiele plan komen eerst: zonder levensplan weet je financieel planner of notaris niet waarvoor hij plant.",
   },
   events: {
     title: "Vijf gebeurtenissen die niet op je planning staan",
