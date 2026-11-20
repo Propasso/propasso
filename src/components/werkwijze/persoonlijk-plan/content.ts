@@ -62,7 +62,7 @@ export const loss = {
 
 /** Blok 3: Karel. Ervaring uit eerste hand en de brug van verlies naar plan. */
 export const karel = {
-  eyebrow: "Uit eigen ervaring",
+  eyebrow: "Het proces en het zwarte gat",
   title: "Toen ik zelf middenin de bedrijfsoverdracht zat",
   caption:
     "Ik verkocht eind 2024 een groot deel van het bedrijf Worxx, een uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
@@ -186,16 +186,17 @@ export const approach = {
       },
     },
   },
-  specialists: {
-    title: "De specialisten op het juiste moment aan tafel",
-    text: "In deze jaren zet ik ook de gesprekken in gang met je notaris en met een financieel planner, vermogensbeheerder of family office. Je zit daar met de goede vragen. Ik verdien niets aan de deal, je vermogen of de notaris, dus ik heb geen belang bij wie je kiest.",
-  },
+  /** Label en knop bij het klantvoorbeeld. */
+  exampleLabel: "Uit de praktijk",
+  exampleCta: "Plan een kennismaking",
   /** Anoniem klantvoorbeeld (tekst Karel, 20 nov). */
   example: "Een ondernemer zei in de kennismaking volmondig ja op mijn vaste vraag: 'als we jouw situatie oplossen, wil je dan nog steeds verkopen?' Hij was elke dag als eerste op de zaak en als laatste naar huis. Zijn loyaliteit aan de zaak won het steeds van thuis, en hij had het al zo vaak geprobeerd, maar zag geen andere oplossing dan verkoop. In zijn persoonlijke plan hebben we duidelijke doelen gesteld voor nadat het bedrijf verkocht werd. Daardoor zag hij in dat bepaalde onderdelen nu al effect konden hebben. We hebben zijn management geherstructureerd, hij is gaan sporten (bewust onder kantoortijd) en dichter bij zijn persoonlijke ambities gekomen. Uiteindelijk leidde het ertoe dat de wens om te verkopen van tafel ging.",
 };
 
 /** Blok 6: slot. */
 export const closing = {
+  /** Vaste knop onderin op mobiel. */
+  stickyLabel: "Plan een kennismaking",
   title: "Over drie jaar wil je je bedrijf overdragen. Weet je al wat je daarna gaat doen?",
   text: "In een kennismaking van een tot twee uur gaat het eerst over jou: waarom je wilt verkopen, wat je daarna wilt en hoe klaar je daar nu voor bent, met je bedrijf en met jezelf.",
   primaryLabel: "Plan een kennismaking",

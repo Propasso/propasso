@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArrowDown, ArrowRight, RotateCcw, Undo2 } from "lucide-react";
+import { ArrowDown, ArrowRight, ChevronRight, RotateCcw, Undo2 } from "lucide-react";
+import karelPortret from "@/assets/images/karel-portret-2026.jpg";
+import { pushEvent } from "@/lib/tracking";
 import { approach } from "./content";
 import Placeholder from "./Placeholder";
 import SaleYearTimeline from "./SaleYearTimeline";
@@ -24,7 +26,7 @@ const [introBefore, introAfter] = approach.intro.split(LINK_TEXT);
 /**
  * Stap C van de route ("Wat gaan we doen?"): drie stappen in gewone taal (geen fasenamen, briefing 4.1).
  * Stap 1 eenmalig (A en B), stap 2 en 3 als lus per kwartaal met de vraag "klaar voor de exit?";
- * nog niet = terug naar 2, ja = de verkoop. Daarna tijdlijn, specialisten, voorbeeld.
+ * nog niet = terug naar 2, ja = de verkoop. Daarna tijdlijn en het klantvoorbeeld als eigen kaart met knop.
  */
 const RhythmContent = () => (
   <>
@@ -78,22 +80,29 @@ const RhythmContent = () => (
 
     <SaleYearTimeline />
 
-    <div className="mt-14 grid gap-8 lg:grid-cols-2 lg:gap-14">
-      <div>
-        <h4 className="text-xl md:text-2xl font-semibold text-foreground">{approach.specialists.title}</h4>
-        <p className="mt-3 text-lg text-muted-foreground leading-relaxed">{approach.specialists.text}</p>
-      </div>
-      <div>
-        {approach.example ? (
-          <p className="text-lg text-foreground leading-relaxed">{approach.example}</p>
-        ) : (
-          <Placeholder>
-            [ERVARING KAREL] Eén anoniem klantvoorbeeld: wat speelde er, wat hebben jullie gedaan, wat veranderde er
-            (max 450 tekens).
-          </Placeholder>
-        )}
-      </div>
-    </div>
+    {/* Klantvoorbeeld: eigen kaart, zodat het verhaal niet wegvalt in de tekst eromheen */}
+    <figure className="mt-16 rounded-3xl bg-white p-6 md:p-10 shadow-[0_24px_60px_-30px_rgba(5,41,64,0.35)] border border-border">
+      <p className="eyebrow">{approach.exampleLabel}</p>
+      {approach.example ? (
+        <blockquote className="mt-6 max-w-3xl text-lg md:text-xl leading-relaxed text-foreground text-pretty">“{approach.example}”</blockquote>
+      ) : (
+        <Placeholder className="mt-6">[ERVARING KAREL] Eén anoniem klantvoorbeeld.</Placeholder>
+      )}
+      <figcaption className="mt-6 flex flex-wrap items-center justify-between gap-5">
+        <span className="flex items-center gap-3 text-sm">
+          <img src={karelPortret} alt="" width={40} height={40} loading="lazy" decoding="async" className="h-10 w-10 rounded-full object-cover" />
+          <span className="font-semibold text-foreground">Karel Cremers</span>
+        </span>
+        <Link
+          to="/contact"
+          onClick={() => pushEvent("cta_click_contact", { event_source: "example" })}
+          className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-base font-semibold text-primary-foreground hover:brightness-110 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          {approach.exampleCta}
+          <ChevronRight size={18} />
+        </Link>
+      </figcaption>
+    </figure>
   </>
 );
 

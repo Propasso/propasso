@@ -5,7 +5,7 @@ import { closing } from "./content";
 
 /** Blok 6: slot. Twee links naar de kennisbank, daarna de navy CTA met de enige lime knop van de pagina. */
 const ClosingSection = () => (
-  <>
+  <div id="slot">
     <section className="py-14 md:py-16 bg-background">
       <div className="section-container">
         <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-muted-foreground">{closing.readMoreTitle}</h2>
@@ -29,7 +29,7 @@ const ClosingSection = () => (
       secondaryLabel={closing.secondaryLabel}
       secondaryHref="/quickscan"
     />
-  </>
+  </div>
 );
 
 export default ClosingSection;

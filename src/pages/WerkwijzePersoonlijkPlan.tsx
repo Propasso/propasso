@@ -5,6 +5,7 @@ import LossSection from "@/components/werkwijze/persoonlijk-plan/LossSection";
 import KarelMoment from "@/components/werkwijze/persoonlijk-plan/KarelMoment";
 import PlanSection from "@/components/werkwijze/persoonlijk-plan/PlanSection";
 import ClosingSection from "@/components/werkwijze/persoonlijk-plan/ClosingSection";
+import StickyCta from "@/components/werkwijze/persoonlijk-plan/StickyCta";
 import { hero, meta } from "@/components/werkwijze/persoonlijk-plan/content";
 
 /**
@@ -38,6 +39,7 @@ const WerkwijzePersoonlijkPlan = () => (
     <KarelMoment />
     <PlanSection />
     <ClosingSection />
+    <StickyCta />
   </PageLayout>
 );
 
