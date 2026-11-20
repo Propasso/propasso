@@ -1,21 +1,20 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { agenda, days, losses, loss as lossCopy, type AgendaItem, type LossId } from "./content";
 
 /**
- * "De agenda die leegloopt" (werkwijzepagina persoonlijk plan, sectie 3).
+ * "De agenda die leegloopt" (blok 2). Ronde 2, feedback Karel 20 nov 2026.
  *
- * Werking:
- * - Een weekagenda staat vast in beeld; ernaast (desktop) of eronder (mobiel) scrollen de vijf verliezen.
- *   Bij elk verlies lichten de bijbehorende afspraken op; bij het volgende verlies verdwijnen ze.
- *   Na het vijfde verlies is de week leeg.
- * - Geen externe bibliotheek: stap bepalen op scrollpositie (requestAnimationFrame), overgang in CSS.
- * - Zonder JavaScript (en in de geprerenderde HTML): volle agenda en alle verliezen als gewone tekst.
- *   De effecten worden pas "ingeschakeld" (armed) na een echte scrollbeweging, als de sectie nadert.
- * - Minder beweging (prefers-reduced-motion): geen vastgezet beeld, maar volle agenda, de vijf
- *   verliezen en daarna de lege week.
- * - Toegankelijkheid: de agenda staat één keer als lijst voor screenreaders; de beelden zijn decoratief.
- * - Mobiel: lijstweergave ma tot wo (in een raster werden de titels afgekapt); alle vijf verliezen
- *   hebben afspraken op ma tot wo.
+ * Desktop (breed én hoog genoeg): kop, intro, weekagenda en de lijst met vijf verliezen staan samen vast in beeld.
+ *   De verliezen staan dicht onder elkaar en wisselen niet; bij het scrollen licht het volgende verlies op en verdwijnen
+ *   de bijbehorende afspraken. Na twee à drie korte scrollbewegingen is de week leeg, daarna scrolt de pagina door.
+ * Mobiel: een klein agenda-icoon (ca. 2 x 2 cm) met een stip per afspraak, zoals de maandweergave op een telefoon.
+ *   Icoon en het actieve verlies staan samen vast in beeld; bij het scrollen verdwijnen de stipjes.
+ * Stap bepalen: scrollvoortgang door het vastgezette stuk (requestAnimationFrame), overgang in CSS. Geen bibliotheek,
+ *   geen overname van het scrollen: de pagina scrolt gewoon, alleen het beeld blijft staan.
+ * Zonder JavaScript en in de geprerenderde HTML: volle agenda en alle verliezen als gewone tekst. Effecten worden pas
+ *   ingeschakeld na een echte scrollbeweging als de sectie nadert.
+ * Minder beweging: geen vastgezet beeld; volle agenda, de vijf verliezen en daarna de lege week.
+ * Toegankelijkheid: agenda en verliezen staan één keer als tekst voor screenreaders; de beelden zijn decoratief.
  *
  * Niet laten vervangen door Lovable (zie roadmap.md).
  */
@@ -28,20 +27,21 @@ const LOSS_COLOR: Record<LossId, string> = {
   bereiken: "#C8DC2A",
 };
 
-const lossIndex = (id: LossId) => losses.findIndex((l) => l.id === id) + 1;
-
-const MOBILE_STEP_SVH = 42; // scrollafstand per stap op mobiel
-const DAY_START = 7; // 07:00
-const DAY_END = 18; // 18:00
+const TOTAL = losses.length + 1; // vijf verliezen + lege week
+const DESKTOP_EXTRA_SVH = 130; // extra scrollafstand terwijl het beeld vaststaat
+const MOBILE_EXTRA_SVH = 160;
+const DAY_START = 7;
+const DAY_END = 18;
 const HOURS = DAY_END - DAY_START;
 
+const lossIndex = (id: LossId) => losses.findIndex((l) => l.id === id) + 1;
 const toHours = (hhmm: string) => {
   const [h, m] = hhmm.split(":").map(Number);
   return h + m / 60;
 };
+const orderInLoss = (item: AgendaItem) => agenda.filter((a) => a.loss === item.loss).indexOf(item);
 
 type ItemState = "normal" | "active" | "gone";
-
 const itemState = (item: AgendaItem, step: number, live: boolean): ItemState => {
   if (!live) return "normal";
   const idx = lossIndex(item.loss);
@@ -50,19 +50,19 @@ const itemState = (item: AgendaItem, step: number, live: boolean): ItemState => 
   return "normal";
 };
 
-/** Volgorde binnen één verlies, voor een korte vertraging tussen afspraken */
-const orderInLoss = (item: AgendaItem) => agenda.filter((a) => a.loss === item.loss).indexOf(item);
+/** Voortgang 0..1 → stap 0 (volle week) .. 6 (lege week); de lege week blijft het langst staan. */
+const stepFromProgress = (p: number) => (p < 0.08 ? 0 : Math.min(TOTAL, 1 + Math.floor((p - 0.08) / 0.14)));
 
-const usePrefersReducedMotion = () => {
-  const [reduced, setReduced] = useState(false);
+const useMedia = (query: string) => {
+  const [match, setMatch] = useState(false);
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(mq.matches);
+    const mq = window.matchMedia(query);
+    const update = () => setMatch(mq.matches);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
-  }, []);
-  return reduced;
+  }, [query]);
+  return match;
 };
 
 /* ---------- Beelden ---------- */
@@ -76,184 +76,215 @@ const itemStyle = (item: AgendaItem, state: ItemState): React.CSSProperties => {
     boxShadow: state === "active" ? `0 0 0 1.5px ${color}, 0 6px 18px -8px ${color}99` : "none",
     opacity: state === "gone" ? 0 : 1,
     transform: state === "gone" ? "scale(0.96)" : state === "active" ? "translateY(-1px)" : "none",
-    transition: `opacity 650ms ease ${delay}ms, transform 650ms ease ${delay}ms, background-color 400ms ease, box-shadow 400ms ease`,
+    transition: `opacity 550ms ease ${delay}ms, transform 550ms ease ${delay}ms, background-color 350ms ease, box-shadow 350ms ease`,
   };
 };
 
-const EmptyWeekLine = ({ visible }: { visible: boolean }) => (
+const EmptyWeekLine = ({ visible, className = "" }: { visible: boolean; className?: string }) => (
   <div
     aria-hidden="true"
-    className="pointer-events-none absolute inset-0 flex items-center justify-center px-6"
-    style={{ opacity: visible ? 1 : 0, transition: "opacity 900ms ease 500ms" }}
+    className={`pointer-events-none absolute inset-0 flex items-center justify-center px-6 ${className}`}
+    style={{ opacity: visible ? 1 : 0, transition: "opacity 700ms ease 400ms" }}
   >
     <p className="text-center text-lg md:text-2xl font-semibold text-primary text-balance">{lossCopy.emptyWeek}</p>
   </div>
 );
 
-/** Weekweergave (desktop) */
-const WeekGrid = ({ step, live }: { step: number; live: boolean }) => {
-  const empty = live && step > losses.length;
-  return (
-    <div aria-hidden="true" className="rounded-2xl border border-border bg-white shadow-[0_24px_60px_-30px_rgba(5,41,64,0.35)] overflow-hidden">
-      <div className="grid grid-cols-[3.25rem_repeat(5,minmax(0,1fr))] border-b border-border">
-        <div />
-        {days.map((d) => (
-          <div key={d.id} className="py-3 text-center text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground border-l border-border/70">
-            {d.label}
-          </div>
-        ))}
-      </div>
-
-      <div className="relative grid grid-cols-[3.25rem_repeat(5,minmax(0,1fr))] h-[32rem] xl:h-[36rem]">
-        {/* Uurlijnen en tijden */}
-        <div className="relative">
-          {Array.from({ length: HOURS }, (_, i) => (
-            <span
-              key={i}
-              className="absolute right-2 -translate-y-1/2 text-[10px] tabular-nums text-muted-foreground/80"
-              style={{ top: `${(i / HOURS) * 100}%` }}
-            >
-              {i === 0 ? "" : `${String(DAY_START + i).padStart(2, "0")}:00`}
-            </span>
-          ))}
-        </div>
-        <div className="pointer-events-none absolute inset-y-0 left-[3.25rem] right-0">
-          {Array.from({ length: HOURS - 1 }, (_, i) => (
-            <div key={i} className="absolute inset-x-0 border-t border-border/60" style={{ top: `${((i + 1) / HOURS) * 100}%` }} />
-          ))}
-        </div>
-
-        {days.map((d) => (
-          <div key={d.id} className="relative border-l border-border/70">
-            {agenda
-              .filter((a) => a.day === d.id)
-              .map((a) => {
-                const state = itemState(a, step, live);
-                const top = ((toHours(a.start) - DAY_START) / HOURS) * 100;
-                const height = (a.minutes / 60 / HOURS) * 100;
-                return (
-                  <div
-                    key={a.title}
-                    className="absolute left-1 right-1 rounded-md border-l-[3px] px-2 py-1.5 overflow-hidden"
-                    style={{ top: `${top}%`, height: `calc(${height}% - 3px)`, ...itemStyle(a, state) }}
-                  >
-                    <p className="text-[10px] leading-tight tabular-nums text-muted-foreground">{a.start}</p>
-                    <p className="mt-0.5 text-[12px] xl:text-[13px] font-semibold leading-snug text-primary hyphens-auto break-words" lang="nl">{a.title}</p>
-                  </div>
-                );
-              })}
-          </div>
-        ))}
-
-        <EmptyWeekLine visible={empty} />
-      </div>
-    </div>
-  );
-};
-
-/** Lijstweergave van ma tot wo (mobiel), zoals de agenda op een telefoon */
-const MOBILE_DAYS = days.slice(0, 3);
-
-const DayList = ({ step, live }: { step: number; live: boolean }) => {
-  const empty = live && step > losses.length;
-  return (
-    <div aria-hidden="true" className="relative rounded-2xl border border-border bg-white shadow-[0_18px_40px_-24px_rgba(5,41,64,0.35)] px-4 py-3">
-      {MOBILE_DAYS.map((d) => (
-        <div key={d.id} className="py-1.5">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-muted-foreground">{d.label}</p>
-          <ul className="mt-1 space-y-1">
-            {agenda
-              .filter((a) => a.day === d.id)
-              .map((a) => {
-                const state = itemState(a, step, live);
-                return (
-                  <li
-                    key={a.title}
-                    className="flex items-center gap-3 rounded-md border-l-[3px] px-2.5 py-1"
-                    style={itemStyle(a, state)}
-                  >
-                    <span className="w-10 shrink-0 text-[11px] tabular-nums text-muted-foreground">{a.start}</span>
-                    <span className="truncate text-[13px] font-semibold text-primary">{a.title}</span>
-                  </li>
-                );
-              })}
-          </ul>
+/** Weekweergave (desktop). Hoogte schaalt mee met het scherm, zodat kop en agenda samen passen. */
+const WeekGrid = ({ step, live, fit }: { step: number; live: boolean; fit: boolean }) => (
+  <div aria-hidden="true" className="rounded-2xl border border-border bg-white shadow-[0_24px_60px_-30px_rgba(5,41,64,0.35)] overflow-hidden">
+    <div className="grid grid-cols-[3rem_repeat(5,minmax(0,1fr))] border-b border-border">
+      <div />
+      {days.map((d) => (
+        <div key={d.id} className="py-2.5 text-center text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground border-l border-border/70">
+          {d.label}
         </div>
       ))}
-      <EmptyWeekLine visible={empty} />
     </div>
-  );
-};
+    <div
+      className="relative grid grid-cols-[3rem_repeat(5,minmax(0,1fr))]"
+      style={{ height: fit ? "clamp(17rem, calc(100svh - 25.5rem), 32rem)" : "32rem" }}
+    >
+      <div className="relative">
+        {Array.from({ length: HOURS }, (_, i) => (
+          <span
+            key={i}
+            className="absolute right-2 -translate-y-1/2 text-[10px] tabular-nums text-muted-foreground/80"
+            style={{ top: `${(i / HOURS) * 100}%` }}
+          >
+            {i === 0 ? "" : `${String(DAY_START + i).padStart(2, "0")}:00`}
+          </span>
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-y-0 left-[3rem] right-0">
+        {Array.from({ length: HOURS - 1 }, (_, i) => (
+          <div key={i} className="absolute inset-x-0 border-t border-border/60" style={{ top: `${((i + 1) / HOURS) * 100}%` }} />
+        ))}
+      </div>
+      {days.map((d) => (
+        <div key={d.id} className="relative border-l border-border/70">
+          {agenda
+            .filter((a) => a.day === d.id)
+            .map((a) => {
+              const top = ((toHours(a.start) - DAY_START) / HOURS) * 100;
+              const height = (a.minutes / 60 / HOURS) * 100;
+              return (
+                <div
+                  key={a.title}
+                  className="absolute left-1 right-1 rounded-md border-l-[3px] px-2 py-1 overflow-hidden"
+                  style={{ top: `${top}%`, height: `calc(${height}% - 3px)`, ...itemStyle(a, itemState(a, step, live)) }}
+                >
+                  <p className={`text-[10px] leading-tight tabular-nums text-muted-foreground ${fit ? "[@media(max-height:860px)]:hidden" : ""}`}>{a.start}</p>
+                  <p className="mt-0.5 text-[12px] xl:text-[13px] font-semibold leading-tight text-primary hyphens-auto break-words line-clamp-2" lang="nl">
+                    {a.title}
+                  </p>
+                </div>
+              );
+            })}
+        </div>
+      ))}
+      <EmptyWeekLine visible={live && step > losses.length} />
+    </div>
+  </div>
+);
+
+/** Agenda-icoon (mobiel): een stip per afspraak, per dag een kolom, zoals een maandweergave op de telefoon. */
+const AgendaIcon = ({ step, live }: { step: number; live: boolean }) => (
+  <div
+    aria-hidden="true"
+    className="relative h-[7.5rem] w-[7.5rem] shrink-0 rounded-[1.6rem] border border-border bg-white shadow-[0_14px_30px_-16px_rgba(5,41,64,0.45)] overflow-hidden"
+  >
+    <div className="flex h-7 items-center justify-center bg-primary text-[10px] font-semibold uppercase tracking-[0.2em] text-primary-foreground">
+      Week
+    </div>
+    <div className="grid grid-cols-5 gap-x-1 px-2.5 pt-2">
+      {days.map((d) => (
+        <div key={d.id} className="flex flex-col items-center">
+          <span className="text-[9px] font-semibold uppercase text-muted-foreground">{d.label.charAt(0)}</span>
+          <div className="mt-1.5 flex flex-col items-center gap-[5px]">
+            {agenda
+              .filter((a) => a.day === d.id)
+              .map((a) => {
+                const state = itemState(a, step, live);
+                const delay = state === "gone" ? orderInLoss(a) * 90 : 0;
+                return (
+                  <span
+                    key={a.title}
+                    className="block h-[9px] w-[9px] rounded-full"
+                    style={{
+                      backgroundColor: LOSS_COLOR[a.loss],
+                      opacity: state === "gone" ? 0 : 1,
+                      transform: state === "gone" ? "scale(0.2)" : state === "active" ? "scale(1.35)" : "scale(1)",
+                      transition: `opacity 450ms ease ${delay}ms, transform 450ms ease ${delay}ms`,
+                    }}
+                  />
+                );
+              })}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
 
 /* ---------- Tekst ---------- */
 
-const LossStep = ({ index, active, live }: { index: number; active: boolean; live: boolean }) => {
-  const l = losses[index];
-  return (
-    <div
-      className="transition-opacity duration-500"
-      style={{ opacity: live && !active ? 0.28 : 1 }}
-    >
-      <span className="stat-number block text-4xl md:text-5xl leading-none">{l.number}</span>
-      <h3 className="mt-3 flex items-center gap-2.5 text-xl md:text-2xl font-semibold text-foreground">
-        <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: LOSS_COLOR[l.id] }} />
-        {l.label}
-      </h3>
-      <p className="mt-3 text-base md:text-lg text-muted-foreground leading-relaxed max-w-md">{l.text}</p>
-    </div>
-  );
-};
-
-const EndStep = ({ live }: { active?: boolean; live: boolean }) => (
-  <p
-    className="text-xl md:text-2xl font-semibold text-primary transition-opacity duration-500"
-    style={{ opacity: live ? 0 : 1 }}
-  >
-    {lossCopy.emptyWeek}
-  </p>
+/** Compacte lijst met de vijf verliezen (desktop en statische weergave). */
+const LossList = ({ step, live, hidden }: { step: number; live: boolean; hidden?: boolean }) => (
+  <ol className="space-y-6" aria-hidden={hidden || undefined}>
+    {losses.map((l, i) => {
+      const active = !live || step === 0 || step === i + 1;
+      return (
+        <li key={l.id} className="transition-opacity duration-500" style={{ opacity: active ? 1 : 0.3 }}>
+          <p className="flex items-baseline gap-3">
+            <span className="stat-number text-2xl leading-none">{l.number}</span>
+            <span className="flex items-center gap-2 text-lg font-semibold text-foreground">
+              <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full" style={{ backgroundColor: LOSS_COLOR[l.id] }} />
+              {l.label}
+            </span>
+          </p>
+          <p className="mt-1.5 text-[15px] text-muted-foreground leading-relaxed">{l.text}</p>
+        </li>
+      );
+    })}
+  </ol>
 );
 
-/** De volledige agenda voor screenreaders, één keer in de HTML */
-const ScreenReaderAgenda = () => (
-  <ul className="sr-only">
-    {days.map((d) => (
-      <li key={d.id}>
-        {d.label}:{" "}
-        {agenda
-          .filter((a) => a.day === d.id)
-          .map((a) => `${a.start} ${a.title}`)
-          .join(", ")}
-      </li>
-    ))}
-  </ul>
+/** Het actieve verlies naast het icoon (mobiel, vastgezet). */
+const ActiveLoss = ({ step }: { step: number }) => (
+  <div className="relative min-h-[8.5rem] flex-1" aria-hidden="true">
+    {losses.map((l, i) => {
+      const shown = step === i + 1 || (step === 0 && i === 0);
+      return (
+        <div
+          key={l.id}
+          className="absolute inset-0"
+          style={{
+            opacity: shown ? 1 : 0,
+            transform: shown ? "none" : "translateY(6px)",
+            transition: shown ? "opacity 300ms ease 200ms, transform 300ms ease 200ms" : "opacity 180ms ease, transform 180ms ease",
+          }}
+        >
+          <p className="flex items-baseline gap-2">
+            <span className="stat-number text-xl leading-none">{l.number}</span>
+            <span className="text-base font-semibold text-foreground">{l.label}</span>
+          </p>
+          <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">{l.text}</p>
+        </div>
+      );
+    })}
+    <p
+      className="absolute inset-0 flex items-center text-lg font-semibold text-primary"
+      style={{ opacity: step > losses.length ? 1 : 0, transition: "opacity 400ms ease 300ms" }}
+    >
+      {lossCopy.emptyWeek}
+    </p>
+  </div>
+);
+
+/** Agenda en verliezen één keer als tekst voor screenreaders (bij de vastgezette weergave). */
+const ScreenReaderText = () => (
+  <div className="sr-only">
+    <ul>
+      {days.map((d) => (
+        <li key={d.id}>
+          {d.label}: {agenda.filter((a) => a.day === d.id).map((a) => `${a.start} ${a.title}`).join(", ")}
+        </li>
+      ))}
+    </ul>
+    <ol>
+      {losses.map((l) => (
+        <li key={l.id}>
+          {l.label}: {l.text}
+        </li>
+      ))}
+    </ol>
+    <p>{lossCopy.emptyWeek}</p>
+  </div>
 );
 
 /* ---------- Component ---------- */
 
-const AgendaScroll = () => {
-  const reduced = usePrefersReducedMotion();
+const AgendaScroll = ({ header }: { header: ReactNode }) => {
+  const reduced = useMedia("(prefers-reduced-motion: reduce)");
+  const isDesktop = useMedia("(min-width: 1024px)");
+  const fitsDesktop = useMedia("(min-width: 1024px) and (min-height: 700px)");
   const rootRef = useRef<HTMLDivElement>(null);
-  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
   const [armed, setArmed] = useState(false);
   const [step, setStep] = useState(0);
 
-  // Inschakelen zodra de sectie in de buurt van het scherm komt, en pas na een echte scrollbeweging,
-  // zodat de prerender (die niet scrolt) de gewone tekstversie vastlegt.
-  // De ruime marge zorgt dat de opbouw wijzigt ruim voordat de sectie in beeld is (geen verspringen).
+  // Inschakelen zodra de sectie nadert én er echt gescrold is, zodat de prerender de tekstversie vastlegt.
   useEffect(() => {
     if (reduced || armed || !rootRef.current) return;
     let near = false;
     let scrolled = false;
-    const tryArm = () => {
-      if (near && scrolled) setArmed(true);
-    };
-    const io = new IntersectionObserver(
-      (entries) => {
-        near = entries.some((e) => e.isIntersecting);
-        tryArm();
-      },
-      { rootMargin: "0px 0px 150% 0px" },
-    );
+    const tryArm = () => near && scrolled && setArmed(true);
+    const io = new IntersectionObserver((e) => {
+      near = e.some((x) => x.isIntersecting);
+      tryArm();
+    }, { rootMargin: "0px 0px 150% 0px" });
     const onScroll = () => {
       scrolled = true;
       tryArm();
@@ -266,18 +297,18 @@ const AgendaScroll = () => {
     };
   }, [reduced, armed]);
 
-  const live = armed && !reduced;
+  const live = armed && !reduced && (fitsDesktop || !isDesktop);
 
   const update = useCallback(() => {
-    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-    const triggerY = window.innerHeight * (isDesktop ? 0.5 : 0.6);
-    const perVariant = losses.length + 1; // vijf verliezen + lege week
-    let current = 0;
-    stepRefs.current.forEach((el, i) => {
-      if (!el || el.offsetParent === null) return; // verborgen variant (desktop of mobiel) overslaan
-      if (el.getBoundingClientRect().top < triggerY) current = (i % perVariant) + 1;
-    });
-    setStep((prev) => (prev === current ? prev : current));
+    const track = trackRef.current;
+    const sticky = stickyRef.current;
+    if (!track || !sticky) return;
+    const stickyTop = parseFloat(getComputedStyle(sticky).top) || 0;
+    const distance = track.offsetHeight - sticky.offsetHeight;
+    const travelled = stickyTop - track.getBoundingClientRect().top;
+    const p = distance > 0 ? Math.min(1, Math.max(0, travelled / distance)) : 0;
+    const next = stepFromProgress(p);
+    setStep((prev) => (prev === next ? prev : next));
   }, []);
 
   useEffect(() => {
@@ -295,117 +326,84 @@ const AgendaScroll = () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, [live, update]);
-
-  const totalSteps = losses.length + 1;
-  const setStepRef = useMemo(
-    () => (i: number) => (el: HTMLDivElement | null) => {
-      stepRefs.current[i] = el;
-    },
-    [],
-  );
+  }, [live, update, isDesktop]);
 
   /* Minder beweging: statisch, voor en na */
   if (reduced) {
     return (
       <div ref={rootRef}>
-        <ScreenReaderAgenda />
-        <figure className="mt-12">
+        {header}
+        <figure className="mt-10">
           <figcaption className="sr-only">{lossCopy.figureDescription}</figcaption>
-          <div className="hidden lg:block"><WeekGrid step={0} live={false} /></div>
-          <div className="lg:hidden"><DayList step={0} live={false} /></div>
+          <div className="hidden lg:block"><WeekGrid step={0} live={false} fit={false} /></div>
+          <div className="lg:hidden"><AgendaIcon step={0} live={false} /></div>
         </figure>
-        <div className="mt-14 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-          {losses.map((_, i) => (
-            <LossStep key={i} index={i} active live={false} />
-          ))}
-        </div>
-        <div className="mt-14">
-          <div className="hidden lg:block"><WeekGrid step={totalSteps} live /></div>
-          <div className="lg:hidden"><DayList step={totalSteps} live /></div>
+        <div className="mt-10 max-w-2xl"><LossList step={0} live={false} /></div>
+        <div className="mt-10 flex items-center gap-5">
+          <div className="hidden lg:block w-full"><WeekGrid step={TOTAL} live fit={false} /></div>
+          <div className="lg:hidden"><AgendaIcon step={TOTAL} live /></div>
+          <p className="lg:hidden text-lg font-semibold text-primary">{lossCopy.emptyWeek}</p>
         </div>
       </div>
     );
   }
 
-  return (
-    <div ref={rootRef} className="mt-12 lg:mt-16">
-      <ScreenReaderAgenda />
-
-      {/* Desktop: agenda links vast, verliezen rechts */}
-      <div className="hidden lg:grid grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)] gap-14 xl:gap-20">
-        <figure className={live ? "sticky top-[calc(6rem+max(1.5rem,(100svh-6rem-39rem)/2))] self-start" : ""}>
-          <figcaption className="sr-only">{lossCopy.figureDescription}</figcaption>
-          <WeekGrid step={step} live={live} />
-        </figure>
-        <div className={live ? "py-[22vh]" : "space-y-12"}>
-          {losses.map((_, i) => (
-            <div key={i} ref={setStepRef(i)} className={live ? "min-h-[55vh] flex items-center" : ""}>
-              <LossStep index={i} active={step === i + 1} live={live} />
-            </div>
-          ))}
-          <div ref={setStepRef(losses.length)} className={live ? "min-h-[55vh] flex items-center" : ""}>
-            <EndStep live={live} />
+  /* Statisch (prerender, zonder JavaScript, of desktop te laag voor het vastgezette beeld) */
+  if (!live) {
+    return (
+      <div ref={rootRef}>
+        {header}
+        <div className="mt-10 lg:grid lg:grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16 lg:items-start">
+          <figure>
+            <figcaption className="sr-only">{lossCopy.figureDescription}</figcaption>
+            <div className="hidden lg:block"><WeekGrid step={0} live={false} fit={false} /></div>
+            <div className="lg:hidden"><AgendaIcon step={0} live={false} /></div>
+          </figure>
+          <div className="mt-8 lg:mt-0">
+            <LossList step={0} live={false} />
+            <p className="mt-8 text-xl font-semibold text-primary">{lossCopy.emptyWeek}</p>
           </div>
         </div>
       </div>
+    );
+  }
 
-      {/* Mobiel: agenda en het actieve verlies samen vast in beeld; onzichtbare markeringen bepalen de stap */}
-      <div className="lg:hidden">
-        {live ? (
-          <div className="relative" style={{ height: `${totalSteps * MOBILE_STEP_SVH + 45}svh` }}>
-            {Array.from({ length: totalSteps }, (_, i) => (
-              <div
-                key={i}
-                ref={setStepRef(i + totalSteps)}
-                aria-hidden="true"
-                className="absolute inset-x-0 h-px"
-                style={{ top: `${18 + i * MOBILE_STEP_SVH}svh` }}
-              />
-            ))}
-            <div className="sticky top-20 z-10 pt-3">
+  /* Desktop: kop, agenda en lijst samen vast in beeld */
+  if (isDesktop) {
+    return (
+      <div ref={rootRef}>
+        <ScreenReaderText />
+        <div ref={trackRef} className="relative" style={{ height: `calc(100svh - 6rem + ${DESKTOP_EXTRA_SVH}svh)` }}>
+          <div ref={stickyRef} className="sticky top-24 flex h-[calc(100svh-6rem)] flex-col justify-center py-6">
+            {header}
+            <div className="mt-8 grid grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] gap-12 xl:gap-16 items-center">
               <figure>
                 <figcaption className="sr-only">{lossCopy.figureDescription}</figcaption>
-                <DayList step={step} live={live} />
+                <WeekGrid step={step} live fit />
               </figure>
-              <div className="relative mt-6 h-[12rem]">
-                {losses.map((_, i) => {
-                  const shown = step === i + 1 || (step === 0 && i === 0);
-                  return (
-                    <div
-                      key={i}
-                      className="absolute inset-0"
-                      style={{
-                        opacity: shown ? 1 : 0,
-                        transform: shown ? "none" : "translateY(6px)",
-                        // eerst de oude tekst weg, dan de nieuwe erin: nooit twee teksten door elkaar
-                        transition: shown
-                          ? "opacity 320ms ease 240ms, transform 320ms ease 240ms"
-                          : "opacity 200ms ease, transform 200ms ease",
-                      }}
-                      aria-hidden={!shown}
-                    >
-                      <LossStep index={i} active={step !== 0} live={live} />
-                    </div>
-                  );
-                })}
-              </div>
+              <LossList step={step} live hidden />
             </div>
           </div>
-        ) : (
-          <>
+        </div>
+      </div>
+    );
+  }
+
+  /* Mobiel: kop, icoon en actief verlies samen vast in beeld, midden in het scherm */
+  return (
+    <div ref={rootRef}>
+      <ScreenReaderText />
+      <div ref={trackRef} className="relative" style={{ height: `calc(100svh - 6rem + ${MOBILE_EXTRA_SVH}svh)` }}>
+        <div ref={stickyRef} className="sticky top-24 flex h-[calc(100svh-6rem)] flex-col justify-center py-4">
+          {header}
+          <div className="mt-8 flex items-start gap-5">
             <figure>
               <figcaption className="sr-only">{lossCopy.figureDescription}</figcaption>
-              <DayList step={0} live={false} />
+              <AgendaIcon step={step} live />
             </figure>
-            <div className="mt-10 space-y-8">
-              {losses.map((_, i) => (
-                <LossStep key={i} index={i} active live={false} />
-              ))}
-              <EndStep live={false} />
-            </div>
-          </>
-        )}
+            <ActiveLoss step={step} />
+          </div>
+        </div>
       </div>
     </div>
   );

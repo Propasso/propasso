@@ -2,14 +2,19 @@ import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import PageHero from "@/components/PageHero";
 import LossSection from "@/components/werkwijze/persoonlijk-plan/LossSection";
+import KarelMoment from "@/components/werkwijze/persoonlijk-plan/KarelMoment";
+import PlanSection from "@/components/werkwijze/persoonlijk-plan/PlanSection";
+import ApproachSection from "@/components/werkwijze/persoonlijk-plan/ApproachSection";
+import ClosingSection from "@/components/werkwijze/persoonlijk-plan/ClosingSection";
 import { hero, meta } from "@/components/werkwijze/persoonlijk-plan/content";
 
 /**
  * Werkwijzepagina "Bedrijf verkocht, en dan?" (/werkwijze/persoonlijk-plan-opstellen).
- * Blauwdruk: briefing hoofdstuk 13 (v07). Teksten: webteksten v03 van Propasso Content.
+ * Zes blokken (besluit Karel 20 nov 2026): hero, de agenda die leegloopt, Karel, het persoonlijke plan,
+ * wat gaan we doen (met tijdlijn), slot. Teksten: content.ts (webteksten v05 plus teksten Karel).
  *
- * STAND: proef vooraf (stap 2 voortgang). Alleen hero en sectie 3 (de agenda).
- * noIndex staat aan tot de volledige pagina af is; niet mergen in deze vorm.
+ * STAND: deploy preview ronde 2. noIndex staat aan; placeholders [ERVARING KAREL] moeten gevuld zijn,
+ * en submenu, schema, sitemap en llms.txt volgen vóór livegang (voortgang 3.3 tot 3.5).
  */
 const WerkwijzePersoonlijkPlan = () => (
   <PageLayout>
@@ -31,6 +36,10 @@ const WerkwijzePersoonlijkPlan = () => (
     />
 
     <LossSection />
+    <KarelMoment />
+    <PlanSection />
+    <ApproachSection />
+    <ClosingSection />
   </PageLayout>
 );
 

@@ -1,7 +1,10 @@
 /**
  * Teksten voor /werkwijze/persoonlijk-plan-opstellen ("Bedrijf verkocht, en dan?").
- * Bron: webteksten v03 van Propasso Content (20 nov 2026). Teksten niet zelf aanpassen:
- * wijzigingen lopen via Propasso Content (zie 261119_propasso_briefing-bedrijf-verkocht-en-dan_webteksten.md).
+ * Bron: webteksten v05 van Propasso Content (20 nov 2026) en de teksten die Karel zelf op deze branch
+ * heeft aangepast (hero, meta, kop en intro van het verliesblok); die zijn leidend.
+ * Opbouw in zes blokken (besluit Karel 20 nov 2026): hero, verlies, Karel, het plan, wat gaan we doen, slot.
+ * Teksten niet zelf herschrijven: wijzigingen lopen via Karel of Propasso Content.
+ * Lege velden met [ERVARING KAREL] of [KAREL VULT AAN] tonen in de preview een zichtbare placeholder.
  */
 
 export type LossId = "identiteit" | "zingeving" | "ritme" | "mensen" | "bereiken";
@@ -55,12 +58,140 @@ export const loss = {
     text: "Daaronder zit een laag die bijna iedereen onderschat. Jij was degene naar wie gekeken werd als er een succes gevierd werd. Niemand zegt hardop dat hij dat gaat missen, en juist daarom overvalt het je.",
     labels: ["Macht en invloed", "Aanzien", "Status", "Verantwoordelijkheid", "Erkenning"],
   },
-  karel: {
-    /** [ERVARING KAREL] Citaat volgt. Leeg = placeholder in de preview; moet gevuld zijn vóór livegang. */
-    quote: "",
-    caption:
-      "Karel Cremers verkocht eind 2024 een groot deel van Worxx, uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
+};
+
+/** Blok 3: Karel. Ervaring uit eerste hand en de brug van verlies naar plan. */
+export const karel = {
+  eyebrow: "Uit eigen ervaring",
+  title: "Ik heb het zelf meegemaakt",
+  /** [ERVARING KAREL] Welk verlies kwam na Worxx het hardst binnen? Max 280 tekens. Leeg = placeholder. */
+  quote: "",
+  caption:
+    "Karel Cremers verkocht eind 2024 een groot deel van Worxx, uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
+  paragraphs: [
+    "Een overname gaat niet altijd mis bij de koper of de bank. Soms trekt de ondernemer zich terug: hij heeft geen duidelijke reden om te verkopen, of hij weet niet wat hij gaat doen op de maandag na de overdracht. Hoe dichter die maandag komt, hoe zwaarder dat weegt.",
+    "Een koper merkt die twijfel. Een verkoper die niet weet wat hij daarna gaat doen, of zijn persoonlijke en financiële zaken niet op orde heeft, is voor hem een risico. Dat risico legt hij terug bij jou, bijvoorbeeld door een deel van de koopsom pas later te betalen.",
+  ],
+  /** [ERVARING KAREL] CRH: een deal die stuitte of veranderde omdat de verkoper twijfelde. Eén of twee zinnen, zonder namen. Max 320 tekens. */
+  crh: "",
+  pullQuote: "Het persoonlijke plan is geen zacht onderwerp voor later. Het bepaalt of je straks durft te tekenen.",
+};
+
+/** Blok 4: wat een persoonlijk plan is. */
+export const plan = {
+  eyebrow: "Het persoonlijke plan",
+  title: "Wat is een persoonlijk plan?",
+  paragraphs: [
+    "Een persoonlijk plan is een visie en een actieplan voor je leven buiten je bedrijf: hoe je wilt dat je leven er na de verkoop uitziet, wat je dan gaat doen en wat je daar nu al voor regelt.",
+    "Een bucketlist is dat niet. Die sportauto en meer tijd op de golfbaan zijn mooi, maar het blijven losse wensen. Een plan geeft je richting en een nieuwe invulling voor het gevoel dat je ertoe doet, en het helpt je spanning thuis, isolement en verveling te voorkomen.",
+  ],
+  questions: {
+    title: "Begin aan de keukentafel, met vier vragen",
+    cards: [
+      { label: "Zingeving", text: "Waar haal ik mijn inspiratie vandaan? Wie ben ik, los van mijn bedrijf?" },
+      { label: "Bezittingen", text: "Wat wil ik nog hebben, en wat heb ik niet nodig? Hoeveel heb ik echt nodig om rond te komen?" },
+      { label: "Belevingen", text: "Welke ervaringen in mijn leven koester ik het meest? Wat wil ik nog meemaken?", highlight: true },
+      { label: "Mensen", text: "Met wie wil ik meer tijd doorbrengen? En met wie eigenlijk minder?" },
+    ],
+    note: "Van die vier vind ik belevingen het belangrijkste.",
+    /** [ERVARING KAREL] Waarom belevingen? Eén zin in eigen woorden. */
+    noteWhy: "",
+    microcopy: "Bespreek ze met je partner.",
   },
+  parts: {
+    title: "Vier onderdelen, en wie ze maakt",
+    highlightLabel: "Dit maken we samen",
+    cards: [
+      { title: "Levensplan", text: "Hoe wil je na de verkoop leven? Je wensen en behoeften, op papier.", who: "Jij, met mij als sparringpartner", highlight: true },
+      { title: "Persoonlijk financieel plan", text: "Zijn de opbrengst en je overige vermogen genoeg om te leven zoals je wilt?", who: "Financieel planner" },
+      { title: "Vermogens- en estate planning", text: "Hoe is je vermogen ondergebracht, en wat gebeurt ermee na je overlijden?", who: "Estate planner, fiscalist en notaris" },
+      { title: "Testament", text: "Wie krijgt wat, en wie beslist als jij het zelf niet meer kunt?", who: "Notaris" },
+    ],
+    after: "Het levensplan komt eerst: zonder levensplan weet je financieel planner of notaris niet waarvoor hij plant.",
+  },
+  events: {
+    title: "Vijf gebeurtenissen die niet op je planning staan",
+    items: ["Overlijden", "Arbeidsongeschiktheid", "Scheiding", "Onenigheid met je mede-aandeelhouders", "Zware tegenslag of crisis"],
+    text: "Elk van deze vijf kan je plannen omgooien, ook lang vóór de verkoop. In de risicocheck loop ik ze met je langs, met één vraag: wat is er geregeld als het morgen gebeurt? Het gesprek met je notaris over je testament en levenstestament hoeft niet te wachten.",
+  },
+};
+
+/** Blok 5: wat gaan we doen? Drie fasen in gewone taal, zonder fasenamen (briefing 4.1). */
+export const approach = {
+  eyebrow: "Wat gaan we doen?",
+  title: "Van eerste schets tot de dag dat je tekent",
+  intro:
+    "Bij een verkoop moeten drie verhalen kloppen: dat van de ondernemer, de onderneming en de cijfers. Je persoonlijke plan is het verhaal van de ondernemer. We werken eraan op dezelfde manier als aan je bedrijf.",
+  steps: [
+    { number: "1", title: "Waar sta je, wat wil je?", text: "Een persoonlijke nulmeting en een risicocheck. Daarna je visie en doelen voor de fase na de verkoop, besproken met je partner." },
+    { number: "2", title: "Elk kwartaal aan het werk", text: "Je acties staan in je kwartaaldoelen, naast die voor je bedrijf. Regelmatig kijken we waar je staat en stellen we bij." },
+    { number: "3", title: "Klaar om te tekenen?", text: "Bij elke incheck loopt dezelfde vraag mee: ben je persoonlijk klaar om te tekenen? Zo weet je het als het moment er is." },
+  ],
+  /** [KAREL VULT AAN] Hoe vaak jullie elkaar zien en wat de ondernemer na de eerste fase op papier heeft. */
+  practical: "",
+  timeline: {
+    question: "In welk jaar wil je je bedrijf verkopen?",
+    laterLabel: "Later",
+    youAreHere: "Hier sta jij",
+    moments: [
+      { label: "3 tot 5 jaar vooraf", title: "Een eerste schets", text: "Je schetst je visie op het volgende hoofdstuk en bespreekt hem thuis. Je stelt doelen voor nu en voor na de verkoop. Richting je pensioen? Begin dan tot tien jaar vooraf." },
+      { label: "1 tot 2 jaar vooraf", title: "Uitschrijven en concreet maken", text: "Je weet inmiddels wat realistisch is. Je schrijft je nieuwe invulling uit en maakt je doelen concreet voor de eerste vijf jaar na de verkoop." },
+      { label: "De verkoop", title: "Je tekent", text: "Met een plan voor daarna, dat je thuis hebt besproken." },
+      { label: "Daarna", title: "De volgende fase", text: "Je eerste vijf jaar, met doelen die je zelf hebt gekozen." },
+    ],
+    cta: "Plan een kennismaking",
+    outcomes: {
+      within1: {
+        title: "Binnen een jaar: je plan voor daarna krijgt nu voorrang",
+        text: "Het verkoopproces vraagt nu je aandacht, en daar hoort een M&A-adviseur bij. Zet juist nu op papier wat je daarna gaat doen. Wie weet waar hij naartoe gaat, blijft rustiger aan tafel als het spannend wordt.",
+        actions: ["Schrijf op hoe je eerste jaar na de verkoop eruit moet zien", "Bespreek met je partner wat er thuis verandert", "Vraag je notaris of je testament en levenstestament nog kloppen"],
+        moment: 2,
+      },
+      y1to2: {
+        title: "Over 1 tot 2 jaar: tijd om je plan uit te schrijven",
+        text: "Dit zijn de jaren waarin je visie concreet wordt. Je weet wat realistisch is en schrijft uit wat je in de eerste vijf jaar na de verkoop wilt bereiken. Ook de gesprekken met je notaris en financieel planner horen nu op de agenda.",
+        actions: ["Schrijf je doelen uit voor de eerste vijf jaar na de verkoop", "Laat een financieel planner doorrekenen of je plan haalbaar is", "Plan het gesprek met je notaris over testament en levenstestament"],
+        moment: 1,
+      },
+      y3to5: {
+        title: "Over 3 tot 5 jaar: het goede moment om te beginnen",
+        text: "Je hebt de tijd om een visie te schetsen, hem thuis te bespreken en er rustig aan te werken, naast het verkoopklaar maken van je bedrijf. Wat je nu begint, is bij de verkoop een plan dat je kent en vertrouwt.",
+        actions: ["Beantwoord de vier vragen en bespreek ze met je partner", "Kies een paar doelen voor nu en een paar voor na de verkoop", "Zet de eerste acties in je kwartaaldoelen, naast die voor je bedrijf"],
+        moment: 0,
+      },
+      y6to10: {
+        title: "Over 6 tot 10 jaar: vroeg, en dat is een voordeel",
+        text: "Valt je verkoop samen met je pensioen, dan kun je nu rustig beginnen. Je hoeft nog niets vast te leggen. Ontdek waar je energie van krijgt, en kijk wat er geregeld is als er onverwacht iets gebeurt.",
+        actions: ["Kijk welke interesses naast je bedrijf je weer wilt oppakken", "Loop de vijf onvoorziene gebeurtenissen na: wat is er geregeld?", "Bespreek met je partner hoe jullie de jaren na de verkoop zien"],
+        moment: -1,
+      },
+      over10: {
+        title: "Over meer dan tien jaar: begin bij wat er nu geregeld is",
+        text: "Je verkoop ligt nog ver weg, maar als jou morgen iets overkomt, staan je bedrijf en je gezin er nu al voor. Begin daarom bij de persoonlijke risico's en bij de balans in je leven van nu. Het plan voor daarna volgt later.",
+        actions: ["Vraag je notaris of je testament en levenstestament nog kloppen", "Bespreek met je adviseurs wie in het bedrijf beslist als jij uitvalt", "Kijk waar de balans tussen je werk en je leven thuis beter kan"],
+        moment: -1,
+      },
+    },
+  },
+  specialists: {
+    title: "De specialisten op het juiste moment aan tafel",
+    text: "In deze jaren zet ik ook de gesprekken in gang met je notaris en met een financieel planner, vermogensbeheerder of family office. Je zit daar met de goede vragen. Ik verdien niets aan de deal, je vermogen of de notaris, dus ik heb geen belang bij wie je kiest.",
+  },
+  /** [ERVARING KAREL] Eén anoniem klantvoorbeeld, max 450 tekens. Leeg = blok niet tonen in productie, placeholder in preview. */
+  example: "",
+};
+
+/** Blok 6: slot. */
+export const closing = {
+  title: "Over drie jaar wil je je bedrijf overdragen. Weet je al wat je daarna gaat doen?",
+  text: "In een kennismaking van een tot twee uur gaat het eerst over jou: waarom je wilt verkopen, wat je daarna wilt en hoe klaar je daar nu voor bent, met je bedrijf en met jezelf.",
+  primaryLabel: "Plan een kennismaking",
+  secondaryLabel: "Ontdek jouw score",
+  readMoreTitle: "Verder lezen",
+  readMore: [
+    { label: "Bedrijf verkopen, en dan? Zo bereid je je voor", href: "/kennisbank/het-leven-na-de-verkoop-van-je-bedrijf" },
+    { label: "Alle artikelen over het leven na de verkoop", href: "/kennisbank/thema/bedrijf-verkocht-en-dan" },
+  ],
 };
 
 export const days: { id: DayId; label: string }[] = [
