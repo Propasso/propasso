@@ -25,11 +25,11 @@ export interface Loss {
 }
 
 export const hero = {
-  eyebrow: "Je persoonlijke plan",
+  eyebrow: "Jouw persoonlijke plan voor na de bedrijfsverkoop",
   title: "Bedrijf verkocht, en dan?",
   intro:
-    "Je bedrijf maak je jarenlang klaar voor de verkoop. Met een persoonlijk plan maak je ook jezelf klaar voor de fase daarna.",
-  note: "Een kennismaking duurt een tot twee uur, zonder belang bij de deal.",
+    "Je bedrijf maak je verkoopklaar in de jaren voor de verkoop. Met een persoonlijk plan maak je ook jezelf klaar voor de fase daarna.",
+  note: "Een kennismaking duurt een uur, een richtinggevend gesprek zonder verplichtingen.",
 };
 
 export const meta = {
