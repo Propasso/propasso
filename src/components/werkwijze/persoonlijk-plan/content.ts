@@ -54,9 +54,9 @@ export const loss = {
   figureDescription: "Weekagenda van een ondernemer met zestien afspraken, die na de overdracht leeg is.",
   emptyWeek: "Maandag, de week na de overdracht.",
   secondLayer: {
-    title: "En wat je jezelf niet hardop toegeeft",
-    text: "Daaronder zit een laag die bijna iedereen onderschat. Jij was degene naar wie gekeken werd als er een succes gevierd werd. Niemand zegt hardop dat hij dat gaat missen, en juist daarom overvalt het je.",
-    labels: ["Macht en invloed", "Aanzien", "Status", "Verantwoordelijkheid", "Erkenning"],
+    title: "Die agenda vormde jouw ondernemersidentiteit",
+    text: "Ondernemers die hun bedrijf hebben verkocht, ervaren een verlies van de impliciete beloningsstructuur; Jij was de leider en degene naar wie opgekeken werd. Niemand zegt hardop dat hij dat gaat missen.",
+    labels: "Aanzien", "Status", "Verantwoordelijkheid", "Erkenning", "Invloed en Macht",
   },
 };
 
