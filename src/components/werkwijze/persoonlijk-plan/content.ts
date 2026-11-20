@@ -28,7 +28,7 @@ export const hero = {
   eyebrow: "Jouw persoonlijke plan voor na de bedrijfsverkoop",
   title: "Bedrijf verkocht, en dan?",
   intro:
-    "Het persoonlijke plan met jouw visie en doelen voor de fase na de verkoop is een van de belangrijkste onderdelen in het verkoopklaar maken van bedrijf en ondernemer."
+    "Het persoonlijke plan met jouw visie en doelen voor de fase na de verkoop is een van de belangrijkste onderdelen in het verkoopklaar maken van bedrijf en ondernemer.",
   note: "Een kennismaking duurt een uur, een richtinggevend gesprek zonder verplichtingen.",
 };
 
@@ -45,7 +45,7 @@ export const meta = {
 
 export const loss = {
   eyebrow: "Het zwarte gat",
-  title: "Wat je op de dag van de overdracht kwijtraakt",
+  title: "Je bedrijf was altijd je identiteit",
   intro:
     "Zodra de bedrijfsverkoop is afgerond, is je bedrijf niet meer van jou. En dan is je agenda leeg.",
   figureDescription: "Weekagenda van een ondernemer met zestien afspraken, die na de overdracht leeg is.",
