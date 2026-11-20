@@ -102,7 +102,7 @@ export const plan = {
     microcopy: "Bespreek ze met je partner.",
   },
   parts: {
-    title: "Vier onderdelen, en wie ze maakt",
+    title: "Twee onderdelen, en wie ze maakt",
     highlightLabel: "Samen",
     /** Twee hoofdonderdelen; onder het financiële plan vallen vermogens- en estate planning en testament. */
     main: [
