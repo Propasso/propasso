@@ -1,12 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import logo from "@/assets/logos/propasso-logo.png";
 import logoP from "@/assets/logos/favicon.png";
 
-const navItems = [
-  { label: "Werkwijze", href: "/werkwijze" },
+type NavItem = { label: string; href: string; children?: { label: string; href: string }[] };
+
+// Werkwijze heeft een submenu. De links staan altijd in de HTML (ook voor zoekmachines);
+// op desktop klapt het menu open bij hover of toetsenbordfocus, op mobiel staan ze ingesprongen.
+const navItems: NavItem[] = [
+  {
+    label: "Werkwijze",
+    href: "/werkwijze",
+    children: [
+      { label: "Overzicht", href: "/werkwijze" },
+      { label: "Je persoonlijke plan", href: "/werkwijze/persoonlijk-plan-opstellen" },
+    ],
+  },
   { label: "Over Propasso", href: "/over-propasso" },
   { label: "Kennisbank", href: "/kennisbank" },
   { label: "Veelgestelde vragen", href: "/veelgestelde-vragen" },
@@ -19,6 +30,7 @@ const Header = () => {
   const location = useLocation();
 
   const isKennisbankActive = location.pathname.startsWith("/kennisbank");
+  const isWerkwijzeActive = location.pathname.startsWith("/werkwijze");
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
     `text-sm transition-colors ${
@@ -73,9 +85,10 @@ const Header = () => {
 
         <nav className="hidden lg:flex items-center gap-8">
           {navItems.map((item) => {
-            // Kennisbank is also active on /kennisbank/* (pillar + article pages)
-            const forceActive = item.href === "/kennisbank" && isKennisbankActive;
-            return (
+            // Kennisbank is also active on /kennisbank/* (pillar + article pages); Werkwijze on /werkwijze/*
+            const forceActive =
+              (item.href === "/kennisbank" && isKennisbankActive) || (item.href === "/werkwijze" && isWerkwijzeActive);
+            const link = (
               <NavLink
                 key={item.href}
                 to={item.href}
@@ -88,7 +101,33 @@ const Header = () => {
                 }
               >
                 {item.label}
+                {item.children && <ChevronDown size={14} className="ml-1 inline-block align-[-2px] opacity-60" aria-hidden="true" />}
               </NavLink>
+            );
+            if (!item.children) return link;
+            return (
+              <div key={item.href} className="relative group">
+                {link}
+                <div className="invisible opacity-0 translate-y-1 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-150 absolute left-1/2 -translate-x-1/2 top-full pt-3">
+                  <ul className="min-w-[13rem] rounded-xl border border-border bg-background p-2 shadow-lg">
+                    {item.children.map((child) => (
+                      <li key={child.href}>
+                        <NavLink
+                          to={child.href}
+                          end
+                          className={({ isActive }) =>
+                            `block rounded-lg px-3 py-2 text-sm transition-colors ${
+                              isActive ? "font-semibold text-foreground bg-muted/60" : "font-medium text-foreground/70 hover:text-foreground hover:bg-muted/60"
+                            }`
+                          }
+                        >
+                          {child.label}
+                        </NavLink>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             );
           })}
           <div className="flex items-center gap-3 ml-1">
@@ -140,6 +179,20 @@ const Header = () => {
               </NavLink>
               {navItems.map((item) => {
                 const forceActive = item.href === "/kennisbank" && isKennisbankActive;
+                if (item.children) {
+                  return (
+                    <div key={item.href} className="flex flex-col">
+                      <span className="text-base py-2 font-medium text-foreground/70">{item.label}</span>
+                      <div className="flex flex-col gap-1 border-l border-border pl-4 ml-1">
+                        {item.children.map((child) => (
+                          <NavLink key={child.href} to={child.href} end className={mobileNavLinkClass}>
+                            {child.label}
+                          </NavLink>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                }
                 return (
                   <NavLink
                     key={item.href}
