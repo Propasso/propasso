@@ -62,8 +62,8 @@ export const loss = {
 
 /** Blok 3: Karel. Ervaring uit eerste hand en de brug van verlies naar plan. */
 export const karel = {
-  eyebrow: "Uit eigen ervaring",
-  title: "Toen ik er zelf middenin zat",
+  eyebrow: "Het proces en het zwarte gat",
+  title: "Toen ik zelf middenin de overdracht zat",
   caption:
     "Ik verkocht eind 2024 een groot deel van het bedrijf Worxx, een uitzendbureau in de bouw met 130 medewerkers, via een management-buy-out.",
   paragraphs: [
