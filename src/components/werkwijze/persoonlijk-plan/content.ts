@@ -198,7 +198,7 @@ export const closing = {
   /** Vaste knop onderin op mobiel. */
   stickyLabel: "Plan een kennismaking",
   title: "Over drie jaar wil je je bedrijf overdragen. Weet je al wat je daarna gaat doen?",
-  text: "In een kennismaking van een tot twee uur gaat het eerst over jou: waarom je wilt verkopen, wat je daarna wilt en hoe klaar je daar nu voor bent, met je bedrijf en met jezelf.",
+  text: "In een kennismaking van een uur gaat het eerst over jou: waarom je wilt verkopen, wat je daarna wilt en hoe klaar je daar nu voor bent, met je bedrijf en met jezelf.",
   primaryLabel: "Plan een kennismaking",
   secondaryLabel: "Ontdek jouw score",
   readMoreTitle: "Verder lezen",
