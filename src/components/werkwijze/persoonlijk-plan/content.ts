@@ -117,7 +117,7 @@ export const plan = {
         ],
       },
     ],
-    after: "Het persoonlijke en persoonlijke financiele plan komen eerst: zonder levensplan weet je financieel planner of notaris niet waarvoor hij plant.",
+    after: "Het persoonlijke en persoonlijke financiele plan komen eerst: zonder visie en doel weten je financieel planner en andere specialisten niet waarvoor zij plannen.",
   },
 };
 
@@ -129,8 +129,8 @@ export const approach = {
     "Bij een verkoop moeten drie verhalen kloppen: dat van de ondernemer, de onderneming en de cijfers. Je persoonlijke plan is het verhaal van de ondernemer. We werken eraan op dezelfde manier als aan je bedrijf.",
   steps: [
     { number: "1", title: "Waar sta je, wat wil je?", text: "Een persoonlijke nulmeting en een risicocheck. Daarna je visie en doelen voor de fase na de verkoop, besproken met je partner." },
-    { number: "2", title: "Elk kwartaal aan het werk", text: "Je acties staan in je kwartaaldoelen, naast die voor je bedrijf. Regelmatig kijken we waar je staat en stellen we bij." },
-    { number: "3", title: "Klaar om te tekenen?", text: "Bij elke incheck loopt dezelfde vraag mee: ben je persoonlijk klaar om te tekenen? Zo weet je het als het moment er is." },
+    { number: "2", title: "Aan de slag met kwartaaldoelen", text: "Je acties staan in je kwartaaldoelen, naast die voor je bedrijf. Regelmatig kijken we waar je staat en stellen we bij." },
+    { number: "3", title: "Klaar voor de exit?", text: "Bij elke check-in toetsen we kort dezelfde vraag: ben je persoonlijk klaar om voor de exit? Zo weet je het als het moment er is." },
   ],
   /** [KAREL VULT AAN] Hoe vaak jullie elkaar zien en wat de ondernemer na de eerste fase op papier heeft. */
   practical: "",
@@ -243,18 +243,18 @@ export const losses: Loss[] = [
 export const agenda: AgendaItem[] = [
   { day: "ma", start: "07:30", minutes: 75, title: "Weekstart met het MT", loss: "ritme" },
   { day: "ma", start: "10:00", minutes: 90, title: "Offerte grote klant", loss: "bereiken" },
-  { day: "ma", start: "14:00", minutes: 75, title: "Gesprek met de bank", loss: "identiteit" },
+  { day: "ma", start: "14:00", minutes: 45, title: "Gesprek met de bank", loss: "identiteit" },
   { day: "di", start: "08:00", minutes: 75, title: "Rondje over de werkvloer", loss: "mensen" },
-  { day: "di", start: "11:00", minutes: 75, title: "Spoedoverleg levering", loss: "zingeving" },
-  { day: "di", start: "15:00", minutes: 75, title: "Sollicitatiegesprek", loss: "zingeving" },
+  { day: "di", start: "11:00", minutes: 30, title: "Spoedoverleg levering", loss: "zingeving" },
+  { day: "di", start: "15:00", minutes: 45, title: "Sollicitatiegesprek", loss: "zingeving" },
   { day: "wo", start: "07:30", minutes: 75, title: "Planning van de week", loss: "ritme" },
   { day: "wo", start: "12:30", minutes: 90, title: "Lunch ondernemersclub", loss: "identiteit" },
-  { day: "wo", start: "16:00", minutes: 75, title: "Kwartaalcijfers", loss: "bereiken" },
+  { day: "wo", start: "16:00", minutes: 60, title: "Kwartaalcijfers", loss: "bereiken" },
   { day: "do", start: "08:30", minutes: 75, title: "Productieoverleg", loss: "ritme" },
-  { day: "do", start: "11:00", minutes: 75, title: "Klant: contract tekenen", loss: "bereiken" },
+  { day: "do", start: "11:00", minutes: 30, title: "Klant: contract tekenen", loss: "bereiken" },
   { day: "do", start: "13:30", minutes: 75, title: "Vraag van de werkplaats", loss: "zingeving" },
   { day: "do", start: "16:00", minutes: 90, title: "Jubileum 25 jaar Ton", loss: "mensen" },
   { day: "vr", start: "09:00", minutes: 90, title: "Strategie met het MT", loss: "identiteit" },
-  { day: "vr", start: "13:00", minutes: 90, title: "Bestuur brancheclub", loss: "identiteit" },
-  { day: "vr", start: "16:30", minutes: 90, title: "Vrijdagmiddagborrel", loss: "mensen" },
+  { day: "vr", start: "13:00", minutes: 75, title: "Bestuur brancheclub", loss: "identiteit" },
+  { day: "vr", start: "16:30", minutes: 120, title: "Vrijdagmiddagborrel", loss: "mensen" },
 ];
