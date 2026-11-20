@@ -8,6 +8,7 @@ const BASE_URL = "https://propasso.nl";
 const STATIC_PAGES = [
   { loc: "/", changefreq: "weekly", priority: "1.0" },
   { loc: "/werkwijze", changefreq: "monthly", priority: "0.9" },
+  { loc: "/werkwijze/persoonlijk-plan-opstellen", changefreq: "monthly", priority: "0.8" },
   { loc: "/kennisbank", changefreq: "weekly", priority: "0.9" },
   { loc: "/over-propasso", changefreq: "monthly", priority: "0.8" },
   { loc: "/contact", changefreq: "monthly", priority: "0.8" },

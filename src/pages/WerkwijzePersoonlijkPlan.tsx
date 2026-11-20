@@ -13,9 +13,33 @@ import { hero, meta } from "@/components/werkwijze/persoonlijk-plan/content";
  * Vijf blokken (besluit Karel 20 nov 2026): hero, de agenda die leegloopt, Karel, het persoonlijke plan als route
  * (A visie, B plan, C ritme met "Wat gaan we doen?" en de tijdlijn), slot. Teksten: content.ts (webteksten v05 plus teksten Karel).
  *
- * STAND: deploy preview ronde 2. noIndex staat aan; placeholders [ERVARING KAREL] moeten gevuld zijn,
- * en submenu, schema, sitemap en llms.txt volgen vóór livegang (voortgang 3.3 tot 3.5).
+ * Vindbaar sinds de livegang (noIndex uit). Staat in sitemap.ts, public/llms.txt en het submenu Werkwijze.
  */
+const PAGE_URL = "https://propasso.nl/werkwijze/persoonlijk-plan-opstellen";
+
+const pageSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${PAGE_URL}#webpage`,
+    name: meta.title,
+    url: PAGE_URL,
+    description: meta.description,
+    inLanguage: "nl-NL",
+    isPartOf: { "@type": "WebSite", name: "Propasso", url: "https://propasso.nl/" },
+    about: { "@id": "https://propasso.nl/#organization" },
+    author: { "@id": "https://propasso.nl/#person-karel-cremers" },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://propasso.nl/" },
+      { "@type": "ListItem", position: 2, name: "Werkwijze", item: "https://propasso.nl/werkwijze" },
+      { "@type": "ListItem", position: 3, name: meta.breadcrumb, item: PAGE_URL },
+    ],
+  },
+];
 const WerkwijzePersoonlijkPlan = () => (
   <PageLayout>
     <SEO
@@ -24,7 +48,8 @@ const WerkwijzePersoonlijkPlan = () => (
       canonical="https://propasso.nl/werkwijze/persoonlijk-plan-opstellen"
       ogTitle={meta.ogTitle}
       ogDescription={meta.ogDescription}
-      noIndex
+      ogType="website"
+      jsonLd={pageSchemas}
     />
 
     <PageHero
