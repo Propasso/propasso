@@ -92,3 +92,8 @@
 
 - [x] 1.7 AI-nulmeting afgerond en goedgekeurd door Claude (3 nov 2026); nulpunt vastgelegd.
 - [x] Bio-implementatie afgerond (4 nov 2026): korte canonieke bio in public/llms.txt, lange canonieke bio in src/pages/OverPropasso.tsx, eerste-persoonsversie in src/components/MeetKarelSection.tsx. Feiten sluiten op elkaar aan.
+
+## Werkwijzepagina persoonlijk plan (20 nov 2026, Claude via GitHub)
+- /werkwijze/persoonlijk-plan-opstellen: componenten in src/components/werkwijze/persoonlijk-plan/ (AgendaScroll, KarelMoment, KarelQuote, PlanSection, RouteStep, ApproachSection, SaleYearTimeline, ClosingSection, StickyCta). Niet laten vervangen of herschrijven door Lovable: gedrag zonder JavaScript, de statische HTML en de scroll-effecten zijn getest.
+- Teksten staan in content.ts. Karel past ze zelf aan via GitHub; alleen tekst tussen de aanhalingstekens wijzigen, geen commentaar (`/** */`) gebruiken voor paginatekst.
+- Header.tsx: Werkwijze heeft een submenu (Overzicht, Je persoonlijke plan). De links staan altijd in de HTML; niet vervangen door een menu dat links pas bij hover in de pagina zet.
