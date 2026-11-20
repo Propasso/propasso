@@ -35,10 +35,10 @@ export const hero = {
 export const meta = {
   title: "Bedrijf verkocht, en dan?",
   description:
-    "Bedrijf verkocht, en nu? Wat je kwijtraakt als je stopt, en hoe je je met een persoonlijk plan voorbereidt op de fase na de verkoop van je bedrijf.",
+    "Je bedrijf is verkocht, en nu? Wat verandert zodra je bedrijf is verkocht, en hoe je je met een persoonlijk plan voorbereidt op de fase na de verkoop van je bedrijf.",
   ogTitle: "Bedrijf verkocht, en dan?",
   ogDescription:
-    "Je bedrijf maak je jarenlang klaar voor de verkoop. Met een persoonlijk plan maak je ook jezelf klaar voor de fase daarna.",
+    "Het persoonlijke plan met jouw visie en doelen voor de fase na de verkoop is een van de belangrijkste onderdelen in het verkoopklaar maken van bedrijf en ondernemer.",
   breadcrumb: "Je persoonlijke plan",
   altKarel: "Karel Cremers, oprichter van Propasso",
 };
@@ -47,7 +47,7 @@ export const loss = {
   eyebrow: "Het zwarte gat",
   title: "Wat je op de dag van de overdracht kwijtraakt",
   intro:
-    "Op de dag dat je tekent, verdwijnt meer dan je bedrijf. Kijk maar naar je agenda: bijna elke afspraak hangt aan iets wat je straks mist.",
+    "Zodra de bedrijfsverkoop is afgerond, is je bedrijf niet meer van jou. En dan is je agenda leeg.",
   figureDescription: "Weekagenda van een ondernemer met zestien afspraken, die na de overdracht leeg is.",
   emptyWeek: "Maandag, de week na de overdracht.",
   secondLayer: {
