@@ -28,6 +28,8 @@ interface PageHeroProps {
   illustration?: string;
   /** Toon de standaard knoppenrij (kennismaking + Verkoopklaarscan). Default: true. */
   showActions?: boolean;
+  /** Optionele korte regel onder de knoppen (max 70 tekens), bijvoorbeeld over de kennismaking. */
+  note?: ReactNode;
 }
 
 const appear = (delay = 0) => ({
@@ -41,7 +43,7 @@ const pushEvent = (event: string) => {
   window.dataLayer.push({ event, page_path: window.location.pathname, event_source: "page_hero" });
 };
 
-const PageHero = ({ breadcrumb, eyebrow, title, intro, showActions = true }: PageHeroProps) => {
+const PageHero = ({ breadcrumb, eyebrow, title, intro, showActions = true, note }: PageHeroProps) => {
   return (
     <>
       <section className="relative overflow-x-clip min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-6rem)] pb-16">
@@ -84,6 +86,12 @@ const PageHero = ({ breadcrumb, eyebrow, title, intro, showActions = true }: Pag
                   Ontdek jouw score
                 </Link>
               </motion.div>
+            )}
+
+            {note && (
+              <motion.p {...appear(0.25)} className="mt-4 text-sm text-muted-foreground">
+                {note}
+              </motion.p>
             )}
           </div>
         </div>

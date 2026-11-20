@@ -14,6 +14,7 @@ import Index from "./pages/Index";
 import Styleguide from "./pages/Styleguide";
 import Contact from "./pages/Contact";
 import Werkwijze from "./pages/Werkwijze";
+import WerkwijzePersoonlijkPlan from "./pages/WerkwijzePersoonlijkPlan";
 import OverPropasso from "./pages/OverPropasso";
 import VeelgesteldeVragen from "./pages/VeelgesteldeVragen";
 import Kennisbank from "./pages/Kennisbank";
@@ -41,6 +42,7 @@ const AppRoutes = () => (
   <Routes>
     <Route path="/" element={<Index />} />
     <Route path="/werkwijze" element={<Werkwijze />} />
+    <Route path="/werkwijze/persoonlijk-plan-opstellen" element={<WerkwijzePersoonlijkPlan />} />
     <Route path="/exit-planning" element={<ExitPlanning />} />
     <Route path="/over-propasso" element={<OverPropasso />} />
     <Route path="/contact" element={<Contact />} />
