@@ -4,14 +4,13 @@ import PageHero from "@/components/PageHero";
 import LossSection from "@/components/werkwijze/persoonlijk-plan/LossSection";
 import KarelMoment from "@/components/werkwijze/persoonlijk-plan/KarelMoment";
 import PlanSection from "@/components/werkwijze/persoonlijk-plan/PlanSection";
-import ApproachSection from "@/components/werkwijze/persoonlijk-plan/ApproachSection";
 import ClosingSection from "@/components/werkwijze/persoonlijk-plan/ClosingSection";
 import { hero, meta } from "@/components/werkwijze/persoonlijk-plan/content";
 
 /**
  * Werkwijzepagina "Bedrijf verkocht, en dan?" (/werkwijze/persoonlijk-plan-opstellen).
- * Zes blokken (besluit Karel 20 nov 2026): hero, de agenda die leegloopt, Karel, het persoonlijke plan,
- * wat gaan we doen (met tijdlijn), slot. Teksten: content.ts (webteksten v05 plus teksten Karel).
+ * Vijf blokken (besluit Karel 20 nov 2026): hero, de agenda die leegloopt, Karel, het persoonlijke plan als route
+ * (A visie, B plan, C ritme met "Wat gaan we doen?" en de tijdlijn), slot. Teksten: content.ts (webteksten v05 plus teksten Karel).
  *
  * STAND: deploy preview ronde 2. noIndex staat aan; placeholders [ERVARING KAREL] moeten gevuld zijn,
  * en submenu, schema, sitemap en llms.txt volgen vóór livegang (voortgang 3.3 tot 3.5).
@@ -38,7 +37,6 @@ const WerkwijzePersoonlijkPlan = () => (
     <LossSection />
     <KarelMoment />
     <PlanSection />
-    <ApproachSection />
     <ClosingSection />
   </PageLayout>
 );

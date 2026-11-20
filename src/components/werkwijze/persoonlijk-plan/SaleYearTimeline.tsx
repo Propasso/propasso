@@ -101,7 +101,7 @@ const SaleYearTimeline = () => {
       <div aria-live="polite">
         {outcome && (
           <div className="mt-10 rounded-2xl bg-white border border-primary/20 p-6 md:p-8 shadow-[0_18px_40px_-24px_rgba(5,41,64,0.35)]">
-            <h3 className="text-xl md:text-2xl font-semibold text-foreground text-balance">{outcome.title}</h3>
+            <h4 className="text-xl md:text-2xl font-semibold text-foreground text-balance">{outcome.title}</h4>
             <p className="mt-3 text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl">{outcome.text}</p>
             <ul className="mt-5 space-y-2">
               {outcome.actions.map((a) => (

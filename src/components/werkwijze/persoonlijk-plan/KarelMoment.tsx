@@ -4,7 +4,7 @@ import Placeholder from "./Placeholder";
 
 /**
  * Blok 3: "Ik heb het zelf meegemaakt". Foto en citaat van Karel, wat een koper merkt als de verkoper twijfelt,
- * en de brug naar het plan. Citaat en CRH-ervaring zijn [ERVARING KAREL]; leeg = placeholder in de preview.
+ * Karels eigen twijfel in de aanloop, en de brug naar het plan. Het citaat is [ERVARING KAREL]; leeg = placeholder in de preview.
  * Volgorde mobiel: kop, foto, tekst. Desktop: foto links over de volle hoogte, kop en tekst rechts.
  */
 const KarelMoment = () => (
@@ -47,14 +47,7 @@ const KarelMoment = () => (
                 {p}
               </p>
             ))}
-            {karel.crh ? (
-              <p className="text-lg text-muted-foreground leading-relaxed">{karel.crh}</p>
-            ) : (
-              <Placeholder>
-                [ERVARING KAREL] Wat je bij CRH zag: een deal die stuitte of veranderde omdat de verkoper twijfelde. Eén of
-                twee zinnen, zonder namen.
-              </Placeholder>
-            )}
+            <p className="text-lg text-foreground leading-relaxed">{karel.own}</p>
           </div>
 
           <p className="mt-10 border-l-4 border-accent pl-5 text-xl md:text-2xl font-semibold text-primary leading-snug max-w-2xl text-balance">

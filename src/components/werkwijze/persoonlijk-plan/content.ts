@@ -72,11 +72,14 @@ export const karel = {
     "Een veelvoorkomende reden dat de verkoop niet doorgaat, is omdat de ondernemer zich terugtrekt: omdat hij de reden om te verkopen onvoldoende duidelijk heeft, of omdat hij geen plan voorzichzelf heeft en koudwatervrees krijgt. Hoe dichterbij het komt, hoe zwaarder dat weegt.",
     "Een verkoper die niet weet wat hij daarna gaat doen, of zijn persoonlijke en financiële zaken niet op orde heeft, vormt een risico voor het proces.",
   ],
-  /** Zelf heb ik in het proces en de aanloop er naartoe getwijfeld of de stap die ik aan het nemen was, de juiste was. Ook of de dealstructuur wel de juiste was. Toen ik herhaalde en opschreef wat mijn positie, drijfveren, professionele doelen en mijn persoonlijke visie op de toekomst waren, had ik mijn 'eureka'-moment.*/,
+  /** Karels eigen twijfel in de aanloop naar de verkoop (tekst Karel, 20 nov). */
+  own: "Zelf heb ik in het proces en de aanloop er naartoe getwijfeld of de stap die ik aan het nemen was, de juiste was. Ook of de dealstructuur wel de juiste was. Toen ik herhaalde en opschreef wat mijn positie, drijfveren, professionele doelen en mijn persoonlijke visie op de toekomst waren, had ik mijn 'eureka'-moment.",
   pullQuote: "Het persoonlijke plan en de invulling van het leven na de verkoop bepaalt of je straks met vertrouwen de toekomst tegemoet gaat.",
 };
 
-/** Blok 4: wat een persoonlijk plan is. */
+/** Blok 4: het persoonlijke plan als route in drie stappen: A visie, B plan, C ritme (feedback Karel 20 nov). */
+export const route = { a: "Visie", b: "Plan", c: "Ritme" };
+
 export const plan = {
   eyebrow: "Het persoonlijke plan",
   title: "Wat is een persoonlijk plan?",
@@ -89,29 +92,32 @@ export const plan = {
     cards: [
       { label: "Zingeving", text: "Waar haal ik mijn inspiratie vandaan? Wie ben ik, los van mijn bedrijf?" },
       { label: "Bezittingen", text: "Wat wil ik nog hebben, en wat heb ik niet meer nodig? Hoeveel heb ik echt nodig om rond te komen?" },
-      { label: "Belevingen", text: "Welke ervaringen in mijn leven koester ik het meest? Wat wil ik nog meemaken?", highlight: true },
+      { label: "Belevingen", text: "Welke ervaringen in mijn leven koester ik het meest? Wat wil ik nog meemaken?" },
       { label: "Mensen", text: "Met wie wil ik meer tijd doorbrengen? En met wie eigenlijk minder?" },
     ],
-    note: "Van die vier vind ik belevingen het belangrijkste.",
-    /** Belevingen zaten voor mij veel meer in de kleine dingen, zoals ontbijten met de kinderen. Mijn voornaamste motivatie zat bij zingegeving: ik had nog andere professionele ambities buiten het bedrijf. */
-    noteWhy: "",
+    /** Uitkomst van subblok A (route visie, plan, ritme). */
+    outcome: "Samen vormen ze jouw visie.",
+    /** Citaat Karel naast de vier vragen (tekst Karel, 20 nov). */
+    quote: "Belevingen zaten voor mij veel meer in de kleine dingen, zoals ontbijten met de kinderen. Mijn voornaamste motivatie zat bij zingegeving: ik had nog andere professionele ambities buiten het bedrijf.",
     microcopy: "Bespreek ze met je partner.",
   },
   parts: {
     title: "Vier onderdelen, en wie ze maakt",
     highlightLabel: "Samen",
-    cards: [
-      { title: "Persoonlijke visie & plan", text: "Hoe beeld je het leven na de verkoop in? Je wensen en behoeften, op papier.", who: "Ondernemer & Propasso", highlight: true },
-      { title: "Persoonlijk financieel plan", text: "Scan van de benodigde inkomsten uit verkoopopbrengst en andere inkomstenstromen om je levensstijl te voldoen?", who: "Financieel planner", highlight: true },
-      { title: "Vermogens- en estate planning", text: "Hoe is je vermogen ondergebracht, en wat gebeurt ermee na je overlijden?", who: "Estate planner, fiscalist en notaris" },
-      { title: "Testament", text: "Wie krijgt wat, en wie beslist als jij het zelf niet meer kunt?", who: "Notaris" },
+    /** Twee hoofdonderdelen; onder het financiële plan vallen vermogens- en estate planning en testament. */
+    main: [
+      { title: "Persoonlijke visie & plan", text: "Hoe beeld je het leven na de verkoop in? Je wensen en behoeften, op papier.", who: "Ondernemer & Propasso", together: true },
+      {
+        title: "Persoonlijk financieel plan",
+        text: "Scan van de benodigde inkomsten uit verkoopopbrengst en andere inkomstenstromen om je levensstijl te voldoen?",
+        who: "Financieel planner",
+        sub: [
+          { title: "Vermogens- en estate planning", text: "Hoe is je vermogen ondergebracht, en wat gebeurt ermee na je overlijden?", who: "Estate planner, fiscalist en notaris" },
+          { title: "Testament", text: "Wie krijgt wat, en wie beslist als jij het zelf niet meer kunt?", who: "Notaris" },
+        ],
+      },
     ],
     after: "Het persoonlijke en persoonlijke financiele plan komen eerst: zonder levensplan weet je financieel planner of notaris niet waarvoor hij plant.",
-  },
-  events: {
-    title: "Vijf gebeurtenissen die niet op je planning staan",
-    items: ["Overlijden", "Arbeidsongeschiktheid", "Scheiding", "Onenigheid met je mede-aandeelhouders", "Zware tegenslag of crisis"],
-    text: "Elk van deze vijf kan je plannen omgooien, ook lang vóór de verkoop. In de risicocheck loop ik ze met je langs, met één vraag: wat is er geregeld als het morgen gebeurt? Het gesprek met je notaris over je testament en levenstestament hoeft niet te wachten.",
   },
 };
 
