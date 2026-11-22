@@ -9,7 +9,7 @@ import OutcomesSection from "@/components/werkwijze/OutcomesSection";
 import QuickscanBanner from "@/components/QuickscanBanner";
 
 const pageDescription =
-  "Ontdek de werkwijze van Propasso voor exit planning in het MKB: een gestructureerde aanpak om bedrijven sterker, minder afhankelijk en beter overdraagbaar te maken.";
+  "Exit planning in drie stappen: weten waar je staat, waarde opbouwen en zelf kiezen. Elke stap loopt langs je bedrijf en langs jezelf.";
 
 const pageSchemas = [
   {
@@ -60,10 +60,10 @@ const Werkwijze = () => {
   return (
     <PageLayout>
       <SEO
-        title="Werkwijze Verkoopklaar maken van Bedrijven | Propasso"
+        title="Exit planning in drie stappen | Werkwijze | Propasso"
         description={pageDescription}
         canonical="https://propasso.nl/werkwijze"
-        ogTitle="Werkwijze Verkoopklaar maken van Bedrijven | Propasso"
+        ogTitle="Exit planning in drie stappen | Werkwijze | Propasso"
         ogDescription={pageDescription}
         ogType="website"
         jsonLd={pageSchemas}
@@ -74,13 +74,14 @@ const Werkwijze = () => {
         eyebrow="Werkwijze"
         title={
           <>
-            Verkoopklaar maken van je bedrijf, <span className="text-muted-foreground"> doe je in de jaren vóór de overdracht.</span>
+            Exit planning is goed ondernemen, <span className="text-muted-foreground">met de overdracht in zicht.</span>
           </>
         }
         intro={
           <>
-            Ik breng in kaart hoe jij, je bedrijf en je cijfers ervoor staan. Daarna werken we in een vast ritme aan
-            wat beter moet, zodat je straks zelf kiest wat je met je bedrijf doet.
+            Exit planning betekent dat je je bedrijf in de jaren vóór de overdracht minder afhankelijk van jou en meer
+            waard maakt, zodat verkopen een keuze wordt. Ik breng eerst in kaart hoe jij, je bedrijf en je cijfers ervoor
+            staan. Daarna werken we in een vast ritme aan wat beter moet.
           </>
         }
       />
@@ -97,7 +98,7 @@ const Werkwijze = () => {
 
       <PageCTA
         title="Wil je weten waar jij en je bedrijf staan?"
-        description="In een kennismaking van een uur kijken we waar je bedrijf staat, wat jij wilt en welke stap als eerste aandacht verdient. Zonder verplichtingen."
+        description="In een kennismaking van een uur kijken we waar je bedrijf staat, wat jij wilt en welke stap als eerste aandacht verdient. Aan dat gesprek zit geen verplichting vast."
         primaryLabel="Plan een kennismaking"
         primaryHref="/contact"
         secondaryLabel="Ontdek jouw score"

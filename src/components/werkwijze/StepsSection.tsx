@@ -67,7 +67,7 @@ const StepsSection = () => (
     <div className="section-container">
       <p className="eyebrow">Zo werk ik</p>
       <h2 className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance">
-        Drie stappen, voor je bedrijf en voor jezelf
+        Exit planning in drie stappen, voor je bedrijf en voor jezelf
       </h2>
       <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
         Je bedrijf en jijzelf moeten allebei klaar zijn voor de overdracht. Daarom loopt elke stap langs twee

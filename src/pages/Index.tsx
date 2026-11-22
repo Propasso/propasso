@@ -38,11 +38,11 @@ const Index = () => {
     return (
           <PageLayout>
                 <SEO
-                          title="Exit Planning voor MKB-ondernemers | Propasso"
-                          description="Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf. Start op tijd en realiseer de maximale verkoopwaarde."
+                          title="Bedrijf verkoopklaar maken voor MKB-ondernemers | Propasso"
+                          description="Je bedrijf verkoopklaar maken begint jaren vóór de verkoop. Ik help MKB-ondernemers hun bedrijf minder afhankelijk van zichzelf en meer waard te maken."
                           canonical="https://propasso.nl/"
-                          ogTitle="Exit Planning voor MKB-ondernemers | Propasso"
-                          ogDescription="Propasso begeleidt MKB-ondernemers in Nederland bij het verkoopklaar maken van hun bedrijf. Start op tijd en realiseer de maximale verkoopwaarde."
+                          ogTitle="Bedrijf verkoopklaar maken voor MKB-ondernemers | Propasso"
+                          ogDescription="Je bedrijf verkoopklaar maken begint jaren vóór de verkoop. Ik help MKB-ondernemers hun bedrijf minder afhankelijk van zichzelf en meer waard te maken."
                           jsonLd={homepageJsonLd}
                         />
                 <HeroSection />

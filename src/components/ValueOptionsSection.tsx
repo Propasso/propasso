@@ -16,7 +16,7 @@ const rungs = [
   {
     number: "2",
     title: "Een waardevol bedrijf",
-    text: "Hogere en betrouwbaardere winst maakt het bedrijf meer waard in de ogen van een koper.",
+    text: "Hogere en betrouwbaardere winst verhoogt de ondernemingswaarde in de ogen van een koper.",
   },
   {
     number: "3",
@@ -46,7 +46,8 @@ const ValueOptionsSection = () => (
       </h2>
       <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
         Op de dag dat je besluit te verkopen, liggen je mogelijkheden al vast. Ze hangen af van hoe gezond en
-        waardevol je bedrijf op dat moment is. Daarom begint exit planning bij je bedrijf en eindigt het bij jou.
+        waardevol je bedrijf op dat moment is. Je bedrijf verkoopklaar maken betekent dat het zonder jou kan draaien en
+        betrouwbare winst maakt, en dat jij weet wat je na de verkoop wilt.
       </p>
 
       <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -87,7 +88,7 @@ const ValueOptionsSection = () => (
           to="/werkwijze#zo-werk-ik"
           className="mt-8 inline-flex items-center gap-2 text-base font-semibold text-primary underline-offset-4 hover:underline"
         >
-          Bekijk hoe ik werk, in drie stappen
+          Zo werkt exit planning, in drie stappen
           <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </div>
