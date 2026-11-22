@@ -97,3 +97,10 @@
 - /werkwijze/persoonlijk-plan-opstellen: componenten in src/components/werkwijze/persoonlijk-plan/ (AgendaScroll, KarelMoment, KarelQuote, PlanSection, RouteStep, ApproachSection, SaleYearTimeline, ClosingSection, StickyCta). Niet laten vervangen of herschrijven door Lovable: gedrag zonder JavaScript, de statische HTML en de scroll-effecten zijn getest.
 - Teksten staan in content.ts. Karel past ze zelf aan via GitHub; alleen tekst tussen de aanhalingstekens wijzigen, geen commentaar (`/** */`) gebruiken voor paginatekst.
 - Header.tsx: Werkwijze heeft een submenu (Overzicht, Je persoonlijke plan). De links staan altijd in de HTML; niet vervangen door een menu dat links pas bij hover in de pagina zet.
+
+## Werkwijze-overzicht en homepage in drie stappen (22 nov 2026, Claude via GitHub)
+- Eén trajectmodel op de hele site: 01 Weten waar je staat, 02 Waarde opbouwen, 03 Zelf kiezen, elk met twee sporen (Je bedrijf, Jijzelf). Gelijk aan de drie stappen op /werkwijze/persoonlijk-plan-opstellen. Geen vierfasenmodel meer terugzetten; MethodologyFramework.tsx is verwijderd.
+- /werkwijze volgorde: PageHero, MKBRealitySection, ThreeStoriesSection (id `drie-verhalen`, elke kaart linkt door), StepsSection (id `zo-werk-ik`), QuickscanBanner, OutcomesSection (vier bedrijfsresultaten plus de strook "Een plan voor daarna"), PageCTA.
+- Homepage: ValueOptionsSection ("Waarde geeft keuzes") staat op de plek van het oude vierfasenblok en linkt naar /werkwijze#zo-werk-ik. De stappen zelf staan alleen op /werkwijze.
+- Geen CEPA-labels (Value Acceleration Methodology e.d.) in zichtbare tekst. Ik-vorm, geen "wij" of "onze aanpak".
+- Het ritme (elke vier weken sessie kwartaaldoelen, elke twee weken check-in trekkers, persoonlijk plan om de twee à drie maanden) staat op /werkwijze en op de plan-pagina in dezelfde woorden; bij wijziging beide aanpassen.

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { User, Building2, BarChart3 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { User, Building2, BarChart3, ArrowRight } from "lucide-react";
 
 const stories = [
   {
@@ -7,18 +8,21 @@ const stories = [
     title: "Het verhaal van de ondernemer",
     description:
       "Waar wil de ondernemer naartoe? Wat zijn de persoonlijke ambities, de tijdshorizon en de financiële doelen na overdracht?",
+    link: { label: "Je persoonlijke plan", href: "/werkwijze/persoonlijk-plan-opstellen" },
   },
   {
     icon: Building2,
     title: "Het verhaal van de onderneming",
     description:
       "Hoe sterk staat het bedrijf? Is het overdraagbaar, schaalbaar en niet afhankelijk van één persoon?",
+    link: { label: "Bedrijf verkoopklaar maken", href: "/kennisbank/thema/bedrijf-verkoopklaar-maken" },
   },
   {
     icon: BarChart3,
     title: "Het verhaal van de cijfers",
     description:
       "Wat vertellen de financiële prestaties? Zijn de marges gezond, de omzet voorspelbaar en de kosten beheersbaar?",
+    link: { label: "Bedrijfswaardering en verkoopopbrengst", href: "/kennisbank/thema/bedrijfswaardering-en-verkoopopbrengst" },
   },
 ];
 
@@ -30,7 +34,7 @@ const fadeInUp = {
 
 const ThreeStoriesSection = () => {
   return (
-    <section className="py-24 md:py-36">
+    <section id="drie-verhalen" className="py-24 md:py-36 scroll-mt-28">
       <div className="section-container">
         <motion.div {...fadeInUp} transition={{ duration: 0.6 }}>
           <p className="eyebrow">Kernprincipe</p>
@@ -49,10 +53,9 @@ const ThreeStoriesSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
         >
-          De kern van onze aanpak: een succesvolle overdracht ontstaat alleen
-          wanneer het verhaal van de ondernemer, de onderneming en de cijfers
-          op één lijn liggen. Waar dat niet zo is, ontstaat frictie. En dat
-          is precies waar ons traject begint.
+          Een overdracht lukt pas als het verhaal van de ondernemer, de
+          onderneming en de cijfers op één lijn liggen. Waar ze elkaar
+          tegenspreken, ontstaat frictie, en daar begin ik.
         </motion.p>
 
         {/* Three stories */}
@@ -82,28 +85,18 @@ const ThreeStoriesSection = () => {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {story.description}
                 </p>
+                <Link
+                  to={story.link.href}
+                  className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
+                >
+                  {story.link.label}
+                  <ArrowRight size={15} aria-hidden="true" />
+                </Link>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Bridge to methodology */}
-        <motion.p
-          {...fadeInUp}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-14 text-base text-muted-foreground max-w-2xl leading-relaxed border-l-2 border-accent pl-6"
-        >
-          Dit principe vormt de basis van onze methodiek, geïnspireerd op de{" "}
-          <a
-            href="https://exit-planning-institute.org/value-acceleration-methodology"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
-          >
-            Value Acceleration Methodology
-          </a>{" "}
-          en vertaald naar de realiteit van het Nederlandse MKB.
-        </motion.p>
       </div>
     </section>
   );
