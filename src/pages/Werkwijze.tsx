@@ -10,7 +10,7 @@ import OutcomesSection from "@/components/werkwijze/OutcomesSection";
 import QuickscanBanner from "@/components/QuickscanBanner";
 
 const pageDescription =
-  "Exit planning in drie stappen: weten waar je staat, waarde opbouwen en zelf kiezen. Elke stap loopt langs je bedrijf en langs jezelf.";
+  "Exit planning in drie stappen: Ontdekken, Bouwen en Kiezen. Elke stap loopt langs je bedrijf en langs jezelf.";
 
 const pageSchemas = [
   {
