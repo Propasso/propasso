@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   TrendingUp,
   Users,
   ShieldCheck,
   ArrowRightLeft,
+  ArrowRight,
+  Compass,
 } from "lucide-react";
 
 const outcomes = [
@@ -84,6 +87,30 @@ const OutcomesSection = () => {
             );
           })}
         </div>
+
+        {/* De ondernemer: het vijfde resultaat, met de brug naar de pagina over het persoonlijke plan */}
+        <motion.div
+          {...fadeInUp}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="mt-14 max-w-6xl rounded-2xl bg-white p-6 md:p-8 flex flex-col md:flex-row md:items-center gap-5 md:gap-8"
+        >
+          <div className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/30">
+            <Compass size={24} className="text-primary" />
+          </div>
+          <div className="flex-1">
+            <h3 className="text-lg font-bold mb-1">Een plan voor daarna</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Je weet wat je na de verkoop gaat doen, je hebt het thuis besproken en je privézaken staan op papier.
+            </p>
+          </div>
+          <Link
+            to="/werkwijze/persoonlijk-plan-opstellen"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline shrink-0"
+          >
+            Je persoonlijke plan
+            <ArrowRight size={15} aria-hidden="true" />
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
