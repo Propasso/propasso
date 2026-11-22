@@ -2,7 +2,7 @@ import SEO from "@/components/SEO";
 import PageLayout from "@/components/PageLayout";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
-import MethodologyFramework from "@/components/MethodologyFramework";
+import ValueOptionsSection from "@/components/ValueOptionsSection";
 import WhyPropasso from "@/components/WhyPropasso";
 import TargetAudience from "@/components/TargetAudience";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -48,7 +48,7 @@ const Index = () => {
                 <HeroSection />
                 <StatsBar />
                 <ProblemSection />
-                <MethodologyFramework />
+                <ValueOptionsSection />
                 <ThemesSection />
                 <WhyPropasso />
                 <MeetKarelSection />

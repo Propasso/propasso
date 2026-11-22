@@ -4,10 +4,9 @@ import PageCTA from "@/components/PageCTA";
 import PageHero from "@/components/PageHero";
 import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
 import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
-import MethodologyFramework from "@/components/MethodologyFramework";
+import StepsSection from "@/components/werkwijze/StepsSection";
 import OutcomesSection from "@/components/werkwijze/OutcomesSection";
 import QuickscanBanner from "@/components/QuickscanBanner";
-import mountainPassRoute from "@/assets/illustrations/mountain-pass-route.png";
 
 const pageDescription =
   "Ontdek de werkwijze van Propasso voor exit planning in het MKB: een gestructureerde aanpak om bedrijven sterker, minder afhankelijk en beter overdraagbaar te maken.";
@@ -73,7 +72,6 @@ const Werkwijze = () => {
       <PageHero
         breadcrumb={[{ label: "Werkwijze" }]}
         eyebrow="Werkwijze"
-        illustration={mountainPassRoute}
         title={
           <>
             Verkoopklaar maken van je bedrijf, <span className="text-muted-foreground"> doe je in de jaren vóór de overdracht.</span>
@@ -81,30 +79,29 @@ const Werkwijze = () => {
         }
         intro={
           <>
-            Propasso begeleidt ondernemers met een gestructureerde aanpak die de ondernemer, de onderneming en de
-            financiële realiteit samenbrengt. We staan naast je van analyse tot uitvoering, zodat het bedrijf sterker, onafhankelijker en
-            overdraagbaar wordt.
+            Ik breng in kaart hoe jij, je bedrijf en je cijfers ervoor staan. Daarna werken we in een vast ritme aan
+            wat beter moet, zodat je straks zelf kiest wat je met je bedrijf doet.
           </>
         }
       />
 
       <MKBRealitySection />
 
-      <QuickscanBanner contextLine="Benieuwd naar het verbeterpotentieel van jouw bedrijf?" />
-
       <ThreeStoriesSection />
 
-      <MethodologyFramework />
+      <StepsSection />
+
+      <QuickscanBanner contextLine="Wil je eerst zelf zien waar je staat? Dat is stap 1 in het klein." />
 
       <OutcomesSection />
 
       <PageCTA
-        title="Klaar voor een strategisch gesprek?"
-        description="Neem vrijblijvend contact op voor een kennismaking en ontdek hoe Propasso jouw bedrijf kan versterken."
-        primaryLabel="Plan een gesprek"
+        title="Wil je weten waar jij en je bedrijf staan?"
+        description="In een kennismaking van een uur kijken we waar je bedrijf staat, wat jij wilt en welke stap als eerste aandacht verdient. Zonder verplichtingen."
+        primaryLabel="Plan een kennismaking"
         primaryHref="/contact"
-        secondaryLabel="Bekijk de kennisbank"
-        secondaryHref="/kennisbank"
+        secondaryLabel="Ontdek jouw score"
+        secondaryHref="/quickscan"
       />
     </PageLayout>
   );
