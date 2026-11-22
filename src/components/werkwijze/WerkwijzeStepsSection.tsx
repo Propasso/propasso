@@ -31,7 +31,7 @@ const content = {
     {
       number: "01",
       title: "ONTDEKKEN",
-      text: "Inzicht in de gezondheid van je bedrijf, de ondernemingswaarde, je eigen gereedheid, groeikansen en mogelijke risico's.",
+      text: "Inzicht in de gezondheid en potentie van je bedrijf, de ondernemingswaarde, gereedheid van ondernemer, groeikansen en mogelijke risico's.",
     },
     {
       number: "02",
@@ -41,7 +41,7 @@ const content = {
     {
       number: "03",
       title: "KIEZEN",
-      text: "Als je bedrijf gezond en waardevol is, zit je niet vast aan je omstandigheden. Dan kies je zelf je toekomst.",
+      text: "Een beter stuurbaar en overdraagbaar bedrijf presteert vaak beter, heeft een hogere bedrijfswaarde en kan zelfstandig opereren. Zo kies jij voor de exit op jouw moment, onder jouw voorwaarden.",
     },
   ],
   choices: ["Verkopen", "Overdragen aan familie of management", "Doorgaan"],
