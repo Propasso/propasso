@@ -74,14 +74,20 @@ const Werkwijze = () => {
         eyebrow="Werkwijze"
         title={
           <>
-            Exit planning is goed ondernemen, <span className="text-muted-foreground">met de overdracht in zicht.</span>
+            Exit planning leert je anders naar je bedrijf kijken.
+          </>
+        }
+        subtitle={
+          <>
+            Verkopen is geen doel op zich, maar een keuze die je maakt wanneer jíj en je bedrijf er klaar voor zijn.
           </>
         }
         intro={
           <>
-            Exit planning betekent dat je je bedrijf in de jaren vóór de overdracht minder afhankelijk van jou en meer
-            waard maakt, zodat verkopen een keuze wordt. Ik breng eerst in kaart hoe jij, je bedrijf en je cijfers ervoor
-            staan. Daarna werken we in een vast ritme aan wat beter moet.
+            Exit planning is het werk in de jaren vóór een overdracht: je maakt je bedrijf minder afhankelijk van jou en
+            meer waard, en je bereidt jezelf voor op wat daarna komt. Ik begin met de vraag hoeveel van wat je bouwde nog
+            op jou rust. Daarna werken we in een vast ritme aan wat beter moet. Zo haal je meer uit je bedrijf, of je het
+            nu verkoopt of niet.
           </>
         }
       />

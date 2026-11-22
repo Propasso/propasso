@@ -23,6 +23,8 @@ interface PageHeroProps {
   breadcrumb: BreadcrumbEntry[];
   eyebrow: string;
   title: ReactNode;
+  /** Optionele ondertitel direct onder de H1 (één zin), los van de intro. */
+  subtitle?: ReactNode;
   intro?: ReactNode;
   /** Verouderd en genegeerd: hero's tonen geen illustraties meer (zie roadmap.md). Mag bij een volgende wijziging uit de pagina's. */
   illustration?: string;
@@ -43,7 +45,7 @@ const pushEvent = (event: string) => {
   window.dataLayer.push({ event, page_path: window.location.pathname, event_source: "page_hero" });
 };
 
-const PageHero = ({ breadcrumb, eyebrow, title, intro, showActions = true, note }: PageHeroProps) => {
+const PageHero = ({ breadcrumb, eyebrow, title, subtitle, intro, showActions = true, note }: PageHeroProps) => {
   return (
     <>
       <section className="relative overflow-x-clip min-h-[calc(100svh-5rem)] lg:min-h-[calc(100svh-6rem)] pb-16">
@@ -61,6 +63,12 @@ const PageHero = ({ breadcrumb, eyebrow, title, intro, showActions = true, note 
             >
               {title}
             </motion.h1>
+
+            {subtitle && (
+              <motion.p {...appear(0.09)} className="mt-6 text-xl md:text-2xl font-medium text-foreground/80 max-w-2xl leading-snug text-balance">
+                {subtitle}
+              </motion.p>
+            )}
 
             {intro && (
               <motion.p {...appear(0.12)} className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed">
