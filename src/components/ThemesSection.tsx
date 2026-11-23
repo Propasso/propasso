@@ -36,7 +36,7 @@ const ThemesSection = () => {
   const motionProps = reduceMotion ? {} : fadeIn;
 
   return (
-    <motion.section aria-labelledby="themas-heading" className="py-20 md:py-28 relative overflow-x-clip" {...motionProps}>
+    <motion.section aria-labelledby="themas-heading" className="py-20 md:py-28 relative" {...motionProps}>
       <div className="section-container relative z-10 lg:grid lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
           <p className="eyebrow">Exit Planning</p>
@@ -66,12 +66,6 @@ const ThemesSection = () => {
         </div>
 
         <div className="relative mt-10 lg:mt-0 lg:col-span-7">
-          {/* Kleurvlekken achter de kaarten: zonder iets erachter is glas niet als glas te zien */}
-          <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
-            <div className="absolute -top-10 right-[8%] h-72 w-72 rounded-full bg-accent/45 blur-3xl" />
-            <div className="absolute top-[38%] -left-10 h-80 w-80 rounded-full bg-[hsl(var(--tint-teal)/0.35)] blur-3xl" />
-            <div className="absolute -bottom-8 right-[20%] h-64 w-64 rounded-full bg-[hsl(var(--teal-medium)/0.22)] blur-3xl" />
-          </div>
           <ul className="relative space-y-3">
             {isLoading
               ? Array.from({ length: 5 }).map((_, i) => (
