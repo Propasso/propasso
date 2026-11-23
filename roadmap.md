@@ -104,3 +104,7 @@
 - Homepage: ValueOptionsSection ("Waarde geeft keuzes") staat op de plek van het oude vierfasenblok en linkt naar /werkwijze#zo-werk-ik. De stappen zelf staan alleen op /werkwijze.
 - Geen CEPA-labels (Value Acceleration Methodology e.d.) in zichtbare tekst. Ik-vorm, geen "wij" of "onze aanpak".
 - Het ritme (elke vier weken sessie kwartaaldoelen, elke twee weken check-in trekkers, persoonlijk plan om de twee à drie maanden) staat op /werkwijze als lopende tekst onder het stappenblok (children van WerkwijzeStepsSection in Werkwijze.tsx) en op de plan-pagina in dezelfde woorden; bij wijziging beide aanpassen.
+
+## ThemesSection homepage (23 nov 2026, Claude via GitHub)
+- src/components/ThemesSection.tsx: thema's als kaarten met icoon per slug (THEME_ICONS), limoen icoonvlak bij hover en artikelaantal in DM Serif Display. Niet laten vervangen of herschrijven door Lovable. Nieuw thema in Sanity: icoon toevoegen in THEME_ICONS, anders valt het terug op BookOpen.
+- Limoen (accent) hier alleen als vlak of stip met donkerblauw erop, nooit als tekst of dunne lijn (contrast op lichte achtergrond).
