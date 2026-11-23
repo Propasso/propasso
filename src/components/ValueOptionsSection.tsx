@@ -42,12 +42,12 @@ const ValueOptionsSection = () => (
     <div className="section-container">
       <p className="eyebrow">Waarde geeft keuzes</p>
       <h2 className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance">
-        Je keuzes ontstaan in de jaren vóór de verkoop
+        Verkoopopties bepaal je n de jaren vóór de verkoop
       </h2>
       <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
-        Op de dag dat je besluit te verkopen, liggen je mogelijkheden al vast. Ze hangen af van hoe gezond en
-        waardevol je bedrijf op dat moment is. Je bedrijf verkoopklaar maken betekent dat het zonder jou kan draaien en
-        betrouwbare winst maakt, en dat jij weet wat je na de verkoop wilt.
+        Op de dag dat je besluit je bedrijf te verkopen, heb je weinig invloed meer op je mogelijkheden. Ze hangen af van 
+        hoe gezond en waardevol je bedrijf op dat moment is. Je bedrijf verkoopklaar maken betekent dat het bedrijf 
+        zelfstandig draait en waarde geoptimaliseerd is, en dat jij een plan hebt voor wat je na de verkoop wilt.
       </p>
 
       <ol className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
