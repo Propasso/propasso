@@ -44,12 +44,13 @@ const ThemesSection = () => {
             Je bedrijf verkoopklaar maken is het werk dat je doet in de drie tot vijf jaar vóór een overdracht. Je
             maakt je bedrijf minder afhankelijk van jou, je richt het zo in dat iemand anders het kan overnemen en je
             verbetert de winstgevendheid, zodat de ondernemingswaarde stijgt. Daarnaast zorg je dat je zelf klaar bent
-            voor de tijd na de verkoop. Binnen exit planning valt dat werk uiteen in {count ? `${countWord(count)} ` : ""}thema&apos;s.
+            voor de tijd na de verkoop. Bij Propasso hebben we het proces van verkoopklaar maken van je bedrijf onderverdeeld
+            naar {count ? `${countWord(count)} ` : ""}thema&apos;s.
           </p>
           <p className="mt-4 text-muted-foreground leading-relaxed">
-            De thema&apos;s hangen met elkaar samen: een bedrijf dat op de eigenaar draait, is moeilijk over te dragen
-            en levert bij verkoop minder op. Per thema vind je hieronder artikelen over waar MKB-ondernemers in de
-            praktijk vastlopen en waar jij zelf staat.
+            De thema&apos;s houden verband met elkaar en zijn afhankelijk van het soort bedrijf en de jouw persoonlijke,
+            financiele en zakelijke situatie. Elk thema heeft haar eigen pagina waarin praktijksituaties, kennis, inzichten 
+            worden besproken en waar ik ervaringen deel uit mijn ondernemersschap en de bedrijfsverkoop.
           </p>
           <Link
             to="/kennisbank"
