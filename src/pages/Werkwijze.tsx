@@ -4,9 +4,11 @@ import PageCTA from "@/components/PageCTA";
 import PageHero from "@/components/PageHero";
 import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
 import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
-import WerkwijzeStepsSection from "@/components/werkwijze/WerkwijzeStepsSection";
+import WerkwijzeStepsSection, { werkwijzeSteps } from "@/components/werkwijze/WerkwijzeStepsSection";
 import OutcomesSection from "@/components/werkwijze/OutcomesSection";
 import QuickscanBanner from "@/components/QuickscanBanner";
+
+const pageTitle = "Exit planning in drie stappen | Werkwijze | Propasso";
 
 const pageDescription =
   "Exit planning in drie stappen: Ontdekken, Bouwen en Kiezen. Elke stap loopt langs je bedrijf en langs jezelf.";
@@ -15,7 +17,7 @@ const pageSchemas = [
   {
     "@context": "https://schema.org",
     "@type": "WebPage",
-    name: "Werkwijze | Exit Planning voor MKB | Propasso",
+    name: pageTitle,
     url: "https://propasso.nl/werkwijze",
     description: pageDescription,
     isPartOf: {
@@ -54,16 +56,30 @@ const pageSchemas = [
     description:
       "Gestructureerde begeleiding voor MKB-ondernemers gericht op waardecreatie, overdraagbaarheid en het verkoopklaar maken van het bedrijf.",
   },
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Exit planning in drie stappen",
+    url: "https://propasso.nl/werkwijze#zo-werk-ik",
+    itemListOrder: "https://schema.org/ItemListOrderAscending",
+    numberOfItems: werkwijzeSteps.length,
+    itemListElement: werkwijzeSteps.map((step, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: step.title,
+      description: step.text,
+    })),
+  },
 ];
 
 const Werkwijze = () => {
   return (
     <PageLayout>
       <SEO
-        title="Exit planning in drie stappen | Werkwijze | Propasso"
+        title={pageTitle}
         description={pageDescription}
         canonical="https://propasso.nl/werkwijze"
-        ogTitle="Exit planning in drie stappen | Werkwijze | Propasso"
+        ogTitle={pageTitle}
         ogDescription={pageDescription}
         ogType="website"
         jsonLd={pageSchemas}

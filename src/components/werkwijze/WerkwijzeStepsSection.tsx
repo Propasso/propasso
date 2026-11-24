@@ -27,6 +27,7 @@ import {
  */
 
 const content = {
+  eyebrow: "Exit planning in drie stappen",
   heading: "Werken aan een beter bedrijf is de beste voorbereiding op de verkoop.",
   subheading: "Zo bepaal jij straks wanneer en aan wie je verkoopt.",
   companyTrack: "Je bedrijf",
@@ -58,6 +59,9 @@ const content = {
     { label: "Doorgaan" },
   ],
 } as const;
+
+/** De drie stappen, ook gebruikt voor de ItemList-JSON-LD in Werkwijze.tsx (één bron voor tekst en schema). */
+export const werkwijzeSteps = content.steps;
 
 const LINE = "bg-[hsl(var(--tint-teal))]";
 
@@ -119,7 +123,8 @@ const WerkwijzeStepsSection = ({ id = "zo-werk-ik" }: { id?: string }) => {
   return (
     <section id={id} aria-labelledby="stappen-titel" className="scroll-mt-28 section-neutral-bg py-16 md:py-24 lg:py-32">
       <div className="section-container">
-        <h2 id="stappen-titel" className="text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance">
+        <p className="eyebrow">{content.eyebrow}</p>
+        <h2 id="stappen-titel" className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance">
           {content.heading}
         </h2>
         <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">{content.subheading}</p>
