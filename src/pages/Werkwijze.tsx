@@ -4,7 +4,6 @@ import PageCTA from "@/components/PageCTA";
 import PageHero from "@/components/PageHero";
 import MKBRealitySection from "@/components/werkwijze/MKBRealitySection";
 import ThreeStoriesSection from "@/components/werkwijze/ThreeStoriesSection";
-import { Link } from "react-router-dom";
 import WerkwijzeStepsSection from "@/components/werkwijze/WerkwijzeStepsSection";
 import OutcomesSection from "@/components/werkwijze/OutcomesSection";
 import QuickscanBanner from "@/components/QuickscanBanner";
@@ -97,30 +96,7 @@ const Werkwijze = () => {
 
       <ThreeStoriesSection />
 
-      <WerkwijzeStepsSection>
-        {/* Letterlijk overgenomen uit het vorige stappenblok: tekst die nergens anders op deze pagina staat. */}
-        <p>
-          Elke vier weken een sessie voor de kwartaaldoelen en elke twee weken een check-in met de trekkers van de
-          deelprojecten. Zo wordt het bedrijf stap voor stap minder afhankelijk van jou en winstgevender.
-        </p>
-        <p>
-          Je persoonlijke plan loopt parallel, met een sessie om de twee à drie maanden. Elke keer ga je naar huis met een
-          kleine stap.{" "}
-          <Link
-            to="/werkwijze/persoonlijk-plan-opstellen"
-            className="font-semibold text-accent underline underline-offset-4 hover:no-underline"
-          >
-            Zo werkt het persoonlijke plan
-          </Link>
-        </p>
-        <p>
-          Bij elke check-in toetsen we dezelfde vraag: ben je persoonlijk klaar voor de exit? Soms blijkt dan dat je niet
-          meer wilt verkopen, omdat de reden om te verkopen is opgelost.
-        </p>
-        <p>
-          Kies je voor verkoop, dan help ik je de juiste verkooppartij te kiezen; het verkoopproces zelf doet die partij.
-        </p>
-      </WerkwijzeStepsSection>
+      <WerkwijzeStepsSection />
 
       <QuickscanBanner contextLine="Wil je eerst zelf zien waar je staat? Dat is stap 1 in het klein." />
 
