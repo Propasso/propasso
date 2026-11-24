@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, ClipboardCheck, Compass, Network, TrendingUp, Users, type LucideIcon } from "lucide-react";
+import type { ComponentType, SVGProps } from "react";
+import { ArrowRight, BookOpen } from "lucide-react";
+import { IconEnDan, IconFamilie, IconVerkoopklaar, IconWaardering, IconZelfstandig } from "@/components/ThemeIcons";
 import { useQuery } from "@tanstack/react-query";
 import { motion, useReducedMotion } from "framer-motion";
 import { fetchHomepageThemes } from "@/lib/sanityQueries";
@@ -15,12 +17,12 @@ const fadeIn = {
 
 // Icoon per thema, gekoppeld aan de slug (niet aan de volgorde in Sanity).
 // Nieuw thema zonder icoon hier: valt terug op BookOpen.
-const THEME_ICONS: Record<string, LucideIcon> = {
-  "bedrijf-verkoopklaar-maken": ClipboardCheck,
-  "afhankelijkheid-ondernemer-zelfstandig-bedrijf": Network,
-  "bedrijfswaardering-en-verkoopopbrengst": TrendingUp,
-  "overdracht-familiebedrijf": Users,
-  "bedrijf-verkocht-en-dan": Compass,
+const THEME_ICONS: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
+  "bedrijf-verkoopklaar-maken": IconVerkoopklaar,
+  "afhankelijkheid-ondernemer-zelfstandig-bedrijf": IconZelfstandig,
+  "bedrijfswaardering-en-verkoopopbrengst": IconWaardering,
+  "overdracht-familiebedrijf": IconFamilie,
+  "bedrijf-verkocht-en-dan": IconEnDan,
 };
 
 const ThemesSection = () => {
@@ -87,7 +89,7 @@ const ThemesSection = () => {
                           aria-hidden="true"
                           className="relative col-start-1 row-start-1 flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-accent/25 text-primary transition-colors duration-300 group-hover:bg-accent group-focus-visible:bg-accent"
                         >
-                          <Icon className="h-5 w-5" strokeWidth={1.75} />
+                          <Icon className="h-[22px] w-[22px]" />
                         </span>
                         <div className="relative col-span-3 row-start-2 min-w-0 sm:col-span-1 sm:col-start-2 sm:row-start-1">
                           <h3 className="text-lg font-semibold leading-snug text-foreground">{theme.title}</h3>
