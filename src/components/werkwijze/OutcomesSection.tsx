@@ -20,19 +20,19 @@ const outcomes = [
     icon: ShieldCheck,
     title: "Verbeterde winstgevendheid",
     description:
-      "Inzicht in margekwaliteit, kostenstructuur en terugkerende omzet; de waardedrijvers die kopers waarderen.",
+      "Inzicht in margekwaliteit, kostenstructuur en terugkerende omzet; de waardedrijvers waar kopers op letten.",
   },
   {
     icon: Users,
-    title: "Verminderde afhankelijkheid",
+    title: "Hogere verkoopopbrengst",
     description:
-      "De ondernemer wordt minder operationeel onmisbaar. Het bedrijf draait door, ook zonder de oprichter.",
+      "Werken aan overdraagbaarheid leidt doorgaans al tot een hogere multiple, specifieke winstgevendheidtrajecten leiden daarnaast tot hogere winst",
   },
   {
     icon: ArrowRightLeft,
-    title: "Verhoogde overdraagbaarheid",
+    title: "Zelfstandig en overdraag bedrijf",
     description:
-      "Een bedrijf dat aantoonbaar klaar is voor overdracht, met heldere documentatie, structuur en voorspelbaarheid.",
+      "Een bedrijf dat klaar is voor overdracht, niet afhankelijk is van de ondernemer, met heldere governance en  bedrijfstructuur.",
   },
 ];
 
@@ -55,7 +55,7 @@ const OutcomesSection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold max-w-3xl leading-tight text-balance"
         >
-          Wat dit traject oplevert
+          Wat levert het op?
         </motion.h2>
 
         <motion.p
@@ -63,8 +63,9 @@ const OutcomesSection = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
         >
-          Ondernemers die dit traject doorlopen, bouwen een bedrijf dat
-          sterker, onafhankelijker en aantoonbaar overdraagbaar is.
+          Ondernemers die hun bedrijf voorbereiden op overdracht, bouwen een 
+          bedrijf dat onafhankelijker en aantoonbaar overdraagbaar is. Daarnaast 
+          werken ze direct en indirect aan hogere winst en bedrijfswaarde.
         </motion.p>
 
         <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4 max-w-6xl">
