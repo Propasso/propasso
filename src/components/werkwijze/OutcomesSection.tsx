@@ -64,7 +64,7 @@ const OutcomesSection = () => {
           className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed"
         >
           Ondernemers die hun bedrijf voorbereiden op overdracht, bouwen een 
-          bedrijf dat onafhankelijker en aantoonbaar overdraagbaar is. Daarnaast 
+          bedrijf dat minder afhankelijk en aantoonbaar overdraagbaar is. Daarnaast 
           werken ze direct en indirect aan hogere winst en bedrijfswaarde.
         </motion.p>
 
