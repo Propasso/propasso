@@ -10,6 +10,7 @@ import PageCTA from "@/components/PageCTA";
 import KennisbankBreadcrumb from "@/components/KennisbankBreadcrumb";
 import PortableTable from "@/components/PortableTable";
 import PortableImage from "@/components/PortableImage";
+import PillarCard from "@/components/PillarCard";
 import { fetchPostBySlug } from "@/lib/sanityQueries";
 import { urlFor } from "@/lib/sanity";
 import { getThemaOgImage } from "@/constants/themaOgImages";
@@ -337,6 +338,8 @@ const SanityArticlePage = ({ post }: { post: SanityPost }) => {
               </div>
             );
           })()}
+
+          <PillarCard theme={post.theme} currentPostId={post._id} />
 
           {(() => {
             const headings = getH2Headings(post.body);
