@@ -34,6 +34,15 @@ export interface SanityFaqItem {
   answer: string;
 }
 
+export interface SanityPostTheme {
+  title?: string;
+  slug?: string;
+  pillarPitch?: string;
+  pillarLinkLabel?: string;
+  /** Alleen gevuld als het hoofdartikel gepubliceerd en live is. */
+  pillar?: { _id: string; title: string; slug: string } | null;
+}
+
 export interface SanityPost {
   _id: string;
   title: string;
@@ -55,6 +64,8 @@ export interface SanityPost {
   lastUpdated?: string;
   faq?: SanityFaqItem[];
   pillarCta?: { ctaTitle?: string; ctaText?: string };
+  /** Thema van het artikel met het hoofdartikel voor de hoofdartikelkaart (Sanity: category.pillarPost). */
+  theme?: SanityPostTheme | null;
   seoTitle?: string;
   seoDescription?: string;
   ogTitle?: string;
