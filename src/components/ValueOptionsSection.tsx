@@ -46,7 +46,7 @@ const ValueOptionsSection = () => (
       </h2>
       <p className="mt-6 text-lg text-muted-foreground max-w-2xl leading-relaxed">
         Op de dag dat je besluit je bedrijf te verkopen, heb je weinig invloed meer op je mogelijkheden. Ze hangen af van 
-        hoe gezond en waardevol je bedrijf op dat moment is. Je bedrijf verkoopklaar maken betekent dat het bedrijf 
+        hoe gezond en waardevol je bedrijf op dat moment is. Het verkoopklaar maken van je onderneming betekent dat het 
         zelfstandig draait en waarde geoptimaliseerd is, en dat jij een plan hebt voor wat je na de verkoop wilt.
       </p>
 
